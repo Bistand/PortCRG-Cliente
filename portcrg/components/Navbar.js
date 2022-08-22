@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 
-const Header = () => {
+const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-xl tracking-tight font-ubuntu">
-          Ubuntu
-        </span>
+      <div className="flex items-center flex-shrink-0 text-white mr-16">
+        <span className="text-xl tracking-tight font-bold">PortCRG</span>
       </div>
       <div className="block lg:hidden">
         <button
-          className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+          className="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-200 hover:border-white"
           onClick={() => setNavbarOpen(!navbarOpen)}
         >
           <svg
@@ -30,32 +28,32 @@ const Header = () => {
           (navbarOpen ? null : " hidden")
         }
       >
-        <div className="text-sm lg:flex-grow font-ubuntu">
+        <div className="text-sm lg:flex-grow">
           <a
-            href="#responsive-header"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            href="#inicio"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
           >
-            Docs
+            Inicio
           </a>
           <a
-            href="#responsive-header"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            href="#asistencia"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
           >
-            Examples
+            Asistencia
           </a>
           <a
-            href="#responsive-header"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            href="#cursos"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
           >
-            Blog
+            Cursos
           </a>
         </div>
         <div>
           <a
             href="#"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 lg:mt-0"
           >
-            Download
+            Usuario
           </a>
         </div>
       </div>
@@ -63,4 +61,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
