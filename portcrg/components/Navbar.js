@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-cherry-red p-6">
+    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
-        <span className="text-xl tracking-tight font-bold">PortCRG</span>
+        <Image src="/PortCRG.png" width={64} height={64}></Image>
       </div>
       <div className="block lg:hidden">
         <button
@@ -31,19 +32,19 @@ const Navbar = () => {
         <div className="text-sm lg:flex-grow">
           <a
             href="#inicio"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Inicio
           </a>
           <a
             href="#asistencia"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Asistencia
           </a>
           <a
             href="#cursos"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Cursos
           </a>

@@ -10,7 +10,7 @@ module.exports = {
         "cherry-red": "#ff3839",
       },
       fontFamily: {
-        ubuntu: ["Ubuntu", "sans-serif"],
+        hurricane: ['"Hurricane"'],
       },
     },
   },
