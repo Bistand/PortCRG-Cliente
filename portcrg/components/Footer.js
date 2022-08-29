@@ -5,16 +5,16 @@ const Footer = () => {
     <footer className="p-4 bg-cherry-red sm:p-6">
       <div className="md:flex md:justify-between">
         <div className="flex justify-center mb-6 md:mb-0">
-          <span className="self-center text-4xl font-normal whitespace-nowrap font-hurricane sm:ml-6">
+          <span className="self-center text-4xl font-normal text-white whitespace-nowrap font-hurricane sm:ml-6">
             PortCRG
           </span>
         </div>
         <div className="sm:flex sm:gap-6">
-          <ul class="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+          <ul className="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <a
                 href="#"
-                class="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6 "
+                className="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6 "
               >
                 Login
               </a>
@@ -22,7 +22,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                class="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6"
+                className="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6"
               >
                 Asistencia
               </a>
@@ -30,7 +30,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                class="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6 "
+                className="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6 "
               >
                 Cursos
               </a>

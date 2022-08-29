@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "cherry-red": "#ff3839",
+        "cherry-red": "#ff101f",
+        "dragon-white": "#fdfffc",
       },
       fontFamily: {
         hurricane: ['"Hurricane"'],
