@@ -4,11 +4,11 @@ import Image from "next/image";
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-12 py-2">
+    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
         <Image src="/PortCRG.png" width={64} height={64}></Image>
       </div>
-      <div className="block lg:hidden">
+      <div className="block sm:hidden">
         <button
           className="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-200 hover:border-white"
           onClick={() => setNavbarOpen(!navbarOpen)}
@@ -25,26 +25,26 @@ const Navbar = () => {
       </div>
       <div
         className={
-          "w-full block flex-grow lg:flex lg:items-center lg:w-auto" +
+          "w-full block flex-grow sm:flex sm:items-center sm:w-auto" +
           (navbarOpen ? null : " hidden")
         }
       >
-        <div className="text-sm lg:flex-grow">
+        <div className="text-sm sm:flex-grow">
           <a
             href="#inicio"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Inicio
           </a>
           <a
             href="#asistencia"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Asistencia
           </a>
           <a
             href="#cursos"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Cursos
           </a>
@@ -52,7 +52,7 @@ const Navbar = () => {
         <div>
           <a
             href="#"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 lg:mt-0"
+            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0"
           >
             Usuario
           </a>
