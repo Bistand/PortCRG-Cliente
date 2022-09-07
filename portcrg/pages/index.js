@@ -43,6 +43,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+
         <div className="basis-5/12 relative">
           <img
             src="https://images.pexels.com/photos/6565751/pexels-photo-6565751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -50,6 +51,73 @@ export default function Home() {
           ></img>
         </div>
       </div>
+
+      {/* inicio parte baja homepage */}
+      <div className="font-bold text-center text-6xl  text-dark-cadet-blue hover:text-cadet-blue">
+        ¿Por qué ser voluntario?
+      </div>
+
+      <div className=" m-24">
+        <div className="grid grid-cols-2 justify-items-center">
+          <div className="mb-32">
+            <img
+              src="https://images.pexels.com/photos/6565751/pexels-photo-6565751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              className="object-cover rounded-3xl sm:rounded-xtra-large h-40 sm:h-72 md:h-full 2xl:w-full 2xl:h-96"
+            ></img>
+          </div>
+          <div className="m-36">
+            <div className="font-bold text-center text-2xl">
+              Socorros y emergencias
+            </div>
+            <div className="font-normal text-center text-1xl ">
+              Los socorristas deben ser responsables, vigilantes y capaces de
+              afirmarse en situaciones donde la vida humana esta en peligro
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 justify-items-center">
+          <div className="m-36">
+            <div className="font-bold text-center text-2xl">
+              Primeros Auxilios
+            </div>
+            <div className="font-normal text-center text-1xl">
+              Los cuidados inmediatos, adecuados y provisionales brindados a las
+              personas accidentadas o con enfermedades de aparición súbita antes
+              de la llegada de profesionales o especialistas de la salud de la
+              respectiva atención.
+            </div>
+          </div>
+
+          <div className="mb-32">
+            <img
+              src="https://images.pexels.com/photos/6565751/pexels-photo-6565751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              className="object-cover rounded-3xl sm:rounded-xtra-large h-40 sm:h-72 md:h-full 2xl:w-full 2xl:h-96"
+            ></img>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 justify-items-center">
+          <div>
+            <img
+              src="https://images.pexels.com/photos/6565751/pexels-photo-6565751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              className="object-cover rounded-3xl sm:rounded-xtra-large h-40 sm:h-72 md:h-full 2xl:w-full 2xl:h-96"
+            ></img>
+          </div>
+          <div className="m-36">
+            <div className="font-bold text-center text-2xl">
+              Intervencion social
+            </div>
+            <div className="font-normal text-center text-1xl">
+              En una realidad donde aún existen conflictos y exclusiones en
+              grupos vulnerables se hace necesaria la intervención social.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Fin parte baja homepage */}
+
       <div className="sm:hidden mx-5 mb-8">
         <div className="grid grid-cols-3 mt-12 gap-2 lg:gap-6">
           <div className="border-2 rounded-lg flex flex-col items-center text-dark-cadet-blue hover:text-cadet-blue hover:bg-gray-100">
