@@ -205,8 +205,6 @@ export default function Home() {
         />
         <script type="text/javascript"></script>
       </>
-
-
       <Footer></Footer>
     </>
   );
