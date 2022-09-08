@@ -31,7 +31,7 @@ const Navbar = () => {
       >
         <div className="text-sm sm:flex-grow">
           <a
-            href="#inicio"
+            href="/"
             className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Inicio
@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
         <div>
           <a
-            href="#"
+            href="/profile"
             className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0"
           >
             Usuario

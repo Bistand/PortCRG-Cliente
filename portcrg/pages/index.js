@@ -43,7 +43,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="basis-5/12 relative">
           <img
             src="https://images.pexels.com/photos/6565751/pexels-photo-6565751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -51,7 +50,6 @@ export default function Home() {
           ></img>
         </div>
       </div>
-
       <div className="sm:hidden mx-5 mb-8">
         <div className="grid grid-cols-3 mt-12 gap-2 lg:gap-6">
           <div className="border-2 rounded-lg flex flex-col items-center text-dark-cadet-blue hover:text-cadet-blue hover:bg-gray-100">
@@ -75,6 +73,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
 
       {/* inicio parte baja homepage */}
 
@@ -157,6 +156,7 @@ export default function Home() {
       </div>
 
       {/* Fin parte baja homepage */}
+
 
       <Footer></Footer>
     </>
