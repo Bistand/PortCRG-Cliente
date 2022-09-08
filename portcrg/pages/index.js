@@ -52,6 +52,30 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="block sm:hidden mx-5 mb-4">
+        <div className="grid grid-cols-3 mt-4 sm:mt-12 gap-1 sm:gap-2 lg:gap-6">
+          <div className="border-2 rounded-lg flex flex-col items-center text-dark-cadet-blue hover:text-cadet-blue hover:bg-gray-100">
+            <FaTasks size={48} className="mb-3 mt-2"></FaTasks>
+            <p className="text-xs md:text-base text-center mx-6 text-black font-inter">
+              Expande tus habilidades y experiencia
+            </p>
+          </div>
+          <div className="border-2 rounded-lg flex flex-col items-center text-dark-cadet-blue hover:text-cadet-blue hover:bg-gray-100">
+            <MdWork size={48} className="mb-3 mt-2"></MdWork>
+            <p className="text-xs md:text-base text-center mx-6 mb-2 text-black font-inter">
+              Aumenta tu empleabilidad manteniendote comprometido con la
+              sociedad
+            </p>
+          </div>
+          <div className="border-2 rounded-lg flex flex-col items-center text-dark-cadet-blue hover:text-cadet-blue hover:bg-gray-100">
+            <IoIosPeople size={56} className="mb-2 mt-1"></IoIosPeople>
+            <p className="text-xs md:text-base text-center mx-6 text-black font-inter">
+              Retribuye a la comunidad y ayuda a las personas
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* inicio parte baja homepage */}
       <div className="font-bold text-center text-6xl  text-dark-cadet-blue hover:text-cadet-blue">
         ¿Por qué ser voluntario?
