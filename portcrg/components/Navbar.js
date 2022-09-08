@@ -31,7 +31,7 @@ const Navbar = () => {
       >
         <div className="text-sm sm:flex-grow">
           <a
-            href="#inicio"
+            href="/"
             className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
           >
             Inicio
