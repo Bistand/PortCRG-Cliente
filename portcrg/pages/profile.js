@@ -7,6 +7,8 @@ import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
 
+import ProfilePic from '../public/crg.png'
+
 export default function Home() {
   return (
     <>
