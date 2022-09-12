@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -30,32 +31,30 @@ const Navbar = () => {
         }
       >
         <div className="text-sm sm:flex-grow">
-          <a
-            href="/"
-            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-          >
-            Inicio
-          </a>
-          <a
-            href="#asistencia"
-            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-          >
-            Asistencia
-          </a>
-          <a
-            href="#cursos"
-            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-          >
-            Cursos
-          </a>
+          <Link href="/">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Inicio
+            </a>
+          </Link>
+
+          <Link href="/Login">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Login
+            </a>
+          </Link>
+
+          <Link href="/sign_up">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Sign Up
+            </a>
+          </Link>
         </div>
         <div>
-          <a
-            href="/profile"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0"
-          >
-            Usuario
-          </a>
+          <Link href="/profile">
+            <a className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
+              Usuario
+            </a>
+          </Link>
         </div>
       </div>
     </nav>
