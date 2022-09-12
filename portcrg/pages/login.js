@@ -25,7 +25,7 @@ export default function Login() {
       >
         <img className="lg:hidden object-center" src="/voluntariado.jpg"></img>
         <img
-          className="lg:block hidden object-none object-center"
+          className="lg:block hidden object-none object-center w-full h-full"
           src="/volun2.png"
         ></img>
       </div>
