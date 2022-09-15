@@ -11,16 +11,16 @@ function LeftInfoCourse(props) {
   const course = props.course;
   return (
     <>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full mb-4 lg:mb-0">
         <p className="font-inter font-bold text-left sm:text-3xl 2xl:text-4xl mb-2 text-dark-cadet-blue">
           {course.name}
         </p>
-        <span className="place-items-center flex">
+        <span className="flex">
           <p>Impartido por&nbsp;</p>
           <p className="font-semibold">{course.instructor}</p>
         </span>
-        <div className="bg-slate-100 px-2 py-1 rounded-md my-2 flex flex-row">
-          <div className="basis-2/5">
+        <div className="bg-slate-100 px-2 py-1 rounded-md my-2 flex flex-col lg:flex-row gap-2">
+          <div className="basis-full lg:basis-2/5">
             <p className="font-semibold text-gray-500">Status</p>
             {course.status == 1 ? (
               <span className="place-items-center flex text-red-600">
@@ -44,14 +44,14 @@ function LeftInfoCourse(props) {
               </span>
             ) : null}
           </div>
-          <div className="basis-3/5">
+          <div className="basis-full lg:basis-3/5">
             <p className="font-semibold text-gray-500">Prerrequisitos</p>
             {course.prerequisitos.length == 0 ? (
               <p>Ninguno</p>
             ) : (
               <ul className="list-disc ml-5">
                 {course.prerequisitos.map((course_details) => {
-                  return <li>{course_details}</li>;
+                  return <li key={course_details}>{course_details}</li>;
                 })}
               </ul>
             )}

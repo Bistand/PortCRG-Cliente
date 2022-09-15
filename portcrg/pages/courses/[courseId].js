@@ -35,20 +35,31 @@ function courseDetails() {
       <Head>
         <title>{cursoPruebaJson.name}</title>
       </Head>
-      <div className="flex flex-col h-screen justify-between">
+
+      <div className=" flex flex-col h-screen justify-between">
         <Navbar></Navbar>
-        <div className="flex flex-row justify-center items-center my-8">
-          <div className="grid grid-cols-5 gap-10 lg:gap-8 w-4/5 3xl:w-2/3">
-            {/* LeftInfoCourse */}
-            <div className="col-span-3">
-              <LeftInfoCourse course={cursoPruebaJson}></LeftInfoCourse>
+        <div className="hidden lg:block">
+          <div className="flex flex-row justify-center items-center my-8">
+            <div className="grid grid-cols-5 gap-10 lg:gap-8 w-4/5 3xl:w-2/3">
+              {/* LeftInfoCourse */}
+              <div className="col-span-3">
+                <LeftInfoCourse course={cursoPruebaJson}></LeftInfoCourse>
+              </div>
+              {/* LeftInfoCourse */}
+              {/* RightBarCourse */}
+              <div className="col-span-2 px-4">
+                <RightBarCourse course={cursoPruebaJson}></RightBarCourse>
+              </div>
+              {/* RightBarCourse */}
             </div>
-            {/* LeftInfoCourse */}
-            {/* RightBarCourse */}
-            <div className="col-span-2 px-4">
+          </div>
+        </div>
+        <div className="lg:hidden">
+          <div className="flex flex-col justify-center items-center">
+            <div className="w-3/4 my-6">
+              <LeftInfoCourse course={cursoPruebaJson}></LeftInfoCourse>
               <RightBarCourse course={cursoPruebaJson}></RightBarCourse>
             </div>
-            {/* RightBarCourse */}
           </div>
         </div>
         <Footer></Footer>
