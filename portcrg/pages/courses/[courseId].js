@@ -15,11 +15,11 @@ const cursoPruebaJson = {
   duration: 10,
   diploma: false,
   instructor: "Lic. Leonel Salas",
-  modality: 2,
+  modality: 1,
   photography:
     "https://images.pexels.com/photos/6520061/pexels-photo-6520061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   amountOfParticipants: 30,
-  status: 2,
+  status: 1,
   sede: "Delegación Quetzaltenango",
   temario: "",
   platform: "Microsoft Teams",
