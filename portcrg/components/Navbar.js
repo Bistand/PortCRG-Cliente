@@ -37,7 +37,7 @@ const Navbar = () => {
             </a>
           </Link>
 
-          <Link href="/Login">
+          <Link href="/login">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
               Login
             </a>

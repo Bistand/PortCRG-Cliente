@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   MdHighlightOff,
   MdHistory,
@@ -7,7 +8,7 @@ import {
 
 import { BiWindowOpen } from "react-icons/bi";
 
-function LeftInfoCourse(props) {
+function CourseGenInfo(props) {
   const course = props.course;
   return (
     <>
@@ -44,26 +45,44 @@ function LeftInfoCourse(props) {
               </span>
             ) : null}
           </div>
-          <div className="basis-full lg:basis-3/5">
-            <p className="font-semibold text-gray-500">Prerrequisitos</p>
-            {course.prerequisitos.length == 0 ? (
-              <p>Ninguno</p>
-            ) : (
-              <ul className="list-disc ml-5">
-                {course.prerequisitos.map((course_details) => {
-                  return <li key={course_details}>{course_details}</li>;
-                })}
-              </ul>
-            )}
-          </div>
+          {course.hasOwnProperty("prerequisitos") ? (
+            <div className="basis-full lg:basis-3/5">
+              <p className="font-semibold text-gray-500">Prerrequisitos</p>
+              {course.prerequisitos.length == 0 ? (
+                <p>Ninguno</p>
+              ) : (
+                <ul className="list-disc ml-5">
+                  {course.prerequisitos.map((course_details) => {
+                    return <li key={course_details}>{course_details}</li>;
+                  })}
+                </ul>
+              )}
+            </div>
+          ) : null}
         </div>
-        <p className="font-inter font-bold text-left sm:text-lg 2xl:text-xl mb-2 text-dark-cadet-blue">
-          Descripción del curso
-        </p>
-        <p>{course.description}</p>
+        <div>
+          <p className="font-inter font-bold text-left sm:text-lg 2xl:text-xl mb-2 text-dark-cadet-blue">
+            Descripción del curso
+          </p>
+          <p>{course.description}</p>
+        </div>
+        <div className="mt-2">
+          <p className="font-inter font-bold text-left sm:text-lg 2xl:text-xl mb-2 text-dark-cadet-blue">
+            Enlace de descarga de temario del curso
+          </p>
+          {course.hasOwnProperty("temarioURL") && course.temarioURL != "" ? (
+            <Link href={course.temarioURL} passHref>
+              <a className="text-teal-700 hover:underline" target="_blank">
+                Temario - {course.name}
+              </a>
+            </Link>
+          ) : (
+            <p>Aún no se ha cargado el recurso</p>
+          )}
+        </div>
       </div>
     </>
   );
 }
 
-export default LeftInfoCourse;
+export default CourseGenInfo;

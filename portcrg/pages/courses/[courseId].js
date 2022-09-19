@@ -1,10 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import RightBarCourse from "../../components/RightBarCourse";
-import LeftInfoCourse from "../../components/LeftInfoCourse";
+import CourseSpecInfo from "../../components/CourseSpecInfo";
+import CourseGenInfo from "../../components/CourseGenInfo";
 
 const cursoPruebaJson = {
   name: "Curso de primeros auxilios",
@@ -16,7 +14,7 @@ const cursoPruebaJson = {
   diploma: false,
   instructor: "Lic. Leonel Salas",
   modality: 1,
-  photography:
+  photographyURL:
     "https://images.pexels.com/photos/6520061/pexels-photo-6520061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   amountOfParticipants: 30,
   status: 1,
@@ -27,45 +25,57 @@ const cursoPruebaJson = {
   prerequisitos: ["Curso 1", "Curso 2"],
 };
 
-function courseDetails() {
-  const router = useRouter();
-  const courseId = router.query.courseId;
+function courseDetails({ data }) {
   return (
     <>
       <Head>
-        <title>{cursoPruebaJson.name}</title>
+        <title>{data.name}</title>
       </Head>
 
-      <div className=" flex flex-col h-screen justify-between">
-        <Navbar></Navbar>
+      <div>
         <div className="hidden lg:block">
           <div className="flex flex-row justify-center items-center my-8">
             <div className="grid grid-cols-5 gap-10 lg:gap-8 w-4/5 3xl:w-2/3">
-              {/* LeftInfoCourse */}
+              {/* CourseGenInfo */}
               <div className="col-span-3">
-                <LeftInfoCourse course={cursoPruebaJson}></LeftInfoCourse>
+                <CourseGenInfo course={data}></CourseGenInfo>
               </div>
-              {/* LeftInfoCourse */}
-              {/* RightBarCourse */}
+              {/* CourseGenInfo */}
+              {/* CourseSpecInfo */}
               <div className="col-span-2 px-4">
-                <RightBarCourse course={cursoPruebaJson}></RightBarCourse>
+                <CourseSpecInfo course={data}></CourseSpecInfo>
               </div>
-              {/* RightBarCourse */}
+              {/* CourseSpecInfo */}
             </div>
           </div>
         </div>
         <div className="lg:hidden">
           <div className="flex flex-col justify-center items-center">
             <div className="w-3/4 my-6">
-              <LeftInfoCourse course={cursoPruebaJson}></LeftInfoCourse>
-              <RightBarCourse course={cursoPruebaJson}></RightBarCourse>
+              <CourseGenInfo course={data}></CourseGenInfo>
+              <CourseSpecInfo course={data}></CourseSpecInfo>
             </div>
           </div>
         </div>
-        <Footer></Footer>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { courseId } = params;
+
+  const response = await fetch(
+    `https://portcrg-dev.onrender.com/api/courses/id`,
+    {
+      headers: {
+        id: courseId,
+      },
+    }
+  );
+  const { data } = await response.json();
+  return { props: { data } };
 }
 
 export default courseDetails;
