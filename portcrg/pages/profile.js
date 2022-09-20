@@ -247,7 +247,7 @@ export default function Home() {
               </div>
               <div className="card-body tab-content">
                 <div className="tab-pane active" id="profile">
-                  <h6>YOUR PROFILE INFORMATION</h6>
+                  <h6>INFORMACIÓN DE PERFIL</h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -266,11 +266,11 @@ export default function Home() {
                       </small>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="bio">Your Bio</label>
+                      <label htmlFor="bio">Biografía</label>
                       <textarea
                         className="form-control autosize"
                         id="bio"
-                        placeholder="Write something about you"
+                        placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
                         style={{
                           overflow: "hidden",
                           overflowWrap: "break-word",
@@ -278,12 +278,12 @@ export default function Home() {
                           height: 62
                         }}
                         defaultValue={
-                          "A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness."
+                          ""
                         }
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="url">URL</label>
+                      <label htmlFor="url">Fecha de cumpleaños</label>
                       <input
                         type="text"
                         className="form-control"
@@ -307,8 +307,8 @@ export default function Home() {
                       at any time, and by filling them out, you're giving us consent
                       to share this data wherever your user profile appears.
                     </div>
-                    <button type="button" className="btn btn-primary">
-                      Update Profile
+                    <button type="button" className="btn btn-success">
+                      Actualizar perfil
                     </button>
                     <button type="reset" className="btn btn-light">
                       Reset Changes
