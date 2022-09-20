@@ -1,7 +1,7 @@
 import React from "react";
 
 function index() {
-  return <div>index courses</div>;
+  return <div>index</div>;
 }
 
 export default index;

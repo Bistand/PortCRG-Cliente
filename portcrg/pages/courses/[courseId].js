@@ -4,27 +4,6 @@ import { useRouter } from "next/router";
 import CourseSpecInfo from "../../components/CourseSpecInfo";
 import CourseGenInfo from "../../components/CourseGenInfo";
 
-const cursoPruebaJson = {
-  name: "Curso de primeros auxilios",
-  startDate: "22/09/22",
-  endDate: "12/10/22",
-  description:
-    "Curso en el cual se impartiran los conocimientos básicos para brindar primeros auxilios para cualquier accidente que ocurra.",
-  duration: 10,
-  diploma: false,
-  instructor: "Lic. Leonel Salas",
-  modality: 1,
-  photographyURL:
-    "https://images.pexels.com/photos/6520061/pexels-photo-6520061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  amountOfParticipants: 30,
-  status: 1,
-  sede: "Delegación Quetzaltenango",
-  temario: "",
-  platform: "Microsoft Teams",
-  hora: "16:00",
-  prerequisitos: ["Curso 1", "Curso 2"],
-};
-
 function courseDetails({ data }) {
   return (
     <>
@@ -74,7 +53,15 @@ export async function getServerSideProps(context) {
       },
     }
   );
+
   const { data } = await response.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
   return { props: { data } };
 }
 
