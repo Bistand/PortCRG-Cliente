@@ -7,6 +7,10 @@ import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
 
+
+
+import Script from 'next/script'
+
 import ProfilePic from '../public/crg.png'
 
 export default function Home() {
@@ -17,195 +21,589 @@ export default function Home() {
       </Head>
       <Navbar></Navbar>
 
-      <>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-        />
-        <div className="container">
-          <div className="row gutters">
-            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-              <div className="card h-100">
-                <div className="card-body">
-                  <div className="account-settings">
-                    <div className="user-profile">
-                      <div className="user-avatar">
-                        <Image
-                          src={ProfilePic}
-                          alt=""
-                        />
-                      </div>
-                      <h5 className="user-name">Cruz Roja</h5>
-                      <h6 className="user-email">crgport@gmail.com</h6>
-
-                    </div>
-
-
-                    <div className="about">
-                      <h5 className="mb-2 text-primary">Información</h5>
-                      <p>
-                        Institución no lucrativa, de interés social y voluntario que presta auxilio a la población que se encuentre en riesgo o en desastre.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+      <div className="container">
+        {/* Breadcrumb */}
+       
+        {/* /Breadcrumb */}
+        <div className="row gutters-sm">
+          <div className="col-md-4 d-none d-md-block">
+            <div className="card">
+              <div className="card-body">
+                <nav className="nav flex-column nav-pills nav-gap-y-1">
+                  <a
+                    href="#profile"
+                    data-toggle="tab"
+                    className="nav-item nav-link has-icon nav-link-faded active"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-user mr-2"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx={12} cy={7} r={4} />
+                    </svg>
+                    Profile Information
+                  </a>
+                  <a
+                    href="#account"
+                    data-toggle="tab"
+                    className="nav-item nav-link has-icon nav-link-faded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-settings mr-2"
+                    >
+                      <circle cx={12} cy={12} r={3} />
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    Account Settings
+                  </a>
+                  <a
+                    href="#security"
+                    data-toggle="tab"
+                    className="nav-item nav-link has-icon nav-link-faded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-shield mr-2"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Security
+                  </a>
+                  <a
+                    href="#notification"
+                    data-toggle="tab"
+                    className="nav-item nav-link has-icon nav-link-faded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-bell mr-2"
+                    >
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    Notification
+                  </a>
+                  <a
+                    href="#billing"
+                    data-toggle="tab"
+                    className="nav-item nav-link has-icon nav-link-faded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-credit-card mr-2"
+                    >
+                      <rect x={1} y={4} width={22} height={16} rx={2} ry={2} />
+                      <line x1={1} y1={10} x2={23} y2={10} />
+                    </svg>
+                    Billing
+                  </a>
+                </nav>
               </div>
             </div>
-            <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-              <div className="card h-100">
-                <div className="card-body">
-                  <div className="row gutters">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h6 className="mb-3 text-primary">Información Personal</h6>
+          </div>
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-header border-bottom mb-3 d-flex d-md-none">
+                <ul
+                  className="nav nav-tabs card-header-tabs nav-gap-x-1"
+                  role="tablist"
+                >
+                  <li className="nav-item">
+                    <a
+                      href="#profile"
+                      data-toggle="tab"
+                      className="nav-link has-icon active"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-user"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx={12} cy={7} r={4} />
+                      </svg>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#account"
+                      data-toggle="tab"
+                      className="nav-link has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-settings"
+                      >
+                        <circle cx={12} cy={12} r={3} />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#security"
+                      data-toggle="tab"
+                      className="nav-link has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-shield"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#notification"
+                      data-toggle="tab"
+                      className="nav-link has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-bell"
+                      >
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#billing"
+                      data-toggle="tab"
+                      className="nav-link has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-credit-card"
+                      >
+                        <rect x={1} y={4} width={22} height={16} rx={2} ry={2} />
+                        <line x1={1} y1={10} x2={23} y2={10} />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="card-body tab-content">
+                <div className="tab-pane active" id="profile">
+                  <h6>YOUR PROFILE INFORMATION</h6>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label htmlFor="fullName">Full Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="fullName"
+                        aria-describedby="fullNameHelp"
+                        placeholder="Enter your fullname"
+                        defaultValue="Kenneth Valdez"
+                      />
+                      <small id="fullNameHelp" className="form-text text-muted">
+                        Your name may appear around here where you are mentioned.
+                        You can change or remove it at any time.
+                      </small>
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="fullName">Nombre completo</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="fullName"
-                          placeholder="Ingresa tu nombre completo"
-                        />
-                      </div>
+                    <div className="form-group">
+                      <label htmlFor="bio">Your Bio</label>
+                      <textarea
+                        className="form-control autosize"
+                        id="bio"
+                        placeholder="Write something about you"
+                        style={{
+                          overflow: "hidden",
+                          overflowWrap: "break-word",
+                          resize: "none",
+                          height: 62
+                        }}
+                        defaultValue={
+                          "A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness."
+                        }
+                      />
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="eMail">Correo Electrónico</label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="eMail"
-                          placeholder="Ingresa tu Correo Electrónico"
-                        />
-                      </div>
+                    <div className="form-group">
+                      <label htmlFor="url">URL</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="url"
+                        placeholder="Enter your website address"
+                        defaultValue="http://benije.ke/pozzivkij"
+                      />
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="phone">Teléfono</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="phone"
-                          placeholder="Ingresa tu numero teléfonico"
-                        />
-                      </div>
+                    <div className="form-group">
+                      <label htmlFor="location">Location</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="location"
+                        placeholder="Enter your location"
+                        defaultValue="Bay Area, San Francisco, CA"
+                      />
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="phone2">Teléfono alternativo (Emergencias)</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="phone2"
-                          placeholder="Ingresa numero de teléfono alternativo"
-                        />
-                      </div>
+                    <div className="form-group small text-muted">
+                      All of the fields on this page are optional and can be deleted
+                      at any time, and by filling them out, you're giving us consent
+                      to share this data wherever your user profile appears.
                     </div>
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h6 className="mb-3 text-primary">Fotografía de perfil</h6>
+                    <button type="button" className="btn btn-primary">
+                      Update Profile
+                    </button>
+                    <button type="reset" className="btn btn-light">
+                      Reset Changes
+                    </button>
+                  </form>
+                </div>
+                <div className="tab-pane" id="account">
+                  <h6>ACCOUNT SETTINGS</h6>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label htmlFor="username">Username</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        aria-describedby="usernameHelp"
+                        placeholder="Enter your username"
+                        defaultValue="kennethvaldez"
+                      />
+                      <small id="usernameHelp" className="form-text text-muted">
+                        After changing your username, your old username becomes
+                        available for anyone else to claim.
+                      </small>
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="phone">Cambiar imagen </label>
-                        <div className="form-inline col-md-10 col-sm-9 col-xs-12">
-                          <input type="file" className="file-uploader pull-left" />
-                          <button type="submit" className="btn btn-sm btn-default-alt pull-left">
-                            Subir Imagen
+                    <hr />
+                    <div className="form-group">
+                      <label className="d-block text-danger">Delete Account</label>
+                      <p className="text-muted font-size-sm">
+                        Once you delete your account, there is no going back. Please
+                        be certain.
+                      </p>
+                    </div>
+                    <button className="btn btn-danger" type="button">
+                      Delete Account
+                    </button>
+                  </form>
+                </div>
+                <div className="tab-pane" id="security">
+                  <h6>SECURITY SETTINGS</h6>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label className="d-block">Change Password</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter your old password"
+                      />
+                      <input
+                        type="text"
+                        className="form-control mt-1"
+                        placeholder="New password"
+                      />
+                      <input
+                        type="text"
+                        className="form-control mt-1"
+                        placeholder="Confirm new password"
+                      />
+                    </div>
+                  </form>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label className="d-block">Two Factor Authentication</label>
+                      <button className="btn btn-info" type="button">
+                        Enable two-factor authentication
+                      </button>
+                      <p className="small text-muted mt-2">
+                        Two-factor authentication adds an additional layer of
+                        security to your account by requiring more than just a
+                        password to log in.
+                      </p>
+                    </div>
+                  </form>
+                  <hr />
+                  <form>
+                    <div className="form-group mb-0">
+                      <label className="d-block">Sessions</label>
+                      <p className="font-size-sm text-secondary">
+                        This is a list of devices that have logged into your
+                        account. Revoke any sessions that you do not recognize.
+                      </p>
+                      <ul className="list-group list-group-sm">
+                        <li className="list-group-item has-icon">
+                          <div>
+                            <h6 className="mb-0">
+                              San Francisco City 190.24.335.55
+                            </h6>
+                            <small className="text-muted">
+                              Your current session seen in United States
+                            </small>
+                          </div>
+                          <button
+                            className="btn btn-light btn-sm ml-auto"
+                            type="button"
+                          >
+                            More info
                           </button>
-                        </div>
-
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>
+                <div className="tab-pane" id="notification">
+                  <h6>NOTIFICATION SETTINGS</h6>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label className="d-block mb-0">Security Alerts</label>
+                      <div className="small text-muted mb-3">
+                        Receive security alert notifications via email
                       </div>
-                    </div>
-                  </div>
-                  <div className="row gutters">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h6 className="mb-3 text-primary">Dirección</h6>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="Street">Dirección</label>
+                      <div className="custom-control custom-checkbox">
                         <input
-                          type="name"
-                          className="form-control"
-                          id="Street"
-                          placeholder="Ingresa dirección de residencia"
+                          type="checkbox"
+                          className="custom-control-input"
+                          id="customCheck1"
+                          defaultChecked=""
                         />
-                      </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="ciTy">Departamento</label>
-                        <input
-                          type="name"
-                          className="form-control"
-                          id="ciTy"
-                          placeholder="Ingresa Departamento"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="sTate">Municipio</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="sTate"
-                          placeholder="Ingresa Municiopio"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label htmlFor="zIp">Código Postal</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="zIp"
-                          placeholder="Ingrese su Código postal"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row gutters">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div className="text-right">
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-secondary"
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customCheck1"
                         >
-                          Cancelar
-                        </button>
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-primary"
+                          Email each time a vulnerability is found
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id="customCheck2"
+                          defaultChecked=""
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customCheck2"
                         >
-                          Actualizar
-                        </button>
+                          Email a digest summary of vulnerability
+                        </label>
                       </div>
                     </div>
-                  </div>
+                    <div className="form-group mb-0">
+                      <label className="d-block">SMS Notifications</label>
+                      <ul className="list-group list-group-sm">
+                        <li className="list-group-item has-icon">
+                          Comments
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="customSwitch1"
+                              defaultChecked=""
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customSwitch1"
+                            />
+                          </div>
+                        </li>
+                        <li className="list-group-item has-icon">
+                          Updates From People
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="customSwitch2"
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customSwitch2"
+                            />
+                          </div>
+                        </li>
+                        <li className="list-group-item has-icon">
+                          Reminders
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="customSwitch3"
+                              defaultChecked=""
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customSwitch3"
+                            />
+                          </div>
+                        </li>
+                        <li className="list-group-item has-icon">
+                          Events
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="customSwitch4"
+                              defaultChecked=""
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customSwitch4"
+                            />
+                          </div>
+                        </li>
+                        <li className="list-group-item has-icon">
+                          Pages You Follow
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="customSwitch5"
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customSwitch5"
+                            />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>
+                <div className="tab-pane" id="billing">
+                  <h6>BILLING SETTINGS</h6>
+                  <hr />
+                  <form>
+                    <div className="form-group">
+                      <label className="d-block mb-0">Payment Method</label>
+                      <div className="small text-muted mb-3">
+                        You have not added a payment method
+                      </div>
+                      <button className="btn btn-info" type="button">
+                        Add Payment Method
+                      </button>
+                    </div>
+                    <div className="form-group mb-0">
+                      <label className="d-block">Payment History</label>
+                      <div className="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">
+                        You have not made any payment.
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <style
-          type="text/css"
-          dangerouslySetInnerHTML={{
-            __html:
-            "\nFooter{margin-top:60px; \n}\nbody{\ncolor: #56a3a6;\n    background: #fdfffc;\n}\n.account-settings .user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem; \n    text-align: center;\n}\n.account-settings .user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.account-settings .user-profile .user-avatar img {\n    width: 150px;\n    height: 150px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.account-settings .user-profile h5.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.account-settings .user-profile h6.user-email {\n    margin: 0;\n    font-size: 1rem;\n    font-weight: 400;\n}\n.account-settings .about {\n    margin: 1rem 0 0 0;\n    font-size: 1rem;\n    text-align: center;\n}\n.card {\n margin-top:30px; \n  background: #fdfffc; \n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 15px;\n    border: 5px solid #ff101f;\n    margin-bottom: 1rem;\n}\n.form-control {\n    border: 1px solid #596280;\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    border-radius: 2px;\n    font-size: 1rem;\n    background: #fdfffc;\n    color: #bcd0f7;\n}\n\n"
+      </div>
+      <style
+        type="text/css"
+        dangerouslySetInnerHTML={{
+          __html:
+            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
         }}
-        />
-        <script type="text/javascript"></script>
-      </>
+      />
+
+
+
+
+
       <Footer></Footer>
+
+      <Script type="text/javascript"></Script>
+
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+
+<Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;type=content-script&amp;dmn=www.bootdey.com&amp;app=com.apple.Safari&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;uag="></Script>
+<Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></Script>
+<Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
+<Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
+
     </>
   );
 }
