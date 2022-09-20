@@ -1,9 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 import FormCourses from "../components/FormCourses";
+import axios from "axios";
+import CardCourses from "../components/CardCourses";
+
 const courses = () => {
   const [modal, setModal] = useState(false);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    const ObtenerCursos = async () => {
+      try {
+        const { data } = await axios(
+          "https://portcrg-dev.onrender.com/api/courses/"
+        );
+
+        setCourses(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    ObtenerCursos();
+  }, []);
+
+  const dta = courses;
+
+  console.log(dta);
+
   return (
     <>
       <Navbar />
@@ -38,6 +63,13 @@ const courses = () => {
             </button>
           </span>
         </div>
+      </div>
+
+      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 lg:h-36">
+        {dta?.map((course) => (
+          <CardCourses key={course?._id} _id={course?._id} name={course?.name} description={course?.description} photographyURL={course?.photographyURL}/>
+        ))}
+
       </div>
 
       <Modal modal={modal} setModal={setModal} name="Cursos">

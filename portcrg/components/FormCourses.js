@@ -1,14 +1,42 @@
 import { useRef, useState } from "react";
-
+import axios from "axios";
 export default function FormCourses({ setOpen, setAlert, product }) {
   const formRef = useRef(null);
 
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [cost, setCost] = useState("");
-  const [stock, setStock] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState("");
+  const [diploma, setDiploma] = useState("");
+  const [instructor, setInstructor] = useState("")
+  const [modality, setModality] = useState("");
+  const [amountOfParticipants, setAmountOfParticipants] = useState("");
+  const [status, setStatus] = useState("");
+  const [sede, setSede] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [prerequisitos, setPrerequisitos] = useState("");
 
-  const handleSubmit = (e) => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    submitCourses()
+  };
+
+  const submitCourses = async () => {
+    try {
+   
+
+      console.log(name, startDate, endDate, description, duration, diploma, instructor,
+        modality, amountOfParticipants, status, platform)
+
+ 
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -23,10 +51,9 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 Nombre
               </label>
               <input
-                defaultValue={product?.title}
                 type="text"
-                name="title"
-                id="title"
+                name="name"
+                id="name"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -41,13 +68,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 Duracion meses
               </label>
               <input
-                defaultValue={product?.title}
                 type="number"
                 name="title"
                 id="duracion"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
-                //   value={name}
-                // onChange={(e) => setName(e.target.value)}
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
               />
             </div>
 
@@ -59,13 +85,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 Fecha de Inicio
               </label>
               <input
-                defaultValue={product?.price}
                 type="date"
                 name="price"
                 id="price"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
 
@@ -77,13 +102,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 Fecha de Finalizacion
               </label>
               <input
-                defaultValue={product?.price}
                 type="date"
                 name="price"
                 id="price"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
-                value={cost}
-                onChange={(e) => setCost(e.target.value)}
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
               />
             </div>
 
@@ -98,26 +122,24 @@ export default function FormCourses({ setOpen, setAlert, product }) {
               <div className="grid grid-cols-2 ">
                 <label className=" px-16">SI</label>
                 <input
-                  defaultValue={product?.title}
                   type="radio"
                   name="title"
                   id="title"
                   className="border-2 border-rose-300 w-full mx-0 placeholder-red-400 rounded-md"
-                  value={stock}
-                  onChange={(e) => setStock(e.target.value)}
+                  value={diploma}
+                  onChange={(e) => setDiploma(e.target.value)}
                 />
               </div>
 
               <div className="grid  border-rose-200 grid-cols-2 mt-4">
                 <label className=" px-16">No</label>
                 <input
-                  defaultValue={product?.title}
                   type="radio"
                   name="title"
                   id="title"
                   className="border-2 border-rose-300 w-full mx-0 placeholder-red-400 rounded-md"
-                  value={stock}
-                  onChange={(e) => setStock(e.target.value)}
+                  value={diploma}
+                  onChange={(e) => setDiploma(e.target.value)}
                 />
               </div>
             </div>
@@ -130,13 +152,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 Nombre del Instructor
               </label>
               <input
-                defaultValue={product?.title}
                 type="text"
                 name="title"
                 id="title"
                 className="border-2  border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
-                // value={stock}
-                // onChange={(e) => setStock(e.target.value)}
+                value={instructor}
+                onChange={(e) => setInstructor(e.target.value)}
               />
             </div>
 
@@ -153,8 +174,8 @@ export default function FormCourses({ setOpen, setAlert, product }) {
                 name="title"
                 id="title"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400rounded-md"
-                // value={stock}
-                // onChange={(e) => setStock(e.target.value)}
+                value={amountOfParticipants}
+                onChange={(e) => setAmountOfParticipants(e.target.value)}
               />
             </div>
 
@@ -169,11 +190,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
               <select
                 id="category"
                 name="category"
-                defaultValue={product?.category}
                 autoComplete="category-name"
+                value={modality}
+                onChange={(e) => setModality(e.target.value)}
                 className="mt-1 block w-full border-rose-300 py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
               >
-                <option value="1">Presencial</option>
+                <option value="1" >Presencial</option>
                 <option value="1">Virtual</option>
               </select>
             </div>
@@ -188,7 +210,8 @@ export default function FormCourses({ setOpen, setAlert, product }) {
               <select
                 id="category"
                 name="category"
-                defaultValue={product?.category}
+                value={platform}
+                onChange={(e) => setPlatform(e.target.value)}
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-rose-300 bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
               >
@@ -208,7 +231,8 @@ export default function FormCourses({ setOpen, setAlert, product }) {
               <select
                 id="category"
                 name="category"
-                defaultValue={product?.category}
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-rose-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm text-black"
               >
@@ -226,14 +250,12 @@ export default function FormCourses({ setOpen, setAlert, product }) {
               >
                 Descripcion
               </label>
-              <textarea
-                defaultValue={product?.title}
-               
+              <textarea               
                 name="title"
                 id="title"
                 className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
-                value={stock}
-                onChange={(e) => setStock(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
