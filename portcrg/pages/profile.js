@@ -293,15 +293,28 @@ export default function Home() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="location">Location</label>
+                      <label htmlFor="location">Dirección de Residencia</label>
                       <input
                         type="text"
                         className="form-control"
                         id="location"
-                        placeholder="Enter your location"
-                        defaultValue="Bay Area, San Francisco, CA"
+                        placeholder="Ingrese la dirección donde vive actualmente"
+                        defaultValue=""
                       />
                     </div>
+
+                    <div className="form-group">
+                      <label htmlFor="location">Departamento</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="location"
+                        placeholder="Ingrese el nombre de departamento  departamento"
+                        defaultValue=""
+                      />
+                    </div>
+
+
                     <div className="form-group small text-muted">
                       All of the fields on this page are optional and can be deleted
                       at any time, and by filling them out, you're giving us consent
@@ -310,17 +323,15 @@ export default function Home() {
                     <button type="button" className="btn btn-success">
                       Actualizar perfil
                     </button>
-                    <button type="reset" className="btn btn-light">
-                      Reset Changes
-                    </button>
+                    
                   </form>
                 </div>
                 <div className="tab-pane" id="account">
-                  <h6>ACCOUNT SETTINGS</h6>
+                  <h6>AJUSTES DE CUENTA</h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label htmlFor="username">Username</label>
+                      <label htmlFor="username">Correo Electrónico / Codigo de Personal</label>
                       <input
                         type="text"
                         className="form-control"
