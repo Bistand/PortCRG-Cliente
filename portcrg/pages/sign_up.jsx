@@ -8,12 +8,14 @@ import styles from '../styles/Sing_up.module.css'
 export default function sing_up() {
     return (
 
-        <main className={styles.main}>
-            <Navbar></Navbar>
-            <div className={styles.general}>
+        <div className={styles.contenedor}>
+            
                 <h1 className={styles.tit}>
                     Inscribirse
                 </h1>
+                <div className={styles.imm}>
+                    <img src="/img/R1.png" alt="" />
+                </div>
                 <h1 className={styles.rescat}>Tipo de Usuario:</h1>
                 <div>
                     <select name="List1" id="" className={styles.select1}>
@@ -25,23 +27,20 @@ export default function sing_up() {
                         <option value="">Personal Asalariado</option>
                     </select>
                 </div>
-                <div className={styles.imm}>
-                    <img src="/img/R1.png" alt="" />
-                </div>
+
                 <div className={styles.text1}>Email</div>
                 <input className={styles.input1} type="email" placeholder="Email" />
                 <div className={styles.text2}>Contraseña</div>
-                <input className={styles.input2} type="password" placeholder="Contraseña" />
-                <div className={styles.text3}>Confirmar contraseña</div>
-                <input className={styles.input3} type="password" placeholder="Repite Contraseña" />
+                <input className={styles.input2} type="text" placeholder="Contraseña" />
                 <div className={styles.text4}>¿Olvidaste tu Constraseña?</div>
                 <div className={styles.buton}>
                     <button className={styles.rectanglev}>
                         Ingresar
                     </button >
                 </div>
-            </div>
-        </main>
+         
+
+        </div>
 
     )
 }
