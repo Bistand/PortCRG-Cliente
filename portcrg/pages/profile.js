@@ -42,10 +42,8 @@ export default function Home() {
                         Rebecca Sanders
                         <label className="label label-info">UX Designer</label>
                       </li>
-                      <li className="email">
-                        <a href="#">Rebecca.S@website.com</a>
-                      </li>
-                      <li className="activity">Last logged in: Today at 2:18pm</li>
+                      
+                      
                     </ul>
                   </div>
 
@@ -71,7 +69,7 @@ export default function Home() {
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx={12} cy={7} r={4} />
                     </svg>
-                    Información de Perfil
+                    Información Personal
                   </a>
                   <a
                     href="#account"
@@ -246,7 +244,7 @@ export default function Home() {
               </div>
               <div className="card-body tab-content">
                 <div className="tab-pane active" id="profile">
-                  <h6>INFORMACIÓN DE PERFIL</h6>
+                  <h6>INFORMACIÓN PERSONAL</h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -281,6 +279,34 @@ export default function Home() {
                         }
                       />
                     </div>
+
+                    <div className="form-group">
+                      <label htmlFor="fullName">DPI</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="fullName"
+                        aria-describedby="fullNameHelp"
+                        placeholder="Ingrese su número de DPI"
+                        defaultValue=""
+                      />
+                      
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="phone">Número de Telefono/Celular</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="fullName"
+                        aria-describedby="fullNameHelp"
+                        placeholder="Ingrese su número de contacto"
+                        defaultValue=""
+                      />
+                      
+                    </div>
+
+
                     <div className="form-group">
                       <label htmlFor="url">Fecha de nacimiento</label>
                       <input
@@ -353,9 +379,9 @@ export default function Home() {
 
 
                     <div className="form-group small text-muted">
-                      All of the fields on this page are optional and can be deleted
-                      at any time, and by filling them out, you're giving us consent
-                      to share this data wherever your user profile appears.
+                    Todos los campos de esta página son opcionales y se pueden eliminar
+                      en cualquier momento, y al rellenarlos nos estás dando tu consentimiento
+                      para compartir estos datos dondequiera que aparezca su perfil de usuario.
                     </div>
                     <button type="button" className="btn btn-success">
                       Actualizar perfil
@@ -416,107 +442,68 @@ export default function Home() {
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
+                      <button type="button" className="btn btn-success">
+                      Actualizar Contraseña
+                    </button>
                     </div>
                   </form>
-                  <hr />
                   
-                  <hr />
-                  <form>
-                    <div className="form-group mb-0">
-                      <label className="d-block">Sessions</label>
-                      <p className="font-size-sm text-secondary">
-                        This is a list of devices that have logged into your
-                        account. Revoke any sessions that you do not recognize.
-                      </p>
-                      <ul className="list-group list-group-sm">
-                        <li className="list-group-item has-icon">
-                          <div>
-                            <h6 className="mb-0">
-                              San Francisco City 190.24.335.55
-                            </h6>
-                            <small className="text-muted">
-                              Your current session seen in United States
-                            </small>
-                          </div>
-                          <button
-                            className="btn btn-light btn-sm ml-auto"
-                            type="button"
-                          >
-                            More info
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </form>
                 </div>
                 <div className="tab-pane" id="notification">
-                  <h6>NOTIFICATION SETTINGS</h6>
+                  <h6>AJUSTES DE SALUD</h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block mb-0">Security Alerts</label>
+                      <label className="d-block mb-0">Información de Salud Personal</label>
                       <div className="small text-muted mb-3">
-                        Receive security alert notifications via email
+                        La siguiente información es personal y servirá para poder tener un detalle de su perfil en determinada emergencia.
                       </div>
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck1"
-                          defaultChecked=""
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="customCheck1"
-                        >
-                          Email each time a vulnerability is found
-                        </label>
-                      </div>
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck2"
-                          defaultChecked=""
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="customCheck2"
-                        >
-                          Email a digest summary of vulnerability
-                        </label>
-                      </div>
+                      
+                      
                     </div>
                     <div className="form-group mb-0">
                       <label className="d-block">SMS Notifications</label>
                       <ul className="list-group list-group-sm">
                         <li className="list-group-item has-icon">
-                          Comments
+                          Tipo de Sangre
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customSwitch1"
-                              defaultChecked=""
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customSwitch1"
-                            />
+                          <select class="form-control">
+                          <option selected="">Seleccionar Tipo de Sangre</option>
+                          <option>O Positivo</option>
+                          <option>O Negativo</option>
+                          <option>A Positivo</option>
+                          <option>A Negativo</option>
+                          <option>B Positivo</option>
+                          <option>B Negativo</option>
+                          <option>AB Positivo</option>
+                          <option>AB Negativo</option>
+                          
+
+                        </select>
+                            
                           </div>
                         </li>
                         <li className="list-group-item has-icon">
-                          Updates From People
+                          Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customSwitch2"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customSwitch2"
-                            />
+                            
+                            <select class="form-control">
+                          <option selected="">¿Actualmente está tomando algún tipo de medicación?</option>
+                          <option>SI</option>
+                          <option>NO</option>
+                         
+
+                        </select>
+                        
+                        <label htmlFor="fullName">Nombre de Medicamento</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="fullName"
+                        aria-describedby="fullNameHelp"
+                        placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
+                        defaultValue=""
+                      />
                           </div>
                         </li>
                         <li className="list-group-item has-icon">
@@ -567,27 +554,7 @@ export default function Home() {
                     </div>
                   </form>
                 </div>
-                <div className="tab-pane" id="billing">
-                  <h6>BILLING SETTINGS</h6>
-                  <hr />
-                  <form>
-                    <div className="form-group">
-                      <label className="d-block mb-0">Payment Method</label>
-                      <div className="small text-muted mb-3">
-                        You have not added a payment method
-                      </div>
-                      <button className="btn btn-info" type="button">
-                        Add Payment Method
-                      </button>
-                    </div>
-                    <div className="form-group mb-0">
-                      <label className="d-block">Payment History</label>
-                      <div className="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">
-                        You have not made any payment.
-                      </div>
-                    </div>
-                  </form>
-                </div>
+             
               </div>
             </div>
           </div>
