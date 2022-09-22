@@ -28,10 +28,18 @@ function EventsCard({ event }) {
             {event.hasOwnProperty("image") && event.image != "" ? (
               <span className="lg:place-items-center flex">
                 <BiImage size={"24px"} className="mr-2"></BiImage>
-                <p>{event.dateEvent.substring(0, 10)}</p>
+                {event.hasOwnProperty("dateEvent") &&
+                event.dateEvent != null ? (
+                  <p>{event.dateEvent.substring(0, 10)}</p>
+                ) : null}
               </span>
             ) : (
-              <p>{event.dateEvent.substring(0, 10)}</p>
+              <>
+                {event.hasOwnProperty("dateEvent") &&
+                event.dateEvent != null ? (
+                  <p>{event.dateEvent.substring(0, 10)}</p>
+                ) : null}
+              </>
             )}
             <button
               onClick={() => {
