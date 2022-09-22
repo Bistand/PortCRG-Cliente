@@ -25,6 +25,24 @@ export const EventsProvider = ({ children }) => {
     ObtenerEventos();
   }, []);
 
+  const handleAddEvent = async (evento) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post(
+        "https://portcrg-dev.onrender.com/api/informativa/",
+        evento,
+        config
+      );
+      setEventsList([...eventsList, data.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDeleteEvent = async (id) => {
     try {
       const config = {
@@ -47,7 +65,7 @@ export const EventsProvider = ({ children }) => {
 
   return (
     <EventContext.Provider
-      value={{ eventsList, event, loading, handleDeleteEvent }}
+      value={{ eventsList, event, loading, handleDeleteEvent, handleAddEvent }}
     >
       {children}
     </EventContext.Provider>

@@ -11,7 +11,7 @@ const Table = () => {
     axios
       .get("https://portcrg-dev.onrender.com/api/courses/")
       .then((res) => {
-        setData(res.data.data); // set the state
+        setData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
