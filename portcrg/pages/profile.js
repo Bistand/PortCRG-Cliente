@@ -40,7 +40,7 @@ export default function Home() {
                     <ul className="meta list list-unstyled">
                       <li className="name">
                         Rebecca Sanders
-                        <label className="label label-info">UX Designer</label>
+                        
                       </li>
 
 
@@ -462,7 +462,7 @@ export default function Home() {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Ingrese su contraseña anterior"
+                        placeholder="Ingrese su contraseña actual"
                       />
                       <input
                         type="text"
