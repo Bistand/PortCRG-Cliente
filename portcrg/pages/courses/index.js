@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Modal from "../components/Modal";
-import FormCourses from "../components/FormCourses";
-import CardCourses from "../components/CardCourses";
-import useCourses from "../hooks/useCourses";
+import Modal from "../../components/Modal";
+import FormCourses from "../../components/FormCourses";
+import CardCourses from "../../components/CardCourses";
+import useCourses from "../../hooks/useCourses";
 
 function index() {
   const [modal, setModal] = useState(false);

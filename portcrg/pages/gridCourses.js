@@ -5,7 +5,7 @@ import FormCourses from "../components/FormCourses";
 import CardCourses from "../components/CardCourses";
 import useCourses from "../hooks/useCourses";
 
-const courses = () => {
+const gridCourses = () => {
   const [modal, setModal] = useState(false);
 
   const { coursesList } = useCourses();
@@ -70,4 +70,4 @@ const courses = () => {
   );
 };
 
-export default courses;
+export default gridCourses;
