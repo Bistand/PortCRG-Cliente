@@ -1,8 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
@@ -13,7 +10,6 @@ export default function Home() {
       <Head>
         <title>PortCRG</title>
       </Head>
-      <Navbar></Navbar>
       <div className="flex gap-x-3 mx-5 mt-8 mb-4 sm:mx-12 sm:my-7">
         <div className="basis-7/12 sm:mr-10 lg:mr-28">
           <p className="font-inter font-bold text-2xl text-center sm:text-left sm:text-4xl md:text-6xl 2xl:text-7xl leading-tight text-dark-cadet-blue">
@@ -111,7 +107,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 s place-items-center  my-4 sm:my-20 sm:grid-cols-2">
-        <div className="basis-5/12 relative">
+          <div className="basis-5/12 relative">
             <Image
               alt="Picture of the author"
               width={500}
@@ -121,7 +117,6 @@ export default function Home() {
             ></Image>
           </div>
           <div className="">
-
             <p className="text-md font-extrabold text-center mx-6 mb-2 text-dark-cadet-blue font-inter lg:text-2xl xl:text-4xl lg:mb-10">
               Primeros Auxilios
             </p>
@@ -136,8 +131,6 @@ export default function Home() {
               o enferma.
             </p>
           </div>
-
-
         </div>
 
         <div className="grid grid-cols-1 s place-items-center  my-4 sm:my-20 sm:grid-cols-2">
@@ -168,8 +161,6 @@ export default function Home() {
       </div>
 
       {/* Fin parte baja homepage */}
-
-      <Footer></Footer>
     </>
   );
 }

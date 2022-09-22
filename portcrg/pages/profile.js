@@ -1,17 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
 
+import Script from "next/script";
 
-
-import Script from 'next/script'
-
-import ProfilePic from '../public/crg.png'
+import ProfilePic from "../public/crg.png";
 
 export default function Home() {
   return (
@@ -19,7 +15,6 @@ export default function Home() {
       <Head>
         <title>PortCRG</title>
       </Head>
-      <Navbar></Navbar>
 
       <div className="container">
         {/* Breadcrumb */}
@@ -30,19 +25,15 @@ export default function Home() {
             <div className="card">
               <div className="card-body">
                 <nav className="nav flex-column nav-pills nav-gap-y-1">
-
                   <div className="user-profile">
                     <div className="user-avatar">
                       <img
-
                         src="https://bootdey.com/img/Content/avatar/avatar1.png"
                         alt=""
                       />
                     </div>
                     <h3 className="user-name">Cruz Roja Guatemalteca</h3>
                   </div>
-
-
 
                   <a
                     href="#profile"
@@ -131,7 +122,6 @@ export default function Home() {
                     </svg>
                     Salud
                   </a>
-
                 </nav>
               </div>
             </div>
@@ -234,7 +224,6 @@ export default function Home() {
                       </svg>
                     </a>
                   </li>
-
                 </ul>
               </div>
               <div className="card-body tab-content">
@@ -254,7 +243,8 @@ export default function Home() {
                       />
                       <small id="fullNameHelp" className="form-text text-muted">
                         El nombre que ingrese es el que se mostrará por defecto.
-                        Puede cambiar o actualizar su nombre en cualquier momento.
+                        Puede cambiar o actualizar su nombre en cualquier
+                        momento.
                       </small>
                     </div>
                     <div className="form-group">
@@ -267,11 +257,9 @@ export default function Home() {
                           overflow: "hidden",
                           overflowWrap: "break-word",
                           resize: "none",
-                          height: 62
+                          height: 62,
                         }}
-                        defaultValue={
-                          ""
-                        }
+                        defaultValue={""}
                       />
                     </div>
 
@@ -285,23 +273,20 @@ export default function Home() {
                         placeholder="Ingrese su número de DPI"
                         defaultValue=""
                       />
-
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="location">Estado Civil</label>
                       <div class="col-sm-10">
                         <select class="form-control">
-                          <option selected="">Seleccione su estado Civil</option>
+                          <option selected="">
+                            Seleccione su estado Civil
+                          </option>
                           <option>Soltero</option>
                           <option>Casado</option>
-
-
-
                         </select>
                       </div>
                     </div>
-
 
                     <div className="form-group">
                       <label htmlFor="phone">Número de Telefono/Celular</label>
@@ -313,7 +298,6 @@ export default function Home() {
                         placeholder="Ingrese su número de contacto"
                         defaultValue=""
                       />
-
                     </div>
 
                     <div className="form-group">
@@ -327,12 +311,9 @@ export default function Home() {
                           <option>Personal Asalariado</option>
                           <option>Damas Voluntarias</option>
                           <option>Administrador</option>
-
-
                         </select>
                       </div>
                     </div>
-
 
                     <div className="form-group">
                       <label htmlFor="fullName">Fecha de Nacimiento</label>
@@ -344,7 +325,6 @@ export default function Home() {
                         placeholder="Ingrese Fecha de nacimiento"
                         defaultValue=""
                       />
-
                     </div>
 
                     <div className="form-group">
@@ -374,11 +354,9 @@ export default function Home() {
                           <option>Suchitepequez</option>
                           <option>Totonicapán</option>
                           <option>Zacapa</option>
-
                         </select>
                       </div>
                     </div>
-
 
                     <div className="form-group">
                       <label htmlFor="Municio">Municipio</label>
@@ -402,18 +380,15 @@ export default function Home() {
                       />
                     </div>
 
-
-
-
                     <div className="form-group small text-muted">
-                      Todos los campos de esta página son opcionales y se pueden eliminar
-                      en cualquier momento, y al rellenarlos nos estás dando tu consentimiento
-                      para compartir estos datos dondequiera que aparezca su perfil de usuario.
+                      Todos los campos de esta página son opcionales y se pueden
+                      eliminar en cualquier momento, y al rellenarlos nos estás
+                      dando tu consentimiento para compartir estos datos
+                      dondequiera que aparezca su perfil de usuario.
                     </div>
                     <button type="button" className="btn btn-success">
                       Actualizar perfil
                     </button>
-
                   </form>
                 </div>
                 <div className="tab-pane" id="account">
@@ -421,7 +396,9 @@ export default function Home() {
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label htmlFor="username">Correo Electrónico / Codigo de Personal</label>
+                      <label htmlFor="username">
+                        Correo Electrónico / Codigo de Personal
+                      </label>
                       <input
                         type="text"
                         className="form-control"
@@ -431,16 +408,19 @@ export default function Home() {
                         defaultValue=""
                       />
                       <small id="usernameHelp" className="form-text text-muted">
-                        Despues de cambiar el Correo electrónico o Codigo de Personal
-                        el mismo estará disponible para cualquier otra persona.
+                        Despues de cambiar el Correo electrónico o Codigo de
+                        Personal el mismo estará disponible para cualquier otra
+                        persona.
                       </small>
                     </div>
                     <hr />
                     <div className="form-group">
-                      <label className="d-block text-danger">Eliminar Cuenta</label>
+                      <label className="d-block text-danger">
+                        Eliminar Cuenta
+                      </label>
                       <p className="text-muted font-size-sm">
-                        Una vez eliminada tu cuenta, no abra marcha atraz, por favor se conciente.
-
+                        Una vez eliminada tu cuenta, no abra marcha atraz, por
+                        favor se conciente.
                       </p>
                     </div>
                     <button className="btn btn-danger" type="button">
@@ -469,25 +449,25 @@ export default function Home() {
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
-
                     </div>
                     <button type="button" className="btn btn-success">
                       Actualizar Contraseña
                     </button>
                   </form>
-
                 </div>
                 <div className="tab-pane" id="notification">
                   <h6>INFORMACIÓN DE SALUD</h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block mb-0">Información de Salud Personal</label>
+                      <label className="d-block mb-0">
+                        Información de Salud Personal
+                      </label>
                       <div className="small text-muted mb-3">
-                        La siguiente información es personal y servirá para poder tener un detalle de su perfil en determinada emergencia.
+                        La siguiente información es personal y servirá para
+                        poder tener un detalle de su perfil en determinada
+                        emergencia.
                       </div>
-
-
                     </div>
                     <div className="form-group mb-0">
                       <label className="d-block">Salud</label>
@@ -496,7 +476,9 @@ export default function Home() {
                           Tipo de Sangre
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <select class="form-control">
-                              <option selected="">Seleccionar Tipo de Sangre</option>
+                              <option selected="">
+                                Seleccionar Tipo de Sangre
+                              </option>
                               <option>O Positivo</option>
                               <option>O Negativo</option>
                               <option>A Positivo</option>
@@ -505,25 +487,23 @@ export default function Home() {
                               <option>B Negativo</option>
                               <option>AB Positivo</option>
                               <option>AB Negativo</option>
-
-
                             </select>
-
                           </div>
                         </li>
                         <li className="list-group-item has-icon">
                           Enfermedad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-
                             <select class="form-control">
-                              <option selected="">¿Padece de alguna enfermedad?</option>
+                              <option selected="">
+                                ¿Padece de alguna enfermedad?
+                              </option>
                               <option>SI</option>
                               <option>NO</option>
-
-
                             </select>
 
-                            <label htmlFor="fullName">¿Cual es la enfermedad?</label>
+                            <label htmlFor="fullName">
+                              ¿Cual es la enfermedad?
+                            </label>
                             <input
                               type="text"
                               className="form-control"
@@ -535,20 +515,21 @@ export default function Home() {
                           </div>
                         </li>
 
-
                         <li className="list-group-item has-icon">
                           Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-
                             <select class="form-control">
-                              <option selected="">¿Actualmente está tomando algún tipo de medicación?</option>
+                              <option selected="">
+                                ¿Actualmente está tomando algún tipo de
+                                medicación?
+                              </option>
                               <option>SI</option>
                               <option>NO</option>
-
-
                             </select>
 
-                            <label htmlFor="fullName">Nombre de Medicamento</label>
+                            <label htmlFor="fullName">
+                              Nombre de Medicamento
+                            </label>
                             <input
                               type="text"
                               className="form-control"
@@ -560,20 +541,20 @@ export default function Home() {
                           </div>
                         </li>
 
-
                         <li className="list-group-item has-icon">
                           Incapacidad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-
                             <select class="form-control">
-                              <option selected="">¿Padece de alguna incapacidad?</option>
+                              <option selected="">
+                                ¿Padece de alguna incapacidad?
+                              </option>
                               <option>SI</option>
                               <option>NO</option>
-
-
                             </select>
 
-                            <label htmlFor="fullName">Mencione la discapacidad</label>
+                            <label htmlFor="fullName">
+                              Mencione la discapacidad
+                            </label>
                             <input
                               type="text"
                               className="form-control"
@@ -584,23 +565,13 @@ export default function Home() {
                             />
                           </div>
                         </li>
-
-
-
-
-
-
                       </ul>
-
                     </div>
                     <button type="button" className="btn btn-success">
                       Actualizar datos
                     </button>
-
                   </form>
-
                 </div>
-
               </div>
             </div>
           </div>
@@ -610,15 +581,9 @@ export default function Home() {
         type="text/css"
         dangerouslySetInnerHTML={{
           __html:
-            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n\n.user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem;\n    text-align: center;\n}\n.user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.user-profile .user-avatar img {\n margin:auto; \n  width: 300px;\n    height: 300px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.user-profile h3.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.user-profile  {\n    margin: 0;\n    font-size: 0.8rem;\n    font-weight: 400;\n}\n\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
+            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n\n.user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem;\n    text-align: center;\n}\n.user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.user-profile .user-avatar img {\n margin:auto; \n  width: 300px;\n    height: 300px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.user-profile h3.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.user-profile  {\n    margin: 0;\n    font-size: 0.8rem;\n    font-weight: 400;\n}\n\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n",
         }}
       />
-
-
-
-
-
-      <Footer></Footer>
 
       <Script type="text/javascript"></Script>
 
@@ -627,11 +592,18 @@ export default function Home() {
         rel="stylesheet"
       />
 
-      <Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;type=content-script&amp;dmn=www.bootdey.com&amp;app=com.apple.Safari&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;uag="></Script>
-      <Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></Script>
+      <Script
+        type="text/javascript"
+        nonce="449d412794494977987fdafaa11"
+        src="//local.adguard.org?ts=1662436000105&amp;type=content-script&amp;dmn=www.bootdey.com&amp;app=com.apple.Safari&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;uag="
+      ></Script>
+      <Script
+        type="text/javascript"
+        nonce="449d412794494977987fdafaa11"
+        src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"
+      ></Script>
       <Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
-
     </>
   );
 }

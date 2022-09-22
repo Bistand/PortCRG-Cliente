@@ -51,10 +51,15 @@ const Navbar = () => {
 
           <Link href="/courses">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-             Cursos
+              Cursos
             </a>
           </Link>
-          
+
+          <Link href="/informative">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Eventos
+            </a>
+          </Link>
         </div>
         <div>
           <Link href="/profile">

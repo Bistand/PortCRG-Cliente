@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const CardCourses = ({ _id, name, description, photographyURL }) => {
   return (
@@ -25,17 +26,23 @@ const CardCourses = ({ _id, name, description, photographyURL }) => {
               />
             )}
           </div>
-          <p className="font-bold spa my-2">{name}</p>
+          <Link href={"/courses/" + _id} passHref className="">
+            <a className="font-bold spa my-2 marker:bg-transparent hover:underline text-cadet-blue pt-1 px-4 rounded text-right ">
+              {name}
+            </a>
+          </Link>
+
           <p>{description}</p>
         </div>
-
-        <button
-          className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
+        <div className="flex flex-row justify-between">
+          <button
+            className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
             font-bold text-sm rounded-lg text-start"
-          // onClick={() => handleEditarTarea(tarea)}
-        >
-          Editar
-        </button>
+            // onClick={() => handleEditarTarea(tarea)}
+          >
+            Editar
+          </button>
+        </div>
       </div>
     </section>
   );

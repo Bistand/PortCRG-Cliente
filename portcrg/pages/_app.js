@@ -1,12 +1,16 @@
-import "../styles/globals.css";
+import Layout from "../components/layout";
+import { EventsProvider } from "../context/eventContext.js";
 import { CoursesProvider } from "../context/CoursesProvider";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
-    <CoursesProvider>
-      <Component {...pageProps} />
-    </CoursesProvider>
+    <EventsProvider>
+      <CoursesProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CoursesProvider>
+    </EventsProvider>
   );
 }
-
-export default MyApp;

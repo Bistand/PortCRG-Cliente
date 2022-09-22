@@ -13,8 +13,6 @@ const courses = () => {
 
   return (
     <>
-      <Navbar />
-
       <div className="mx-28 grid grid-cols-2 mt-8">
         <div>
           <p className="font-inter font-bold text-2xl   sm:text-4xl  leading-tight text-dark-cadet-blue">
@@ -47,7 +45,7 @@ const courses = () => {
         </div>
       </div>
 
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 lg:h-36 text-dark-cadet-blue">
+      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
         {coursesList.length ? (
           coursesList?.map((course) => (
             <CardCourses
@@ -64,7 +62,6 @@ const courses = () => {
           </p>
         )}
       </div>
- 
 
       <Modal modal={modal} setModal={setModal} name="Cursos">
         <FormCourses setModal={setModal}></FormCourses>
