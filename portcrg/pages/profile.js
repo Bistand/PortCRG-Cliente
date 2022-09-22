@@ -23,13 +23,34 @@ export default function Home() {
 
       <div className="container">
         {/* Breadcrumb */}
-       
+
         {/* /Breadcrumb */}
         <div className="row gutters-sm">
           <div className="col-md-4 d-none d-md-block">
             <div className="card">
               <div className="card-body">
                 <nav className="nav flex-column nav-pills nav-gap-y-1">
+
+                  <div className="user-info">
+                    <img
+                      className="img-profile img-circle img-responsive center-block"
+                      src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                      alt=""
+                    />
+                    <ul className="meta list list-unstyled">
+                      <li className="name">
+                        Rebecca Sanders
+                        <label className="label label-info">UX Designer</label>
+                      </li>
+                      <li className="email">
+                        <a href="#">Rebecca.S@website.com</a>
+                      </li>
+                      <li className="activity">Last logged in: Today at 2:18pm</li>
+                    </ul>
+                  </div>
+
+
+
                   <a
                     href="#profile"
                     data-toggle="tab"
@@ -115,9 +136,9 @@ export default function Home() {
                       <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                       <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                     </svg>
-                    Salud 
+                    Salud
                   </a>
-                  
+
                 </nav>
               </div>
             </div>
@@ -220,29 +241,7 @@ export default function Home() {
                       </svg>
                     </a>
                   </li>
-                  <li className="nav-item">
-                    <a
-                      href="#billing"
-                      data-toggle="tab"
-                      className="nav-link has-icon"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-credit-card"
-                      >
-                        <rect x={1} y={4} width={22} height={16} rx={2} ry={2} />
-                        <line x1={1} y1={10} x2={23} y2={10} />
-                      </svg>
-                    </a>
-                  </li>
+
                 </ul>
               </div>
               <div className="card-body tab-content">
@@ -283,15 +282,62 @@ export default function Home() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="url">Fecha de cumpleaños</label>
+                      <label htmlFor="url">Fecha de nacimiento</label>
+                      <input
+                        type="date"
+                        id="start"
+                        name="trip-start"
+                        defaultValue="2018-07-22"
+                        min="2018-01-01"
+                        max="2018-12-31"
+                      />
+
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="location">Departamento</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                          <option selected="">Seleccionar Departamento</option>
+                          <option>Alta Verapaz</option>
+                          <option>Baja Verapaz</option>
+                          <option>Chimaltenango</option>
+                          <option>Chiquimula</option>
+                          <option>Guatemala</option>
+                          <option>El Progreso</option>
+                          <option>Escuintla</option>
+                          <option>Huehuetenango</option>
+                          <option>Izabal</option>
+                          <option>Jalapa</option>
+                          <option>Jutiapa</option>
+                          <option>Péten</option>
+                          <option>Quetzaltenango</option>
+                          <option>Quiché</option>
+                          <option>Retalhuleu</option>
+                          <option>Sacatepequez</option>
+                          <option>San Marcos</option>
+                          <option>Santa Rosa</option>
+                          <option>Sololá</option>
+                          <option>Suchitepequez</option>
+                          <option>Totonicapán</option>
+                          <option>Zacapa</option>
+
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div className="form-group">
+                      <label htmlFor="Municio">Municipio</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="url"
-                        placeholder="Enter your website address"
-                        defaultValue="http://benije.ke/pozzivkij"
+                        id="location"
+                        placeholder="Ingrese el Municipio donde vive actualmente"
+                        defaultValue=""
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="location">Dirección de Residencia</label>
                       <input
@@ -303,16 +349,7 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor="location">Departamento</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="location"
-                        placeholder="Ingrese el nombre de departamento  departamento"
-                        defaultValue=""
-                      />
-                    </div>
+
 
 
                     <div className="form-group small text-muted">
@@ -323,7 +360,7 @@ export default function Home() {
                     <button type="button" className="btn btn-success">
                       Actualizar perfil
                     </button>
-                    
+
                   </form>
                 </div>
                 <div className="tab-pane" id="account">
@@ -337,64 +374,52 @@ export default function Home() {
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
-                        placeholder="Enter your username"
-                        defaultValue="kennethvaldez"
+                        placeholder="Ingrese su correo electrónico o Codigo de personal"
+                        defaultValue=""
                       />
                       <small id="usernameHelp" className="form-text text-muted">
-                        After changing your username, your old username becomes
-                        available for anyone else to claim.
+                        Despues de cambiar el Correo electrónico o Codigo de Personal 
+                        el mismo estará disponible para cualquier otra persona.
                       </small>
                     </div>
                     <hr />
                     <div className="form-group">
-                      <label className="d-block text-danger">Delete Account</label>
+                      <label className="d-block text-danger">Eliminar Cuenta</label>
                       <p className="text-muted font-size-sm">
-                        Once you delete your account, there is no going back. Please
-                        be certain.
+                        Una vez eliminada tu cuenta, no abra marcha atraz, por favor se conciente.
+                       
                       </p>
                     </div>
                     <button className="btn btn-danger" type="button">
-                      Delete Account
+                      Eliminar Cuenta
                     </button>
                   </form>
                 </div>
                 <div className="tab-pane" id="security">
-                  <h6>SECURITY SETTINGS</h6>
+                  <h6>AJUSTES DE SEGURIDAD</h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block">Change Password</label>
+                      <label className="d-block">Cambiar contraseña</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter your old password"
+                        placeholder="Ingrese su contraseña anterior"
                       />
                       <input
                         type="text"
                         className="form-control mt-1"
-                        placeholder="New password"
+                        placeholder="Nueva contraseña"
                       />
                       <input
                         type="text"
                         className="form-control mt-1"
-                        placeholder="Confirm new password"
+                        placeholder="Confirmar nueva contraseña"
                       />
                     </div>
                   </form>
                   <hr />
-                  <form>
-                    <div className="form-group">
-                      <label className="d-block">Two Factor Authentication</label>
-                      <button className="btn btn-info" type="button">
-                        Enable two-factor authentication
-                      </button>
-                      <p className="small text-muted mt-2">
-                        Two-factor authentication adds an additional layer of
-                        security to your account by requiring more than just a
-                        password to log in.
-                      </p>
-                    </div>
-                  </form>
+                  
                   <hr />
                   <form>
                     <div className="form-group mb-0">
@@ -572,7 +597,7 @@ export default function Home() {
         type="text/css"
         dangerouslySetInnerHTML={{
           __html:
-            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
+            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
         }}
       />
 
@@ -589,10 +614,10 @@ export default function Home() {
         rel="stylesheet"
       />
 
-<Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;type=content-script&amp;dmn=www.bootdey.com&amp;app=com.apple.Safari&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;uag="></Script>
-<Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></Script>
-<Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
-<Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
+      <Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;type=content-script&amp;dmn=www.bootdey.com&amp;app=com.apple.Safari&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;uag="></Script>
+      <Script type="text/javascript" nonce="449d412794494977987fdafaa11" src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></Script>
+      <Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
+      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
 
     </>
   );
