@@ -13,7 +13,7 @@ const Footer = () => {
           <ul className="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <a
-                href="#"
+                href="/login"
                 className="mr-4 hover:underline text-sm font-semibold text-white uppercase md:mr-6 "
               >
                 Login

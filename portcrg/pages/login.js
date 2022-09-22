@@ -1,8 +1,13 @@
-import { useState } from "react";
-//import loginimg from "../public/login2.png";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { conprobaruser } from "../peticiones/logiarse";
 export default function Login() {
+  const router = useRouter();
   const [user, SetUser] = useState("");
   const [password, SetPassword] = useState("");
+  const [hidden, SetHidden] = useState(true);
+  let validarusuario, credenciales;
+
   function recibiendouser(event) {
     SetUser(event.target.value);
   }
@@ -10,9 +15,17 @@ export default function Login() {
   function recibiendopassword(event) {
     SetPassword(event.target.value);
   }
-  function validar(event) {
+  async function validar(event) {
     event.preventDefault();
-    console.log(user, password);
+    validarusuario = await conprobaruser(user, password);
+    if (!validarusuario) {
+      SetHidden(false);
+    } else {
+      router.push("/");
+    }
+    console.log(validarusuario);
+    SetUser("");
+    SetPassword("");
   }
   return (
     <div
@@ -20,10 +33,13 @@ export default function Login() {
     lg:flex"
     >
       <div
-        className="w-full h-1/3 container mt-28 sm:m-0
+        className="w-full h-1/3 mt-28 sm:m-0
       lg:w-1/2 lg:h-full lg:pt-6 lg:mx-auto"
       >
-        <img className="lg:hidden object-center" src="/voluntariado.jpg"></img>
+        <img
+          className="lg:hidden object-center w-full h-full"
+          src="/voluntariado.jpg"
+        ></img>
         <img
           className="lg:block hidden object-none object-center w-full h-full"
           src="/volun2.png"
@@ -36,9 +52,18 @@ export default function Login() {
         >
           SIGN IN
         </h1>
-        <p className="text-[15px] capitalize mb-2.5">
-          enter your email address and password to access
-        </p>
+        {hidden ? (
+          <p className="text-[15px] capitalize mb-2.5">
+            enter your email address and password to access
+          </p>
+        ) : (
+          <p
+            className={`text-[15px] capitalize mb-2.5 text-red bg-red-200 p-2`}
+          >
+            ERROR! Incorrect Username or Password
+          </p>
+        )}
+
         <form
           onSubmit={validar}
           className="flex flex-col justify-center w-full gap-7"
@@ -47,7 +72,7 @@ export default function Login() {
             name="user"
             value={user}
             onChange={recibiendouser}
-            type="text"
+            type="email"
             placeholder="USERNAME / EMAIL"
             className="bg-[#F5E7E7] border[#FBF8F8]
             border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
@@ -64,7 +89,10 @@ export default function Login() {
           <button className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5">
             LOGIN
           </button>
-          <a className="text-[#FF3839] text-[11px] font-regular self-start mt-16">
+          <a
+            className="text-[#FF3839] text-[11px] font-regular self-start mt-16"
+            href="password"
+          >
             Forgotten your username or password?
           </a>
         </form>

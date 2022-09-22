@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { GetUsuario } from "../peticiones/session";
 import Image from "next/image";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [nombre, SetNombre] = useState("Usuario");
+  function mostrardatos() {
+    const datos = GetUsuario();
+    if (datos) {
+      console.log(123);
+      console.log(datos);
+      SetNombre(GetUsuario().name);
+    }
+  }
+  useEffect(() => {
+    mostrardatos();
+  });
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
@@ -54,7 +67,7 @@ const Navbar = () => {
             href="#"
             className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0"
           >
-            Usuario
+            {nombre}
           </a>
         </div>
       </div>
