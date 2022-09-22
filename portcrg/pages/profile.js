@@ -31,20 +31,15 @@ export default function Home() {
               <div className="card-body">
                 <nav className="nav flex-column nav-pills nav-gap-y-1">
 
-                  <div className="user-info">
-                    <img
-                      className="img-profile img-circle img-responsive center-block"
-                      src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                      alt=""
-                    />
-                    <ul className="meta list list-unstyled">
-                      <li className="name">
-                        Rebecca Sanders
-                        
-                      </li>
+                  <div className="user-profile">
+                    <div className="user-avatar">
+                      <img
 
-
-                    </ul>
+                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                        alt=""
+                      />
+                    </div>
+                    <h3 className="user-name">Cruz Roja Guatemalteca</h3>
                   </div>
 
 
@@ -300,8 +295,8 @@ export default function Home() {
                           <option selected="">Seleccione su estado Civil</option>
                           <option>Soltero</option>
                           <option>Casado</option>
-                          
-                         
+
+
 
                         </select>
                       </div>
@@ -332,7 +327,7 @@ export default function Home() {
                           <option>Personal Asalariado</option>
                           <option>Damas Voluntarias</option>
                           <option>Administrador</option>
-                         
+
 
                         </select>
                       </div>
@@ -349,7 +344,7 @@ export default function Home() {
                         placeholder="Ingrese Fecha de nacimiento"
                         defaultValue=""
                       />
-                      
+
                     </div>
 
                     <div className="form-group">
@@ -474,11 +469,11 @@ export default function Home() {
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
-                      
+
                     </div>
                     <button type="button" className="btn btn-success">
-                        Actualizar Contraseña
-                      </button>
+                      Actualizar Contraseña
+                    </button>
                   </form>
 
                 </div>
@@ -589,21 +584,21 @@ export default function Home() {
                             />
                           </div>
                         </li>
-                        
 
 
-                       
+
+
 
 
                       </ul>
-                      
+
                     </div>
                     <button type="button" className="btn btn-success">
-                        Actualizar datos
-                      </button>
-                    
+                      Actualizar datos
+                    </button>
+
                   </form>
-                  
+
                 </div>
 
               </div>
@@ -615,7 +610,7 @@ export default function Home() {
         type="text/css"
         dangerouslySetInnerHTML={{
           __html:
-            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
+            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n\n.user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem;\n    text-align: center;\n}\n.user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.user-profile .user-avatar img {\n margin:auto; \n  width: 300px;\n    height: 300px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.user-profile h3.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.user-profile  {\n    margin: 0;\n    font-size: 0.8rem;\n    font-weight: 400;\n}\n\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n"
         }}
       />
 
