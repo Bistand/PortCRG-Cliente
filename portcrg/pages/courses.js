@@ -2,32 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 import FormCourses from "../components/FormCourses";
-import axios from "axios";
 import CardCourses from "../components/CardCourses";
+import useCourses from "../hooks/useCourses";
 
 const courses = () => {
   const [modal, setModal] = useState(false);
-  const [courses, setCourses] = useState([]);
 
-  useEffect(() => {
-    const ObtenerCursos = async () => {
-      try {
-        const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/courses/"
-        );
-
-        setCourses(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    ObtenerCursos();
-  }, []);
-
-  const dta = courses;
-
-  console.log(dta);
+  const { coursesList } = useCourses();
+  console.log(coursesList);
 
   return (
     <>
@@ -65,12 +47,24 @@ const courses = () => {
         </div>
       </div>
 
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 lg:h-36">
-        {dta?.map((course) => (
-          <CardCourses key={course?._id} _id={course?._id} name={course?.name} description={course?.description} photographyURL={course?.photographyURL}/>
-        ))}
-
+      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 lg:h-36 text-dark-cadet-blue">
+        {coursesList.length ? (
+          coursesList?.map((course) => (
+            <CardCourses
+              key={course?._id}
+              _id={course?._id}
+              name={course?.name}
+              description={course?.description}
+              photographyURL={course?.photographyURL}
+            />
+          ))
+        ) : (
+          <p className="font-bold text-3xl text-center justify-items-center my-48 ">
+            En espera... Cargado Cursos
+          </p>
+        )}
       </div>
+ 
 
       <Modal modal={modal} setModal={setModal} name="Cursos">
         <FormCourses setModal={setModal}></FormCourses>

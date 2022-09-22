@@ -7,7 +7,8 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "lh3.googleusercontent.com",
       "images.pexels.com",
-      "res.cloudinary.com"
+      "res.cloudinary.com",
+      "i.ibb.co"
     ],
   },
   swcMinify: true,

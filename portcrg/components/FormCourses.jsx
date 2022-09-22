@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-
-export default function FormCourses() {
+import useCourses from "../hooks/useCourses";
+export default function FormCourses({ setModal }) {
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -16,68 +16,30 @@ export default function FormCourses() {
   // const [sede, setSede] = useState("");
   const [platform, setPlatform] = useState("");
   // const [prerequisitos, setPrerequisitos] = useState("");
-
-  const handleSubmit = (e) => {
+  const { submitCourses } = useCourses();
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    submitCourses();
+    await submitCourses({
+      name,
+      startDate,
+      endDate,
+      description,
+      duration,
+      diploma,
+      instructor,
+      modality,
+      amountOfParticipants,
+      status,
+      photographyURL,
+      platform,
+    });
+
+    setModal(false);
   };
 
-
-  const insertarImagen = (e) => {
-    setPhotographyURL(e)
-    const f = new FormData();
-
-    for (let index = 0; index < photographyURL.length; index++){
-      f.append("files", photographyURL[index])
-    }
-    setPhotographyURL(f);
-  };
-
-  const submitCourses = async () => {
-    try {
-      // if ([name, instructor].includes("")) {
-      //   alert("Todos los campos son obligatorios");
-      //   return;
-      // }
-
-      const { data } = await axios.post(
-        "https://portcrg-dev.onrender.com/api/courses/",
-        {
-          name,
-          startDate,
-          endDate,
-          description,
-          duration,
-          diploma,
-          instructor,
-          modality,
-          amountOfParticipants,
-          status,
-          photographyURL,
-          platform,
-        }
-      );
-
-      console.log(
-        name,
-        startDate,
-        endDate,
-        description,
-        duration,
-        diploma,
-        instructor,
-        modality,
-        amountOfParticipants,
-        status,
-        platform,
-        photographyURL
-      );
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleImagenChange = (e) => {
+    setPhotographyURL(e.target.files[0]);
   };
 
   return (
@@ -308,14 +270,15 @@ export default function FormCourses() {
                       >
                         <span>Actualizar Imagen</span>
                         <input
-                          id="images"
-                     
+                          id="upload-files"
+                          autoComplete="off"
                           type="file"
-                          className="sr-only"
-                          onChange={(e) => insertarImagen(e.target.files[0])}
-                        />
+                          name="image"
+                          accept="image/*"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
+                          onChange={(e) => handleImagenChange(e)}
+                        ></input>
                       </label>
-                      <p className="pl-1">Cargar Imagen</p>
                     </div>
                     <p className="text-xs text-gray-500">
                       PNG, JPG, GIF up to 10MB
