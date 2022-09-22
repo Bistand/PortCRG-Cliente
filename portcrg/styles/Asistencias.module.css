@@ -1,0 +1,203 @@
+
+.contenedor {
+    width: 98%;
+    height: 100%;
+    margin:0 auto ;
+    overflow: hidden;
+    background-color: #FDFFFC;
+
+}
+.titulo{
+    position: relative;
+width: 247px;
+height: 29px;
+left: 150px;
+top: 50px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #FF101F;
+}
+.titulo2{
+    position: relative;
+width: 108px;
+height: 29px;
+left: 110px;
+top: 134px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #FF101F;
+
+}
+.titulo3{
+    position: relative;
+width: 108px;
+height: 29px;
+left: 550px;
+top: 85px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #FF101F;
+
+}
+.inbox1{
+    box-sizing: border-box;
+
+position: relative;
+width: 314px;
+height: 35px;
+left: 190px;
+top: -2px;
+
+background: rgba(255, 255, 255, 0.2);
+
+border: 1px solid #000000;
+border-radius: 10px;
+}
+.inbox2{
+    box-sizing: border-box;
+
+    position: relative;
+    width: 314px;
+    height: 35px;
+    left: 600px;
+    top: -40px;
+    
+    background: rgba(255, 255, 255, 0.2);
+    
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+.butonbuscar{
+    /* Rectangle 11 */
+
+
+box-sizing: border-box;
+
+position: relative;
+width: 170px;
+height: 40px;
+left: 1027px;
+top: 31px;
+
+background: #56A3A6;
+border: 1px solid #ABABAB;
+border-radius: 9px;
+color: #FDFFFC;
+}
+.linea{
+    position: relative;
+    width: 80%;
+    height: 0px;
+    left: 29px;
+    top: -30px;
+    
+    border: 1px solid #6a0808;
+}
+.matriz{
+    background-color: #888888;
+    width: 90%;
+    height: 500px;
+    left: 290px;
+    top: 0px;
+}
+.divmatriz{
+    position: relative;
+width: 100%;
+height: 570px;
+left: 90px;
+top: -20px;
+}
+@media screen and (max-width: 600px) {
+    .titulo{
+        left: 100px;
+        top: 20px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .titulo2{
+        left: 100px;
+        top: 50px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .titulo3{
+        left: 100px;
+        top: 90px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .inbox1{
+        left: 100px;
+        top: -50px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .inbox2{
+        left: 100px;
+        top: 1px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .butonbuscar{
+        width: 170px;
+        height: 40px;
+        left: 160px;
+        top: 140px;
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .divmatriz{
+        left: 40px;
+        top: 100px;
+        width: 100%;
+        height: 470px;
+        
+    }
+
+    
+}
+@media screen and (max-width: 600px) {
+    .linea{
+        left: 40px;
+        top: 100px;
+        width: 100%;
+        height: 470px;
+        opacity: 0;
+        
+    }
+
+    
+}
