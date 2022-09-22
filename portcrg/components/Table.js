@@ -37,7 +37,7 @@ const Table = () => {
   );
 
   return (
-    <div className="m-2 flex flex-col">
+    <div className="m-4 md:m-0 flex flex-col">
       <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -86,7 +86,7 @@ const Table = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between w-1/5">
+      <div className="my-4 flex flex-row justify-between md:w-1/5 w-3/5">
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
