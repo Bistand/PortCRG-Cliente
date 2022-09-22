@@ -42,8 +42,8 @@ export default function Home() {
                         Rebecca Sanders
                         <label className="label label-info">UX Designer</label>
                       </li>
-                      
-                      
+
+
                     </ul>
                   </div>
 
@@ -290,8 +290,23 @@ export default function Home() {
                         placeholder="Ingrese su número de DPI"
                         defaultValue=""
                       />
-                      
+
                     </div>
+
+                    <div className="form-group">
+                      <label htmlFor="location">Estado Civil</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                          <option selected="">Seleccione su estado Civil</option>
+                          <option>Soltero</option>
+                          <option>Casado</option>
+                          
+                         
+
+                        </select>
+                      </div>
+                    </div>
+
 
                     <div className="form-group">
                       <label htmlFor="phone">Número de Telefono/Celular</label>
@@ -303,21 +318,38 @@ export default function Home() {
                         placeholder="Ingrese su número de contacto"
                         defaultValue=""
                       />
-                      
+
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="location">Ocupación</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                          <option selected="">Seleccionar Ocupación</option>
+                          <option>Voluntario General</option>
+                          <option>Socorrista</option>
+                          <option>Juventino</option>
+                          <option>Personal Asalariado</option>
+                          <option>Damas Voluntarias</option>
+                          <option>Administrador</option>
+                         
+
+                        </select>
+                      </div>
                     </div>
 
 
                     <div className="form-group">
-                      <label htmlFor="url">Fecha de nacimiento</label>
+                      <label htmlFor="fullName">Fecha de Nacimiento</label>
                       <input
-                        type="date"
-                        id="start"
-                        name="trip-start"
-                        defaultValue="2018-07-22"
-                        min="2018-01-01"
-                        max="2018-12-31"
+                        type="text"
+                        className="form-control"
+                        id="fullName"
+                        aria-describedby="fullNameHelp"
+                        placeholder="Ingrese Fecha de nacimiento"
+                        defaultValue=""
                       />
-
+                      
                     </div>
 
                     <div className="form-group">
@@ -379,7 +411,7 @@ export default function Home() {
 
 
                     <div className="form-group small text-muted">
-                    Todos los campos de esta página son opcionales y se pueden eliminar
+                      Todos los campos de esta página son opcionales y se pueden eliminar
                       en cualquier momento, y al rellenarlos nos estás dando tu consentimiento
                       para compartir estos datos dondequiera que aparezca su perfil de usuario.
                     </div>
@@ -404,7 +436,7 @@ export default function Home() {
                         defaultValue=""
                       />
                       <small id="usernameHelp" className="form-text text-muted">
-                        Despues de cambiar el Correo electrónico o Codigo de Personal 
+                        Despues de cambiar el Correo electrónico o Codigo de Personal
                         el mismo estará disponible para cualquier otra persona.
                       </small>
                     </div>
@@ -413,7 +445,7 @@ export default function Home() {
                       <label className="d-block text-danger">Eliminar Cuenta</label>
                       <p className="text-muted font-size-sm">
                         Una vez eliminada tu cuenta, no abra marcha atraz, por favor se conciente.
-                       
+
                       </p>
                     </div>
                     <button className="btn btn-danger" type="button">
@@ -442,15 +474,16 @@ export default function Home() {
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
-                      <button type="button" className="btn btn-success">
-                      Actualizar Contraseña
-                    </button>
+                      
                     </div>
+                    <button type="button" className="btn btn-success">
+                        Actualizar Contraseña
+                      </button>
                   </form>
-                  
+
                 </div>
                 <div className="tab-pane" id="notification">
-                  <h6>AJUSTES DE SALUD</h6>
+                  <h6>INFORMACIÓN DE SALUD</h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -458,103 +491,121 @@ export default function Home() {
                       <div className="small text-muted mb-3">
                         La siguiente información es personal y servirá para poder tener un detalle de su perfil en determinada emergencia.
                       </div>
-                      
-                      
+
+
                     </div>
                     <div className="form-group mb-0">
-                      <label className="d-block">SMS Notifications</label>
+                      <label className="d-block">Salud</label>
                       <ul className="list-group list-group-sm">
                         <li className="list-group-item has-icon">
                           Tipo de Sangre
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                          <select class="form-control">
-                          <option selected="">Seleccionar Tipo de Sangre</option>
-                          <option>O Positivo</option>
-                          <option>O Negativo</option>
-                          <option>A Positivo</option>
-                          <option>A Negativo</option>
-                          <option>B Positivo</option>
-                          <option>B Negativo</option>
-                          <option>AB Positivo</option>
-                          <option>AB Negativo</option>
-                          
+                            <select class="form-control">
+                              <option selected="">Seleccionar Tipo de Sangre</option>
+                              <option>O Positivo</option>
+                              <option>O Negativo</option>
+                              <option>A Positivo</option>
+                              <option>A Negativo</option>
+                              <option>B Positivo</option>
+                              <option>B Negativo</option>
+                              <option>AB Positivo</option>
+                              <option>AB Negativo</option>
 
-                        </select>
-                            
+
+                            </select>
+
                           </div>
                         </li>
+                        <li className="list-group-item has-icon">
+                          Enfermedad
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+
+                            <select class="form-control">
+                              <option selected="">¿Padece de alguna enfermedad?</option>
+                              <option>SI</option>
+                              <option>NO</option>
+
+
+                            </select>
+
+                            <label htmlFor="fullName">¿Cual es la enfermedad?</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="fullName"
+                              aria-describedby="fullNameHelp"
+                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de enfermedad"
+                              defaultValue=""
+                            />
+                          </div>
+                        </li>
+
+
                         <li className="list-group-item has-icon">
                           Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            
-                            <select class="form-control">
-                          <option selected="">¿Actualmente está tomando algún tipo de medicación?</option>
-                          <option>SI</option>
-                          <option>NO</option>
-                         
 
-                        </select>
+                            <select class="form-control">
+                              <option selected="">¿Actualmente está tomando algún tipo de medicación?</option>
+                              <option>SI</option>
+                              <option>NO</option>
+
+
+                            </select>
+
+                            <label htmlFor="fullName">Nombre de Medicamento</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="fullName"
+                              aria-describedby="fullNameHelp"
+                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
+                              defaultValue=""
+                            />
+                          </div>
+                        </li>
+
+
+                        <li className="list-group-item has-icon">
+                          Incapacidad
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+
+                            <select class="form-control">
+                              <option selected="">¿Padece de alguna incapacidad?</option>
+                              <option>SI</option>
+                              <option>NO</option>
+
+
+                            </select>
+
+                            <label htmlFor="fullName">Mencione la discapacidad</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="fullName"
+                              aria-describedby="fullNameHelp"
+                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de discapacidad"
+                              defaultValue=""
+                            />
+                          </div>
+                        </li>
                         
-                        <label htmlFor="fullName">Nombre de Medicamento</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
-                        defaultValue=""
-                      />
-                          </div>
-                        </li>
-                        <li className="list-group-item has-icon">
-                          Reminders
-                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customSwitch3"
-                              defaultChecked=""
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customSwitch3"
-                            />
-                          </div>
-                        </li>
-                        <li className="list-group-item has-icon">
-                          Events
-                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customSwitch4"
-                              defaultChecked=""
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customSwitch4"
-                            />
-                          </div>
-                        </li>
-                        <li className="list-group-item has-icon">
-                          Pages You Follow
-                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="customSwitch5"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customSwitch5"
-                            />
-                          </div>
-                        </li>
+
+
+                       
+
+
                       </ul>
+                      
                     </div>
+                    <button type="button" className="btn btn-success">
+                        Actualizar datos
+                      </button>
+                    
                   </form>
+                  
                 </div>
-             
+
               </div>
             </div>
           </div>
