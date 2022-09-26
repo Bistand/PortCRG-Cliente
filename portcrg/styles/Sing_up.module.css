@@ -1,39 +1,159 @@
-
 .contenedor {
-    width: 98%;
+    width: 100%;
+    min-height: 700px;
     height: 100%;
-    margin:0 auto ;
+    margin: 0 auto;
     overflow: hidden;
     background-color: #FDFFFC;
+    padding: auto;
+}
+
+.divTitulo {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    color: #FF101F;
+    top: 40px;
 
 }
-.main{
-    width: 98%;
-    background: #FDFFFC;
-    padding: 20px;
-    float: left;
-    box-sizing: border-box;
- 
+
+.h1 {
+    margin-left: 30%;
+    width: 100%;
 }
-.imm {
-    position: relative;
-    width: 448px;
+
+.divSeleccionar {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+}
+
+.divEmail {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    ;
+}
+
+.divContraseña {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    ;
+}
+
+
+.divImagen {
+    background-color: #FDFFFC;
+    float: left;
+    width: 30%;
     height: 600px;
-    left: 30px;
+
+}
+
+.contimg {
+    position: relative;
+
+    width: 80%;
+    height: 100vh;
+    left: 0px;
     top: 50px;
     border-radius: 20px;
+    float: left;
 }
-.buton {
-    width: 294px;
-    height: 400px;
+
+.img {
+    width: 100%;
+    margin-left: 20px;
 }
-.rectanglev {
+
+
+
+
+.divCampos {
     position: relative;
+    background-color: #FDFFFC;
+    float: right;
+    width: 70%;
+    height: 600px;
+    top: 50px;
+}
+
+.divSeleccionar {
+    background-color: #FDFFFC;
+}
+
+
+
+.select {
+
+    width: 60%;
+    height: 43px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    align-items: center;
+}
+
+.divEmail {
+    background-color: #FDFFFC;
+}
+
+.input {
     box-sizing: border-box;
-    width: 294px;
+    width: 60%;
+    height: 43px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    align-items: center;
+}
+
+.divContraseña {
+    background-color: #FDFFFC;
+}
+
+
+
+.divOlvido {
+    background-color: #FDFFFC;
+    color: blue;
+}
+
+.divCamposinternos {
+    background-color: #FDFFFC;
+    width: 100%;
+    height: 450px;
+}
+
+
+.divBoton {
+    background-color: #FDFFFC;
+    width: 100%;
+    height: 150px;
+
+}
+
+
+.Boton {
+
+    margin-right: 310px;
+    width: 150px;
     height: 57px;
-    left: 990px;
-    top: -240px;
+
     background: #56A3A6;
     border: 1px solid #ABABAB;
     border-radius: 9px;
@@ -41,213 +161,139 @@
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
+    float: right;
     color: #FDFFFC;
-    min-width: 300px;
+    left: -250px;
 }
-.rectanglev:hover {
+
+.Boton:hover {
     background-color: #03816e;
 }
-.rectanglev:active {
+.Boton:active {
     background-color: #031926;
 }
-.tit {
-    position: relative;
-    width: 117px;
-    height: 29px;
-    left: 517px;
-    top: 91px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
-    color: #FF101F;
-
-}
-.text1 {
-    position: relative;
-    width: 45px;
-    height: 19px;
-    left: 517px;
-    top: -450px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
-
-}
-.input1 {
-    position: relative;
-    box-sizing: border-box;
-    width: 754px;
-    height: 43px;
-    left: 517px;
-    top: -440px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    color: #000000;
-}
-.text2 {
-    position: relative;
-    width: 92px;
-    height: 16px;
-    left: 517px;
-    top: -420px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
-}
-
-.input2 {
-    position: relative;
-    box-sizing: border-box;
-    width: 754px;
-    height: 45px;
-    left: 517px;
-    top: -402px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
-}
 
 
-.text4 {
-    
-    position: relative;
-    width: 160px;
-    height: 16px;
-    left: 517px;
-    top: -395px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    color: #2400FF;
-}
 
-.rescat {
-    position: relative;
-    width: 217px;
-    height: 19px;
-    left: 517px;
-    top: -500px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    color: #000000;
-}
 
-.select1 {
-    position: relative;
-    width: 750px;
-    height: 43px;
-    left: 517px;
-    top: -490px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    color: #000000;
-}
 
 @media screen and (max-width: 600px) {
-    .imm{
-        opacity: 0;
+    .divTitulo {
+        left: -25px;
+        background-color: #FDFFFC;
 
-    }
-
-    
-}
-@media screen and (max-width: 600px) {
-    .tit{
-        left: 160px;
-        top: 60%;
-        border-radius: 20px;
+        color: #FF101F;
+        margin-left: 5px;
     }
 }
-@media screen and (max-width: 600px) {
-    .rectanglev{
-        left: 80px;
-        top: -450px;
-        border-radius: 20px;
+
+@media screen and (max-width: 192px) {
+    .divTitulo {
+        left: -40px;
+        background-color: #FDFFFC;
+
+        color: #FF101F;
+        margin-left: 5px;
+        font-size: 12px;
     }
 }
+
+
+
 @media screen and (max-width: 600px) {
-    .rescat{
-        left: 50px;
-        top: -600px;
-        border-radius: 20px;
+    .divCampos {
+        background-color: #FDFFFC;
+        align-items: center;
+        width: 100%;
+        height: 600px;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .select1{
-        left: 50px;
-        top: -600px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .divImagen {
+
+        align-items: center;
+        width: 0%;
+        height: 600px;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .text1{
-        left: 50px;
-        top: -550px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .input {
+
+        margin-left: 10px;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .input1{
-        left: 50px;
-        top: -565px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .select {
+
+        margin-left: 10px;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .text2{
-        left: 50px;
-        top: -530px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .Boton {
+        margin-right: 20px;
+        align-items: center;
+        margin-left: 20px;
     }
 }
+
 @media screen and (max-width: 600px) {
-    .input2{
-        left: 50px;
-        top: -535px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .divBoton {
+        position: relative;
+        height: 50%;
+        top: -80px;
+        background-color: #FDFFFC;
+        margin-right: 20px;
+        align-items: center;
+        margin-left: 10px;
+
+
     }
 }
+
 @media screen and (max-width: 600px) {
-    .text4{
-        left: 50px;
-        top: -530px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+    .divBoton {
+        height: 50%;
+        background-color: #FDFFFC;
+        margin-right: 20px;
+        align-items: center;
+
+
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .divEmail {
+
+        margin-left: 20px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .divContraseña {
+
+        margin-left: 20px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .divOlvido {
+
+        margin-left: 20px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .divSeleccionar {
+
+        margin-left: 20px;
+        align-items: center;
     }
 }
