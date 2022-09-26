@@ -29,6 +29,22 @@
     font-size: 12px;
     color: #000000;
 }
+.divNumero {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    ;
+}
+.divNombre {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    ;
+}
 
 .divEmail {
     font-family: 'Inter';
@@ -150,7 +166,8 @@
 
 .Boton {
 
-    margin-right: 310px;
+    margin-right: 290px;
+    margin-top: 40px;
     width: 150px;
     height: 57px;
 
@@ -273,6 +290,22 @@
         align-items: center;
     }
 }
+@media screen and (max-width: 600px) {
+    .divNombre {
+
+        margin-left: 20px;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 600px) {
+    .divNumero {
+
+        margin-left: 20px;
+        align-items: center;
+    }
+}
+
+
 
 @media screen and (max-width: 600px) {
     .divContraseña {

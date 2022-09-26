@@ -19,7 +19,7 @@ export default function sing_up() {
             <div className={styles.divCampos}>
                 <div className={styles.divCamposinternos}>
                     <div className={styles.divSeleccionar}>
-                    <h2 >Tipo de Usuario</h2>
+                    <h2 >Ocupación</h2>
                     </div>
                     <div className={styles.divInputSeleccionar}>
                         <select name="List1" id="" className={styles.select}>
@@ -30,6 +30,18 @@ export default function sing_up() {
                             <option value="">Damas Voluntarias</option>
                             <option value="">Personal Asalariado</option>
                         </select>
+                    </div>
+                    <div className={styles.divNumero}>
+                        <h2>Número</h2>
+                    </div>
+                    <div>
+                        <input className={styles.input} type="text" placeholder="Numero" />
+                    </div>
+                    <div className={styles.divNombre}>
+                        <h2>Nombre completo</h2>
+                    </div>
+                    <div>
+                    <input className={styles.input} type="text" placeholder="Nombre Completo" />
                     </div>
                     <div className={styles.divEmail}>
                         <h2 >Email</h2>
