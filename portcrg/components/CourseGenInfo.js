@@ -92,7 +92,7 @@ function CourseGenInfo(props) {
           )}
         </div>
       </div>
-      <Modal modal={modal} setModal={setModal} name="Cursos">
+      <Modal modal={modal} setModal={setModal} name="">
         <PdfViewer
           pdfUrl={course.temarioURL}
           courseName={course.name}
