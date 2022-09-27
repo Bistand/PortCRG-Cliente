@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   MdHighlightOff,
@@ -7,8 +7,11 @@ import {
 } from "react-icons/md";
 
 import { BiWindowOpen } from "react-icons/bi";
+import Modal from "../components/Modal";
+import PdfViewer from "./PdfViewer";
 
 function CourseGenInfo(props) {
+  const [modal, setModal] = useState(false);
   const course = props.course;
   return (
     <>
@@ -71,16 +74,42 @@ function CourseGenInfo(props) {
             Enlace de descarga de temario del curso
           </p>
           {course.hasOwnProperty("temarioURL") && course.temarioURL != "" ? (
-            <Link href={course.temarioURL} passHref>
-              <a className="text-teal-700 hover:underline" target="_blank">
-                Temario - {course.name}
-              </a>
-            </Link>
+            // <Link href={course.temarioURL} passHref>
+            //   <a className="text-teal-700 hover:underline" target="_blank">
+            //     Temario - {course.name}
+            //   </a>
+            // </Link>
+            <button
+              type="button"
+              className=" text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold
+              bg-cherry-red text-white text-center mt-5 flex gap-2 items-center justify-center"
+              onClick={() => setModal(true)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Agregar Nuevo Curso
+            </button>
           ) : (
             <p>Aún no se ha cargado el recurso</p>
           )}
         </div>
       </div>
+      <Modal modal={modal} setModal={setModal} name="Cursos">
+        <PdfViewer
+          pdfUrl={course.temarioURL}
+          courseName={course.name}
+        ></PdfViewer>
+      </Modal>
     </>
   );
 }
