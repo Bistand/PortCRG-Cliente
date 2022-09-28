@@ -23,12 +23,18 @@ const CoursesProvider = ({ children }) => {
     ObtenerCursos();
   }, []);
 
+
+  const Course = async (course, _id) => {
+    if (_id) {
+      await editarCourse(course, _id);
+    } else {
+      await submitCourses(course);
+    }
+  };
+
   const submitCourses = async (course) => {
+    console.log(course)
     try {
-      // if ([name, instructor].includes("")) {
-      //   alert("Todos los campos son obligatorios");
-      //   return;
-      // }
 
       const config = {
         headers: {
@@ -49,13 +55,33 @@ const CoursesProvider = ({ children }) => {
     }
   };
 
+  const editarCourse = async (course, _id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          id: _id,
+        },
+      };
+      const { data } = await axios.put(
+        "https://portcrg-dev.onrender.com/api/courses/",
+        course,
+        config
+      );
+       location.reload();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <CoursesContext.Provider value={{coursesList, submitCourses}}>
+    <CoursesContext.Provider value={{ coursesList, submitCourses, editarCourse, Course }}>
       {children}
     </CoursesContext.Provider>
   );
 };
 
-export  {CoursesProvider};
+export { CoursesProvider };
 
 export default CoursesContext;

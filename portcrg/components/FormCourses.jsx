@@ -1,7 +1,8 @@
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import useCourses from "../hooks/useCourses";
-export default function FormCourses({ setModal }) {
+
+export default function FormCourses({ setModal, course }) {
+  const [_id, setId] = useState("")
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -16,11 +17,47 @@ export default function FormCourses({ setModal }) {
   // const [sede, setSede] = useState("");
   const [platform, setPlatform] = useState("");
   // const [prerequisitos, setPrerequisitos] = useState("");
-  const { submitCourses } = useCourses();
+  const { Course } = useCourses();
+
+  useEffect(() => {
+    if (course?._id) {
+      setId(course._id)
+      setName(course.name);
+      setStartDate(course.startDate.split("T")[0]);
+      setEndDate(course.endDate.split("T")[0]);
+      setDescription(course.description);
+      setDuration(course.duration);
+      setDiploma(course.diploma);
+      setInstructor(course.instructor);
+      setModality(course.modality);
+      setAmountOfParticipants(course.amountOfParticipants);
+      setStatus(course.status);
+      setPhotographyURL(course?.photographyURL);
+      setPlatform(course.platform);
+
+      return;
+    }
+
+    setId("")
+    setName("");
+    setStartDate("")
+    setEndDate("")
+    setDescription("")
+    setDuration("")
+    setDiploma("")
+    setInstructor("")
+    setModality("")
+    setAmountOfParticipants("")
+    setStatus("")
+    setPhotographyURL("")
+    setPlatform("")
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await submitCourses({
+    await Course({
+      
       name,
       startDate,
       endDate,
@@ -33,9 +70,10 @@ export default function FormCourses({ setModal }) {
       status,
       photographyURL,
       platform,
-    });
+    }, _id);
 
     setModal(false);
+   
   };
 
   const handleImagenChange = (e) => {
@@ -50,14 +88,14 @@ export default function FormCourses({ setModal }) {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-xl font-bold text-black"
               >
                 Nombre
               </label>
               <input
                 type="text"
                 id="name"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -79,20 +117,20 @@ export default function FormCourses({ setModal }) {
               />
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
+            <div className="col-span-6 sm:col-span-2">
               <label htmlFor="price" className="block text-sm font-medium ">
                 Fecha de Inicio
               </label>
               <input
                 type="date"
                 id="fecha"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-base border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
+            <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="fecha-finalizacion"
                 className="block text-sm font-medium text-gray-700"
@@ -108,25 +146,30 @@ export default function FormCourses({ setModal }) {
               />
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
+            <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="Habilitar"
-                className="block text-sm font-medium placeholder-red-400"
+                htmlFor="category"
+                className="block text-sm font-medium text-gray-700"
               >
-                Habilitar Diploma
+                Estado
               </label>
-
               <select
-                id="Habilitar-diploma"
-                value={diploma}
-                onChange={(e) => setDiploma(e.target.value)}
-                className="mt-1 block w-full border-rose-300 py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
+                id="category"
+                name="category"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                autoComplete="category-name"
+                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
               >
                 <option>-- Seleccionar --</option>
-                <option value={true}>SI</option>
-                <option value={false}>NO</option>
+                <option value="1">Cancelado</option>
+                <option value="2">Habilitado</option>
+                <option value="3">Reprogramado</option>
+                <option value="4">Terminado</option>
               </select>
             </div>
+
+           
 
             <div className="col-span-6 sm:col-span-3">
               <label
@@ -161,7 +204,7 @@ export default function FormCourses({ setModal }) {
               />
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
+            <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="Modalidad"
                 className="block text-sm font-medium placeholder-red-400"
@@ -181,7 +224,27 @@ export default function FormCourses({ setModal }) {
               </select>
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
+            <div className="col-span-6 sm:col-span-2">
+              <label
+                htmlFor="Habilitar"
+                className="block text-sm font-medium placeholder-red-400"
+              >
+                Habilitar Diploma
+              </label>
+
+              <select
+                id="Habilitar-diploma"
+                value={diploma}
+                onChange={(e) => setDiploma(e.target.value)}
+                className="mt-1 block w-full border-rose-300 py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
+              >
+                <option>-- Seleccionar --</option>
+                <option value={true}>SI</option>
+                <option value={false}>NO</option>
+              </select>
+            </div>
+
+            <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="plataforma"
                 className="block text-sm font-medium placeholder-red-400"
@@ -203,28 +266,7 @@ export default function FormCourses({ setModal }) {
               </select>
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
-              <label
-                htmlFor="category"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Estado
-              </label>
-              <select
-                id="category"
-                name="category"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-                autoComplete="category-name"
-                className="mt-1 block w-full py-2 px-3 border border-rose-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm text-black"
-              >
-                <option>-- Seleccionar --</option>
-                <option value="1">Cancelado</option>
-                <option value="2">Habilitado</option>
-                <option value="3">Reprogramado</option>
-                <option value="4">Terminado</option>
-              </select>
-            </div>
+         
 
             <div className="col-span-6">
               <label
