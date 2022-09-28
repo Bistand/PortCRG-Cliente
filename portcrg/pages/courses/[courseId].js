@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import CourseSpecInfo from "../../components/CourseSpecInfo";
 import CourseGenInfo from "../../components/CourseGenInfo";
 
 function courseDetails({ data }) {
+  useEffect(() => {
+    
+  }, []);
   return (
     <>
       <Head>
