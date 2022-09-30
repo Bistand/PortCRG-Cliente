@@ -231,178 +231,191 @@ export default function Home() {
                   <h6>INFORMACIÓN PERSONAL</h6>
                   <hr />
                   <form>
-                   
-                  <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Nombres</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  placeholder="Ingrese sus nombres"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Apellidos</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lastName"
-                  placeholder="Ingrese sus apellidos"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>DPI</label>
-                <input
-                  type="text"
-                  id="DPI"
-                  className="form-control"
-                  placeholder="Ingrese número de DPI"
-                  defaultValue=""
-                />
-              </div>
-            </div>
 
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Estado Civil</label>
-                <select class="form-control">
-                          <option selected="">
-                            Seleccione su estado Civil
-                          </option>
-                          <option>Soltero</option>
-                          <option>Casado</option>
-                        </select>
-              </div>
-            </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Nombres</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="firstName"
+                            placeholder="Ingrese sus nombres"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Apellidos</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            placeholder="Ingrese sus apellidos"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>DPI</label>
+                          <input
+                            type="text"
+                            id="DPI"
+                            className="form-control"
+                            placeholder="Ingrese número de DPI"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
 
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Número de Teléfono</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="Cellphone"
-                  placeholder="Ingrese número de teléfono"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Ocupación</label>
-                <select class="form-control">
-                          <option selected="">Seleccionar Ocupación</option>
-                          <option>Voluntario General</option>
-                          <option>Socorrista</option>
-                          <option>Juventino</option>
-                          <option>Personal Asalariado</option>
-                          <option>Damas Voluntarias</option>
-                          <option>Administrador</option>
-                        </select>
-              </div>
-            </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Estado Civil</label>
+                          <select class="form-control">
+                            <option selected="">
+                              Seleccione su estado Civil
+                            </option>
+                            <option>Soltero</option>
+                            <option>Casado</option>
+                          </select>
+                        </div>
+                      </div>
 
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Fecha de Nacimiento</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nacimiento"
-                  placeholder="Ingrese fecha de nacimiento"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-            
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Número de Teléfono</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="Cellphone"
+                            placeholder="Ingrese número de teléfono"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Ocupación</label>
+                          <select class="form-control">
+                            <option selected="">Seleccionar Ocupación</option>
+                            <option>Voluntario General</option>
+                            <option>Socorrista</option>
+                            <option>Juventino</option>
+                            <option>Personal Asalariado</option>
+                            <option>Damas Voluntarias</option>
+                            <option>Administrador</option>
+                          </select>
+                        </div>
+                      </div>
 
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Departamento</label>
-                <select class="form-control">
-                          <option selected="">Seleccionar Departamento</option>
-                          <option>Alta Verapaz</option>
-                          <option>Baja Verapaz</option>
-                          <option>Chimaltenango</option>
-                          <option>Chiquimula</option>
-                          <option>Guatemala</option>
-                          <option>El Progreso</option>
-                          <option>Escuintla</option>
-                          <option>Huehuetenango</option>
-                          <option>Izabal</option>
-                          <option>Jalapa</option>
-                          <option>Jutiapa</option>
-                          <option>Péten</option>
-                          <option>Quetzaltenango</option>
-                          <option>Quiché</option>
-                          <option>Retalhuleu</option>
-                          <option>Sacatepequez</option>
-                          <option>San Marcos</option>
-                          <option>Santa Rosa</option>
-                          <option>Sololá</option>
-                          <option>Suchitepequez</option>
-                          <option>Totonicapán</option>
-                          <option>Zacapa</option>
-                        </select>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Municipio</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="municipio"
-                  placeholder="Ingrese nombre de municipio"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="form-group">
-                <label>Dirección de Residencia</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nacimiento"
-                  placeholder="Ingrese dirección donde vive actualmente"
-                  defaultValue=""
-                />
-              </div>
-            </div>
-
-            
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Fecha de Nacimiento</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nacimiento"
+                            placeholder="Ingrese fecha de nacimiento"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
 
 
-            <div className="col-md-12">
-              <div className="form-group">
-                <label>Biografía</label>
-                <textarea
-                  className="form-control"
-                  id="biografia"
-                  rows={4}
-                  placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
-                  defaultValue={
-                    ""
-                  }
-                />
-              </div>
-            </div>
-          </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Departamento</label>
+                          <select class="form-control">
+                            <option selected="">Seleccionar Departamento</option>
+                            <option>Alta Verapaz</option>
+                            <option>Baja Verapaz</option>
+                            <option>Chimaltenango</option>
+                            <option>Chiquimula</option>
+                            <option>Guatemala</option>
+                            <option>El Progreso</option>
+                            <option>Escuintla</option>
+                            <option>Huehuetenango</option>
+                            <option>Izabal</option>
+                            <option>Jalapa</option>
+                            <option>Jutiapa</option>
+                            <option>Péten</option>
+                            <option>Quetzaltenango</option>
+                            <option>Quiché</option>
+                            <option>Retalhuleu</option>
+                            <option>Sacatepequez</option>
+                            <option>San Marcos</option>
+                            <option>Santa Rosa</option>
+                            <option>Sololá</option>
+                            <option>Suchitepequez</option>
+                            <option>Totonicapán</option>
+                            <option>Zacapa</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Municipio</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="municipio"
+                            placeholder="Ingrese nombre de municipio"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Dirección de Residencia</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nacimiento"
+                            placeholder="Ingrese dirección donde vive actualmente"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+
+
+
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label>Biografía</label>
+                          <textarea
+                            className="form-control"
+                            id="biografia"
+                            rows={4}
+                            placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
+                            defaultValue={
+                              ""
+                            }
+                          />
+                        </div>
+                      </div>
+                      <small id="fullNameHelp" className="form-text text-muted">
+                        *El nombre que ingrese es el que se mostrará por defecto.
+                        Puede cambiar o actualizar sus datos en cualquier
+                        momento.
+                      </small>
+                    </div>
+
 
 
                   </form>
+                  <hr></hr>
+                  <div>
+                    <button className="btn btn-primary">Actualizar</button>
+
+                  </div>
+
                 </div>
+
                 <div className="tab-pane" id="account">
                   <h6>AJUSTES DE CUENTA</h6>
                   <hr />
@@ -425,7 +438,7 @@ export default function Home() {
                         persona.
                       </small>
                     </div>
-                    <hr />
+
                     <div className="form-group">
                       <label className="d-block text-danger">
                         Eliminar Cuenta
@@ -435,6 +448,7 @@ export default function Home() {
                         favor se conciente.
                       </p>
                     </div>
+                    <hr></hr>
                     <button className="btn btn-danger" type="button">
                       Eliminar Cuenta
                     </button>
@@ -462,6 +476,7 @@ export default function Home() {
                         placeholder="Confirmar nueva contraseña"
                       />
                     </div>
+                    <hr></hr>
                     <button type="button" className="btn btn-success">
                       Actualizar Contraseña
                     </button>
@@ -579,12 +594,18 @@ export default function Home() {
                         </li>
                       </ul>
                     </div>
-                    <button type="button" className="btn btn-success">
-                      Actualizar datos
-                    </button>
+                    
                   </form>
+                  <hr></hr>
+                  <div>
+            <button className="btn btn-primary">Actualizar</button>
+            
+          </div>
                 </div>
+
+
               </div>
+              
             </div>
           </div>
         </div>
