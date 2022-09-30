@@ -422,14 +422,14 @@ export default function Home() {
                   <form>
                     <div className="form-group">
                       <label htmlFor="username">
-                        Correo Electrónico / Codigo de Personal
+                        Correo Electrónico 
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
-                        placeholder="Ingrese su correo electrónico o Codigo de personal"
+                        placeholder="Ingrese su correo electrónico"
                         defaultValue=""
                       />
                       <small id="usernameHelp" className="form-text text-muted">
@@ -517,16 +517,16 @@ export default function Home() {
                             </select>
                           </div>
                         </li>
+                        <hr></hr>
+                        
+                        <small id="fullNameHelp" className="form-text text-muted">
+                        En el siguiente apartado, si la respuesta es afirmativa a la pregunta, favor de ingresarla.
+                        De lo contrario puede dejar en blanco el espacio.
+                      </small>
                         <li className="list-group-item has-icon">
                           Enfermedad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna enfermedad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               ¿Cual es la enfermedad?
@@ -534,9 +534,9 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="enfermedad"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de enfermedad"
+                              placeholder="Ingrese nombre de enfermedad"
                               defaultValue=""
                             />
                           </div>
@@ -545,14 +545,7 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Actualmente está tomando algún tipo de
-                                medicación?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               Nombre de Medicamento
@@ -560,9 +553,9 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="medicamento"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
+                              placeholder="Ingrese nombre de medicamento o compuesto"
                               defaultValue=""
                             />
                           </div>
@@ -571,13 +564,7 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Incapacidad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna incapacidad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               Mencione la discapacidad
@@ -585,9 +572,9 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="discapacidad"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de discapacidad"
+                              placeholder="Ingrese nombre de discapacidad"
                               defaultValue=""
                             />
                           </div>
