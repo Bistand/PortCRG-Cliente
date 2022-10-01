@@ -1,9 +1,14 @@
-import Image from "next/image";
-import { useState } from "react";
-import loginimg from "../public/prueba64.png";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { conprobaruser } from "../peticiones/logiarse";
+import { getCookie, setCookie } from "cookies-next";
 export default function Login() {
+  const router = useRouter();
   const [user, SetUser] = useState("");
   const [password, SetPassword] = useState("");
+  const [hidden, SetHidden] = useState(true);
+  let validarusuario, credenciales;
+
   function recibiendouser(event) {
     SetUser(event.target.value);
   }
@@ -11,20 +16,54 @@ export default function Login() {
   function recibiendopassword(event) {
     SetPassword(event.target.value);
   }
-  function validar(event) {
+  async function validar(event) {
     event.preventDefault();
-    console.log(user, password);
+    validarusuario = await conprobaruser(user, password);
+    if (!validarusuario) {
+      SetHidden(false);
+    } else {
+      router.push("/");
+    }
+    SetUser("");
+    SetPassword("");
   }
   return (
-    <div className="h-screen max-w-[1150px] flex mx-auto">
-      <div className="w-1/2 border-solid border-[1px] border-[#FF3839] bg-[url('/prueba64.png')] bg-cover">
-        {/* <Image src ="/prueba64.png"  layout = "fill" objectFit="contain" ></Image> */}
+    <div
+      className="h-screen w-full
+    lg:flex"
+    >
+      <div
+        className="w-full h-1/3 mt-28 sm:m-0
+      lg:w-1/2 lg:h-full lg:pt-6 lg:mx-auto"
+      >
+        <img
+          className="lg:hidden object-center w-full h-full"
+          src="/voluntariado.jpg"
+        ></img>
+        <img
+          className="lg:block hidden object-none object-center w-full h-full"
+          src="/volun2.png"
+        ></img>
       </div>
-      <div className="p-24 w-1/2 flex flex-col justify-center items-center gap-8 mt-28">
-        <h1 className="text-[#FF3839] text-[64px] font-medium">SIGN IN</h1>
-        <p className="text-[15px] capitalize mb-3">
-          enter your email address and password to access
-        </p>
+      <div className="lg:w-1/2 flex flex-col justify-center items-center p-16 pt-4 sm:mt-20 lg:mx-auto">
+        <h1
+          className="text-[#FF3839] text-[64px] font-medium
+        text-[40px] font-mediun"
+        >
+          SIGN IN
+        </h1>
+        {hidden ? (
+          <p className="text-[15px] capitalize mb-2.5">
+            enter your email address and password to access
+          </p>
+        ) : (
+          <p
+            className={`text-[15px] capitalize mb-2.5 text-red bg-red-200 p-2`}
+          >
+            ERROR! Incorrect Username or Password
+          </p>
+        )}
+
         <form
           onSubmit={validar}
           className="flex flex-col justify-center w-full gap-7"
@@ -33,9 +72,10 @@ export default function Login() {
             name="user"
             value={user}
             onChange={recibiendouser}
-            type="text"
+            type="email"
             placeholder="USERNAME / EMAIL"
-            className="rounded-[10px] border-solid border-2 border-[#FBF8F8] bg-[#F5E7E7] font-regular text-[12px] p-2"
+            className="bg-[#F5E7E7] border[#FBF8F8]
+            border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
           <input
             name="password"
@@ -43,15 +83,19 @@ export default function Login() {
             onChange={recibiendopassword}
             type="password"
             placeholder="PASSWORD"
-            className="rounded-[10px] border-solid border-2 border-[#FBF8F8] bg-[#F5E7E7] font-regular text-[12px] p-2"
+            className="bg-[#F5E7E7] border[#FBF8F8]
+            border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
-          <button className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[15px] self-center px-16 py-0.5">
+          <button className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5">
             LOGIN
           </button>
+          <a
+            className="text-[#FF3839] text-[11px] font-regular self-start mt-16"
+            href="newpassword"
+          >
+            Forgotten your username or password?
+          </a>
         </form>
-        <a className="text-[#FF3839] text-[11px] font-regular self-start mt-20">
-          Forgotten your username or password?
-        </a>
       </div>
     </div>
   );

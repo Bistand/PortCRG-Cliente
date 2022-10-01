@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { deleteCookie, getCookie } from "cookies-next";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [Ocultar, setOcultar] = useState(false);
+  const tokenuser = getCookie("tokenuser");
+  const router = useRouter();
+  useEffect(() => {
+    if (tokenuser) {
+      setOcultar(true);
+    }
+  });
+  const logout = () => {
+    deleteCookie("tokenuser");
+    //router.push("/");
+    router.replace("/");
+  };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
@@ -38,7 +53,13 @@ const Navbar = () => {
           </Link>
 
           <Link href="/login">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Ocultar ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Ocultar ? "block " : "hidden"
+              }`}
+            >
               Login
             </a>
           </Link>
@@ -60,6 +81,16 @@ const Navbar = () => {
               Eventos
             </a>
           </Link>
+          <button
+            onClick={logout}
+            className={`mt-4 sm:${
+              Ocultar ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              Ocultar ? "block " : "hidden"
+            }`}
+          >
+            Log out
+          </button>
         </div>
         <div>
           <Link href="/profile">
