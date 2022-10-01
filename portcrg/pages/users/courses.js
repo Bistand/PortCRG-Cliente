@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Table from "../../components/Table";
+import "regenerator-runtime/runtime";
 
 function courses() {
   const [choice, setChoice] = useState(0);
