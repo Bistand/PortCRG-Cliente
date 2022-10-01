@@ -25,6 +25,14 @@ export const EventsProvider = ({ children }) => {
     ObtenerEventos();
   }, []);
 
+  const handleInputSubmit = async (id, data) => {
+    if (id != undefined) {
+      handleUpdateEvent(id, data);
+    } else {
+      handleAddEvent(data);
+    }
+  };
+
   const handleAddEvent = async (evento) => {
     try {
       const config = {
@@ -38,6 +46,28 @@ export const EventsProvider = ({ children }) => {
         config
       );
       setEventsList([...eventsList, data.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateEvent = async (id, evento) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          id: id,
+        },
+      };
+      const { data } = await axios.put(
+        "https://portcrg-dev.onrender.com/api/informativa/area",
+        evento,
+        config
+      );
+      const updatedEvents = eventsList.map((event) =>
+        event._id === id ? data.data : event
+      );
+      setEventsList(updatedEvents);
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +95,13 @@ export const EventsProvider = ({ children }) => {
 
   return (
     <EventContext.Provider
-      value={{ eventsList, event, loading, handleDeleteEvent, handleAddEvent }}
+      value={{
+        eventsList,
+        event,
+        loading,
+        handleDeleteEvent,
+        handleInputSubmit,
+      }}
     >
       {children}
     </EventContext.Provider>

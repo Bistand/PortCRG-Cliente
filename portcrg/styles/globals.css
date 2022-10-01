@@ -11,4 +11,13 @@
   margin: 0 auto;
   width: 100% !important;
   height: 100% !important;
+  user-select: none;
+}
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
 }
