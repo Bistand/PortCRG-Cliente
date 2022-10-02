@@ -60,6 +60,14 @@ const Navbar = () => {
               Eventos
             </a>
           </Link>
+
+          <Link href="/calendario">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Calendario
+            </a>
+          </Link>
+
+
         </div>
         <div>
           <Link href="/profile">
