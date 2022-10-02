@@ -76,7 +76,7 @@ export default function sign_up() {
                     </div>
                     <div>
                     <h2  className={styles.htitulo2}>Nombre Completo</h2>
-                    <input className={styles.input} type="text" value={fullName} onChange={e =>setfullName(e.target.value)} placeholder="Nombre Completo" required pattern="[a-zA-Z\n]" />
+                    <input className={styles.input} type="text" value={fullName} onChange={e =>setfullName(e.target.value)} placeholder="Nombre Completo" required pattern="^[a-zA-Z\s]{2,254}" />
                     </div>
                     <div className={styles.divEmail}>
                       
