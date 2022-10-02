@@ -14,6 +14,7 @@ export default function FormCourses({ setModal, course }) {
   const [amountOfParticipants, setAmountOfParticipants] = useState("");
   const [status, setStatus] = useState("");
   const [photographyURL, setPhotographyURL] = useState("");
+  const [temarioURL, setTemarioURL] = useState("");
   // const [sede, setSede] = useState("");
   const [platform, setPlatform] = useState("");
   // const [prerequisitos, setPrerequisitos] = useState("");
@@ -69,6 +70,7 @@ export default function FormCourses({ setModal, course }) {
       amountOfParticipants,
       status,
       photographyURL,
+      temarioURL,
       platform,
     }, _id);
 
@@ -79,6 +81,10 @@ export default function FormCourses({ setModal, course }) {
   const handleImagenChange = (e) => {
     setPhotographyURL(e.target.files[0]);
   };
+  const handleTemarioChange = (e) => {
+    setTemarioURL(e.target.files[0]);
+  };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -104,27 +110,27 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-xl font-bold text-black"
               >
                 Duracion meses
               </label>
               <input
                 type="number"
                 id="duracion"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
 
             <div className="col-span-6 sm:col-span-2">
-              <label htmlFor="price" className="block text-sm font-medium ">
+              <label htmlFor="price" className="block text-xl font-bold text-black">
                 Fecha de Inicio
               </label>
               <input
                 type="date"
                 id="fecha"
-                className="text-base border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
               />
@@ -133,14 +139,14 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="fecha-finalizacion"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-xl font-bold text-black"
               >
                 Fecha de Finalizacion
               </label>
               <input
                 type="date"
                 id="endStart"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
               />
@@ -149,7 +155,7 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="category"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-xl font-bold text-black"
               >
                 Estado
               </label>
@@ -159,7 +165,7 @@ export default function FormCourses({ setModal, course }) {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
                 autoComplete="category-name"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
               >
                 <option>-- Seleccionar --</option>
                 <option value="1">Cancelado</option>
@@ -174,7 +180,7 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="Nombre-instructor"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black "
               >
                 Nombre del Instructor
               </label>
@@ -182,7 +188,7 @@ export default function FormCourses({ setModal, course }) {
                 type="text"
                 name="Nombre"
                 id="nameInstructor"
-                className="border-2  border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={instructor}
                 onChange={(e) => setInstructor(e.target.value)}
               />
@@ -191,14 +197,14 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="Numero-participantes"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black"
               >
                 Numero de participantes
               </label>
               <input
                 type="number"
                 id="Numero-participantes"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={amountOfParticipants}
                 onChange={(e) => setAmountOfParticipants(e.target.value)}
               />
@@ -207,7 +213,7 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="Modalidad"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black"
               >
                 Modalidad
               </label>
@@ -215,7 +221,7 @@ export default function FormCourses({ setModal, course }) {
                 id="Modalidad-id"
                 value={modality}
                 onChange={(e) => setModality(e.target.value)}
-                className="mt-1 block w-full border-rose-300 py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
               >
                 <option>-- Seleccionar --</option>
                 <option value="1">Virtual</option>
@@ -227,7 +233,7 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="Habilitar"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black"
               >
                 Habilitar Diploma
               </label>
@@ -236,7 +242,7 @@ export default function FormCourses({ setModal, course }) {
                 id="Habilitar-diploma"
                 value={diploma}
                 onChange={(e) => setDiploma(e.target.value)}
-                className="mt-1 block w-full border-rose-300 py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
               >
                 <option>-- Seleccionar --</option>
                 <option value={true}>SI</option>
@@ -247,7 +253,7 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6 sm:col-span-2">
               <label
                 htmlFor="plataforma"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black"
               >
                 Plataforma
               </label>
@@ -255,7 +261,7 @@ export default function FormCourses({ setModal, course }) {
                 id="plataforma"
                 value={platform}
                 onChange={(e) => setPlatform(e.target.value)}
-                className="mt-1 block w-full py-2 px-3 border border-rose-300 bg-white rounded-md shadow-sm focus:outline-none focus:placeholder-red-400 focus:border-placeholder-red-400 sm:text-sm text-black"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
               >
                 <option>-- Seleccionar --</option>
                 <option>Ninguno</option>
@@ -271,14 +277,14 @@ export default function FormCourses({ setModal, course }) {
             <div className="col-span-6">
               <label
                 htmlFor="title"
-                className="block text-sm font-medium placeholder-red-400"
+                className="block text-xl font-bold text-black"
               >
                 Descripcion
               </label>
               <textarea
                 name="descripcion"
                 id="Descripcion"
-                className="border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
+                className="text-sm border-2 border-rose-200 w-full p-2 mt-2 placeholder-red-400 rounded-md"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -286,7 +292,7 @@ export default function FormCourses({ setModal, course }) {
 
             <div className="col-span-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-xl font-bold text-black">
                   Imagen de Portada
                 </label>
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 placeholder-red-400 border-dashed border-rose-300 rounded-md">
@@ -329,8 +335,51 @@ export default function FormCourses({ setModal, course }) {
                 </div>
               </div>
             </div>
+
+            <div className="col-span-6">
+              <div>
+                <label className="block text-xl font-bold text-black">
+                  Subir Temario
+                </label>
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 placeholder-red-400 border-dashed border-rose-300 rounded-md">
+                  <div className="space-y-1 text-center">
+                    <svg
+                      className="mx-auto h-12 w-12 placeholder-red-400"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 48 48"
+                      aria-hidden="true"
+                    >
+
+                    </svg>
+                    <div className="flex text-sm text-gray-600">
+                      <label
+                        htmlFor="images"
+                        className="relative cursor-pointer border bg-white rounded-md font-medium text-placeholder-red-400 hover:text-placeholder-red-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-placeholder-red-400"
+                      >
+                        <span>Actualizar Temario</span>
+                        <input
+                          id="upload-pdf"
+                          autoComplete="off"
+                          type="file"
+                          name="pdf"
+                          accept="pdf/*"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
+                          onChange={(e) => handleTemarioChange(e)}
+                        ></input>
+                      </label>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      PDF 10MB
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+        
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
           <button
             type="submit"
