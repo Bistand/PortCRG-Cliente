@@ -33,10 +33,12 @@ const informative = () => {
             Agregar evento
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-3/4 xl:w-2/3">
-          {eventsList.map((event) => {
-            return <EventsCard key={event._id} event={event} />;
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-10 w-3/4 xl:w-2/3">
+          {eventsList
+            .map((event) => {
+              return <EventsCard key={event._id} event={event} />;
+            })
+            .reverse()}
         </div>
       </div>
       <AddEventModal isOpen={isOpen} setIsOpen={setIsOpen} data={dataModal} />

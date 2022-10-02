@@ -1,9 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useEvents } from "../context/eventContext";
 
 function AddEventModal({ isOpen, setIsOpen, data }) {
-  const { handleAddEvent } = useEvents();
+  const { handleInputSubmit } = useEvents();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -20,6 +20,17 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
     });
   };
 
+  const setValues = (data) => {
+    if (data.dateEvent != undefined) {
+      setFormData({
+        title: data.title,
+        description: data.description,
+        dateEvent: data.dateEvent.substring(0, 10),
+        image: data.image,
+      });
+    }
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -30,9 +41,13 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    await handleAddEvent(formData);
+    await handleInputSubmit(data._id, formData);
     clearData();
   };
+
+  useEffect(() => {
+    setValues(data);
+  }, [isOpen]);
 
   return (
     <Transition
