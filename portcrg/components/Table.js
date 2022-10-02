@@ -3,18 +3,58 @@ import axios from "axios";
 import { useTable, usePagination, useGlobalFilter } from "react-table";
 import { COLUMNS } from "./columns";
 import { FilterComponent } from "./FilterComponent";
+import { getCookie } from "cookies-next";
 
 const Table = ({ status }) => {
   const columns = useMemo(() => COLUMNS, []);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState("");
+  const authToken = getCookie("tokenuser");
+
+  useEffect(() => {
+    getUserId(authToken);
+  }, []);
 
   useEffect(() => {
     {
-      status == 0 ? ObtenerCursos() : ObtenerCursosHistoricos();
+      status == 0 ? ObtenerCursos(token) : ObtenerCursosHistoricos();
     }
-  }, [status]);
+  }, [status, token]);
 
-  const ObtenerCursos = async () => {
+  const getUserId = async (token) => {
+    try {
+      const config = {
+        headers: {
+          "auth-token": token,
+        },
+      };
+      const { data } = await axios.get(
+        "https://portcrg-dev.onrender.com/api/admin",
+        config
+      );
+      setToken(data.data.user.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const ObtenerCursos = async (id) => {
+    setLoading(true);
+    try {
+      const { data } = await axios(
+        `https://portcrg-dev.onrender.com/api/user/courses/${id}`
+      );
+      setData(data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const ObtenerCursosHistoricos = async () => {
+    setLoading(true);
     try {
       const { data } = await axios(
         "https://portcrg-dev.onrender.com/api/courses/"
@@ -22,17 +62,8 @@ const Table = ({ status }) => {
       setData(data.data);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const ObtenerCursosHistoricos = async () => {
-    try {
-      const { data } = await axios(
-        "https://portcrg-dev.onrender.com/api/informativa/"
-      );
-      setData(data.data);
-    } catch (error) {
-      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,6 +92,14 @@ const Table = ({ status }) => {
   );
 
   const { pageIndex, pageSize, globalFilter } = state;
+
+  if (loading) {
+    return (
+      <div className="flex flex-row justify-center">
+        <h2>Cargando cursos ...</h2>
+      </div>
+    );
+  }
 
   return (
     <>
