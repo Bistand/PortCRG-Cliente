@@ -8,19 +8,23 @@ import { getCookie } from "cookies-next";
 const Table = ({ status }) => {
   const columns = useMemo(() => COLUMNS, []);
   const [data, setData] = useState([]);
+  const [ogData, setOgData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState("");
   const authToken = getCookie("tokenuser");
 
   useEffect(() => {
     getUserId(authToken);
-  }, []);
+    ObtenerCursos(token);
+  }, [token]);
 
   useEffect(() => {
     {
-      status == 0 ? ObtenerCursos(token) : ObtenerCursosHistoricos();
+      status == 0
+        ? setData(ogData.filter((course) => course.status == 2))
+        : setData(ogData.filter((course) => course.status == 4));
     }
-  }, [status, token]);
+  }, [status, ogData, token]);
 
   const getUserId = async (token) => {
     try {
@@ -45,20 +49,7 @@ const Table = ({ status }) => {
       const { data } = await axios(
         `https://portcrg-dev.onrender.com/api/user/courses/${id}`
       );
-      setData(data.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const ObtenerCursosHistoricos = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios(
-        "https://portcrg-dev.onrender.com/api/courses/"
-      );
+      setOgData(data.data);
       setData(data.data);
     } catch (error) {
       console.log(error);

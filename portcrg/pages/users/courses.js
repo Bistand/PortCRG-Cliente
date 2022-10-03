@@ -8,7 +8,11 @@ function courses() {
     <div className="">
       <div className="flex flex-row justify-center gap-4">
         <button
-          className={choice == 0 ? "underline" : ""}
+          className={
+            choice == 0
+              ? "underline underline-offset-8 decoration-cherry-red text-cherry-red hover:bg-slate-50 px-3 py-1 rounded-md"
+              : "hover:bg-slate-50 px-3 py-1 rounded-md"
+          }
           onClick={() => {
             setChoice(0);
           }}
@@ -17,7 +21,11 @@ function courses() {
         </button>
         <span>|</span>
         <button
-          className={choice == 1 ? "underline" : ""}
+          className={
+            choice == 1
+              ? "underline underline-offset-8 decoration-cherry-red text-cherry-red hover:bg-slate-50 px-3 py-1 rounded-md"
+              : "hover:bg-slate-50 px-3 py-1 rounded-md"
+          }
           onClick={() => {
             setChoice(1);
           }}

@@ -7,16 +7,19 @@ export const FilterComponent = ({ filter, setFilter }) => {
     setFilter(value || undefined);
   }, 1000);
   return (
-    <span>
-      Buscar:{"  "}
+    <div className="inputForm-group">
       <input
         value={value || ""}
-        className="border-2 rounded-md"
+        required
+        type="text"
+        autoComplete="off"
+        className="border-2 rounded-md inputForm"
         onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
       />
-    </span>
+      <label className="user-label">Buscar</label>
+    </div>
   );
 };

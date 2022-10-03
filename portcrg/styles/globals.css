@@ -21,3 +21,39 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
+.inputForm-group {
+  position: relative;
+}
+
+.inputForm {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: none;
+  color: #000000;
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
+  position: absolute;
+  left: 15px;
+  color: #b0b0b0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputForm:focus,
+.inputForm:valid {
+  outline: none;
+  border: 1.5px solid #ff101f;
+}
+
+.inputForm:focus ~ label,
+.inputForm:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fdfffc;
+  padding: 0 0.2em;
+  color: #ff101f;
+}
