@@ -12,13 +12,13 @@ function index() {
 
   return (
     <>
-      <div className="mx-28 grid grid-cols-2 mt-8">
+      <div className="mx-10 md:mx-28 grid grid-cols-1 md:grid-cols-2 mt-8">
         <div>
           <p className="font-inter font-bold text-2xl   sm:text-4xl  leading-tight text-dark-cadet-blue">
             Nunca subestimes tu habilidad para mejorar la vida de alguien
           </p>
         </div>
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-center md:justify-end mb-4">
           <span className="sm:ml-3">
             <button
               type="button"
@@ -44,7 +44,7 @@ function index() {
         </div>
       </div>
 
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
+      <div className="grid grid-cols-1 mx-10  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
         {coursesList.length ? (
           coursesList?.map((course) => (
             <CardCourses
@@ -54,7 +54,7 @@ function index() {
               description={course?.description}
               photographyURL={course?.photographyURL}
             />
-          ))
+          )).reverse()
         ) : (
           <p className="font-bold text-3xl text-center justify-items-center my-48 ">
             En espera... Cargado Cursos
@@ -62,7 +62,7 @@ function index() {
         )}
       </div>
 
-      <Modal modal={modal} setModal={setModal} name="Cursos">
+      <Modal modal={modal} setModal={setModal} name="Agregar Curso">
         <FormCourses setModal={setModal}></FormCourses>
       </Modal>
     </>

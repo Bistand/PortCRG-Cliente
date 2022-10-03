@@ -35,13 +35,7 @@ const CardCourses = ({ _id, name, description, photographyURL }) => {
           <p>{description}</p>
         </div>
         <div className="flex flex-row justify-between">
-          <button
-            className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
-            font-bold text-sm rounded-lg text-start"
-            // onClick={() => handleEditarTarea(tarea)}
-          >
-            Editar
-          </button>
+          
         </div>
       </div>
     </section>

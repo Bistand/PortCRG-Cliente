@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Modal from "./Modal";
+import FormCourses from "./FormCourses";
 import {
   MdHighlightOff,
   MdHistory,
@@ -7,18 +9,29 @@ import {
 } from "react-icons/md";
 
 import { BiWindowOpen } from "react-icons/bi";
-import Modal from "../components/Modal";
 import PdfViewer from "./PdfViewer";
 
 function CourseGenInfo(props) {
   const [modal, setModal] = useState(false);
   const course = props.course;
+
   return (
     <>
       <div className="flex flex-col h-full mb-4 lg:mb-0">
-        <p className="font-inter font-bold text-left sm:text-3xl 2xl:text-4xl mb-2 text-dark-cadet-blue">
-          {course.name}
-        </p>
+        <div className="md:flex md:justify-between ">
+          <p className="font-inter font-bold text-left sm:text-3xl 2xl:text-4xl mb-2 text-dark-cadet-blue">
+            {course.name}
+          </p>
+
+          <button
+            className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
+            font-bold text-sm rounded-lg text-start"
+            onClick={() => setModal(true)}
+          >
+            Editar
+          </button>
+        </div>
+
         <span className="flex">
           <p>Impartido por&nbsp;</p>
           <p className="font-semibold">{course.instructor}</p>
@@ -97,6 +110,9 @@ function CourseGenInfo(props) {
           pdfUrl={course.temarioURL}
           courseName={course.name}
         ></PdfViewer>
+      </Modal>
+      <Modal modal={modal} setModal={setModal} name="Editar Curso">
+        <FormCourses setModal={setModal} course={course}></FormCourses>
       </Modal>
     </>
   );
