@@ -27,22 +27,7 @@ const localizer = dateFnsLocalizer({
 });
 
 const events = [
-    {
-        title: "Big Meeting",
-        allDay: true,
-        start: new Date(2021, 6, 0),
-        end: new Date(2021, 6, 0),
-    },
-    {
-        title: "Vacation",
-        start: new Date(2021, 6, 7),
-        end: new Date(2021, 6, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 6, 20),
-        end: new Date(2021, 6, 23),
-    },
+    
 ];
 
 
@@ -59,7 +44,7 @@ export default function Home() {
                 <h1>CALENDARIO</h1>
                 <h2>Agregar nuevo compromiso</h2>
                 <div>
-                    <input type="text" placeholder="Agregar titulo" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                    <input type="text" placeholder="Agregar titulo" className="txtTitulo" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                     <DatePicker placeholderText="Fecha de Inicio" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
                     <DatePicker placeholderText="Fecha Finalización" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
                     <button type="button" className="button btnEvento"onClick={handleAddEvent}>
@@ -74,7 +59,7 @@ export default function Home() {
         type="text/css"
         dangerouslySetInnerHTML={{
           __html:
-            "\nh1 {\ntext-align: center;\ntext-transform: uppercase;\nfont-size: 5rem;\nmargin-bottom: 2rem;\ncolor: ##000000;\n}\nh2 {\ntext-transform: uppercase;\nfont-size: 1.5rem;\nmargin-bottom: 1rem;\ncolor: ##000000;\n}.button {\n  border-radius: 15px;\nbackground-color: #4CAF50; \n  border: none;\n  color: white;\n  padding: 16px 32px;\n text-align: center;\n text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n margin: 4px 2px;\n transition-duration: 0.4s;\n cursor: pointer;\n  }\n.btnEvento{\nbackground-color: white; \ncolor: black; \n border: 2px solid #008CBA;\n }\n .btnEvento:hover {\n background-color: #008CBA;\n color: white;\n }\n  }"
+            "\nh1 {\ntext-align: center;\ntext-transform: uppercase;\nfont-size: 5rem;\nmargin-bottom: 2rem;\ncolor: ##000000;\n}\nh2 {\ntext-transform: uppercase;\nfont-size: 1.5rem;\nmargin-bottom: 1rem;\ncolor: ##000000;\n}.button {\n  border-radius: 15px;\nbackground-color: #4CAF50; \n  border: none;\n  color: white;\n  padding: 16px 32px;\n text-align: center;\n text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n margin: 4px 2px;\n transition-duration: 0.4s;\n cursor: pointer;\n  }\n.btnEvento{\nbackground-color: white; \ncolor: black; \n border: 2px solid #008CBA;\n }\n .btnEvento:hover {\n background-color: #008CBA;\n color: white;\n }\n   }"
                
         }}
       />
