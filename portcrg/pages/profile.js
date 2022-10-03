@@ -231,180 +231,205 @@ export default function Home() {
                   <h6>INFORMACIÓN PERSONAL</h6>
                   <hr />
                   <form>
-                    <div className="form-group">
-                      <label htmlFor="fullName">Nombre Completo</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su nombre completo"
-                        defaultValue=""
-                      />
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Nombres</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="firstName"
+                            placeholder="Ingrese sus nombres"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Apellidos</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            placeholder="Ingrese sus apellidos"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>DPI</label>
+                          <input
+                            type="text"
+                            id="DPI"
+                            className="form-control"
+                            placeholder="Ingrese número de DPI"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Estado Civil</label>
+                          <select class="form-control">
+                            <option selected="">
+                              Seleccione su estado Civil
+                            </option>
+                            <option>Soltero</option>
+                            <option>Casado</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Número de Teléfono</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="Cellphone"
+                            placeholder="Ingrese número de teléfono"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Ocupación</label>
+                          <select class="form-control">
+                            <option selected="">Seleccionar Ocupación</option>
+                            <option>Voluntario General</option>
+                            <option>Socorrista</option>
+                            <option>Juventino</option>
+                            <option>Personal Asalariado</option>
+                            <option>Damas Voluntarias</option>
+                            <option>Administrador</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Fecha de Nacimiento</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nacimiento"
+                            placeholder="Ingrese fecha de nacimiento"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Departamento</label>
+                          <select class="form-control">
+                            <option selected="">Seleccionar Departamento</option>
+                            <option>Alta Verapaz</option>
+                            <option>Baja Verapaz</option>
+                            <option>Chimaltenango</option>
+                            <option>Chiquimula</option>
+                            <option>Guatemala</option>
+                            <option>El Progreso</option>
+                            <option>Escuintla</option>
+                            <option>Huehuetenango</option>
+                            <option>Izabal</option>
+                            <option>Jalapa</option>
+                            <option>Jutiapa</option>
+                            <option>Péten</option>
+                            <option>Quetzaltenango</option>
+                            <option>Quiché</option>
+                            <option>Retalhuleu</option>
+                            <option>Sacatepequez</option>
+                            <option>San Marcos</option>
+                            <option>Santa Rosa</option>
+                            <option>Sololá</option>
+                            <option>Suchitepequez</option>
+                            <option>Totonicapán</option>
+                            <option>Zacapa</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Municipio</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="municipio"
+                            placeholder="Ingrese nombre de municipio"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>Dirección de Residencia</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="nacimiento"
+                            placeholder="Ingrese dirección donde vive actualmente"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+
+
+
+
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label>Biografía</label>
+                          <textarea
+                            className="form-control"
+                            id="biografia"
+                            rows={4}
+                            placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
+                            defaultValue={
+                              ""
+                            }
+                          />
+                        </div>
+                      </div>
                       <small id="fullNameHelp" className="form-text text-muted">
-                        El nombre que ingrese es el que se mostrará por defecto.
-                        Puede cambiar o actualizar su nombre en cualquier
+                        *El nombre que ingrese es el que se mostrará por defecto.
+                        Puede cambiar o actualizar sus datos en cualquier
                         momento.
                       </small>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="bio">Biografía</label>
-                      <textarea
-                        className="form-control autosize"
-                        id="bio"
-                        placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
-                        style={{
-                          overflow: "hidden",
-                          overflowWrap: "break-word",
-                          resize: "none",
-                          height: 62,
-                        }}
-                        defaultValue={""}
-                      />
-                    </div>
 
-                    <div className="form-group">
-                      <label htmlFor="fullName">DPI</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su número de DPI"
-                        defaultValue=""
-                      />
-                    </div>
 
-                    <div className="form-group">
-                      <label htmlFor="location">Estado Civil</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">
-                            Seleccione su estado Civil
-                          </option>
-                          <option>Soltero</option>
-                          <option>Casado</option>
-                        </select>
-                      </div>
-                    </div>
 
-                    <div className="form-group">
-                      <label htmlFor="phone">Número de Telefono/Celular</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su número de contacto"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Ocupación</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">Seleccionar Ocupación</option>
-                          <option>Voluntario General</option>
-                          <option>Socorrista</option>
-                          <option>Juventino</option>
-                          <option>Personal Asalariado</option>
-                          <option>Damas Voluntarias</option>
-                          <option>Administrador</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="fullName">Fecha de Nacimiento</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese Fecha de nacimiento"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Departamento</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">Seleccionar Departamento</option>
-                          <option>Alta Verapaz</option>
-                          <option>Baja Verapaz</option>
-                          <option>Chimaltenango</option>
-                          <option>Chiquimula</option>
-                          <option>Guatemala</option>
-                          <option>El Progreso</option>
-                          <option>Escuintla</option>
-                          <option>Huehuetenango</option>
-                          <option>Izabal</option>
-                          <option>Jalapa</option>
-                          <option>Jutiapa</option>
-                          <option>Péten</option>
-                          <option>Quetzaltenango</option>
-                          <option>Quiché</option>
-                          <option>Retalhuleu</option>
-                          <option>Sacatepequez</option>
-                          <option>San Marcos</option>
-                          <option>Santa Rosa</option>
-                          <option>Sololá</option>
-                          <option>Suchitepequez</option>
-                          <option>Totonicapán</option>
-                          <option>Zacapa</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="Municio">Municipio</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="location"
-                        placeholder="Ingrese el Municipio donde vive actualmente"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Dirección de Residencia</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="location"
-                        placeholder="Ingrese la dirección donde vive actualmente"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group small text-muted">
-                      Todos los campos de esta página son opcionales y se pueden
-                      eliminar en cualquier momento, y al rellenarlos nos estás
-                      dando tu consentimiento para compartir estos datos
-                      dondequiera que aparezca su perfil de usuario.
-                    </div>
-                    <button type="button" className="btn btn-success">
-                      Actualizar perfil
-                    </button>
                   </form>
+                  <hr></hr>
+                  <div>
+                    <button className="btn btn-primary">Actualizar</button>
+
+                  </div>
+
                 </div>
+
                 <div className="tab-pane" id="account">
                   <h6>AJUSTES DE CUENTA</h6>
                   <hr />
                   <form>
                     <div className="form-group">
                       <label htmlFor="username">
-                        Correo Electrónico / Codigo de Personal
+                        Correo Electrónico 
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
-                        placeholder="Ingrese su correo electrónico o Codigo de personal"
+                        placeholder="Ingrese su correo electrónico"
                         defaultValue=""
                       />
                       <small id="usernameHelp" className="form-text text-muted">
@@ -413,7 +438,7 @@ export default function Home() {
                         persona.
                       </small>
                     </div>
-                    <hr />
+
                     <div className="form-group">
                       <label className="d-block text-danger">
                         Eliminar Cuenta
@@ -423,6 +448,7 @@ export default function Home() {
                         favor se conciente.
                       </p>
                     </div>
+                    <hr></hr>
                     <button className="btn btn-danger" type="button">
                       Eliminar Cuenta
                     </button>
@@ -450,6 +476,7 @@ export default function Home() {
                         placeholder="Confirmar nueva contraseña"
                       />
                     </div>
+                    <hr></hr>
                     <button type="button" className="btn btn-success">
                       Actualizar Contraseña
                     </button>
@@ -490,16 +517,16 @@ export default function Home() {
                             </select>
                           </div>
                         </li>
+                        <hr></hr>
+                        
+                        <small id="fullNameHelp" className="form-text text-muted">
+                        En el siguiente apartado, si la respuesta es afirmativa a la pregunta, favor de ingresarla.
+                        De lo contrario puede dejar en blanco el espacio.
+                      </small>
                         <li className="list-group-item has-icon">
                           Enfermedad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna enfermedad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               ¿Cual es la enfermedad?
@@ -507,9 +534,9 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="enfermedad"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de enfermedad"
+                              placeholder="Ingrese nombre de enfermedad"
                               defaultValue=""
                             />
                           </div>
@@ -518,14 +545,7 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Actualmente está tomando algún tipo de
-                                medicación?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               Nombre de Medicamento
@@ -533,9 +553,9 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="medicamento"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
+                              placeholder="Ingrese nombre de medicamento o compuesto"
                               defaultValue=""
                             />
                           </div>
@@ -544,13 +564,7 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Incapacidad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna incapacidad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                            
 
                             <label htmlFor="fullName">
                               Mencione la discapacidad
@@ -558,21 +572,27 @@ export default function Home() {
                             <input
                               type="text"
                               className="form-control"
-                              id="fullName"
+                              id="discapacidad"
                               aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de discapacidad"
+                              placeholder="Ingrese nombre de discapacidad"
                               defaultValue=""
                             />
                           </div>
                         </li>
                       </ul>
                     </div>
-                    <button type="button" className="btn btn-success">
-                      Actualizar datos
-                    </button>
+                    
                   </form>
+                  <hr></hr>
+                  <div>
+            <button className="btn btn-primary">Actualizar</button>
+            
+          </div>
                 </div>
+
+
               </div>
+              
             </div>
           </div>
         </div>
