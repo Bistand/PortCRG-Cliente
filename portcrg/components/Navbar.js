@@ -3,21 +3,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { deleteCookie, getCookie } from "cookies-next";
+import axios from "axios";
+import { datosUSer } from "../peticiones/session";
 
 const Navbar = () => {
+  const [user, setUser] = useState("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [Ocultar, setOcultar] = useState(false);
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
+  let usuario;
   useEffect(() => {
     if (tokenuser) {
       setOcultar(true);
+      Datos();
+    } else {
+      setOcultar(false);
+      setUser("");
     }
   });
+  const Datos = async () => {
+    usuario = await datosUSer(tokenuser);
+    setUser(usuario.fullName);
+  };
   const logout = () => {
     deleteCookie("tokenuser");
-    //router.push("/");
-    router.replace("/");
+    router.push("/");
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
@@ -92,11 +103,17 @@ const Navbar = () => {
             Log out
           </button>
         </div>
-        <div>
+        <div className="divide-y-6 items-center flex">
+          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+            {user}
+          </a>
           <Link href="/profile">
-            <a className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
-              Usuario
-            </a>
+            <button className="inline-block text-sm px-4 py-2 leading-none border rounded-full text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
+              <img
+                className="h-[30px] w-[30px] rounded-full"
+                src="/user1.png"
+              ></img>
+            </button>
           </Link>
         </div>
       </div>

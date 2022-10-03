@@ -17,6 +17,8 @@ export async function middleware(request) {
   //obtiene el token de autenticacion con el cual se puede saber
   //si esta logiado o no
   const token = request.cookies.get("tokenuser");
+  let ruta = request.nextUrl.pathname;
+  console.log(ruta);
 
   if (request.nextUrl.pathname.includes("/login")) {
     if (token) {
@@ -30,8 +32,6 @@ export async function middleware(request) {
     if (!token) {
       return home;
     } else {
-      //response.cookies.delete("token");
-      //response.cookies.clear();
     }
   } else if (request.nextUrl.pathname.includes("/courses")) {
     if (!token) {

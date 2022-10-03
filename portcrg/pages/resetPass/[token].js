@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { Resetpassword, ConfirmPasswordnew } from "../../peticiones/session";
+import { Resetpassword, newPassword } from "../../peticiones/session";
 import { useRouter } from "next/router";
 import { deleteCookie, getCookie, getCookies, setCookie } from "cookies-next";
 import { cookie } from "cookie";
@@ -9,23 +9,29 @@ export default function Password(request) {
   const [password, SetPassword] = useState("");
   const [passwordnew, SetPasswordnew] = useState("");
   const [hidden, SetHidden] = useState(true);
+  const [mensaje, setMensaje] = useState("");
   const router = useRouter();
+  const token = router.query;
 
   function passwordin(event) {
     SetPassword(event.target.value);
+    setMensaje("");
   }
   function confirmpasswordin(event) {
     SetPasswordnew(event.target.value);
-    SetHidden(true);
+    setMensaje("");
   }
   async function validar(event) {
-    const token = getCookie("tokenuser");
     event.preventDefault();
-    if (password === passwordnew) {
-      //se manda el token y password para reiniciar contraseña
-      await Resetpassword(token, password);
-    } else {
-      SetHidden(false);
+    if (password) {
+      if (password === passwordnew) {
+        //se manda el token y password para reiniciar contraseña
+        setMensaje("");
+        await newPassword(token.token, password);
+        router.push("/login");
+      } else {
+        setMensaje("No son coinciden las contraseñas");
+      }
     }
   }
   return (
@@ -46,13 +52,7 @@ export default function Password(request) {
         >
           Cambiando Contraseña
         </h1>
-        {!hidden ? (
-          <p className="text-[15px] capitalize mb-2.5">
-            No son coinciden las contraseñas
-          </p>
-        ) : (
-          <p></p>
-        )}
+        <p className="text-[15px] capitalize mb-2.5">{mensaje}</p>
         <form
           onSubmit={validar}
           className="flex flex-col justify-center w-full gap-7"
@@ -76,7 +76,10 @@ export default function Password(request) {
             border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
 
-          <button className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5">
+          <button
+            className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5 hover:outline-[#FF3839] hover:outline-1
+            active:bg-white active:text-[#FF3839] hover:outline"
+          >
             ENVIAR
           </button>
         </form>
