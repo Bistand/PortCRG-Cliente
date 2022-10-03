@@ -86,7 +86,10 @@ export default function Login() {
             className="bg-[#F5E7E7] border[#FBF8F8]
             border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
-          <button className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5">
+          <button
+            className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5 hover:outline-[#FF3839] hover:outline-1
+            active:bg-white active:text-[#FF3839] hover:outline"
+          >
             LOGIN
           </button>
           <a
