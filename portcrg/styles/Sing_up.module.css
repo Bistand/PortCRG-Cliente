@@ -182,8 +182,8 @@
 .Boton:active {
     background-color: #031926;
 }
-.boton:disabled{
-    background-color: #9e9e9e;
+.boton.disabled{
+    background-color: #ab0d0d;
 }
 .popup{
     width: 400px;

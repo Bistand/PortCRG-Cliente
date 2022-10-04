@@ -9,8 +9,7 @@ import react from "react"
 import { useForm } from "react-hook-form"
 import Document, { Html, Main, NextScript } from "next/document";
 import MyDocument from "./_document"
-
-
+import swal from 'sweetalert';
 export default function sign_up() {
     const [fullName, setfullName] = useState("")
     const [dpi, setdpi] = useState('')
@@ -19,15 +18,21 @@ export default function sign_up() {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const { register, handleSubmit, errors, reset } = useForm();
-    
-
-
+    function recargarr(){
+        location.href = location.href;
+    }
     function onSubmitForm(values) {
         console.log(values);
     }
-
     const submitUsuario = async () => {
-        try {
+        let Fnomb = fullName;
+        let Dpei = dpi;
+        let ocu = occupation;
+        let num1 = number1;
+        let ema = email;
+        let pss = password;
+        if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "")) {
+            console.log("funciona")
             const response = await fetch('https://portcrg-dev.onrender.com/api/user/register/admin', {
                 method: 'POST',
                 body: JSON.stringify({ fullName, dpi, occupation, number1, email, password }),
@@ -36,17 +41,21 @@ export default function sign_up() {
                 },
             })
             const data = await response.json()
-            console.log(data),alert("usuario creado")
-        } catch (error) {
-            console.log("no conecta sevidor")
+            console.log(data), swal('Cruz Roja Quetzaltenango',
+            'Usuario Creado exitosamente',
+            'success',{buttons: ["finalizar"]});
+            setTimeout(() => {
+                location.href = location.href;
+            }, 3000);
+            
+        } else {
+            swal('Cruz Roja Quetzaltenango',
+            'LLene todos los campos correctamente',
+            'error',{buttons: ["finalizar"],timer: 4000 });
         }
-        location.href= location.href
     }
-
     return (
-
         <form id="form" class="form" onSubmit={handleSubmit(onSubmitForm)}>
-
             <div className={styles.contenedor}>
                 <div className={styles.divTitulo}>
                     <h1 className={styles.htitulo1}>Registrar Usuario</h1>
@@ -68,7 +77,6 @@ export default function sign_up() {
                         <span class="note"></span>
                     </div>
                     <div className={styles.divNumero}>
-
                     </div>
                     <div>
                         <h2 className={styles.htitulo2}>Numero</h2>
@@ -76,7 +84,6 @@ export default function sign_up() {
                         <span class="note"></span>
                     </div>
                     <div className={styles.divNumeroDpi}>
-
                     </div>
                     <div>
                         <h2 className={styles.htitulo2}>DPI</h2>
@@ -84,7 +91,6 @@ export default function sign_up() {
                         <span class="note"></span>
                     </div>
                     <div className={styles.divNombre}>
-
                     </div>
                     <div>
                         <h2 className={styles.htitulo2}>Nombre Completo</h2>
@@ -92,7 +98,6 @@ export default function sign_up() {
                         <span class="note"></span>
                     </div>
                     <div className={styles.divEmail}>
-
                     </div>
                     <div className={styles.divInputEmail}>
                         <h2 className={styles.htitulo2}>Email</h2>
@@ -100,16 +105,14 @@ export default function sign_up() {
                         <span class="note"></span>
                     </div>
                     <div className={styles.divContraseña}>
-
                     </div>
-
                     <h2 className={styles.htitulo2}>Contraseña</h2>
                     <div className={styles.divInputConstaseña}>
                         <input id="txtp" className={styles.input} type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={8} placeholder="Contraseña" required />
                         <span class="note"></span>
                     </div>
                     <div className={styles.divBoton}>
-                        <button id="btn" onClick={submitUsuario} className={styles.Boton}   >
+                        <button id="btn" onClick={submitUsuario} className={styles.Boton} >
                             Ingresar
                         </button >
                     </div>
@@ -123,6 +126,5 @@ export default function sign_up() {
                 </div>
             </div>
         </form>
-
     )
 } 

@@ -5,7 +5,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import styles from '../styles/Asistencias.module.css'
 
-export default function Asistencias() {
+export default function EntradaSalida() {
     return (
     
             <div className={styles.contenedor}>
