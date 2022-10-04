@@ -12,16 +12,17 @@
     "@headlessui/react": "^1.7.1",
     "@heroicons/react": "^2.0.11",
     "axios": "^0.27.2",
+    "cookie": "^0.5.0",
     "cookies-next": "^2.1.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "react-table": "^7.8.0",
-    "cookie": "^0.5.0",
     "react-pdf": "^5.7.2",
-    "regenerator-runtime": "^0.13.9"
+    "react-table": "^7.8.0",
+    "regenerator-runtime": "^0.13.9",
+    "sweetalert2": "^11.4.37"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",

@@ -37,6 +37,8 @@ export async function datosUSer(tokenuser) {
         },
       }
     );
+
+    localStorage.setItem("id",usuario.data.data.user.id);
     return usuario.data.data.user;
   } catch (error) {
     return null;
