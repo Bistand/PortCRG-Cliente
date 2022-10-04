@@ -45,8 +45,20 @@ export default function Home() {
                 <h2>Agregar nuevo compromiso</h2>
                 <div>
                     <input type="text" placeholder="Agregar titulo" className="txtTitulo" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                    <DatePicker placeholderText="Fecha de Inicio" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                    <DatePicker placeholderText="Fecha Finalización" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                    <DatePicker 
+                    placeholderText="Fecha de Inicio" style={{ marginRight: "10px" }} 
+                    selected={newEvent.start} 
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                    <DatePicker 
+                    placeholderText="Fecha Finalización" 
+                    selected={newEvent.end} 
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    onChange={(end) => setNewEvent({ ...newEvent, end })} />
                     <button type="button" className="button btnEvento"onClick={handleAddEvent}>
                         Agregar evento
                     </button>
