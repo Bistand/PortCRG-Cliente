@@ -6,7 +6,7 @@ import { BsTrash } from "react-icons/bs";
 import DeleteEventModal from "./DeleteEventModal";
 import AddEventModal from "./AddEventModal";
 
-function EventsCard({ event }) {
+function EventsCard({ event, occupation }) {
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDel, setIsOpenDel] = useState(false);
   let [isOpenAdd, setIsOpenAdd] = useState(false);
@@ -44,6 +44,7 @@ function EventsCard({ event }) {
                 ) : null}
               </>
             )}
+            {/* {occupation == 6 ? ( */}
             <div>
               <button
                 className="has-tooltip mr-4 "
@@ -73,6 +74,7 @@ function EventsCard({ event }) {
                 <BsTrash size={"20px"} className="text-red-800 my-1"></BsTrash>
               </button>
             </div>
+            {/* ) : null} */}
           </div>
         </div>
       </div>

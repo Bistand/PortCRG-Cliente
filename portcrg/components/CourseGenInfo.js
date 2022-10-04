@@ -13,6 +13,7 @@ import PdfViewer from "./PdfViewer";
 
 function CourseGenInfo(props) {
   const [modal, setModal] = useState(false);
+  const [modalPdf, setModalPdf] = useState(false);
   const course = props.course;
 
   return (
@@ -96,7 +97,7 @@ function CourseGenInfo(props) {
               type="button"
               className=" text-sm px-3 py-2 w-full md:w-auto rounded-lg uppercase font-bold
               bg-dark-cadet-blue text-white text-center mt-2 flex gap-2 items-center justify-center"
-              onClick={() => setModal(true)}
+              onClick={() => setModalPdf(true)}
             >
               Ver temario
             </button>
@@ -105,7 +106,7 @@ function CourseGenInfo(props) {
           )}
         </div>
       </div>
-      <Modal modal={modal} setModal={setModal} name="">
+      <Modal modal={modalPdf} setModal={setModalPdf} name="">
         <PdfViewer
           pdfUrl={course.temarioURL}
           courseName={course.name}
