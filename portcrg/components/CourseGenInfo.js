@@ -17,15 +17,12 @@ function CourseGenInfo(props) {
   const [modal, setModal] = useState(false);
   const [modalPdf, setModalPdf] = useState(false);
   const course = props.course;
-
-
-  console.log(props)
   const { AsignarCourse } = useCourses();
 
   const addCourse = async () => {
     await AsignarCourse({
-      course
-    })
+      course,
+    });
   };
 
   return (
@@ -45,7 +42,8 @@ function CourseGenInfo(props) {
               Editar
             </button>
 
-            <button disabled={false}
+            <button
+              disabled={false}
               className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
             font-bold text-sm rounded-lg text-start flex gap-2 "
               onClick={() => addCourse()}

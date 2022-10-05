@@ -5,6 +5,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsTrash } from "react-icons/bs";
 import DeleteEventModal from "./DeleteEventModal";
 import AddEventModal from "./AddEventModal";
+import DeleteEvent from "./DeleteEvent";
 
 function EventsCard({ event, occupation }) {
   let [isOpen, setIsOpen] = useState(false);
@@ -87,8 +88,10 @@ function EventsCard({ event, occupation }) {
       <DeleteEventModal
         isOpen={isOpenDel}
         setIsOpen={setIsOpenDel}
-        data={dataModal}
-      />
+        name={"¿Seguro que desea eliminar este evento?"}
+      >
+        <DeleteEvent data={dataModal} setIsOpen={setIsOpenDel}></DeleteEvent>
+      </DeleteEventModal>
 
       <AddEventModal
         isOpen={isOpenAdd}

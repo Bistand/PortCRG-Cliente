@@ -6,6 +6,7 @@ const CoursesContext = createContext();
 
 const CoursesProvider = ({ children }) => {
   const [coursesList, setCoursesList] = useState([]);
+  const [coursesListUser, setCoursesListUser] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const CoursesProvider = ({ children }) => {
     };
 
     ObtenerCursos();
+    getCoursesByUser();
   }, []);
 
   const Course = async (course, _id) => {
@@ -114,6 +116,59 @@ const CoursesProvider = ({ children }) => {
     }
   };
 
+  const unassignCourse = async (course) => {
+    try {
+      const idUser = localStorage.getItem("id");
+      const message = await fetch(
+        "https://portcrg-dev.onrender.com/api/courses/unassign",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            curso: course.course,
+            user: idUser,
+          },
+        }
+      ).then(function (response) {
+        if (response.ok) {
+          const updatedCourses = coursesListUser.filter(
+            (currentCourse) => currentCourse._id !== course.course
+          );
+          setCoursesListUser(updatedCourses);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Curso desasignado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "No se ha podido desasignar",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCoursesByUser = async () => {
+    try {
+      const idUser = localStorage.getItem("id");
+      const { data } = await axios(
+        `https://portcrg-dev.onrender.com/api/user/courses/${idUser}`
+      );
+      setCoursesListUser(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const editarCourse = async (course, _id) => {
     try {
       const config = {
@@ -145,10 +200,13 @@ const CoursesProvider = ({ children }) => {
     <CoursesContext.Provider
       value={{
         coursesList,
+        coursesListUser,
         submitCourses,
         editarCourse,
         Course,
         AsignarCourse,
+        unassignCourse,
+        getCoursesByUser,
       }}
     >
       {children}
