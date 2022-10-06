@@ -1,39 +1,154 @@
-
 .contenedor {
-    width: 98%;
+    width: 100%;
+    min-height: 570px;
     height: 100%;
-    margin:0 auto ;
-    overflow: hidden;
-    background-color: #FDFFFC;
+    margin: 0 auto;
+    background-color: #FDFFFC ;   
+}
+.divTitulo {
+    width: 100%;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.htitulo1 {
+    width: 40%;
+    color: #34305c;
+    font-size: 40px;
+    font-weight: bold;
+    font-size: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+.htitulo2 {
+    width: 100%;
+    color: #56A3A6;
+    font-size: 12px;
+    font-weight: bold;
+    font-size: auto;
+    margin-left: 35px;
+}
+
+.divCampos {
+    background-color: #f1f5f9;
+    width: 40%;
+    height: 490px;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #000000;
+    margin-left: auto;
+    border-radius: 2px;
+    margin-right: auto;
+    box-shadow: 1px 2px 5px ;
+    font-size: auto;
+}
+.divespacio{
+    width: 100%;
+    height: 5px;
+}
+
+.select {
+    width: 90%;
+    height: 35px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #000000;
+    margin-left: 5%;
+}
+.select:invalid + span:after{
+    content: 'X';
+    color: red;
+    padding-left: 5px;
+    font-weight: bold;
 
 }
-.main{
-    width: 98%;
-    background: #FDFFFC;
-    padding: 20px;
-    float: left;
+.select:valid + span:after{
+    content: '✓';
+    color: rgb(0, 123, 25);
+    padding-left: 5px;
+    font-weight: bold;
+    
+}
+.input {
     box-sizing: border-box;
- 
+    width: 90%;
+    height: 35px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #000000;  
+    margin-left: 5%; 
 }
-.imm {
-    position: relative;
-    width: 448px;
-    height: 600px;
-    left: 30px;
-    top: 50px;
-    border-radius: 20px;
+.input:invalid + span:after{
+    content: 'X';
+    color: red;
+    padding-left: 5px;
+    font-weight: bold;
+    }
+.input:valid + span:after {
+        content: '✓';
+        color: rgb(0, 123, 25);
+        padding-left: 5px;
+        font-weight: bold;
+    }
+
+.divNumeroDpi {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    height: 15px;
+    color: #000000;
+    margin-left: 5%;
 }
-.buton {
-    width: 294px;
-    height: 400px;
+.divNumero {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    height: 15px;   
+    margin-left: 5%;
 }
-.rectanglev {
-    position: relative;
-    box-sizing: border-box;
-    width: 294px;
+.divNombre {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    height: 15px;
+    margin-left: 5%;  
+}
+.divEmail {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    height: 15px;
+    margin-left: 5%;    
+}
+
+.divContraseña {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    height: 15px;
+    margin-left: 5%;
+}
+.divBoton {
+    width: 100%;
+    height: 85px;
+}
+.Boton {
+    width: 190px;
     height: 57px;
-    left: 990px;
-    top: -240px;
     background: #56A3A6;
     border: 1px solid #ABABAB;
     border-radius: 9px;
@@ -41,213 +156,180 @@
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
     color: #FDFFFC;
-    min-width: 300px;
+    margin-right: auto;
+    margin-left: 5%;
+    margin-top: 4%;
 }
-.rectanglev:hover {
-    background-color: #03816e;
-}
-.rectanglev:active {
-    background-color: #031926;
-}
-.tit {
-    position: relative;
-    width: 117px;
-    height: 29px;
-    left: 517px;
-    top: 91px;
+.btn{
+    width: 190px;
+    height: 57px;
+    background: #56A3A6;
+    border: 1px solid #ABABAB;
+    border-radius: 9px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
-    color: #FF101F;
-
+    color: #FDFFFC;
+    margin-right: auto;
+    margin-left: 5%;
+    margin-top: 4%;
 }
-.text1 {
-    position: relative;
-    width: 45px;
-    height: 19px;
-    left: 517px;
-    top: -450px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
-
+.Boton:hover {
+    background-color: #03816e;
 }
-.input1 {
-    position: relative;
-    box-sizing: border-box;
-    width: 754px;
-    height: 43px;
-    left: 517px;
-    top: -440px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    color: #000000;
+.Boton:active {
+    background-color: #031926;
 }
-.text2 {
-    position: relative;
-    width: 92px;
-    height: 16px;
-    left: 517px;
-    top: -420px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
+.boton.disabled{
+    background-color: #ab0d0d;
 }
 
-.input2 {
-    position: relative;
-    box-sizing: border-box;
-    width: 754px;
-    height: 45px;
-    left: 517px;
-    top: -402px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
+@media screen and (max-width: 774px) {
+    .input {
+        width: 80%;
+       
+        }
 }
-
-
-.text4 {
-    
-    position: relative;
-    width: 160px;
-    height: 16px;
-    left: 517px;
-    top: -395px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    color: #2400FF;
+@media screen and (max-width: 774px) {
+    .select {
+        width: 80%;
+       
+        }
 }
-
-.rescat {
-    position: relative;
-    width: 217px;
-    height: 19px;
-    left: 517px;
-    top: -500px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    color: #000000;
+@media screen and (max-width: 263px) {
+    .input {
+        width: 60%;
+       
+        }
 }
-
-.select1 {
-    position: relative;
-    width: 750px;
-    height: 43px;
-    left: 517px;
-    top: -490px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #000000;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    color: #000000;
+@media screen and (max-width: 263px) {
+    .select {
+        width: 60%;
+       
+        }
 }
-
-@media screen and (max-width: 600px) {
-    .imm{
-        opacity: 0;
-
+@media screen and (max-width: 750px) {
+    .divCampos {
+        align-items: center;
+        margin-left: 30%;
+        }
+}
+@media screen and (max-width: 903px) {
+    .htitulo1 {
+        font-size: 30px;
     }
-
     
 }
-@media screen and (max-width: 600px) {
-    .tit{
-        left: 160px;
-        top: 60%;
-        border-radius: 20px;
+@media screen and (max-width: 903px) {
+    .htitulo1 {
+        font-size: 20px;
+    }
+    
+}
+@media screen and (max-width: 903px) {
+    .divTitulo {
+        font-size: 20px;
+    }
+    
+}
+@media screen and (max-width: 750px) {
+    .Boton {
+        margin-left: 8%;
+        margin-top: 5%;
     }
 }
-@media screen and (max-width: 600px) {
-    .rectanglev{
-        left: 80px;
-        top: -450px;
-        border-radius: 20px;
+@media screen and (max-width: 724px) {
+    .Boton {
+        margin-left: 4%;
+        margin-top: 5%;
     }
 }
-@media screen and (max-width: 600px) {
-    .rescat{
-        left: 50px;
-        top: -600px;
-        border-radius: 20px;
+@media screen and (max-width: 378px) {
+    .Boton {
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 90px;
+        height: 50px;
+        font-size: 20px;
     }
 }
-@media screen and (max-width: 600px) {
-    .select1{
-        left: 50px;
-        top: -600px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 622px) {
+    .Boton {
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 170px;
+        height: 57px;
     }
 }
-@media screen and (max-width: 600px) {
-    .text1{
-        left: 50px;
-        top: -550px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 527px) {
+    .Boton {
+        align-items: center;
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 160px;
+        height: 57px;
     }
 }
-@media screen and (max-width: 600px) {
-    .input1{
-        left: 50px;
-        top: -565px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 502px) {
+    .Boton {
+        align-items: center;
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 140px;
+        height: 57px;
     }
 }
-@media screen and (max-width: 600px) {
-    .text2{
-        left: 50px;
-        top: -530px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 415px) {
+    .Boton {
+        align-items: center;
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 120px;
+        height: 57px;
     }
 }
-@media screen and (max-width: 600px) {
-    .input2{
-        left: 50px;
-        top: -535px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 452px) {
+    .Boton {
+        align-items: center;
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 110px;
+        height: 57px;
     }
 }
-@media screen and (max-width: 600px) {
-    .text4{
-        left: 50px;
-        top: -530px;
-        width: 400px;
-        height: 43px;
-        border-radius: 10px;
+@media screen and (max-width: 289px) {
+    .Boton {
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 90px;
+        height: 57px;
+        font-size: 15px;
     }
 }
+@media screen and (max-width: 263px) {
+    .Boton {
+        margin-left: 2%;
+        margin-top: 5%;
+        width: 60px;
+        height: 57px;
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 263px) {
+    .htitulo2 {
+        margin-left: 2%;
+    }
+}
+@media screen and (max-width: 353px) {
+    .htitulo2 {
+        margin-left: 2%;
+    }
+}
+
+
+
+
+
+
