@@ -3,9 +3,9 @@ import Head from "next/head"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import styles from '../styles/EntradaSalida.module.css'
-import Image from "next/image"
-import swal from "sweetalert"
+import { datosUSer } from "../peticiones/session";
 import { useState } from "react"
+import { getCookie } from "cookies-next";
 
 
 
@@ -14,14 +14,21 @@ export default function EntradaSalida() {
     let id = "63352acdcf19e0a4cafe0d06";
     let data;
     const [codigo, setcodigo] = useState("")
- 
+    const [usuario, setUser] = useState("")
+
+
+    const tokenuser = getCookie("tokenuser");
+  /*id*/
 /*get para las entradas*/ 
     const fetchcodigoentrada = async () => {
+        usuario = await datosUSer(tokenuser);
+        setUser(usuario.id);
+        console.log(usuario.id);
         const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/entry/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                "id": id,
+                "id": usuario.id,
             },
         })
         data = await response.json()
@@ -30,11 +37,14 @@ export default function EntradaSalida() {
     }
 /*get para las salidas*/ 
 const fetchcodigosalida = async () => {
+    usuario = await datosUSer(tokenuser);
+    setUser(usuario.id);
+    console.log(usuario.id);
     const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/egress', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            "id": id,
+            "id": usuario.id,
         },
     })
     data = await response.json()
