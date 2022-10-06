@@ -163,7 +163,7 @@ const CoursesProvider = ({ children }) => {
       const { data } = await axios(
         `https://portcrg-dev.onrender.com/api/user/courses/${idUser}`
       );
-      setCoursesListUser(data.data);
+      setCoursesListUser(data.data.reverse());
     } catch (error) {
       console.log(error);
     }
