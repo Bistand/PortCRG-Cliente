@@ -5,7 +5,9 @@ import CourseSpecInfo from "../../components/CourseSpecInfo";
 import CourseGenInfo from "../../components/CourseGenInfo";
 
 function courseDetails({ data }) {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    
+  }, []);
   return (
     <>
       <Head>

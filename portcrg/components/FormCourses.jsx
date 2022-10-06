@@ -73,8 +73,7 @@ export default function FormCourses({ setModal, course }) {
     }, _id);
 
     setModal(false);
-
- 
+   
   };
 
   const handleImagenChange = (e) => {

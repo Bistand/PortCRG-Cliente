@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 export default function Asistencia() {
   return (
     <div className="h-screen flex flex-col">
+      <Navbar></Navbar>
       <div className="h-full">
         <div className="border-solid border-[1px] border-black text-center mx-44 my-20">
           <div className="border-solid border-[1px] border-black m-100 text-center">
@@ -30,6 +31,7 @@ export default function Asistencia() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
