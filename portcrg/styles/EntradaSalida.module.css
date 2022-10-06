@@ -1,0 +1,342 @@
+.contenedor {
+    width: 100%;
+    min-height: 710px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #FDFFFC;
+
+}
+
+.divcodigo {
+    width: 100%;
+    height: 123px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.h1 {
+    margin-left: 5%;
+
+    font-size: 65px;
+    color: #34305c;
+    font-weight: bold;
+}
+
+.h2 {
+    margin-left: 5%;
+
+    font-size: 25px;
+    color: #34305c;
+    font-weight: bold;
+}
+
+.divcajacodigo {
+    background-color: #f1f5f9;
+    width: 80%;
+    height: 110px;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #000000;
+    margin-left: auto;
+    border-radius: 5px;
+    margin-right: auto;
+    box-shadow: 1px 2px 5px;
+    font-size: auto;
+    margin-top: 5px;
+
+
+}
+
+
+.divasistencia {
+    /*background-color: rgb(43, 177, 195);*/
+    width: 33%;
+    height: 585px;
+    float: left;
+}
+
+.diventrada {
+    /*background-color: rgb(43, 177, 195);*/
+    width: 33%;
+    height: 585px;
+    float: left;
+}
+
+.divsalida {
+    /*background-color: rgb(43, 177, 195);*/
+    width: 33%;
+    height: 585px;
+    float: left;
+}
+
+.divcajaasistencia {
+
+    width: 90%;
+    height: 580px;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #000000;
+    margin-left: 30px;
+    border-radius: 5px;
+    margin-right: auto;
+    box-shadow: 1px 2px 5px;
+    font-size: auto;
+
+
+
+}
+
+.img {
+
+    margin-left: auto;
+    margin-right: auto;
+    height: 480px;
+    border-radius: 9px;
+
+}
+
+.botonasistencia {
+    width: 100%;
+    height: 481px;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FDFFFC;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.5%
+}
+
+.botonsalida {
+    width: 100%;
+    height: 481px;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FDFFFC;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.5%
+}
+
+.botonentrada {
+    width: 100%;
+    height: 481px;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FDFFFC;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.5%
+}
+
+@media screen and (max-width: 1078px) {
+    .img {
+        width: 260px;
+
+
+    }
+}
+
+@media screen and (max-width: 917px) {
+    .img {
+        width: 240px;
+
+
+    }
+}
+
+@media screen and (max-width: 831px) {
+    .img {
+        width: 220px;
+
+
+    }
+}
+
+
+@media screen and (max-width: 831px) {
+    .h2 {
+        font-size: 20px;
+
+
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .h1 {
+        font-size: 45px;
+
+
+    }
+}
+
+@media screen and (max-width: 388px) {
+    .h1 {
+        font-size: 30px;
+
+
+    }
+}
+
+@media screen and (max-width: 266px) {
+    .h1 {
+        font-size: 24px;
+
+
+    }
+}
+
+@media screen and (max-width: 116px) {
+    .h1 {
+        font-size: 14px;
+
+
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .divasistencia {
+        margin-top: 10px;
+        width: 100%;
+        height: 250px;
+
+
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .divcajaasistencia {
+        width: 100%;
+        height: 250px;
+
+        margin-left: 0%;
+
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .botonasistencia {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/asistenciar.jpg);
+        background-repeat: no-repeat;
+        background-size: 480px 180px;
+    }
+}
+@media screen and (max-width: 758px) {
+    .botonentrada {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/entradar.jpg);
+        background-repeat: no-repeat;
+        background-size: 480px 180px;
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .botonsalida {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/salidar.jpg);
+        background-repeat: no-repeat;
+        background-size: 480px 180px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .botonsalida {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/salidar.jpg);
+        background-repeat: no-repeat;
+        background-size: 360px 180px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .botonentrada {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/entradar.jpg);
+        background-repeat: no-repeat;
+        background-size: 360px 180px;
+    }
+}
+@media screen and (max-width: 313px) {
+    .botonsalida {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/salidar.jpg);
+        background-repeat: no-repeat;
+        background-size: 300px 180px;
+    }
+}
+@media screen and (max-width: 313px) {
+    .botonentrada {
+        width: 65%;
+        height: 180px;
+        margin-left: 20%;
+        background-color: #000000;
+        background-image: url(/entradar.jpg);
+        background-repeat: no-repeat;
+        background-size: 300px 180px;
+    }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 758px) {
+    .img {
+        width: 0%;
+        height: 0px;
+
+
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .diventrada {
+
+        width: 100%;
+        height: 250px;
+
+
+
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .divsalida {
+        margin-top: 10px;
+        width: 100%;
+        height: 250px;
+
+
+
+    }
+}
