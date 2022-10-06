@@ -51,7 +51,7 @@ export default function RegistroEntradas() {
             <h1 className={styles.h1}>Ingrese Código de Verificación</h1>
             </div>
             <div className={styles.divinput}  >
-                <input type="text" className={styles.input} maxLength={4} value={codigo} onChange={e => setcodigo(e.target.value)} autoFocus pattern="[0-9]{4}" required />
+                <input type="text" className={styles.input} maxLength={4} value={codigo} onChange={e => setcodigo(e.target.value)} autoFocus required />
             </div>
             <div className={styles.divboton}>
             <button className={styles.Boton} onClick={submitUsuario}> Registrar</button>
