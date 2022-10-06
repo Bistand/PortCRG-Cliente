@@ -1,9 +1,7 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useEvents } from "../context/eventContext";
 
-function DeleteEventModal({ isOpen, setIsOpen, data }) {
-  const { handleDeleteEvent } = useEvents();
+function DeleteEventModal({ isOpen, setIsOpen, children, name }) {
   return (
     <Transition
       show={isOpen}
@@ -28,28 +26,10 @@ function DeleteEventModal({ isOpen, setIsOpen, data }) {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
               >
-                ¿Seguro que desea eliminar este evento?
+                {name}
               </Dialog.Title>
             </div>
-            <div className="flex justify-end gap-4 mt-4">
-              <button
-                className="justify-end w-1/4 rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none"
-                onClick={() => {
-                  handleDeleteEvent(data._id);
-                  setIsOpen(false);
-                }}
-              >
-                Eliminar
-              </button>
-              <button
-                className="justify-end w-1/4 rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none"
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
-                Cerrar
-              </button>
-            </div>
+            <div>{children}</div>
             {/* ... */}
           </Dialog.Panel>
         </div>

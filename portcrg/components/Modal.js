@@ -65,7 +65,7 @@ const Modal = ({ modal, setModal, children, name }) => {
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                   <Dialog.Title
-                    as="h3"
+                    as="h1"
                     className="text-lg leading-6 font-bold text-gray-900"
                   >
                     <h1 className="text-red-800">{name}</h1>
