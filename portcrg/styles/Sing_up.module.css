@@ -22,7 +22,7 @@
 }
 .htitulo2 {
     width: 100%;
-    color: #34305c;
+    color: #56A3A6;
     font-size: 12px;
     font-weight: bold;
     font-size: auto;
@@ -37,7 +37,7 @@
     border-style: solid;
     border-color: #000000;
     margin-left: auto;
-    border-radius: 5px;
+    border-radius: 2px;
     margin-right: auto;
     box-shadow: 1px 2px 5px ;
     font-size: auto;
@@ -185,42 +185,7 @@
 .boton.disabled{
     background-color: #ab0d0d;
 }
-.popup{
-    width: 400px;
-    background: hsl(142, 76%, 81%);
-    border-radius: 6px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%,-50%) scale(0.1);
-    text-align: center;
-    padding: 0 30px 30px;
-    color: #333;
-    visibility: hidden;
-    transition: trasform 0.4s, top 0.4s;
-}
-.open-popup{
-    visibility: visible;
-    top:50%;
-    transform: translate(-50%,-50%) scale(1);
 
-
-}
-.popupBoton{
-    width: 190px;
-    height: 57px;
-    background: #56A3A6;
-    border: 1px solid #ABABAB;
-    border-radius: 9px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    color: #FDFFFC;
-    margin-right: auto;
-    margin-left: 5%;
-    margin-top: 4%;
-}
 @media screen and (max-width: 774px) {
     .input {
         width: 80%;

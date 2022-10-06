@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.7.1",
     "@heroicons/react": "^2.0.11",
     "axios": "^0.27.2",
+    "element-ui": "^2.15.10",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-datepicker": "^4.8.0",

@@ -7,8 +7,6 @@ import axios from "axios"
 import { bodyStreamToNodeStream } from "next/dist/server/body-streams"
 import react from "react"
 import { useForm } from "react-hook-form"
-import Document, { Html, Main, NextScript } from "next/document";
-import MyDocument from "./_document"
 import swal from 'sweetalert';
 export default function sign_up() {
     const [fullName, setfullName] = useState("")
@@ -42,7 +40,7 @@ export default function sign_up() {
             })
             const data = await response.json()
             console.log(data), swal('Cruz Roja Quetzaltenango',
-            'Usuario Creado exitosamente',
+            data.message,
             'success',{buttons: ["finalizar"]});
             setTimeout(() => {
                 location.href = location.href;
@@ -79,8 +77,8 @@ export default function sign_up() {
                     <div className={styles.divNumero}>
                     </div>
                     <div>
-                        <h2 className={styles.htitulo2}>Numero</h2>
-                        <input id="txtnu" className={styles.input} type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} placeholder="Numero" required pattern="[3-7]{1}[0-9]{7}" />
+                        <h2 className={styles.htitulo2}>Número Telefónico</h2>
+                        <input id="txtnu" className={styles.input} type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} placeholder="Número" required pattern="[3-7]{1}[0-9]{7}" />
                         <span class="note"></span>
                     </div>
                     <div className={styles.divNumeroDpi}>
@@ -115,13 +113,6 @@ export default function sign_up() {
                         <button id="btn" onClick={submitUsuario} className={styles.Boton} >
                             Ingresar
                         </button >
-                    </div>
-                    <div className={styles.popup} id="popup">
-                        <h3  >Usuario registrado Gracias</h3>
-                        <button id="btn2" className={styles.popupBoton}   >
-                            Aceptar
-                        </button >
-
                     </div>
                 </div>
             </div>

@@ -1,0 +1,78 @@
+
+.contenedor {
+    width: 98%;
+    height: 680px;
+    margin:0 auto ;
+    overflow: hidden;
+    background-color: #FDFFFC;
+
+}
+.central{
+    background-color: #FDFFFC;
+    width: 90%;
+    height: 590px;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #000000;
+    margin-left: auto;
+    border-radius: 5px;
+    margin-right: auto;
+    box-shadow: 1px 2px 5px ;
+    font-size: auto;
+    margin-top: 40px;
+    
+}
+.divtitulo{
+    width: 100%;
+    height: 150px;
+  
+
+
+}
+.divinput{
+    width: 100%;
+
+    height: 150px;
+
+}
+.divboton{
+    width: 100%;
+
+
+}
+.h1{
+    width: 60%;
+    color: #34305c;
+    font-size: 40px;
+    font-weight: bold;
+    font-size: auto;
+
+
+
+}
+.input{
+    box-sizing: border-box;
+    width: 60%;
+    height: 120px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #000000;  
+  
+    align-items: center;
+    font-size: 80px;
+}
+.Boton {
+    width: 230px;
+    height: 80px;
+    background: #56A3A6;
+    border: 1px solid #ABABAB;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FDFFFC;
+    margin-right: auto;
+
+    margin-top: 4%;
+}
