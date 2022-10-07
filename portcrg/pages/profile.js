@@ -7,7 +7,6 @@ import { IoIosPeople } from "react-icons/io";
 
 import Script from "next/script";
 
-import ProfilePic from "../public/crg.png";
 
 export default function Home() {
   return (

@@ -68,7 +68,7 @@ const Modal = ({ modal, setModal, children, name }) => {
                     as="h1"
                     className="text-lg leading-6 font-bold text-gray-900"
                   >
-                    <h1 className="text-red-800">{name}</h1>
+                    <h1 className="text-cherry-red text-2xl">{name}</h1>
                     <div>{children}</div>
                   </Dialog.Title>
                 </div>
