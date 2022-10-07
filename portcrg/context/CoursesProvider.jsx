@@ -22,6 +22,8 @@ const CoursesProvider = ({ children }) => {
       }
     };
 
+    ///reparando los mages que se complicaron el despliqgue
+
     ObtenerCursos();
     getCoursesByUser();
   }, []);
