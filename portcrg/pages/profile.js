@@ -4,12 +4,101 @@ import styles from "../styles/Home.module.css";
 import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
-
 import Script from "next/script";
-
 import ProfilePic from "../public/crg.png";
+import { useState, useEffect } from "react";
+import { getCookie } from "cookies-next";
+import { Getdatosuser } from "../peticiones/profile";
+import { datosUSer } from "../peticiones/session";
+import moment, { Moment } from "moment";
+import { async } from "regenerator-runtime";
 
 export default function Home() {
+  const tokenuser = getCookie("tokenuser");
+
+  //variables propiedades del perfil
+  const [userperfil, setUserperfil] = useState({
+    id: "",
+    name: "",
+    bibliography: "",
+    estadocivil: "",
+    telefono: "",
+    dateofBirth: "",
+    departament: "",
+    municipality: "",
+    address: "",
+  });
+  const [name, setName] = useState("");
+  const [apellidos, setApellidos] = useState("");
+  const [dpi, setDpi] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [municipio, setMunicipio] = useState("");
+  const [departament, setDepartament] = useState("");
+  const [ocupacion, setOcupacion] = useState("");
+  const [address, setAddress] = useState("");
+  const [birthdar, setBirthdary] = useState("");
+  const [bibliography, setBiliography] = useState("");
+  // variables para cambiar contraseña
+  const [passwordold, setPasswordold] = useState("");
+  const [passwordnew, setPasswordnew] = useState("");
+  const [passwordconfirm, setPasswordconfir] = useState("");
+  const [estadocivil, setEstadocivil] = useState("");
+
+  let perfil, usuario;
+  function oldpassword(event) {
+    setPasswordold(event.target.value);
+  }
+  function newpassword(event) {
+    setPasswordnew(event.target.value);
+  }
+  function confirmpassword(event) {
+    setPasswordconfir(event.target.value);
+  }
+  function cambiarpassword(event) {
+    event.preventDefault();
+  }
+  async function actualizarperfil(event) {
+    event.preventDefault();
+  }
+  useEffect(() => {
+    if (tokenuser) {
+      Datos();
+    } else {
+      setName("Ingrese sus Nombres");
+      setApellidos("");
+      setTelefono("Ingrese número de teléfono");
+      setDpi("Ingrese número de DPI");
+      setMunicipio("");
+      setAddress("Ingrese dirección donde vive actualmente");
+      setMunicipio("Ingrese nombre de municipio");
+      setBiliography(
+        "Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
+      );
+      setBirthdary("Fecha de cumpleaños");
+    }
+  });
+  const Datos = async () => {
+    usuario = await Getdatosuser(tokenuser);
+    console.log(usuario);
+    perfil = usuario.data;
+    setName(perfil.fullName);
+    //setApellidos("");
+    setTelefono(perfil.number1);
+    setDpi(perfil.dpi);
+    setOcupacion(perfil.occupation);
+    setAddress(perfil.address);
+    setMunicipio(perfil.municipality);
+    setDepartament(perfil.department);
+    const daybirth = moment.utc(perfil.dateofBirth).format("MM/DD/YYYY");
+    setBirthdary(daybirth);
+    setBiliography(perfil.bibliography);
+    setEstadocivil(perfil.maritalStatus);
+    userperfil.name = perfil.fullName;
+    userperfil.dpi = perfil.dpi;
+    setUserperfil(userperfil);
+    //console.log(userperfil);
+  };
+
   return (
     <>
       <Head>
@@ -231,7 +320,6 @@ export default function Home() {
                   <h6>INFORMACIÓN PERSONAL</h6>
                   <hr />
                   <form>
-
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
@@ -240,7 +328,8 @@ export default function Home() {
                             type="text"
                             className="form-control"
                             id="firstName"
-                            placeholder="Ingrese sus nombres"
+                            value={name}
+                            //placeholder={name}
                             defaultValue=""
                           />
                         </div>
@@ -261,10 +350,11 @@ export default function Home() {
                         <div className="form-group">
                           <label>DPI</label>
                           <input
+                            disabled
                             type="text"
                             id="DPI"
                             className="form-control"
-                            placeholder="Ingrese número de DPI"
+                            placeholder={dpi}
                             defaultValue=""
                           />
                         </div>
@@ -273,12 +363,12 @@ export default function Home() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>Estado Civil</label>
-                          <select class="form-control">
+                          <select class="form-control" value={estadocivil}>
                             <option selected="">
                               Seleccione su estado Civil
                             </option>
-                            <option>Soltero</option>
-                            <option>Casado</option>
+                            <option value={1}>Soltero</option>
+                            <option value={2}>Casado</option>
                           </select>
                         </div>
                       </div>
@@ -290,7 +380,7 @@ export default function Home() {
                             type="text"
                             className="form-control"
                             id="Cellphone"
-                            placeholder="Ingrese número de teléfono"
+                            placeholder={telefono}
                             defaultValue=""
                           />
                         </div>
@@ -298,14 +388,18 @@ export default function Home() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>Ocupación</label>
-                          <select class="form-control">
+                          <select
+                            class="form-control"
+                            selected
+                            value={ocupacion}
+                          >
                             <option selected="">Seleccionar Ocupación</option>
-                            <option>Voluntario General</option>
-                            <option>Socorrista</option>
-                            <option>Juventino</option>
-                            <option>Personal Asalariado</option>
-                            <option>Damas Voluntarias</option>
-                            <option>Administrador</option>
+                            <option value={1}>Voluntario General</option>
+                            <option value={2}>Socorrista</option>
+                            <option value={3}>Juventino</option>
+                            <option value={4}>Personal Asalariado</option>
+                            <option value={5}>Damas Voluntarias</option>
+                            <option value={6}>Administrador</option>
                           </select>
                         </div>
                       </div>
@@ -314,43 +408,47 @@ export default function Home() {
                         <div className="form-group">
                           <label>Fecha de Nacimiento</label>
                           <input
+                            disabled
                             type="text"
                             className="form-control"
                             id="nacimiento"
-                            placeholder="Ingrese fecha de nacimiento"
+                            placeholder={birthdar}
                             defaultValue=""
                           />
                         </div>
                       </div>
 
-
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>Departamento</label>
-                          <select class="form-control">
-                            <option selected="">Seleccionar Departamento</option>
-                            <option>Alta Verapaz</option>
-                            <option>Baja Verapaz</option>
-                            <option>Chimaltenango</option>
-                            <option>Chiquimula</option>
-                            <option>Guatemala</option>
-                            <option>El Progreso</option>
-                            <option>Escuintla</option>
-                            <option>Huehuetenango</option>
-                            <option>Izabal</option>
-                            <option>Jalapa</option>
-                            <option>Jutiapa</option>
-                            <option>Péten</option>
-                            <option>Quetzaltenango</option>
-                            <option>Quiché</option>
-                            <option>Retalhuleu</option>
-                            <option>Sacatepequez</option>
-                            <option>San Marcos</option>
-                            <option>Santa Rosa</option>
-                            <option>Sololá</option>
-                            <option>Suchitepequez</option>
-                            <option>Totonicapán</option>
-                            <option>Zacapa</option>
+                          <select class="form-control" value={departament}>
+                            <option selected="">
+                              Seleccionar Departamento
+                            </option>
+                            <option value="Alta Verapaz">Alta Verapaz</option>
+                            <option value="Baja Verapaz">Baja Verapaz</option>
+                            <option value="Chimaltenango">Chimaltenango</option>
+                            <option value="Chiquimula">Chiquimula</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="El Progreso">El Progreso</option>
+                            <option value="Escuintla">Escuintla</option>
+                            <option value="Huehuetenango">Huehuetenango</option>
+                            <option value="Izabal">Izabal</option>
+                            <option value="Jalapa">Jalapa</option>
+                            <option value="Jutiapa">Jutiapa</option>
+                            <option value="Péten">Péten</option>
+                            <option value="Quetzaltenango">
+                              Quetzaltenango
+                            </option>
+                            <option value="Quiché">Quiché</option>
+                            <option value="Retalhuleu">Retalhuleu</option>
+                            <option value="Sacatepequez">Sacatepequez</option>
+                            <option value="San Marcos">San Marcos</option>
+                            <option value="Santa Rosa">Santa Rosa</option>
+                            <option value="Sololá">Sololá</option>
+                            <option value="Suchitepequez">Suchitepequez</option>
+                            <option value="Totonicapán">Totonicapán</option>
+                            <option value="Zacapa">Zacapa</option>
                           </select>
                         </div>
                       </div>
@@ -362,7 +460,7 @@ export default function Home() {
                             type="text"
                             className="form-control"
                             id="municipio"
-                            placeholder="Ingrese nombre de municipio"
+                            placeholder={municipio}
                             defaultValue=""
                           />
                         </div>
@@ -375,14 +473,11 @@ export default function Home() {
                             type="text"
                             className="form-control"
                             id="nacimiento"
-                            placeholder="Ingrese dirección donde vive actualmente"
+                            placeholder={address}
                             defaultValue=""
                           />
                         </div>
                       </div>
-
-
-
 
                       <div className="col-md-12">
                         <div className="form-group">
@@ -391,29 +486,27 @@ export default function Home() {
                             className="form-control"
                             id="biografia"
                             rows={4}
-                            placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
-                            defaultValue={
-                              ""
-                            }
+                            placeholder={bibliography}
+                            defaultValue={""}
                           />
                         </div>
                       </div>
                       <small id="fullNameHelp" className="form-text text-muted">
-                        *El nombre que ingrese es el que se mostrará por defecto.
-                        Puede cambiar o actualizar sus datos en cualquier
-                        momento.
+                        *El nombre que ingrese es el que se mostrará por
+                        defecto. Puede cambiar o actualizar sus datos en
+                        cualquier momento.
                       </small>
                     </div>
-
-
-
                   </form>
                   <hr></hr>
                   <div>
-                    <button className="btn btn-primary">Actualizar</button>
-
+                    <button
+                      onClick={actualizarperfil}
+                      className="btn btn-primary"
+                    >
+                      Actualizar
+                    </button>
                   </div>
-
                 </div>
 
                 <div className="tab-pane" id="account">
@@ -421,9 +514,7 @@ export default function Home() {
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label htmlFor="username">
-                        Correo Electrónico 
-                      </label>
+                      <label htmlFor="username">Correo Electrónico</label>
                       <input
                         type="text"
                         className="form-control"
@@ -457,21 +548,26 @@ export default function Home() {
                 <div className="tab-pane" id="security">
                   <h6>AJUSTES DE SEGURIDAD</h6>
                   <hr />
-                  <form>
+                  <form onSubmit={cambiarpassword}>
                     <div className="form-group">
                       <label className="d-block">Cambiar contraseña</label>
                       <input
-                        type="text"
+                        onChange={oldpassword}
+                        type="password"
                         className="form-control"
                         placeholder="Ingrese su contraseña actual"
                       />
                       <input
-                        type="text"
+                        onChange={newpassword}
+                        type="password"
+                        minLength="8"
                         className="form-control mt-1"
                         placeholder="Nueva contraseña"
                       />
                       <input
-                        type="text"
+                        onChange={confirmpassword}
+                        type="password"
+                        minLength={"8"}
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
@@ -518,16 +614,18 @@ export default function Home() {
                           </div>
                         </li>
                         <hr></hr>
-                        
-                        <small id="fullNameHelp" className="form-text text-muted">
-                        En el siguiente apartado, si la respuesta es afirmativa a la pregunta, favor de ingresarla.
-                        De lo contrario puede dejar en blanco el espacio.
-                      </small>
+
+                        <small
+                          id="fullNameHelp"
+                          className="form-text text-muted"
+                        >
+                          En el siguiente apartado, si la respuesta es
+                          afirmativa a la pregunta, favor de ingresarla. De lo
+                          contrario puede dejar en blanco el espacio.
+                        </small>
                         <li className="list-group-item has-icon">
                           Enfermedad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            
-
                             <label htmlFor="fullName">
                               ¿Cual es la enfermedad?
                             </label>
@@ -545,8 +643,6 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Medicamento
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            
-
                             <label htmlFor="fullName">
                               Nombre de Medicamento
                             </label>
@@ -564,8 +660,6 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Incapacidad
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            
-
                             <label htmlFor="fullName">
                               Mencione la discapacidad
                             </label>
@@ -581,18 +675,13 @@ export default function Home() {
                         </li>
                       </ul>
                     </div>
-                    
                   </form>
                   <hr></hr>
                   <div>
-            <button className="btn btn-primary">Actualizar</button>
-            
-          </div>
+                    <button className="btn btn-primary">Actualizar</button>
+                  </div>
                 </div>
-
-
               </div>
-              
             </div>
           </div>
         </div>
