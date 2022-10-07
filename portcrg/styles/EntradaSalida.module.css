@@ -170,6 +170,23 @@
 
     }
 }
+@media screen and (max-width: 1078px) {
+    .divcodigo {
+        height: 140px;
+   
+
+
+    }
+}
+@media screen and (max-width: 1078px) {
+    .divcajacodigo {
+        height: 135px;
+   
+
+
+    }
+}
+
 
 @media screen and (max-width: 567px) {
     .h1 {
@@ -207,18 +224,18 @@
     .divasistencia {
         margin-top: 10px;
         width: 100%;
-        height: 250px;
-
-
+        height: 245px;
     }
 }
+
 
 @media screen and (max-width: 758px) {
     .divcajaasistencia {
         width: 100%;
-        height: 250px;
+        height: 225px;
 
         margin-left: 0%;
+     
 
     }
 }
@@ -323,7 +340,7 @@
     .diventrada {
 
         width: 100%;
-        height: 250px;
+        height: 220px;
 
 
 
@@ -334,7 +351,7 @@
     .divsalida {
         margin-top: 10px;
         width: 100%;
-        height: 250px;
+        height: 220px;
 
 
 
