@@ -102,6 +102,11 @@ const Navbar = () => {
           >
             Log out
           </button>
+          <Link href="/calendario">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Calendario
+            </a>
+          </Link>
         </div>
         <div className="divide-y-6 items-center flex">
           <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
