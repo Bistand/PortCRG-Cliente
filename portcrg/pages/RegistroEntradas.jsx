@@ -15,7 +15,7 @@ export default function RegistroEntradas() {
     const submitUsuario = async () => {
         let campo1 = codigo;
         if ((campo1 != "")) {
-            console.log("funciona")
+            
             const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia', {
                 method: 'POST',
                 body: JSON.stringify({codigo}),

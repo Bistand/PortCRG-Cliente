@@ -8,7 +8,7 @@ function index() {
   const [modal, setModal] = useState(false);
 
   const { coursesList } = useCourses();
-  console.log(coursesList);
+  
 
   return (
     <>

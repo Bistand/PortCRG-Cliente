@@ -18,7 +18,7 @@ export async function middleware(request) {
   //si esta logiado o no
   const token = request.cookies.get("tokenuser");
   let ruta = request.nextUrl.pathname;
-  console.log(ruta);
+
 
   if (request.nextUrl.pathname.includes("/login")) {
     if (token) {

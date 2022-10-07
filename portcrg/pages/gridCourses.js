@@ -9,7 +9,7 @@ const gridCourses = () => {
   const [modal, setModal] = useState(false);
 
   const { coursesList } = useCourses();
-  console.log(coursesList);
+  
 
   return (
     <>

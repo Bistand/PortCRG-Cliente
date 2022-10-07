@@ -6,7 +6,7 @@ async function conprobaruser(email, password) {
   let objeto = { email: email, password: password };
   let usuario;
 
-  console.log(valores)
+
   if (valores.response === "ok") {
     usuario = await addGet(valores.data);
     setCookie("tokenuser", valores.data);

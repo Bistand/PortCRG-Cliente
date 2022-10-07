@@ -6,7 +6,7 @@ export async function Resetpassword(email) {
       "https://portcrg-dev.onrender.com/api/user/forgotPass",
       { email: email }
     );
-    console.log(res.data.response);
+    //console.log(res.data.response);
     if (res.data.response === "ok") {
       //endpoit para enviar enlace al correo
       return true;

@@ -23,7 +23,7 @@ export default function EntradaSalida() {
     const fetchcodigoentrada = async () => {
         usuario = await datosUSer(tokenuser);
         setUser(usuario.id);
-        console.log(usuario.id);
+       
         const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/entry/', {
             method: 'GET',
             headers: {
@@ -32,14 +32,14 @@ export default function EntradaSalida() {
             },
         })
         data = await response.json()
-        console.log(data);
+        
         setcodigo(data.data)
     }
 /*get para las salidas*/ 
 const fetchcodigosalida = async () => {
     usuario = await datosUSer(tokenuser);
     setUser(usuario.id);
-    console.log(usuario.id);
+    
     const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/egress', {
         method: 'GET',
         headers: {
@@ -48,7 +48,7 @@ const fetchcodigosalida = async () => {
         },
     })
     data = await response.json()
-    console.log(data);
+    
     setcodigo(data.data)
 }
 

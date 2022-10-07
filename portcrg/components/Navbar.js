@@ -77,7 +77,7 @@ const Navbar = () => {
 
           <Link href="/sign_up">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Sign Up
+              Registrar
             </a>
           </Link>
 
@@ -92,16 +92,7 @@ const Navbar = () => {
               Eventos
             </a>
           </Link>
-          <button
-            onClick={logout}
-            className={`mt-4 sm:${
-              Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              Ocultar ? "block " : "hidden"
-            }`}
-          >
-            Log out
-          </button>
+
           <Link href="/calendario">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
               Calendario
@@ -115,11 +106,22 @@ const Navbar = () => {
           <Link href="/profile">
             <button className="inline-block text-sm px-4 py-2 leading-none border rounded-full text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
               <img
-                className="h-[30px] w-[30px] rounded-full"
+                className="h-[30px] w-[30px] rounded-full "
                 src="/user1.png"
               ></img>
             </button>
           </Link>
+
+          <button
+            onClick={logout}
+            className={`ml-4 mt-4 sm:${
+              Ocultar ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              Ocultar ? "block " : "hidden"
+            }`}
+          >
+            Log out
+          </button>
         </div>
       </div>
     </nav>

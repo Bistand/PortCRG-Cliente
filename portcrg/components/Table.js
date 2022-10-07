@@ -24,7 +24,7 @@ const Table = ({ status }) => {
       accessor: "_id",
       id: "desasignar",
       Cell: (props) => {
-        console.log(props.row.original.status);
+        
         if (props.row.original.status == 2) {
           return (
             <div className="flex flex-row justify-end">

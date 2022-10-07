@@ -6,7 +6,7 @@ const CardCourses = ({ _id, name, description, photographyURL }) => {
   return (
     <section className="mx-4 ">
       <div className="bg-slate-100">
-        <div className="flex flex-col justify-center items-center bg-slate-100 rounded-md mb-8 mt-24">
+        <div className="flex flex-col justify-center items-center bg-slate-100 rounded-md mb-8 mt-24 h-96 max-h-full">
           <div className=" rounded-2xl">
             {photographyURL ? (
               <Image
@@ -32,7 +32,7 @@ const CardCourses = ({ _id, name, description, photographyURL }) => {
             </a>
           </Link>
 
-          <p>{description}</p>
+          <p className="mx-4">{description}</p>
         </div>
         <div className="flex flex-row justify-between">
           

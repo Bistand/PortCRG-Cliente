@@ -37,7 +37,7 @@ const CoursesProvider = ({ children }) => {
   };
 
   const submitCourses = async (course) => {
-    console.log(course);
+    
     try {
       const config = {
         headers: {
@@ -52,7 +52,7 @@ const CoursesProvider = ({ children }) => {
       );
 
       setCoursesList([...coursesList, data.data]);
-      console.log(data);
+      
 
       Swal.fire({
         position: "center",
@@ -67,7 +67,7 @@ const CoursesProvider = ({ children }) => {
   };
 
   const AsignarCourse = async (idCourse) => {
-    console.log(idCourse.course._id);
+    
     try {
       const idUser = localStorage.getItem("id");
       // const config = {
