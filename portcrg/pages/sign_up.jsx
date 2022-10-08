@@ -92,7 +92,7 @@ export default function sign_up() {
                     </div>
                     <div>
                         <h2 className={styles.htitulo2}>Nombre Completo</h2>
-                        <input id="txtn" className={styles.input} type="text" value={fullName} onChange={e => setfullName(e.target.value)} placeholder="Nombre Completo" required pattern="^[a-zA-Z\s]{8,60}" />
+                        <input id="txtn" className={styles.input} type="text" value={fullName} onChange={e => setfullName(e.target.value)} placeholder="Nombre Completo" required pattern="^[a-zA-ZÀ-ÿ\s]{8,60}" />
                         <span class="note"></span>
                     </div>
                     <div className={styles.divEmail}>
@@ -106,7 +106,7 @@ export default function sign_up() {
                     </div>
                     <h2 className={styles.htitulo2}>Contraseña</h2>
                     <div className={styles.divInputConstaseña}>
-                        <input id="txtp" className={styles.input} type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={8} placeholder="Contraseña" required />
+                        <input id="txtp" className={styles.input} type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={12} placeholder="Contraseña" required />
                         <span class="note"></span>
                     </div>
                     <div className={styles.divBoton}>
