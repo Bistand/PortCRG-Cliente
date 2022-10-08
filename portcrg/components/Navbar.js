@@ -98,6 +98,21 @@ const Navbar = () => {
               Calendario
             </a>
           </Link>
+          <Link href="/EntradaSalida">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Generar código
+            </a>
+          </Link>
+          <Link href="/RegistroEntradas">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Registro
+            </a>
+          </Link>
+          <Link href="/users/courses">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Cursos Asignados
+            </a>
+          </Link>
         </div>
         <div className="divide-y-6 items-center flex">
           <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
