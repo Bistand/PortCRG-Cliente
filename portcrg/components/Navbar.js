@@ -24,7 +24,7 @@ const Navbar = () => {
   });
   const Datos = async () => {
     usuario = await datosUSer(tokenuser);
-    setUser(usuario.fullName);
+    setUser(usuario.name);
   };
   const logout = () => {
     deleteCookie("tokenuser");
