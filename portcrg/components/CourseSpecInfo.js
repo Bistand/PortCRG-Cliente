@@ -56,7 +56,7 @@ function CourseSpecInfo(props) {
         </span> */}
 
         {/* <p className="font-semibold">Modalidad</p> */}
-        {course.modality == 1 ? (
+        {course.modality == 2 ? (
           <div>
             <span className="lg:place-items-center flex">
               <BiWalk className="mr-2 mt-1 lg:mt-0 shrink-0"></BiWalk>
@@ -68,7 +68,7 @@ function CourseSpecInfo(props) {
               <p>En la sede {course.sede}</p>
             </span>
           </div>
-        ) : course.modality == 2 ? (
+        ) : course.modality == 1 ? (
           <div>
             <span className="lg:place-items-center flex">
               <BiLaptop className="mr-2 mt-1 lg:mt-0 shrink-0"></BiLaptop>

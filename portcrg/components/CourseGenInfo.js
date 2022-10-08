@@ -60,7 +60,7 @@ function CourseGenInfo(props) {
                   clipRule="evenodd"
                 />
               </svg>
-              Agregar curso
+              Asignar curso
             </button>
           </div>
         </div>
