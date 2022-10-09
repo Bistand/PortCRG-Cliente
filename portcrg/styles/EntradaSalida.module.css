@@ -1,79 +1,77 @@
-.contenedor {
+
+.general{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+.bod{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 40px;
+    background: #FDFFFC;
+    
+
+}.contenedor {
     width: 100%;
     min-height: 710px;
     height: 100%;
     margin: 0 auto;
-    background-color: #FDFFFC;
+    background-color: #efeded;
 
 }
-
-.divcodigo {
-    width: 100%;
-    height: 123px;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-.h1 {
-    margin-left: 5%;
-
-    font-size: 65px;
-    color: #34305c;
-    font-weight: bold;
-}
-
-.h2 {
-    margin-left: 5%;
-
-    font-size: 25px;
-    color: #34305c;
-    font-weight: bold;
-}
-
-.divcajacodigo {
-    background-color: #f1f5f9;
+.text{
     width: 80%;
-    height: 110px;
-    margin-left: 20%;
-    border-style: solid;
-    border-color: #000000;
-    margin-left: auto;
-    border-radius: 5px;
-    margin-right: auto;
-    box-shadow: 1px 2px 5px;
-    font-size: auto;
-    margin-top: 5px;
+    font-weight: 600;
+    font-size: 90px;
 
+    margin-top: 35%;
+    margin-left: 5%;
+    box-shadow: 0px 0px 10px rgba(0, 0,0, 0,0.1);
+    background-color: rgb(255, 255, 254);
+    border-radius: 20px;
+
+ 
 
 }
 
+.label{
 
-.divasistencia {
-    /*background-color: rgb(43, 177, 195);*/
-    width: 33%;
-    height: 585px;
+    bottom: 30px;
+    font-size: 30px;
+    margin-top: 40px;
+}
+
+.divcodigo{
+    width: 50%;
+    height: 700px;
     float: left;
 }
-
-.diventrada {
-    /*background-color: rgb(43, 177, 195);*/
-    width: 33%;
-    height: 585px;
-    float: left;
+.divbotones{
+    width: 50%;
+    height: 700px;
+  
+    float: right;
 }
+.diventrada{
+    width: 100%;
 
-.divsalida {
-    /*background-color: rgb(43, 177, 195);*/
-    width: 33%;
-    height: 585px;
-    float: left;
+    height: 350px;
+
 }
+.divsalida{
+    width: 100%;
 
-.divcajaasistencia {
-
+    height: 350px;
+}
+.divcajaasistencia{
     width: 90%;
-    height: 580px;
+    height: 310px;
     margin-left: 20%;
     border-style: solid;
     border-color: #000000;
@@ -82,278 +80,269 @@
     margin-right: auto;
     box-shadow: 1px 2px 5px;
     font-size: auto;
-
-
-
+    margin-top: 15px;
+    padding: 30px;
 }
-
-.img {
-
-    margin-left: auto;
-    margin-right: auto;
-    height: 480px;
-    border-radius: 9px;
-
-}
-
-.botonasistencia {
-    width: 100%;
-    height: 481px;
-    border-radius: 9px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    color: #FDFFFC;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 1.5%
-}
-
 .botonsalida {
-    width: 100%;
-    height: 481px;
+    width: 80%;
+    height: 120px;
     border-radius: 9px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    color: #FDFFFC;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 1.5%
+    color: white;
+    margin-left: 10%;
+    margin-top: 5%;
+    background-color: #e4190e;
+    
 }
-
+.botonsalida:hover{
+    background-color: rgb(208, 3, 3);
+}
+.botonsalida:active{
+    background-color: rgb(135, 0, 0);
+}
 .botonentrada {
-    width: 100%;
-    height: 481px;
+    width: 80%;
+    height: 120px;
     border-radius: 9px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    color: #FDFFFC;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 1.5%
+    margin-left: 10%;
+    margin-top: 5%;
+    background: rgb(0, 208, 0);
+    color: white;
 }
+.botonentrada:hover{
+    background-color: rgb(3, 174, 49);
+}
+.botonentrada:active{
+    background-color: rgb(2, 112, 13);
+}
+@media (max-width:700px) {
 
-@media screen and (max-width: 1078px) {
-    .img {
-        width: 260px;
-
-
+    .contenedor .formrow{
+        display: block;
+    }
+    .formrow {
+        margin: 35px 0;
     }
 }
-
-@media screen and (max-width: 917px) {
-    .img {
-        width: 240px;
-
-
-    }
-}
-
-@media screen and (max-width: 831px) {
-    .img {
-        width: 220px;
-
-
-    }
-}
-
-
-@media screen and (max-width: 831px) {
-    .h2 {
-        font-size: 20px;
-
-
-    }
-}
-@media screen and (max-width: 1078px) {
+@media screen and (max-width: 926px) {
     .divcodigo {
-        height: 140px;
-   
-
-
-    }
-}
-@media screen and (max-width: 1078px) {
-    .divcajacodigo {
-        height: 135px;
-   
-
-
-    }
-}
-
-
-@media screen and (max-width: 567px) {
-    .h1 {
-        font-size: 45px;
-
-
-    }
-}
-
-@media screen and (max-width: 388px) {
-    .h1 {
-        font-size: 30px;
-
-
-    }
-}
-
-@media screen and (max-width: 266px) {
-    .h1 {
-        font-size: 24px;
-
-
-    }
-}
-
-@media screen and (max-width: 116px) {
-    .h1 {
-        font-size: 14px;
-
-
-    }
-}
-
-@media screen and (max-width: 758px) {
-    .divasistencia {
-        margin-top: 10px;
-        width: 100%;
-        height: 245px;
-    }
-}
-
-
-@media screen and (max-width: 758px) {
-    .divcajaasistencia {
-        width: 100%;
-        height: 225px;
-
-        margin-left: 0%;
-     
-
-    }
-}
-
-@media screen and (max-width: 758px) {
-    .botonasistencia {
-        width: 65%;
+        width: 95%;
         height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/asistenciar.jpg);
-        background-repeat: no-repeat;
-        background-size: 480px 180px;
     }
 }
-@media screen and (max-width: 758px) {
-    .botonentrada {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/entradar.jpg);
-        background-repeat: no-repeat;
-        background-size: 480px 180px;
-    }
-}
-
-@media screen and (max-width: 758px) {
-    .botonsalida {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/salidar.jpg);
-        background-repeat: no-repeat;
-        background-size: 480px 180px;
-    }
-}
-@media screen and (max-width: 420px) {
-    .botonsalida {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/salidar.jpg);
-        background-repeat: no-repeat;
-        background-size: 360px 180px;
-    }
-}
-@media screen and (max-width: 420px) {
-    .botonentrada {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/entradar.jpg);
-        background-repeat: no-repeat;
-        background-size: 360px 180px;
-    }
-}
-@media screen and (max-width: 313px) {
-    .botonsalida {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/salidar.jpg);
-        background-repeat: no-repeat;
-        background-size: 300px 180px;
-    }
-}
-@media screen and (max-width: 313px) {
-    .botonentrada {
-        width: 65%;
-        height: 180px;
-        margin-left: 20%;
-        background-color: #000000;
-        background-image: url(/entradar.jpg);
-        background-repeat: no-repeat;
-        background-size: 300px 180px;
-    }
-}
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 758px) {
-    .img {
-        width: 0%;
-        height: 0px;
-
+@media screen and (max-width: 926px) {
+    .text {
+        width: 99%;
+        height: 160px;
+        margin-top: 2%;
+        margin-left: 3%;
+        float: none;
+        
 
     }
 }
-
-@media screen and (max-width: 758px) {
+@media screen and (max-width: 926px) {
     .diventrada {
-
-        width: 100%;
-        height: 220px;
-
-
-
+        height: 280px;
+     
+    }
+}
+@media screen and (max-width: 926px) {
+    .divcajaasistencia {
+        height: 280px;
+      
     }
 }
 
-@media screen and (max-width: 758px) {
-    .divsalida {
-        margin-top: 10px;
-        width: 100%;
-        height: 220px;
-
-
-
+@media screen and (max-width: 694px) {
+    .text {
+    font-size: 80px;
     }
 }
+@media screen and (max-width: 635px) {
+    .text {
+    font-size: 60px;
+    }
+}
+@media screen and (max-width: 492px) {
+    .text {
+    font-size: 40px;
+    }
+}
+@media screen and (max-width: 492px) {
+    .divcodigo {
+   height: 110px;
+   
+    }
+}
+@media screen and (max-width: 492px) {
+    .text {
+   height: 100px;
+   
+    }
+}
+@media screen and (max-width: 926px) {
+    .divbotones {
+        width:100%;
+    }
+}
+@media screen and (max-width: 926px) {
+    .divcajaasistencia {
+        margin-top: 1.5%;
+    }
+}
+@media screen and (max-width: 513px) {
+    .divcajaasistencia {
+        margin-left: 15px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .diventrada {
+        height: 320px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .label {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .diventrada {
+        height: 260px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .divcajaasistencia {
+        height: 260px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .botonentrada {
+        height: 70px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .botonsalida {
+        height: 70px;
+        
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .diventrada {
+        height: 230px;
+     
+        
+    }
+}
+@media screen and (max-width: 355px) {
+    .divcajaasistencia {
+        height: 230px;
+        
+    }
+}
+@media screen and (max-width: 355px) {
+    .text {
+       font-size: 35px;
+        
+    }
+}
+@media screen and (max-width: 339px) {
+    .divcajaasistencia {
+       margin-left: 10px;
+     
+        
+    }
+}
+@media screen and (max-width: 337px) {
+    .label {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 326px) {
+    .text {
+       font-size: 30px;
+        
+    }
+}
+@media screen and (max-width: 290px) {
+    .text {
+       font-size: 25px;
+        
+    }
+}
+@media screen and (max-width: 286px) {
+    .label {
+        font-size: 12px;
+  
+    }
+}
+@media screen and (max-width: 280px) {
+    .diventrada {
+       height: 175px;
+   
+        
+    }
+}
+@media screen and (max-width: 280px) {
+    .divcajaasistencia {
+       height: 170px;
+        
+    }
+}
+
+@media screen and (max-width: 254px) {
+    .text {
+       font-size: 20px;
+        
+    }
+}
+@media screen and (max-width: 262px) {
+    .label {
+        font-size: 9px;
+    
+  
+    }
+}
+@media screen and (max-width: 277px) {
+    .botonentrada {
+        font-size: 15px;
+    
+  
+    }
+}
+@media screen and (max-width: 277px) {
+    .botonsalida {
+        font-size: 15px;
+    
+  
+    }
+}
+@media screen and (max-width: 224px) {
+    .botonentrada {
+        font-size: 9px;
+    
+  
+    }
+}
+@media screen and (max-width: 224px) {
+    .botonsalida {
+        font-size: 9px;
+    
+  
+    }
+}
+
+
+
+

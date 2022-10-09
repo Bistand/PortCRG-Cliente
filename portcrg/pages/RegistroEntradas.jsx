@@ -43,15 +43,19 @@ export default function RegistroEntradas() {
         console.log(values);
     }
     return (
+        <div className={styles.general}>
+        <div className={styles.bod}>
+        <div className={styles.contenedor}>
     <form  id="form" class="form" onSubmit={handleSubmit(onSubmitForm)}>
         <center>
-        <div className={styles.contenedor}>
+
         <div className={styles.central}>
             <div className={styles.divtitulo} >
             <h1 className={styles.h1}>Ingrese Código de Verificación</h1>
             </div>
             <div className={styles.divinput}  >
                 <input type="text" className={styles.input} maxLength={4} value={codigo} onChange={e => setcodigo(e.target.value)} autoFocus required />
+                
             </div>
             <div className={styles.divboton}>
             <button className={styles.Boton} onClick={submitUsuario}> Registrar</button>
@@ -61,10 +65,12 @@ export default function RegistroEntradas() {
         <div>
      
         </div>
-    </div>
+    
 
     </center>
     </form>
-    
+    </div>
+    </div>
+    </div>
     )
 }

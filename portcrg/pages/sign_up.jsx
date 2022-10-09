@@ -30,7 +30,7 @@ export default function sign_up() {
         let ema = email;
         let pss = password;
         if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "")) {
-            console.log("funciona")
+            
             const response = await fetch('https://portcrg-dev.onrender.com/api/user/register/admin', {
                 method: 'POST',
                 body: JSON.stringify({ fullName, dpi, occupation, number1, email, password }),
@@ -38,13 +38,20 @@ export default function sign_up() {
                     'Content-Type': 'application/json',
                 },
             })
-            const data = await response.json()
-            console.log(data), swal('Cruz Roja Quetzaltenango',
+            const data = await response.json();
+            console.log(data);
+            if(data.code=400){ 
+                swal(data.response, 'correo ya se registro',
+                   /* data.message*/
+                    'error',{buttons: ["finalizar"]});
+            }
+            if(data.code=200){ 
+                swal('Cruz Roja Quetzaltenango',
             data.message,
             'success',{buttons: ["finalizar"]});
             setTimeout(() => {
                 location.href = location.href;
-            }, 3000);
+            }, 3000);}
             
         } else {
             swal('Cruz Roja Quetzaltenango',
@@ -53,69 +60,89 @@ export default function sign_up() {
         }
     }
     return (
-        <form id="form" class="form" onSubmit={handleSubmit(onSubmitForm)}>
-            <div className={styles.contenedor}>
-                <div className={styles.divTitulo}>
-                    <h1 className={styles.htitulo1}>Registrar Usuario</h1>
+        <div className={styles.general}>
+            <div className={styles.bod} >
+               <div className={styles.contenedor}>
+
+                <div className={styles.text}>Ingresar Usuario</div>
+
+            
+                <form id="form" class="form" onSubmit={handleSubmit(onSubmitForm)}>
+                <div className={styles.formrow}>
+                                <div className={styles.inputdata} >
+                           
+                                <select name="List1" id="sel" value={occupation} onChange={e => setoccupation(e.target.value)} className={styles.select} required>
+                                    <option value="" selected disabled > Seleccione Ocupacion</option>
+                                    <option value="1">Voluntario geneneral</option>
+                                    <option value="2">Socorrista</option>
+                                    <option value="3">Juventino</option>
+                                    <option value="4">Personal Asalariado</option>
+                                    <option value="5">Dama Voluntaria</option>
+                                    <option value="6">Administrador</option>
+                                </select>
+                                <div className={styles.underline}></div>
+                               
+                                </div>
+
+                                <div className={styles.inputdata} >
+                                <input id="txtnu"  type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} required pattern="[3-7]{1}[0-9]{7}" />
+                                <div className={styles.underline}></div>
+                                <label>Numero Telefonico</label>
+                               
+                               
+                                </div>
+
+
+                           
                 </div>
-                <div className={styles.divCampos}>
-                    <div className={styles.divespacio}>
-                    </div>
-                    <div className={styles.divInputSeleccionar}>
-                        <h2 className={styles.htitulo2}>Ocupación</h2>
-                        <select name="List1" id="sel" value={occupation} onChange={e => setoccupation(e.target.value)} className={styles.select} required>
-                            <option value="" selected disabled > Seleccionar</option>
-                            <option value="1">Voluntario geneneral</option>
-                            <option value="2">Socorrista</option>
-                            <option value="3">Juventino</option>
-                            <option value="4">Personal Asalariado</option>
-                            <option value="5">Dama Voluntaria</option>
-                            <option value="6">Administrador</option>
-                        </select>
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divNumero}>
-                    </div>
-                    <div>
-                        <h2 className={styles.htitulo2}>Número Telefónico</h2>
-                        <input id="txtnu" className={styles.input} type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} placeholder="Número" required pattern="[3-7]{1}[0-9]{7}" />
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divNumeroDpi}>
-                    </div>
-                    <div>
-                        <h2 className={styles.htitulo2}>DPI</h2>
-                        <input id="txtd" className={styles.input} type="text" maxLength={13} value={dpi} onChange={e => setdpi(e.target.value)} placeholder="DPI- (CUI)" pattern="[1-9]{1}[0-9]{12}" required />
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divNombre}>
-                    </div>
-                    <div>
-                        <h2 className={styles.htitulo2}>Nombre Completo</h2>
-                        <input id="txtn" className={styles.input} type="text" value={fullName} onChange={e => setfullName(e.target.value)} placeholder="Nombre Completo" required pattern="^[a-zA-ZÀ-ÿ\s]{8,60}" />
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divEmail}>
-                    </div>
-                    <div className={styles.divInputEmail}>
-                        <h2 className={styles.htitulo2}>Email</h2>
-                        <input id="txte" className={styles.input} type="email" value={email} onChange={e => setemail(e.target.value)} placeholder="Ejemplo@gmail.com" required />
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divContraseña}>
-                    </div>
-                    <h2 className={styles.htitulo2}>Contraseña</h2>
-                    <div className={styles.divInputConstaseña}>
-                        <input id="txtp" className={styles.input} type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={12} placeholder="Contraseña" required />
-                        <span class="note"></span>
-                    </div>
-                    <div className={styles.divBoton}>
-                        <button id="btn" onClick={submitUsuario} className={styles.Boton} >
-                            Ingresar
-                        </button >
-                    </div>
-                </div>
-            </div>
+                <div className={styles.formrow}>
+                                <div className={styles.inputdata} >
+                                <input id="txtd"  type="text" maxLength={13} value={dpi} onChange={e => setdpi(e.target.value)} pattern="[1-9]{1}[0-9]{12}" required />
+                                <div className={styles.underline}></div>
+                                <label >DPI o CUI</label>
+                                </div>
+
+                               <div className={styles.inputdata} >
+                              
+                                <input id="txtn"  type="text" value={fullName} onChange={e => setfullName(e.target.value)}  required pattern="^[a-zA-ZÀ-ÿ\s]{8,60}" />
+                                <div className={styles.underline}></div>
+                                <label>Nombre Completo</label>
+                               
+                                </div>
+
+
+
+                </div>   
+                    <div className={styles.formrow}>  
+                                <div className={styles.inputdata} >
+                                
+                                <input id="txte"  type="email" value={email} onChange={e => setemail(e.target.value)} required />
+                                <div className={styles.underline}></div>
+                                <label>Email</label>
+                               
+                                </div>
+                                <div className={styles.inputdata} >
+                                
+                                <input id="txtp"  type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={12}  required />
+                                <div className={styles.underline}></div>
+                                <label>Contraseña</label>
+                                
+                                </div>
+                
+                    </div>     
+                    <div className={styles.formrow}> 
+                    <div className={styles.inputdata}>
+                                <button id="btn" onClick={submitUsuario} className={styles.Boton} >
+                                    Ingresar
+                                </button >
+                            </div> 
+                    </div>   
+            
+           
         </form>
+        </div>
+        </div>
+        </div>
+   
     )
 } 

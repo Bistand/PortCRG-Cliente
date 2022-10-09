@@ -92,6 +92,16 @@ const Navbar = () => {
               Eventos
             </a>
           </Link>
+          <Link href="/EntradaSalida">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Generar codigo
+            </a>
+          </Link>
+          <Link href="/RegistroEntradas">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              pantalla de entrada
+            </a>
+          </Link>
           <button
             onClick={logout}
             className={`mt-4 sm:${
