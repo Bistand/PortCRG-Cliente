@@ -18,7 +18,7 @@
 
 }
 .contenedor {
-background: #efeded;
+background: #f1f5f9;
 width: 1200px;
 max-width: 1200px;
 padding: 25px 40px 10px 40px;
@@ -29,9 +29,8 @@ box-shadow: 0px 0px 10px rgba(0, 0,0, 0,0.1);
     font-weight: 600;
     font-size: 35px;
     align-items: center;
-    background: -webkit-linear-gradient(right, #c20101, #e4190e,#a00000, #ee0202);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color:  #56a3a6;
+
 }
 .contenedor form{
     padding: 30px 0 0 0 0;
@@ -53,7 +52,7 @@ form .formrow .inputdata{
     width: 100%;
     border: none ;
     border-bottom: 2px solid rgba(0,0,0, 0.12);
-    background: #efeded;
+    background: #f1f5f9;
 }
 .inputdata input:focus ~label{
     transform: translateY(-10px);
@@ -105,10 +104,12 @@ transform: scaleX(1);
 
 .inputdata label{
     position: absolute;
-    bottom: 30px;
+    bottom: 28px;
     font-size: 16px;
     pointer-events: none;
-
+    color: #305a5c;
+    font-weight: bold;
+    
 }
 .select {
     display: block;
@@ -116,7 +117,10 @@ transform: scaleX(1);
     width: 100%;
     border: none ;
     border-bottom: 2px solid rgba(0,0,0, 0.12);
-    background: #efeded;
+    background: #f1f5f9;
+    color: #305a5c;
+    font-weight: bold;
+
  
 }
 
@@ -138,6 +142,12 @@ transform: scaleX(1);
     color: #FDFFFC;
     margin-right: auto;
    
+}
+.Boton:hover{
+    background-color: rgb(208, 3, 3);
+}
+.Boton:active{
+    background-color: rgb(135, 0, 0);
 }
 
 @media (max-width:700px) {

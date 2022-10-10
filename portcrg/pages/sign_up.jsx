@@ -41,7 +41,7 @@ export default function sign_up() {
             const data = await response.json();
             console.log(data);
             if(data.code=400){ 
-                swal(data.response, 'correo ya se registro',
+                swal(data.response, 'Correo ya fue registrado',
                    /* data.message*/
                     'error',{buttons: ["finalizar"]});
             }

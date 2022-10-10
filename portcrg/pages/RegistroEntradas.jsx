@@ -8,9 +8,15 @@ import swal from 'sweetalert';
 
 
 
+
 export default function RegistroEntradas() {
+    const [uno, setuno] = useState('')
+    const [dos, setdos] = useState('')
+    const [tres, settres] = useState('')
+    const [cuatro, setcuatro] = useState('')
     const { register, handleSubmit, errors, reset } = useForm();
     const [codigo, setcodigo] = useState('')
+
 
     const submitUsuario = async () => {
         let campo1 = codigo;
@@ -38,6 +44,13 @@ export default function RegistroEntradas() {
             'error',{buttons: ["finalizar"],/*timer: 5000*/ });
         }
     }
+    function move(e){
+        let a =e;
+        console.log(a);
+
+
+    }
+
     
     function onSubmitForm(values) {
         console.log(values);
@@ -55,6 +68,8 @@ export default function RegistroEntradas() {
             </div>
             <div className={styles.divinput}  >
                 <input type="text" className={styles.input} maxLength={4} value={codigo} onChange={e => setcodigo(e.target.value)} autoFocus required />
+
+
                 
             </div>
             <div className={styles.divboton}>

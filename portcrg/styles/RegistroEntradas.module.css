@@ -23,12 +23,12 @@
     height: 680px;
     margin:0 auto ;
     overflow: hidden;
-    background-color: #efeded;
+    background-color: #f1f5f9;
 
 
 }
 .central{
-    background-color: #efeded;
+    background-color: #f1f5f9;
     width: 1200px;
     max-width: 1200px;
     padding: 25px 40px 10px 40px;
@@ -56,9 +56,8 @@
 .h1{
     font-weight: 600;
     font-size: 60px;
-    background: -webkit-linear-gradient(right, #c20101, #e4190e,#d00a0a, #ee0202);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #56a3a6;
+
 
 
 

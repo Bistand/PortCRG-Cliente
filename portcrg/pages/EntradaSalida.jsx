@@ -73,7 +73,7 @@ const fetchcodigosalida = async () => {
                                     </div>
                                     <div className={styles.divsalida}>
                                         <div className={styles.divcajaasistencia}>
-                                            <label className={styles.label} >codigo de Salida</label>
+                                            <label className={styles.label} >Codigo de Salida</label>
                                             <button className={styles.botonsalida} onClick={fetchcodigosalida} >
                                                 <img className={styles.img} src="/salidar.jpg" alt="" />
                                                 Generar
