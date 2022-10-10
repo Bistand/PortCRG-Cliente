@@ -62,7 +62,7 @@ const fetchcodigosalida = async () => {
                                     <div className={styles.divbotones}>
                                     <div className={styles.diventrada}>
                                         <div className={styles.divcajaasistencia}>
-                                            <label className={styles.label}>Codigo de Entrada</label>
+                                            <label className={styles.label}>Código de Entrada</label>
                                             <button className={styles.botonentrada} onClick={fetchcodigoentrada}>
                                                 
                                                 Generar
@@ -73,7 +73,7 @@ const fetchcodigosalida = async () => {
                                     </div>
                                     <div className={styles.divsalida}>
                                         <div className={styles.divcajaasistencia}>
-                                            <label className={styles.label} >Codigo de Salida</label>
+                                            <label className={styles.label} >Código de Salida</label>
                                             <button className={styles.botonsalida} onClick={fetchcodigosalida} >
                                                 <img className={styles.img} src="/salidar.jpg" alt="" />
                                                 Generar

@@ -72,8 +72,8 @@ export default function sign_up() {
                                 <div className={styles.inputdata} >
                            
                                 <select name="List1" id="sel" value={occupation} onChange={e => setoccupation(e.target.value)} className={styles.select} required>
-                                    <option value="" selected disabled > Seleccione Ocupacion</option>
-                                    <option value="1">Voluntario geneneral</option>
+                                    <option value="" selected disabled > Seleccionar Ocupación</option>
+                                    <option value="1">Voluntario General</option>
                                     <option value="2">Socorrista</option>
                                     <option value="3">Juventino</option>
                                     <option value="4">Personal Asalariado</option>
@@ -87,7 +87,7 @@ export default function sign_up() {
                                 <div className={styles.inputdata} >
                                 <input id="txtnu"  type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} required pattern="[3-7]{1}[0-9]{7}" />
                                 <div className={styles.underline}></div>
-                                <label>Numero Telefonico</label>
+                                <label>Número Telefónico</label>
                                
                                
                                 </div>
