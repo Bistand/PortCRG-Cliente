@@ -10,24 +10,50 @@ const Navbar = () => {
   const [user, setUser] = useState("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [Ocultar, setOcultar] = useState(false);
+  const [Supeadmrhidden, setSuperadmhidden] = useState(true);
+  const [Adminhidden, setAdminhidden] = useState(true);
+  const [Userhidden, setUserhidden] = useState(true);
+  const [Todoshidden, setTodoshidden] = useState(true);
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
-  let usuario;
+  let usuario, privilegess;
   useEffect(() => {
     if (tokenuser) {
+      privilegess = getCookie("token");
+      validarpermisos(privilegess.substr(0, 1));
       setOcultar(true);
+      setTodoshidden(false);
       Datos();
     } else {
       setOcultar(false);
+      setSuperadmhidden(true);
+      setAdminhidden(true);
+      setUserhidden(true);
+      setTodoshidden(true);
       setUser("");
     }
   });
+
+  function validarpermisos(key) {
+    //validar que privilegios tiene para desbloquear permisos
+    switch (key) {
+      case "1":
+        break;
+
+      case "2":
+        break;
+
+      case "3":
+        break;
+    }
+  }
   const Datos = async () => {
     usuario = await datosUSer(tokenuser);
     setUser(usuario.name);
   };
   const logout = () => {
     deleteCookie("tokenuser");
+    deleteCookie("token");
     router.push("/");
   };
   return (
@@ -76,57 +102,86 @@ const Navbar = () => {
           </Link>
 
           <Link href="/sign_up">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Supeadmrhidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Supeadmrhidden ? "block " : "hidden"
+              }`}
+            >
               Registrar
             </a>
           </Link>
 
           <Link href="/courses">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Supeadmrhidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Supeadmrhidden ? "block " : "hidden"
+              }`}
+              hidden={Supeadmrhidden}
+            >
               Cursos
             </a>
           </Link>
 
           <Link href="/informative">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
               Eventos
             </a>
           </Link>
 
           <Link href="/calendario">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
               Calendario
             </a>
           </Link>
           <Link href="/EntradaSalida">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Userhidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Userhidden ? "block " : "hidden"
+              }`}
+            >
               Generar código
             </a>
           </Link>
           <Link href="/RegistroEntradas">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Userhidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Userhidden ? "block " : "hidden"
+              }`}
+            >
               Registro
             </a>
           </Link>
           <Link href="/users/courses">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            <a
+              className={`mt-4 sm:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
               Cursos Asignados
             </a>
           </Link>
-        </div>
-        <div className="divide-y-6 items-center flex">
-          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
-            {user}
-          </a>
-          <Link href="/profile">
-            <button className="inline-block text-sm px-4 py-2 leading-none border rounded-full text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
-              <img
-                className="h-[30px] w-[30px] rounded-full "
-                src="/user1.png"
-              ></img>
-            </button>
-          </Link>
-
           <button
             onClick={logout}
             className={`ml-4 mt-4 sm:${
@@ -137,6 +192,25 @@ const Navbar = () => {
           >
             Log out
           </button>
+        </div>
+        <div className="divide-y-6 items-center flex">
+          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+            {user}
+          </a>
+          <Link href="/profile">
+            <button
+              className={`mt-4 sm:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
+              <img
+                className="h-[30px] w-[30px] rounded-full "
+                src="/user1.png"
+              ></img>
+            </button>
+          </Link>
         </div>
       </div>
     </nav>
