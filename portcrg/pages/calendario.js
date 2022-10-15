@@ -24,12 +24,13 @@ import { useEvents } from "../context/eventContext";
 import AddEventModal from "../components/AddEventModal";
 import { getCookie } from "cookies-next";
 import { de } from "date-fns/locale";
+import Link from "next/link";
 
 
 // const locales = {
 //     "pt-BR": require("date-fns/locale/pt-BR"),
 // };
-const localizer =momentLocalizer(moment);
+const localizer = momentLocalizer(moment);
 
 const events = [];
 
@@ -58,8 +59,9 @@ const calendar = () => {
         date: 'Fecha',
         time: 'Hora',
         event: 'Evento',
-       
-        showMore: (total) => `+ (${total}) Eventos`,}
+
+        showMore: (total) => `+ (${total}) Eventos`,
+    }
 
 
     function handleAddEvent() {
@@ -94,10 +96,18 @@ const calendar = () => {
                 <h1 className="font-inter font-bold text-center text-xl sm:text-3xl 2xl:text-4xl py-4 text-dark-cadet-blue">Calendario de Actividades</h1>
                 <hr className={styles.hr}></hr>
 
+                <div className="flex flex-col items-center my-8">
 
-                <div className="flex flex-row justify-center  mb-7">
+                <div className="flex flex-row justify-between w-2/3 mb-8">
 
                     {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
+
+                    <Link href="/informative">
+                        <a className=" flex items-center bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                            Ver Eventos
+                        </a>
+                    </Link>
+
                     <button
                         className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
                         onClick={() => {
@@ -108,32 +118,34 @@ const calendar = () => {
                     </button>
                     {/* ) : null} */}
                 </div>
-                
 
-                                
+                </div>
+
+
+
 
                 <Calendar className={styles.letras}
                     localizer={localizer}
                     events={eventsList}
                     startAccessor="dateEvent"
                     endAccessor="dateEvent"
-                    style={{ height: 500, margin: "50px", }} 
+                    style={{ height: 500, margin: "50px", }}
                     // eventPropGetter={(event) => {
                     //     return {
                     //         style: {
                     //             backgroundColor: '#3f51b5',
                     //             borderRadius: '8px',
                     //             minHeight: '10px',
-                             
+
                     //         },
                     //     };
                     // }}
                     messages={messages}
                     onSelectSlot={(slot) => handleOpenDialog(slot)}
-    onSelectEvent={(event) => handleOpenEvent(event)}
-                    
-                    />
-                    
+                    onSelectEvent={(event) => handleOpenEvent(event)}
+
+                />
+
             </div>
 
 

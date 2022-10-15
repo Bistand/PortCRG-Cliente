@@ -45,11 +45,13 @@ const informative = () => {
 
   return (
     <>
+     <h1 className="font-inter font-bold text-center text-xl sm:text-3xl 2xl:text-4xl py-4 text-dark-cadet-blue">Eventos de Actividades</h1>
+                <hr></hr>
       <div className="flex flex-col items-center my-8">
+
+     
         <div className="flex flex-row justify-between w-2/3 mb-8">
-          <p className="font-inter font-bold text-left text-xl sm:text-3xl 2xl:text-4xl mb-2 text-dark-cadet-blue">
-            Eventos
-          </p>
+          
           {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
 
           {/* BOTON PARA REDIRIGIR A CALENDARIO */}
