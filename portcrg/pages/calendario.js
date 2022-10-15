@@ -91,7 +91,7 @@ const calendar = () => {
     return (
         <>
             <div className="App">
-                <h1 className={styles.h1}>Calendario de Actividades</h1>
+                <h1 className="font-inter font-bold text-center text-xl sm:text-3xl 2xl:text-4xl py-4 text-dark-cadet-blue">Calendario de Actividades</h1>
                 <hr className={styles.hr}></hr>
 
 
