@@ -7,12 +7,15 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from '../styles/calendario.module.css';
 
+//idioma para el calendario
+import moment from "moment"
+import 'moment/locale/es-us';
 //importaciones extras
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -22,17 +25,11 @@ import AddEventModal from "../components/AddEventModal";
 import { getCookie } from "cookies-next";
 import { de } from "date-fns/locale";
 
-//idioma para el calendario
-const locales = {
-    "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-});
+
+// const locales = {
+//     "pt-BR": require("date-fns/locale/pt-BR"),
+// };
+const localizer =momentLocalizer(moment);
 
 const events = [];
 
@@ -48,6 +45,22 @@ const calendar = () => {
     //Agregar eventos a calendario
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [allEvents, setAllEvents] = useState(events);
+
+    const messages = {
+        allDay: 'Dia entero',
+        previous: 'Anterior',
+        next: 'Siguiente',
+        today: 'Hoy',
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Día',
+        agenda: 'Agenda',
+        date: 'Fecha',
+        time: 'Hora',
+        event: 'Evento',
+       
+        showMore: (total) => `+ (${total}) Eventos`,}
+
 
     function handleAddEvent() {
         setAllEvents([...allEvents, newEvent]);
@@ -97,14 +110,30 @@ const calendar = () => {
                 </div>
                 
 
-
+                                
 
                 <Calendar
                     localizer={localizer}
                     events={eventsList}
                     startAccessor="dateEvent"
                     endAccessor="dateEvent"
-                    style={{ height: 500, margin: "50px" }} />
+                    style={{ height: 500, margin: "50px", }} 
+                    // eventPropGetter={(event) => {
+                    //     return {
+                    //         style: {
+                    //             backgroundColor: '#3f51b5',
+                    //             borderRadius: '8px',
+                    //             minHeight: '10px',
+                             
+                    //         },
+                    //     };
+                    // }}
+                    messages={messages}
+                    onSelectSlot={(slot) => handleOpenDialog(slot)}
+    onSelectEvent={(event) => handleOpenEvent(event)}
+                    
+                    />
+                    
             </div>
 
 
