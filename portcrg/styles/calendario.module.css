@@ -36,6 +36,9 @@
   color: #FF101F;
 
 }
+.letras{
+  text-transform:capitalize
+}
 .CentrarCalendario{
   display: flex;
         flex-wrap: wrap;

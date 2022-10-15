@@ -112,7 +112,7 @@ const calendar = () => {
 
                                 
 
-                <Calendar
+                <Calendar className={styles.letras}
                     localizer={localizer}
                     events={eventsList}
                     startAccessor="dateEvent"
