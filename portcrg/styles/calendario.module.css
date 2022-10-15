@@ -1,0 +1,92 @@
+.App {
+
+  font-family: sans-serif;
+
+
+  position: relative;
+}
+.hr{
+  margin-bottom: 30px;
+}
+
+.h1 {
+  text-align: center;
+  padding: 5px 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #FF101F;
+
+}
+
+.h2 {
+  text-align: center;
+  padding: 5px 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: #FF101F;
+
+}
+.CentrarCalendario{
+  display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+}
+.centrar{
+  text-align: center;
+  position: relative;
+  -moz-box-align: center;
+}
+
+.titulo {
+  text-align: center;
+  position: relative;
+  width: 247px;
+  height: 29px;
+  left: 150px;
+  top: 50px;
+  text-align: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 29px;
+  /* identical to box height */
+}
+
+.button {
+  color: #0099CC;
+  padding: 2px 15px;
+  background: transparent;
+  border: 2px solid #0099CC;
+  border-radius: 6px;
+  margin: 30px 2px;
+  font-size: 18px;
+
+}
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.input {
+  width: auto;
+  padding: 5px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(255, 0, 0);
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}

@@ -89,15 +89,11 @@ const Navbar = () => {
 
           <Link href="/informative">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Eventos
+              Agenda de Actividades
             </a>
           </Link>
 
-          <Link href="/calendario">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Calendario
-            </a>
-          </Link>
+          
           <Link href="/EntradaSalida">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
               Generar código

@@ -55,7 +55,7 @@ const informative = () => {
               setIsOpen(true);
             }}
           >
-            Agregar evento
+            Agregar actividad
           </button>
           {/* ) : null} */}
         </div>
