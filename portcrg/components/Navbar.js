@@ -65,11 +65,9 @@ const Navbar = () => {
 
           <Link href="/login">
             <a
-              className={`mt-4 sm:${
-                !Ocultar ? "inline-block " : "hidden"
-              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-                !Ocultar ? "block " : "hidden"
-              }`}
+              className={`mt-4 sm:${!Ocultar ? "inline-block " : "hidden"
+                } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Ocultar ? "block " : "hidden"
+                }`}
             >
               Login
             </a>
@@ -93,7 +91,13 @@ const Navbar = () => {
             </a>
           </Link>
 
-          
+          <Link href="/calendario">
+            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+              Calendario
+            </a>
+          </Link>
+
+
           <Link href="/EntradaSalida">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
               Generar código
@@ -125,11 +129,9 @@ const Navbar = () => {
 
           <button
             onClick={logout}
-            className={`ml-4 mt-4 sm:${
-              Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              Ocultar ? "block " : "hidden"
-            }`}
+            className={`ml-4 mt-4 sm:${Ocultar ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${Ocultar ? "block " : "hidden"
+              }`}
           >
             Log out
           </button>

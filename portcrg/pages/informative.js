@@ -5,6 +5,8 @@ import { useEvents } from "../context/eventContext";
 import AddEventModal from "../components/AddEventModal";
 import { getCookie } from "cookies-next";
 
+import Link from "next/link";
+
 const informative = () => {
   const { eventsList, loading } = useEvents();
   let [isOpen, setIsOpen] = useState(false);
@@ -49,6 +51,14 @@ const informative = () => {
             Eventos
           </p>
           {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
+
+          {/* BOTON PARA REDIRIGIR A CALENDARIO */}
+          <Link href="/calendario">
+            <a className=" flex items-center bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+              Ver Calendario
+            </a>
+          </Link>
+
           <button
             className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
             onClick={() => {
