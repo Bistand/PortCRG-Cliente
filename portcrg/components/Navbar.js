@@ -91,11 +91,11 @@ const Navbar = () => {
             </a>
           </Link>
 
-          <Link href="/calendario">
+        {/*<Link href="/calendario">
             <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
               Calendario
             </a>
-          </Link>
+          </Link>*/}
 
 
           <Link href="/EntradaSalida">

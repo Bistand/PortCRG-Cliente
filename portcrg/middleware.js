@@ -42,4 +42,9 @@ export async function middleware(request) {
       return home;
     }
   }
+  else if (request.nextUrl.pathname.includes("/calendario")) {
+    if (!token) {
+      return home;
+    }
+  }
 }
