@@ -104,7 +104,7 @@ const calendar = () => {
                             setIsOpen(true);
                         }}
                     >
-                        Agregar actividades
+                        Agregar actividad
                     </button>
                     {/* ) : null} */}
                 </div>
