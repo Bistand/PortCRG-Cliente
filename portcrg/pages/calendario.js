@@ -7,19 +7,25 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEvents } from "../context/eventContext";
 import styles from '../styles/calendario.module.css';
+
+//importaciones extras
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import EventsCard from "../components/EventsCard";
+import { useEvents } from "../context/eventContext";
+import AddEventModal from "../components/AddEventModal";
+import { getCookie } from "cookies-next";
+import { de } from "date-fns/locale";
 
 //idioma para el calendario
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
 };
-
 const localizer = dateFnsLocalizer({
     format,
     parse,
@@ -28,13 +34,18 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-const events = [
+const events = [];
 
-];
+//inicio 
+const calendar = () => {
+    //conectar calendar con back
+    const { eventsList, loading } = useEvents();
+    let [isOpen, setIsOpen] = useState(false);
+    let [dataModal, setDataModal] = useState({});
+    const [occupation, setOccupation] = useState(1);
+    const authToken = getCookie("tokenuser");
 
-
-export default function Home() {
-    const { eventsList } = useEvents();
+    //Agregar eventos a calendario
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [allEvents, setAllEvents] = useState(events);
 
@@ -43,31 +54,50 @@ export default function Home() {
     }
     console.log(eventsList)
 
+    useEffect(() => {
+        getUserId(authToken);
+    }, [occupation]);
+
+    const getUserId = async (token) => {
+        try {
+            const config = {
+                headers: {
+                    "auth-token": token,
+                },
+            };
+            const { data } = await axios.get(
+                "https://portcrg-dev.onrender.com/api/admin",
+                config
+            );
+            setOccupation(data.data.user.occupation);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <>
             <div className="App">
                 <h1 className={styles.h1}>Calendario de Actividades</h1>
                 <hr className={styles.hr}></hr>
 
+
+                <div className="flex flex-row justify-center  mb-7">
+
+                    {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
+                    <button
+                        className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+                        onClick={() => {
+                            setIsOpen(true);
+                        }}
+                    >
+                        Agregar actividades
+                    </button>
+                    {/* ) : null} */}
+                </div>
                 
-                    <div className="flex flex-row justify-center  mb-7">
-                        
-                        {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
-                        <button
-                            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-                            onClick={() => {
-                                setIsOpen(true);
-                            }}
-                        >
-                            Agregar actividades
-                        </button>
-                        {/* ) : null} */}
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-10 w-3/4 xl:w-2/3">
-                        
-                            
-                    </div>
-                
+
+
 
                 <Calendar
                     localizer={localizer}
@@ -78,8 +108,10 @@ export default function Home() {
             </div>
 
 
-
+            <AddEventModal isOpen={isOpen} setIsOpen={setIsOpen} data={dataModal} />
         </>
     );
 
 }
+
+export default calendar;
