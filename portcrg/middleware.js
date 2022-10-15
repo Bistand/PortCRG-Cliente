@@ -47,4 +47,9 @@ export async function middleware(request) {
       return home;
     }
   }
+  else if (request.nextUrl.pathname.includes("/profile")) {
+    if (!token) {
+      return home;
+    }
+  }
 }
