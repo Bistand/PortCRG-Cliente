@@ -9,12 +9,14 @@ import react from "react"
 import { useForm } from "react-hook-form"
 import swal from 'sweetalert';
 export default function sign_up() {
+
     const [fullName, setfullName] = useState("")
     const [dpi, setdpi] = useState('')
     const [occupation, setoccupation] = useState('')
     const [number1, setnumber1] = useState('')
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+    const [confirmar, setconfirmar] = useState("")
     const { register, handleSubmit, errors, reset } = useForm();
     function recargarr(){
         location.href = location.href;
@@ -23,6 +25,7 @@ export default function sign_up() {
         console.log(values);
     }
     const submitUsuario = async () => {
+        let confir= confirmar;
         let Fnomb = fullName;
         let Dpei = dpi;
         let ocu = occupation;
@@ -30,7 +33,9 @@ export default function sign_up() {
         let ema = email;
         let pss = password;
         if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "")) {
-            
+            if(pss==confir){
+                swal('Procesando...'
+                 ,{buttons: ["finalizar"]});
             const response = await fetch('https://portcrg-dev.onrender.com/api/user/register/admin', {
                 method: 'POST',
                 body: JSON.stringify({ fullName, dpi, occupation, number1, email, password }),
@@ -41,8 +46,8 @@ export default function sign_up() {
             const data = await response.json();
             console.log(data);
             if(data.code=400){ 
-                swal(data.response, 'Correo ya fue registrado',
-                   /* data.message*/
+                swal(data.response, 'Correo Registrado Previamente; ¡Ingrese otro!',
+                   
                     'error',{buttons: ["finalizar"]});
             }
             if(data.code=200){ 
@@ -52,11 +57,16 @@ export default function sign_up() {
             setTimeout(() => {
                 location.href = location.href;
             }, 3000);}
+        }else {
+            swal('Cruz Roja Quetzaltenango',
+            'La contraseña no es igual',
+            'error',{buttons: ["finalizar"],timer: 2000 });
+        }
             
         } else {
             swal('Cruz Roja Quetzaltenango',
             'LLene todos los campos correctamente',
-            'error',{buttons: ["finalizar"],timer: 4000 });
+            'error',{buttons: ["finalizar"],timer: 3000 });
         }
     }
     return (
@@ -104,7 +114,7 @@ export default function sign_up() {
 
                                <div className={styles.inputdata} >
                               
-                                <input id="txtn"  type="text" value={fullName} onChange={e => setfullName(e.target.value)}  required pattern="^[a-zA-ZÀ-ÿ\s]{8,60}" />
+                                <input id="txtn"  type="text" value={fullName} onChange={e => setfullName(e.target.value)}  required pattern="^[a-zA-ZÀ-ÿ\s]{10,60}" />
                                 <div className={styles.underline}></div>
                                 <label>Nombre Completo</label>
                                
@@ -122,14 +132,24 @@ export default function sign_up() {
                                
                                 </div>
                                 <div className={styles.inputdata} >
-                                
-                                <input id="txtp"  type="text" value={password} onChange={e => setpassword(e.target.value)} maxLength={12}  required />
+                                <input id="txtp"  type="password" value={password} onChange={e => setpassword(e.target.value)}  maxLength={15}  required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d]|[^ ]){8,15}$"/>
                                 <div className={styles.underline}></div>
                                 <label>Contraseña</label>
                                 
                                 </div>
+
                 
                     </div>     
+                    <div className={styles.formrow}> 
+                    <div className={styles.inputdata} >
+                    </div>
+                            <div className={styles.inputdata} >
+                                <input id="txtp"  type="password" value={confirmar} onChange={e => setconfirmar(e.target.value)} maxLength={15}  required pattern={password}/>
+                                <div className={styles.underline}></div>
+                                <label> Confirmar Contraseña</label>
+                                
+                                </div>
+                    </div>   
                     <div className={styles.formrow}> 
                     <div className={styles.inputdata}>
                                 <button id="btn" onClick={submitUsuario} className={styles.Boton} >
