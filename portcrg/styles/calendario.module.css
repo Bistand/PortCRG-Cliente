@@ -37,7 +37,7 @@
 
 }
 .letras{
-  text-transform:capitalize
+  text-transform: uppercase;
 }
 .CentrarCalendario{
   display: flex;

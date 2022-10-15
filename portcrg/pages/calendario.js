@@ -98,26 +98,26 @@ const calendar = () => {
 
                 <div className="flex flex-col items-center my-8">
 
-                <div className="flex flex-row justify-between w-2/3 mb-8">
+                    <div className="flex flex-row justify-between w-2/3 mb-8">
 
-                    {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
+                        {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
 
-                    <Link href="/informative">
-                        <a className=" flex items-center bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-                            Ver Eventos
-                        </a>
-                    </Link>
+                        <Link href="/informative">
+                            <a className=" flex items-center bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                                Ver Eventos
+                            </a>
+                        </Link>
 
-                    <button
-                        className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-                        onClick={() => {
-                            setIsOpen(true);
-                        }}
-                    >
-                        Agregar actividad
-                    </button>
-                    {/* ) : null} */}
-                </div>
+                        <button
+                            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+                            onClick={() => {
+                                setIsOpen(true);
+                            }}
+                        >
+                            Agregar actividad
+                        </button>
+                        {/* ) : null} */}
+                    </div>
 
                 </div>
 
@@ -150,6 +150,8 @@ const calendar = () => {
 
 
             <AddEventModal isOpen={isOpen} setIsOpen={setIsOpen} data={dataModal} />
+            
+
         </>
     );
 
