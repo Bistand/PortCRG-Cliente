@@ -74,7 +74,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
               >
-                Agrega un evento
+                Agregar actividad
               </Dialog.Title>
               <button
                 className="justify-end rounded-md border border-transparent  px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none"
@@ -90,7 +90,8 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
             <form id="form" className="space-y-6" onSubmit={handleAdd}>
               <div>
                 <div className="sticky top-4 ">
-                  <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                  <label
+                    className="block mb-2 text-sm font-medium text-gray-900 ">
                     Titulo
                   </label>
                   <input
@@ -114,7 +115,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                   ></textarea>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Fecha del evento
+                    Fecha de inicio de actividad
                   </label>
                   <input
                     name="dateEvent"
@@ -123,6 +124,17 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                     value={formData.dateEvent}
                     onChange={(e) => handleChange(e)}
                   />
+
+                  {/* <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                    Fecha de finalización de actividad
+                  </label>
+                  <input
+                    name="dateEvent"
+                    type="datetime-local"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
+                    value={formData.dateEvent}
+                    onChange={(e) => handleChange(e)}
+                  />  */}
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
                     Imagen
