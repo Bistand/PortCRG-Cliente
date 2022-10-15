@@ -30,6 +30,7 @@ import Link from "next/link";
 // const locales = {
 //     "pt-BR": require("date-fns/locale/pt-BR"),
 // };
+
 const localizer = momentLocalizer(moment);
 
 const events = [];
@@ -129,7 +130,11 @@ const calendar = () => {
                     events={eventsList}
                     startAccessor="dateEvent"
                     endAccessor="dateEvent"
-                    style={{ height: 500, margin: "50px", }}
+                    style={{ 
+                        height: 500, 
+                        margin: "50px",
+                        
+                    }}
                     // eventPropGetter={(event) => {
                     //     return {
                     //         style: {
