@@ -7,97 +7,221 @@ import { IoIosPeople } from "react-icons/io";
 import Script from "next/script";
 import ProfilePic from "../public/crg.png";
 import { useState, useEffect } from "react";
-import { getCookie } from "cookies-next";
-import { Getdatosuser } from "../peticiones/profile";
-import { datosUSer } from "../peticiones/session";
+import { deleteCookie, getCookie } from "cookies-next";
+import {
+  Getdatosuser,
+  UpdateProfile,
+  updatePassword,
+  updateP,
+  deletUser,
+} from "../peticiones/profile";
+import { datosUSer, newPassword } from "../peticiones/session";
 import moment, { Moment } from "moment";
 import { async } from "regenerator-runtime";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  let perfil, usuario;
   const tokenuser = getCookie("tokenuser");
+  const router = useRouter();
+  const Swal = require("sweetalert2");
 
+  const [estadodelet, setEstadodelet] = useState(false);
+  const [estadoperfil, setEstadoperfil] = useState(true);
+  const [estadoSalud, setEstadosalud] = useState(true);
   //variables propiedades del perfil
   const [userperfil, setUserperfil] = useState({
     id: "",
     name: "",
+    dpi: "",
+    ocupacion: 0,
     bibliography: "",
     estadocivil: "",
     telefono: "",
     dateofBirth: "",
-    departament: "",
+    department: "",
     municipality: "",
     address: "",
   });
-  const [name, setName] = useState("");
-  const [apellidos, setApellidos] = useState("");
-  const [dpi, setDpi] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [municipio, setMunicipio] = useState("");
-  const [departament, setDepartament] = useState("");
-  const [ocupacion, setOcupacion] = useState("");
-  const [address, setAddress] = useState("");
-  const [birthdar, setBirthdary] = useState("");
-  const [bibliography, setBiliography] = useState("");
   // variables para cambiar contraseña
-  const [passwordold, setPasswordold] = useState("");
-  const [passwordnew, setPasswordnew] = useState("");
-  const [passwordconfirm, setPasswordconfir] = useState("");
-  const [estadocivil, setEstadocivil] = useState("");
+  const [credenciales, setCredenciales] = useState({
+    email: "",
+    oldpassword: "",
+    newpassword: "",
+    confirmpassword: "",
+  });
 
-  let perfil, usuario;
-  function oldpassword(event) {
-    setPasswordold(event.target.value);
-  }
-  function newpassword(event) {
-    setPasswordnew(event.target.value);
-  }
-  function confirmpassword(event) {
-    setPasswordconfir(event.target.value);
-  }
-  function cambiarpassword(event) {
-    event.preventDefault();
-  }
-  async function actualizarperfil(event) {
-    event.preventDefault();
-  }
+  const cambiarpassword = (e) => {
+    setCredenciales({
+      ...credenciales,
+      [e.target.name]: e.target.value,
+    });
+  };
   useEffect(() => {
     if (tokenuser) {
       Datos();
-    } else {
-      setName("Ingrese sus Nombres");
-      setApellidos("");
-      setTelefono("Ingrese número de teléfono");
-      setDpi("Ingrese número de DPI");
-      setMunicipio("");
-      setAddress("Ingrese dirección donde vive actualmente");
-      setMunicipio("Ingrese nombre de municipio");
-      setBiliography(
-        "Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
-      );
-      setBirthdary("Fecha de cumpleaños");
     }
-  });
+  }, []);
   const Datos = async () => {
     usuario = await Getdatosuser(tokenuser);
     console.log(usuario);
     perfil = usuario.data;
-    setName(perfil.fullName);
-    //setApellidos("");
-    setTelefono(perfil.number1);
-    setDpi(perfil.dpi);
-    setOcupacion(perfil.occupation);
-    setAddress(perfil.address);
-    setMunicipio(perfil.municipality);
-    setDepartament(perfil.department);
-    const daybirth = moment.utc(perfil.dateofBirth).format("MM/DD/YYYY");
-    setBirthdary(daybirth);
-    setBiliography(perfil.bibliography);
-    setEstadocivil(perfil.maritalStatus);
-    userperfil.name = perfil.fullName;
-    userperfil.dpi = perfil.dpi;
-    setUserperfil(userperfil);
-    //console.log(userperfil);
+    if (perfil) {
+      userperfil.id = perfil._id;
+      userperfil.name = perfil.fullName;
+      userperfil.telefono = perfil.number1;
+      userperfil.dpi = perfil.dpi;
+      userperfil.ocupacion = perfil.occupation;
+      userperfil.address = perfil.address;
+      userperfil.municipality = perfil.municipality;
+      userperfil.department = perfil.department;
+      const daybirth = moment.utc(perfil.dateofBirth).format("MM/DD/YYYY");
+      userperfil.dateofBirth = daybirth;
+      userperfil.bibliography = perfil.bibliography;
+      userperfil.estadocivil = perfil.maritalStatus;
+      credenciales.email = perfil.email;
+      setCredenciales(credenciales);
+      setUserperfil(userperfil);
+      if (perfil.privileges === 1) {
+        setEstadodelet(false);
+      } else {
+        setEstadodelet(true);
+      }
+      console.log(perfil.privileges);
+      console.log(perfil);
+    } else {
+      Swal.fire("No cuenta con datos!", "", "info");
+    }
   };
+  const obteniendodatos = (e) => {
+    setUserperfil({
+      ...userperfil,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const editarLibre = () => {
+    if (estadoperfil) {
+      setEstadoperfil(false);
+      Swal.fire("Ya puede editar!", "", "success");
+    } else {
+      setEstadoperfil(true);
+    }
+  };
+  const editarLibresalud = () => {
+    if (estadoSalud) {
+      setEstadosalud(false);
+      Swal.fire("Ya puede editar!", "", "success");
+    } else {
+      setEstadosalud(true);
+    }
+  };
+
+  //funcion que actualiza la contraseña
+  const newPass = () => {
+    console.log(credenciales);
+  };
+
+  const actualizaspassword = async (e) => {
+    e.preventDefault();
+    if (
+      credenciales.newpassword.length > 7 &&
+      credenciales.confirmpassword.length > 7
+    ) {
+      if (credenciales.newpassword === credenciales.confirmpassword) {
+        console.log("si paso");
+        passwordupdate();
+      } else {
+        console.log(credenciales.newpassword);
+        console.log(credenciales.confirmpassword);
+        Swal.fire("Contraseña no coinciden!", "", "info");
+      }
+    } else {
+      Swal.fire("Las contraseñas deben tener minimo 8 caracteres!", "", "info");
+      setCredenciales({
+        ...credenciales,
+        newpassword: "",
+        confirmpassword: "",
+      });
+    }
+  };
+
+  const actualizarperfil = () => {
+    if (estadoperfil) {
+      setEstadoperfil(false);
+    } else {
+      if (userperfil.telefono.length === 8) {
+        Swal.fire({
+          title: "Quiere guardar los cambios?",
+          showDenyButton: true,
+          //showCancelButton: true,
+          confirmButtonText: "Actualizar",
+          denyButtonText: `Cancelar`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire("Datos actualizados!", "", "success");
+            setEstadoperfil(true);
+            datosactualizados();
+          } else if (result.isDenied) {
+            Swal.fire("No se actuliazaron datos", "", "info");
+            console.log(userperfil);
+          }
+          router.push("/profile");
+        });
+      }
+    }
+  };
+
+  const deletuser = () => {
+    Swal.fire({
+      title: "Quiere eliminar La Cuenta?",
+      showDenyButton: true,
+      //showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const aceptar = deletuser(credenciales.email, userperfil.id);
+        if (aceptar === "ok") {
+          Swal.fire("Cuenta Eliminada!", "", "success");
+          deleteCookie("tokenuser");
+          router.push("/");
+        } else {
+          Swal.fire("No se pudo eliminar cuenta", "", "error");
+          //console.log(aceptar);
+        }
+        datosactualizados();
+      } else if (result.isDenied) {
+        Swal.fire("Se cancelo eliminación de cuenta", "", "info");
+        //console.log(userperfil);
+      }
+    });
+  };
+  async function datosactualizados() {
+    await UpdateProfile(userperfil);
+  }
+
+  async function passwordupdate() {
+    //console.log(userperfil.id);
+    const valor = await updatePassword(credenciales, userperfil.id);
+    console.log(valor);
+    if (valor.response === "ok") {
+      Swal.fire("Contraseña actualizada!", "", "success");
+      deleteCookie("tokenuser");
+      router.push("/login");
+    } else {
+      //no es la contraseña ingresada
+      Swal.fire("Contraseña incorrecta!", "", "error");
+      setCredenciales({
+        ...credenciales,
+        oldpassword: "",
+        newpassword: "",
+        confirmpassword: "",
+      });
+    }
+  }
 
   return (
     <>
@@ -147,6 +271,7 @@ export default function Home() {
                     Información Personal
                   </a>
                   <a
+                    hidden={estadodelet}
                     href="#account"
                     data-toggle="tab"
                     className="nav-item nav-link has-icon nav-link-faded"
@@ -204,10 +329,22 @@ export default function Home() {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="feather feather-bell mr-2"
+                      className="feather feather-activity"
                     >
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-heart"
+                      >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                      </svg>
                     </svg>
                     Salud
                   </a>
@@ -247,7 +384,7 @@ export default function Home() {
                   </li>
                   <li className="nav-item">
                     <a
-                      href="#account"
+                      href="#notification"
                       data-toggle="tab"
                       className="nav-link has-icon"
                     >
@@ -261,13 +398,26 @@ export default function Home() {
                         strokeWidth={2}
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="feather feather-settings"
+                        className="feather feather-activity"
                       >
-                        <circle cx={12} cy={12} r={3} />
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="feather feather-heart"
+                        >
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
                       </svg>
                     </a>
                   </li>
+
                   <li className="nav-item">
                     <a
                       href="#security"
@@ -290,9 +440,11 @@ export default function Home() {
                       </svg>
                     </a>
                   </li>
+
                   <li className="nav-item">
                     <a
-                      href="#notification"
+                      hidden={estadodelet}
+                      href="#account"
                       data-toggle="tab"
                       className="nav-link has-icon"
                     >
@@ -306,10 +458,10 @@ export default function Home() {
                         strokeWidth={2}
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="feather feather-bell"
+                        className="feather feather-settings"
                       >
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        <circle cx={12} cy={12} r={3} />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                       </svg>
                     </a>
                   </li>
@@ -325,24 +477,12 @@ export default function Home() {
                         <div className="form-group">
                           <label>Nombres</label>
                           <input
+                            name="name"
                             type="text"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
                             className="form-control"
-                            id="firstName"
-                            value={name}
-                            //placeholder={name}
-                            defaultValue=""
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <label>Apellidos</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="lastName"
-                            placeholder="Ingrese sus apellidos"
-                            defaultValue=""
+                            value={userperfil.name}
                           />
                         </div>
                       </div>
@@ -354,8 +494,7 @@ export default function Home() {
                             type="text"
                             id="DPI"
                             className="form-control"
-                            placeholder={dpi}
-                            defaultValue=""
+                            value={userperfil.dpi}
                           />
                         </div>
                       </div>
@@ -363,10 +502,13 @@ export default function Home() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>Estado Civil</label>
-                          <select class="form-control" value={estadocivil}>
-                            <option selected="">
-                              Seleccione su estado Civil
-                            </option>
+                          <select
+                            className="form-control"
+                            value={userperfil.estadocivil}
+                            name="estadocivil"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                          >
                             <option value={1}>Soltero</option>
                             <option value={2}>Casado</option>
                           </select>
@@ -377,11 +519,17 @@ export default function Home() {
                         <div className="form-group">
                           <label>Número de Teléfono</label>
                           <input
-                            type="text"
+                            name="telefono"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                            type="tel"
                             className="form-control"
-                            id="Cellphone"
-                            placeholder={telefono}
-                            defaultValue=""
+                            required
+                            value={userperfil.telefono}
+                            minLength="8"
+                            maxLength="8"
+                            size="10"
+                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                           />
                         </div>
                       </div>
@@ -389,11 +537,10 @@ export default function Home() {
                         <div className="form-group">
                           <label>Ocupación</label>
                           <select
-                            class="form-control"
-                            selected
-                            value={ocupacion}
+                            className="form-control"
+                            disabled
+                            value={userperfil.ocupacion}
                           >
-                            <option selected="">Seleccionar Ocupación</option>
                             <option value={1}>Voluntario General</option>
                             <option value={2}>Socorrista</option>
                             <option value={3}>Juventino</option>
@@ -411,9 +558,7 @@ export default function Home() {
                             disabled
                             type="text"
                             className="form-control"
-                            id="nacimiento"
-                            placeholder={birthdar}
-                            defaultValue=""
+                            value={userperfil.dateofBirth}
                           />
                         </div>
                       </div>
@@ -421,10 +566,14 @@ export default function Home() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>Departamento</label>
-                          <select class="form-control" value={departament}>
-                            <option selected="">
-                              Seleccionar Departamento
-                            </option>
+                          <select
+                            name="department"
+                            className="form-control"
+                            disabled={estadoperfil}
+                            value={userperfil.department}
+                            placeholder={"Seleccionar Departamento"}
+                            onChange={obteniendodatos}
+                          >
                             <option value="Alta Verapaz">Alta Verapaz</option>
                             <option value="Baja Verapaz">Baja Verapaz</option>
                             <option value="Chimaltenango">Chimaltenango</option>
@@ -457,11 +606,12 @@ export default function Home() {
                         <div className="form-group">
                           <label>Municipio</label>
                           <input
+                            name="municipality"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
                             type="text"
                             className="form-control"
-                            id="municipio"
-                            placeholder={municipio}
-                            defaultValue=""
+                            value={userperfil.municipality}
                           />
                         </div>
                       </div>
@@ -470,11 +620,12 @@ export default function Home() {
                         <div className="form-group">
                           <label>Dirección de Residencia</label>
                           <input
+                            disabled={estadoperfil}
+                            name="address"
+                            onChange={obteniendodatos}
                             type="text"
                             className="form-control"
-                            id="nacimiento"
-                            placeholder={address}
-                            defaultValue=""
+                            value={userperfil.address}
                           />
                         </div>
                       </div>
@@ -483,11 +634,13 @@ export default function Home() {
                         <div className="form-group">
                           <label>Biografía</label>
                           <textarea
+                            name="bibliography"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
                             className="form-control"
                             id="biografia"
                             rows={4}
-                            placeholder={bibliography}
-                            defaultValue={""}
+                            value={userperfil.bibliography}
                           />
                         </div>
                       </div>
@@ -501,8 +654,15 @@ export default function Home() {
                   <hr></hr>
                   <div>
                     <button
-                      onClick={actualizarperfil}
+                      onClick={editarLibre}
+                      className="btn btn-warning m-2"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="submit"
                       className="btn btn-primary"
+                      onClick={actualizarperfil}
                     >
                       Actualizar
                     </button>
@@ -510,18 +670,20 @@ export default function Home() {
                 </div>
 
                 <div className="tab-pane" id="account">
-                  <h6>AJUSTES DE CUENTA</h6>
+                  <h6>ELIMINAR CUENTAS</h6>
                   <hr />
                   <form>
                     <div className="form-group">
                       <label htmlFor="username">Correo Electrónico</label>
                       <input
-                        type="text"
+                        disabled={estadodelet}
+                        name="email"
+                        type="email"
+                        onChange={cambiarpassword}
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
-                        placeholder="Ingrese su correo electrónico"
-                        defaultValue=""
+                        placeholder="Ingrese el electrónico de la cuenta que desea eliminar"
                       />
                       <small id="usernameHelp" className="form-text text-muted">
                         Despues de cambiar el Correo electrónico o Codigo de
@@ -535,12 +697,16 @@ export default function Home() {
                         Eliminar Cuenta
                       </label>
                       <p className="text-muted font-size-sm">
-                        Una vez eliminada tu cuenta, no abra marcha atraz, por
-                        favor se conciente.
+                        Solo un usuario Administrador puede eliminar tu cuenta.
                       </p>
                     </div>
                     <hr></hr>
-                    <button className="btn btn-danger" type="button">
+                    <button
+                      disabled={estadodelet}
+                      onClick={deletuser}
+                      className="btn btn-danger"
+                      type="button"
+                    >
                       Eliminar Cuenta
                     </button>
                   </form>
@@ -548,32 +714,46 @@ export default function Home() {
                 <div className="tab-pane" id="security">
                   <h6>AJUSTES DE SEGURIDAD</h6>
                   <hr />
-                  <form onSubmit={cambiarpassword}>
+                  <form>
                     <div className="form-group">
                       <label className="d-block">Cambiar contraseña</label>
                       <input
-                        onChange={oldpassword}
+                        onChange={cambiarpassword}
+                        name="oldpassword"
+                        value={credenciales.oldpassword}
                         type="password"
                         className="form-control"
                         placeholder="Ingrese su contraseña actual"
                       />
                       <input
-                        onChange={newpassword}
+                        onChange={cambiarpassword}
                         type="password"
+                        name="newpassword"
+                        required
                         minLength="8"
+                        size="10"
+                        value={credenciales.newpassword}
                         className="form-control mt-1"
                         placeholder="Nueva contraseña"
                       />
                       <input
-                        onChange={confirmpassword}
+                        onChange={cambiarpassword}
                         type="password"
-                        minLength={"8"}
+                        name="confirmpassword"
+                        required
+                        value={credenciales.confirmpassword}
+                        minLength="8"
+                        size="10"
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
                     </div>
                     <hr></hr>
-                    <button type="button" className="btn btn-success">
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      onClick={actualizaspassword}
+                    >
                       Actualizar Contraseña
                     </button>
                   </form>
@@ -598,10 +778,10 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Tipo de Sangre
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                Seleccionar Tipo de Sangre
-                              </option>
+                            <select
+                              className="form-control"
+                              disabled={estadoSalud}
+                            >
                               <option>O Positivo</option>
                               <option>O Negativo</option>
                               <option>A Positivo</option>
@@ -630,6 +810,7 @@ export default function Home() {
                               ¿Cual es la enfermedad?
                             </label>
                             <input
+                              disabled={estadoSalud}
                               type="text"
                               className="form-control"
                               id="enfermedad"
@@ -647,6 +828,7 @@ export default function Home() {
                               Nombre de Medicamento
                             </label>
                             <input
+                              disabled={estadoSalud}
                               type="text"
                               className="form-control"
                               id="medicamento"
@@ -664,6 +846,7 @@ export default function Home() {
                               Mencione la discapacidad
                             </label>
                             <input
+                              disabled={estadoSalud}
                               type="text"
                               className="form-control"
                               id="discapacidad"
@@ -678,6 +861,12 @@ export default function Home() {
                   </form>
                   <hr></hr>
                   <div>
+                    <button
+                      onClick={editarLibresalud}
+                      className="btn btn-warning m-2"
+                    >
+                      Editar
+                    </button>
                     <button className="btn btn-primary">Actualizar</button>
                   </div>
                 </div>
@@ -686,16 +875,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <style
-        type="text/css"
-        dangerouslySetInnerHTML={{
-          __html:
-            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n\n.user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem;\n    text-align: center;\n}\n.user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.user-profile .user-avatar img {\n margin:auto; \n  width: 300px;\n    height: 300px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.user-profile h3.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.user-profile  {\n    margin: 0;\n    font-size: 0.8rem;\n    font-weight: 400;\n}\n\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n",
-        }}
-      />
-
-      <Script type="text/javascript"></Script>
-
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -713,6 +892,8 @@ export default function Home() {
       ></Script>
       <Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
+
+      <script type="text/javascript"></script>
     </>
   );
 }

@@ -14,8 +14,10 @@ async function conprobaruser(email, password) {
   if (valores.response === "ok") {
     usuario = await addGet(valores.data);
     const credencil = await datosUSer(valores.data);
-    setCookie("tokenuser", valores.data);
-    setCookie("token", credencil.privileges + valores.data);
+    setCookie("tokenuser", valores.data, { maxAge: 3600 });
+    setCookie("token", credencil.privileges + valores.data, {
+      maxAge: 3600,
+    });
     return true;
   }
   return false;
