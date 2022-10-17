@@ -8,6 +8,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
     title: "",
     description: "",
     dateEvent: "",
+    dateEventF:"",
     image: "",
   });
 
@@ -16,6 +17,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
       title: "",
       description: "",
       dateEvent: "",
+      dateEventF:"",
       image: "",
     });
   };
@@ -26,10 +28,12 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
         title: data.title,
         description: data.description,
         dateEvent: data.dateEvent.substring(0, 10),
+   //     dateEventF: data.dateEventF.substring(0,10),
         image: data.image,
       });
     }
   };
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -125,16 +129,16 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                     onChange={(e) => handleChange(e)}
                   />
 
-                  {/* <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
                     Fecha de finalización de actividad
                   </label>
                   <input
-                    name="dateEvent"
+                    name="dateEventF"
                     type="datetime-local"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    value={formData.dateEvent}
+                    value={formData.dateEventF}
                     onChange={(e) => handleChange(e)}
-                  />  */}
+                  />  
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
                     Imagen
