@@ -149,7 +149,7 @@ const calendar = () => {
                     // }}
                     messages={messages}
                     onSelectSlot={(slot) => handleOpenDialog(slot)}
-                    onSelectEvent={(event) => handleOpenEvent(event)}
+                   // onSelectEvent={(event) => handleOpenEvent(event)}
                     
 
                 />
