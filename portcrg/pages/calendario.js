@@ -128,6 +128,8 @@ const calendar = () => {
                 <Calendar className={styles.letras}
                     localizer={localizer}
                     events={eventsList}
+                    //Para ver solo mes y agenda.
+                    views={["month","agenda"]}
                     startAccessor="dateEvent"
                     endAccessor="dateEvent"
                     style={{ 
@@ -148,6 +150,7 @@ const calendar = () => {
                     messages={messages}
                     onSelectSlot={(slot) => handleOpenDialog(slot)}
                     onSelectEvent={(event) => handleOpenEvent(event)}
+                    
 
                 />
 
