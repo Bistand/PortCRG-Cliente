@@ -49,7 +49,13 @@ export default function Home() {
     oldpassword: "",
     newpassword: "",
     confirmpassword: "",
+    emaildelet: "",
   });
+  const [deletEmail, setDeletemail] = useState("");
+  const eliminarusuario = (e) => {
+    e.preventDefault();
+    setDeletemail(e.target.value);
+  };
 
   const cambiarpassword = (e) => {
     setCredenciales({
@@ -175,7 +181,7 @@ export default function Home() {
 
   const deletuser = () => {
     Swal.fire({
-      title: "Quiere eliminar La Cuenta?",
+      title: "Está seguro de eliminar la Cuenta?",
       showDenyButton: true,
       //showCancelButton: true,
       confirmButtonText: "Eliminar",
@@ -183,11 +189,12 @@ export default function Home() {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        const aceptar = deletuser(credenciales.email, userperfil.id);
+        const aceptar = deletUser(deletEmail, userperfil.id, tokenuser);
+        console.log(deletEmail);
+        console.log(aceptar);
         if (aceptar === "ok") {
           Swal.fire("Cuenta Eliminada!", "", "success");
-          deleteCookie("tokenuser");
-          router.push("/");
+          setDeletemail("");
         } else {
           Swal.fire("No se pudo eliminar cuenta", "", "error");
           //console.log(aceptar);
@@ -676,19 +683,17 @@ export default function Home() {
                     <div className="form-group">
                       <label htmlFor="username">Correo Electrónico</label>
                       <input
-                        disabled={estadodelet}
-                        name="email"
-                        type="email"
-                        onChange={cambiarpassword}
+                        name="emaildelet"
+                        onChange={eliminarusuario}
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
+                        value={deletEmail}
                         placeholder="Ingrese el electrónico de la cuenta que desea eliminar"
                       />
                       <small id="usernameHelp" className="form-text text-muted">
-                        Despues de cambiar el Correo electrónico o Codigo de
-                        Personal el mismo estará disponible para cualquier otra
-                        persona.
+                        Despues de eliminar la cuenta de usuario, el Correo
+                        electrónico disponible para cualquier otra persona.
                       </small>
                     </div>
 
@@ -702,7 +707,6 @@ export default function Home() {
                     </div>
                     <hr></hr>
                     <button
-                      disabled={estadodelet}
                       onClick={deletuser}
                       className="btn btn-danger"
                       type="button"

@@ -96,101 +96,102 @@ const Navbar = () => {
           (navbarOpen ? null : " hidden")
         }
       >
-        <div className="text-sm items-center col sm:flex-grow">
-          <a
-            href="/"
-            className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-          >
-            Inicio
-          </a>
+        <a
+          href="/"
+          className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+        >
+          Inicio
+        </a>
 
-          <a
-            href="/login"
-            className={`mt-4 sm:${
-              !Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Ocultar ? "block " : "hidden"
-            }`}
-          >
-            Login
-          </a>
-          <a
-            href="/sign_up"
-            className={`mt-4 sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
-            }`}
-          >
-            Registrar
-          </a>
+        <a
+          href="/login"
+          className={` sm:${
+            !Ocultar ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Ocultar ? "block " : "hidden"
+          }`}
+        >
+          Login
+        </a>
+        <a
+          href="/sign_up"
+          className={` sm:${
+            !Supeadmrhidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Supeadmrhidden ? "block " : "hidden"
+          }`}
+        >
+          Registrar
+        </a>
 
-          <a
-            href="/courses"
-            className={`mt-4 sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
-            }`}
-          >
-            Cursos
-          </a>
+        <a
+          href="/courses"
+          className={` sm:${
+            !Supeadmrhidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Supeadmrhidden ? "block " : "hidden"
+          }`}
+        >
+          Cursos
+        </a>
 
-          <a
-            Link
-            href="/informative"
-            className={`mt-4 sm:${
-              !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Todoshidden ? "block " : "hidden"
-            }`}
-          >
-            Eventos
-          </a>
+        <a
+          Link
+          href="/informative"
+          className={` sm:${
+            !Todoshidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Todoshidden ? "block " : "hidden"
+          }`}
+        >
+          Eventos
+        </a>
 
-          <a
-            href="/calendario"
-            className={`mt-4 sm:${
-              !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Todoshidden ? "block " : "hidden"
-            }`}
-          >
-            Calendario
-          </a>
-          <a
-            href="/EntradaSalida"
-            className={`mt-4 sm:${
-              !Userhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Userhidden ? "block " : "hidden"
-            }`}
-          >
-            Generar código
-          </a>
-          <a
-            href="/RegistroEntradas"
-            className={`mt-4 sm:${
-              !Admuser ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Admuser ? "block " : "hidden"
-            }`}
-          >
-            Registro
-          </a>
-          <a
-            href="/users/courses"
-            className={`mt-4 sm:${
-              !Userhidden ? "inline-block " : "hidden"
-            } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
-              !Userhidden ? "block " : "hidden"
-            }`}
-          >
-            Cursos Asignados
-          </a>
+        {/* <a
+          href="/calendario"
+          className={` sm:${
+            !Todoshidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Todoshidden ? "block " : "hidden"
+          }`}
+        >
+          Calendario
+        </a> */}
+        <a
+          href="/EntradaSalida"
+          className={` sm:${
+            !Userhidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Userhidden ? "block " : "hidden"
+          }`}
+        >
+          Generar código
+        </a>
+        <a
+          href="/RegistroEntradas"
+          className={` sm:${
+            !Admuser ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Admuser ? "block " : "hidden"
+          }`}
+        >
+          Registro
+        </a>
+        <a
+          href="/users/courses"
+          className={` sm:${
+            !Userhidden ? "inline-block " : "hidden"
+          } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+            !Userhidden ? "block " : "hidden"
+          }`}
+        >
+          Cursos Asignados
+        </a>
+
+        <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
           <button
             onClick={logout}
-            className={`ml-4 mt-4 sm:${
+            className={`ml-4  sm:${
               Ocultar ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               Ocultar ? "block " : "hidden"
@@ -198,14 +199,20 @@ const Navbar = () => {
           >
             Log out
           </button>
-        </div>
+        </a>
+
+        {/* <div className="text-sm items-center col sm:flex-grow">
+        DIV ORIGINAL DEL NAVBAR
+
+        </div> */}
+        {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
         <div className="items-center flex">
           <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
             {user}
           </a>
           <a href="/profile">
             <button
-              className={`mt-4 sm:${
+              className={` sm:${
                 !Todoshidden ? "inline-block " : "hidden"
               } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
                 !Todoshidden ? "block " : "hidden"

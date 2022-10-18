@@ -49,7 +49,7 @@ export async function UpdateProfile(perfil) {
   }
 }
 
-export async function deletUser(email, id) {
+export async function deletUser(email, id, token) {
   try {
     const resultado = await fetch(
       `https://portcrg-dev.onrender.com/api/user/updateInfo/${id}`,
@@ -60,9 +60,11 @@ export async function deletUser(email, id) {
         }),
         headers: {
           "Content-type": "application/json",
+          Authorization: "Bearer " + token,
         },
       }
     );
+    console.log(resultado);
     return resultado.json();
   } catch (e) {
     return null;
@@ -70,9 +72,6 @@ export async function deletUser(email, id) {
 }
 
 export async function updatePassword(credenciales, id) {
-  console.log("password");
-  console.log(id);
-  console.log(credenciales);
   try {
     const resultado = await fetch(
       `https://portcrg-dev.onrender.com/api/user/changePass/${id}`,

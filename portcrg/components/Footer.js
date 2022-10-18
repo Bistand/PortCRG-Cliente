@@ -14,21 +14,21 @@ const Footer = () => {
           <ul className="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <Link href="/Login">
-                <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+                <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
                   Login
                 </a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+                <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
                   Asistencia
                 </a>
               </Link>
             </li>
             <li>
               <Link href="/courses">
-                <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+                <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
                   Cursos
                 </a>
               </Link>
@@ -41,7 +41,7 @@ const Footer = () => {
         <span className="text-sm font-thin text-white sm:text-center ">
           © 2022 Bistand. Todos los derechos reservados.
         </span>
-        <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+        <div className="flex  space-x-6 sm:justify-center sm:mt-0">
           <a
             href="https://www.facebook.com/CruzRojaGTQuetzaltenango/"
             className="text-white hover:text-gray-900"
