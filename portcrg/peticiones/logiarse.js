@@ -1,15 +1,23 @@
 import axios from "axios";
 import { deleteCookie, setCookie } from "cookies-next";
-import { SetSesion, GetSesion, GetUsuario } from "../peticiones/session";
+import {
+  SetSesion,
+  GetSesion,
+  GetUsuario,
+  datosUSer,
+} from "../peticiones/session";
 async function conprobaruser(email, password) {
   const valores = await addPosts(email, password);
   let objeto = { email: email, password: password };
   let usuario;
 
-
   if (valores.response === "ok") {
     usuario = await addGet(valores.data);
-    setCookie("tokenuser", valores.data);
+    const credencil = await datosUSer(valores.data);
+    setCookie("tokenuser", valores.data, { maxAge: 3600 });
+    setCookie("token", credencil.privileges + valores.data, {
+      maxAge: 3600,
+    });
     return true;
   }
   return false;

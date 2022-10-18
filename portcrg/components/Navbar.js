@@ -10,32 +10,72 @@ const Navbar = () => {
   const [user, setUser] = useState("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [Ocultar, setOcultar] = useState(false);
+  const [Supeadmrhidden, setSuperadmhidden] = useState(true);
+  const [Adminhidden, setAdminhidden] = useState(true);
+  const [Userhidden, setUserhidden] = useState(true);
+  const [Todoshidden, setTodoshidden] = useState(true);
+  const [Admuser, setAdminuser] = useState(true);
+  const [texinicio, setTexinicio] = useState("Inicio");
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
-  let usuario;
+  let usuario, privilegess;
   useEffect(() => {
     if (tokenuser) {
+      privilegess = getCookie("token");
+      const privilegesvalor = privilegess.substr(0, 1);
+      switch (privilegesvalor) {
+        case "1":
+          setSuperadmhidden(false);
+          setAdminuser(false);
+          break;
+        case "2":
+          setAdminhidden(false);
+          setAdminuser(false);
+          break;
+        case "3":
+          setUserhidden(false);
+          break;
+      }
+
       setOcultar(true);
+      setTodoshidden(false);
       Datos();
     } else {
       setOcultar(false);
+      setSuperadmhidden(true);
+      setAdminhidden(true);
+      setUserhidden(true);
+      setTodoshidden(true);
+      setAdminuser(true);
       setUser("");
     }
   });
-  const Datos = async () => {
+  const retornarinicio = () => {
+    //router.push("/")
+  };
+
+  const Datos = async (e) => {
     usuario = await datosUSer(tokenuser);
+    console.log(usuario);
     setUser(usuario.name);
   };
   const logout = () => {
     deleteCookie("tokenuser");
+    deleteCookie("token");
     router.push("/");
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
-        <Image src="/PortCRG.png" width={64} height={64}></Image>
+        <button onClick={retornarinicio}>
+          <Link href="/">
+            <a>
+              <Image src="/PortCRG.png" width={64} height={64}></Image>
+            </a>
+          </Link>
+        </button>
       </div>
-      <div className="block sm:hidden">
+      <div className="block sm:hidden items-center flex">
         <button
           className="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-200 hover:border-white"
           onClick={() => setNavbarOpen(!navbarOpen)}
@@ -56,81 +96,102 @@ const Navbar = () => {
           (navbarOpen ? null : " hidden")
         }
       >
-        <div className="text-sm sm:flex-grow">
-          <Link href="/">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Inicio
-            </a>
-          </Link>
-
-          <Link href="/login">
-            <a
-              className={`mt-4 sm:${
-                !Ocultar ? "inline-block " : "hidden"
-              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-                !Ocultar ? "block " : "hidden"
-              }`}
-            >
-              Login
-            </a>
-          </Link>
-
-          <Link href="/sign_up">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Registrar
-            </a>
-          </Link>
-
-          <Link href="/courses">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Cursos
-            </a>
-          </Link>
-
-          <Link href="/informative">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Agenda de Actividades
-            </a>
-          </Link>
-
-          {/*<Link href="/calendario">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Calendario
-            </a>
-          </Link>*/}
-
-          <Link href="/EntradaSalida">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Generar código
-            </a>
-          </Link>
-          <Link href="/RegistroEntradas">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Registro
-            </a>
-          </Link>
-          <Link href="/users/courses">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Cursos Asignados
-            </a>
-          </Link>
-        </div>
-        <div className="divide-y-6 items-center flex">
-          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
-            {user}
+        <a
+          href="/"
+          className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+        >
+          Inicio
+        </a>
+        <Link href={"/login"}>
+          <a
+            className={` sm:${
+              !Ocultar ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Ocultar ? "block " : "hidden"
+            }`}
+          >
+            Login
           </a>
-          <Link href="/profile">
-            <button className="inline-block text-sm px-4 py-2 leading-none border rounded-full text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
-              <img
-                className="h-[30px] w-[30px] rounded-full "
-                src="/user1.png"
-              ></img>
-            </button>
-          </Link>
+        </Link>
+        <Link href="/sign_up">
+          <a
+            className={` sm:${
+              !Supeadmrhidden ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Supeadmrhidden ? "block " : "hidden"
+            }`}
+          >
+            Registrar
+          </a>
+        </Link>
+        <Link href="/courses">
+          <a
+            className={` sm:${
+              !Supeadmrhidden ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Supeadmrhidden ? "block " : "hidden"
+            }`}
+          >
+            Cursos
+          </a>
+        </Link>
+        <Link href="/informative">
+          <a
+            className={` sm:${
+              !Todoshidden ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Todoshidden ? "block " : "hidden"
+            }`}
+          >
+            Eventos
+          </a>
+        </Link>
 
+        {/* <a
+          href="/calendario"
+          className={` sm:${
+            !Todoshidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Todoshidden ? "block " : "hidden"
+          }`}
+        >
+          Calendario
+        </a> */}
+        <a
+          href="/EntradaSalida"
+          className={` sm:${
+            !Userhidden ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Userhidden ? "block " : "hidden"
+          }`}
+        >
+          Generar código
+        </a>
+        <a
+          href="/RegistroEntradas"
+          className={` sm:${
+            !Admuser ? "inline-block " : "hidden"
+          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            !Admuser ? "block " : "hidden"
+          }`}
+        >
+          Registro
+        </a>
+        <a
+          href="/users/courses"
+          className={` sm:${
+            !Userhidden ? "inline-block " : "hidden"
+          } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+            !Userhidden ? "block " : "hidden"
+          }`}
+        >
+          Cursos Asignados
+        </a>
+
+        <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
           <button
             onClick={logout}
-            className={`ml-4 mt-4 sm:${
+            className={`ml-4  sm:${
               Ocultar ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               Ocultar ? "block " : "hidden"
@@ -138,6 +199,31 @@ const Navbar = () => {
           >
             Log out
           </button>
+        </a>
+
+        {/* <div className="text-sm items-center col sm:flex-grow">
+        DIV ORIGINAL DEL NAVBAR
+
+        </div> */}
+        {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
+        <div className="items-center flex flex-row justify-end">
+          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+            {user}
+          </a>
+          <a href="/profile">
+            <button
+              className={` sm:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
+              <img
+                className="h-[30px] w-[30px] rounded-full "
+                src="/user1.png"
+              ></img>
+            </button>
+          </a>
         </div>
       </div>
     </nav>

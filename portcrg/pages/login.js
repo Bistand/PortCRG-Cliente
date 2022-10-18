@@ -23,6 +23,7 @@ export default function Login() {
       SetHidden(false);
     } else {
       router.push("/");
+      location.reload();
     }
     SetUser("");
     SetPassword("");
