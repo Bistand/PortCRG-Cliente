@@ -6,12 +6,17 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 
 export default function RegistroEntradas() {
+  const [uno, setuno] = useState("");
+  const [dos, setdos] = useState("");
+  const [tres, settres] = useState("");
+  const [cuatro, setcuatro] = useState("");
   const { register, handleSubmit, errors, reset } = useForm();
   const [codigo, setcodigo] = useState("");
 
   const submitUsuario = async () => {
     let campo1 = codigo;
     if (campo1 != "") {
+      console.log("funciona");
       const response = await fetch(
         "https://portcrg-dev.onrender.com/api/asistencia",
         {
@@ -40,39 +45,48 @@ export default function RegistroEntradas() {
       );
     }
   };
+  function move(e) {
+    let a = e;
+    console.log(a);
+  }
 
   function onSubmitForm(values) {
     console.log(values);
   }
   return (
-    <form id="form" className="form" onSubmit={handleSubmit(onSubmitForm)}>
-      <center>
+    <div className={styles.general}>
+      <div className={styles.bod}>
         <div className={styles.contenedor}>
-          <div className={styles.central}>
-            <div className={styles.divtitulo}>
-              <h1 className={styles.h1}>Ingrese Código de Verificación</h1>
-            </div>
-            <div className={styles.divinput}>
-              <input
-                type="text"
-                className={styles.input}
-                maxLength={4}
-                value={codigo}
-                onChange={(e) => setcodigo(e.target.value)}
-                autoFocus
-                required
-              />
-            </div>
-            <div className={styles.divboton}>
-              <button className={styles.Boton} onClick={submitUsuario}>
-                {" "}
-                Registrar
-              </button>
-            </div>
-          </div>
-          <div></div>
+          <form id="form" class="form" onSubmit={handleSubmit(onSubmitForm)}>
+            <center>
+              <div className={styles.central}>
+                <div className={styles.divtitulo}>
+                  <h1 className={styles.h1}>Ingrese Código de Verificación</h1>
+                </div>
+                <div className={styles.divinput}>
+                  <input
+                    type="text"
+                    className={styles.input}
+                    maxLength={4}
+                    value={codigo}
+                    onChange={(e) => setcodigo(e.target.value)}
+                    autoFocus
+                    required
+                  />
+                </div>
+                <div className={styles.divboton}>
+                  <button className={styles.Boton} onClick={submitUsuario}>
+                    {" "}
+                    Registrar
+                  </button>
+                </div>
+              </div>
+              <div></div>
+              <div></div>
+            </center>
+          </form>
         </div>
-      </center>
-    </form>
+      </div>
+    </div>
   );
 }

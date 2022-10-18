@@ -53,58 +53,39 @@ const fetchcodigosalida = async () => {
 }
 
     return (
+        <div className={styles.general}>
+            <div className={styles.bod}>
+                <div className={styles.contenedor}>
+                                    <div className={styles.divcodigo}>
+                                    <div className={styles.text}>{"Código: "+codigo}</div>
+                                    </div>
+                                    <div className={styles.divbotones}>
+                                    <div className={styles.diventrada}>
+                                        <div className={styles.divcajaasistencia}>
+                                            <label className={styles.label}>Código de Entrada</label>
+                                            <button className={styles.botonentrada} onClick={fetchcodigoentrada}>
+                                                
+                                                Generar
+                                            </button>
+                                            
+                                        </div>
 
+                                    </div>
+                                    <div className={styles.divsalida}>
+                                        <div className={styles.divcajaasistencia}>
+                                            <label className={styles.label} >Código de Salida</label>
+                                            <button className={styles.botonsalida} onClick={fetchcodigosalida} >
+                                                <img className={styles.img} src="/salidar.jpg" alt="" />
+                                                Generar
+                                            </button>
+                                        </div>
 
-        <div className={styles.contenedor}>
-
-            <div className={styles.divcodigo}>
-                <div className={styles.divcajacodigo}>
-                    <h1 className={styles.h1}>{"Código: "+codigo}</h1>
-                </div>
+                                    </div>
+                                    </div>
+                                
+                 </div>
             </div>
-            <div className={styles.divgeneral} >
-
-
-                <div className={styles.diventrada}>
-                    <div className={styles.divcajaasistencia}>
-                        <h2 className={styles.h2}>Código de Entrada</h2>
-
-                        <button className={styles.botonentrada} onClick={fetchcodigoentrada}>
-                            <img className={styles.img} src="/entrada.jpg" alt="" />
-
-                        </button>
-                    </div>
-
-                </div>
-                <div className={styles.divsalida}>
-                    <div className={styles.divcajaasistencia}>
-                        <h2 className={styles.h2}>Código de Salida</h2>
-
-                        <button className={styles.botonsalida} onClick={fetchcodigosalida} >
-                            <img className={styles.img} src="/salida.jpg" alt="" />
-
-                        </button>
-                    </div>
-
-                </div>
-                <div className={styles.divasistencia}>
-                    <div className={styles.divcajaasistencia}>
-                        <h2 className={styles.h2}>Ver Asistencia</h2>
-
-                        <button className={styles.botonasistencia} >
-                            <img className={styles.img} src="/asistencia.jpg" alt="" />
-
-                        </button>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
         </div>
-
 
     )
 }
