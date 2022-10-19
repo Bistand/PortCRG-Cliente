@@ -223,7 +223,7 @@ const Table = ({ status }) => {
         </>
       ) : (
         <div className="flex flex-row justify-center">
-          <h2>Cargando eventos ...</h2>
+          <h2>Cargando cursos ...</h2>
         </div>
       )}
       <DeleteEventModal
