@@ -124,10 +124,10 @@ const Navbar = () => {
             Registrar
           </a>
         </Link>
-        <Link href="/courses">
+        <Link href="/course">
           <a
             className={` sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
+             !Supeadmrhidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Supeadmrhidden ? "block " : "hidden"
             }`}
@@ -146,17 +146,6 @@ const Navbar = () => {
             Eventos
           </a>
         </Link>
-
-        {/* <a
-          href="/calendario"
-          className={` sm:${
-            !Todoshidden ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Todoshidden ? "block " : "hidden"
-          }`}
-        >
-          Calendario
-        </a> */}
         <a
           href="/EntradaSalida"
           className={` sm:${
