@@ -29,6 +29,7 @@ export default function EntradaSalida() {
             headers: {
                 'Content-Type': 'application/json',
                 "id": usuario.id,
+                Authorization: "Bearer " + tokenuser,
             },
         })
         data = await response.json()
@@ -45,6 +46,7 @@ const fetchcodigosalida = async () => {
         headers: {
             'Content-Type': 'application/json',
             "id": usuario.id,
+            Authorization: "Bearer " + tokenuser,
         },
     })
     data = await response.json()

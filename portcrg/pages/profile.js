@@ -8,6 +8,7 @@ import Script from "next/script";
 import ProfilePic from "../public/crg.png";
 import { useState, useEffect } from "react";
 import { deleteCookie, getCookie } from "cookies-next";
+import AddEventSalud from "../components/AddEventSalud";
 import {
   Getdatosuser,
   UpdateProfile,
@@ -21,6 +22,14 @@ import { async } from "regenerator-runtime";
 import { useRouter } from "next/router";
 
 export default function Home() {
+  const saludAgregar = () => {
+    const { eventsList, loading } = useEvents();
+    let [isOpen, setIsOpen] = useState(false);
+    let [dataModal, setDataModal] = useState({});
+    const [occupation, setOccupation] = useState(1);
+    const authToken = getCookie("tokenuser");
+  };
+
   let perfil, usuario;
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
@@ -29,6 +38,10 @@ export default function Home() {
   const [estadodelet, setEstadodelet] = useState(false);
   const [estadoperfil, setEstadoperfil] = useState(true);
   const [estadoSalud, setEstadosalud] = useState(true);
+  //Mostrar datos de salud
+  const [medicina, setMedicina] = useState("");
+  const [enfermedad, setEnfermedad] = useState("");
+  const [incapacidad, setIncapacidad] = useState("");
   //variables propiedades del perfil
   const [userperfil, setUserperfil] = useState({
     id: "",
@@ -67,7 +80,7 @@ export default function Home() {
     if (tokenuser) {
       Datos();
     }
-  }, []);
+  }, [tokenuser]);
   const Datos = async () => {
     usuario = await Getdatosuser(tokenuser);
     console.log(usuario);
@@ -86,6 +99,9 @@ export default function Home() {
       userperfil.bibliography = perfil.bibliography;
       userperfil.estadocivil = perfil.maritalStatus;
       credenciales.email = perfil.email;
+      setMedicina(perfil.medicines);
+      setEnfermedad(perfil.illness);
+      setIncapacidad(perfil.inability);
       setCredenciales(credenciales);
       setUserperfil(userperfil);
       if (perfil.privileges === 1) {
@@ -93,8 +109,9 @@ export default function Home() {
       } else {
         setEstadodelet(true);
       }
+      router.push("/profile");
       console.log(perfil.privileges);
-      console.log(perfil);
+      //console.log(perfil);
     } else {
       Swal.fire("No cuenta con datos!", "", "info");
     }
@@ -179,7 +196,7 @@ export default function Home() {
     }
   };
 
-  const deletuser = () => {
+  const deletuser = async () => {
     Swal.fire({
       title: "Está seguro de eliminar la Cuenta?",
       showDenyButton: true,
@@ -189,7 +206,7 @@ export default function Home() {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        const aceptar = deletUser(deletEmail, userperfil.id, tokenuser);
+        const aceptar = deletUser(deletEmail, tokenuser);
         console.log(deletEmail);
         console.log(aceptar);
         if (aceptar === "ok") {
@@ -808,55 +825,42 @@ export default function Home() {
                           contrario puede dejar en blanco el espacio.
                         </small>
                         <li className="list-group-item has-icon">
-                          Enfermedad
+                          Enfermedad:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <label htmlFor="fullName">
-                              ¿Cual es la enfermedad?
-                            </label>
-                            <input
+                            <textarea
                               disabled={estadoSalud}
-                              type="text"
+                              name="enfermedad"
                               className="form-control"
                               id="enfermedad"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Ingrese nombre de enfermedad"
-                              defaultValue=""
+                              rows={4}
+                              value={enfermedad}
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Medicamento
+                          Medicamento:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <label htmlFor="fullName">
-                              Nombre de Medicamento
-                            </label>
-                            <input
+                            <textarea
                               disabled={estadoSalud}
-                              type="text"
+                              name="areamedicina"
                               className="form-control"
                               id="medicamento"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Ingrese nombre de medicamento o compuesto"
-                              defaultValue=""
+                              rows={4}
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Incapacidad
+                          Incapacidad:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <label htmlFor="fullName">
-                              Mencione la discapacidad
-                            </label>
-                            <input
+                            <textarea
                               disabled={estadoSalud}
-                              type="text"
+                              name="incapacidad"
                               className="form-control"
-                              id="discapacidad"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Ingrese nombre de discapacidad"
-                              defaultValue=""
+                              id="incapacidad"
+                              rows={4}
+                              value={incapacidad}
                             />
                           </div>
                         </li>
