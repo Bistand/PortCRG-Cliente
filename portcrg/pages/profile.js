@@ -8,7 +8,7 @@ import Script from "next/script";
 import ProfilePic from "../public/crg.png";
 import { useState, useEffect } from "react";
 import { deleteCookie, getCookie } from "cookies-next";
-import AddEventSalud from "../components/AddEventSalud";
+
 import {
   Getdatosuser,
   UpdateProfile,
@@ -39,9 +39,12 @@ export default function Home() {
   const [estadoperfil, setEstadoperfil] = useState(true);
   const [estadoSalud, setEstadosalud] = useState(true);
   //Mostrar datos de salud
-  const [medicina, setMedicina] = useState("");
-  const [enfermedad, setEnfermedad] = useState("");
-  const [incapacidad, setIncapacidad] = useState("");
+  const [datossalud, setDatossalud] = useState({
+    medicina: "",
+    enfermedad: "",
+    incapacidad: "",
+    tiposangre: 0,
+  });
   //variables propiedades del perfil
   const [userperfil, setUserperfil] = useState({
     id: "",
@@ -85,6 +88,10 @@ export default function Home() {
     usuario = await Getdatosuser(tokenuser);
     console.log(usuario);
     perfil = usuario.data;
+    datossalud.medicina = "";
+    datossalud.enfermedad = "";
+    datossalud.incapacidad = "";
+    setDatossalud(datossalud);
     if (perfil) {
       userperfil.id = perfil._id;
       userperfil.name = perfil.fullName;
@@ -99,11 +106,26 @@ export default function Home() {
       userperfil.bibliography = perfil.bibliography;
       userperfil.estadocivil = perfil.maritalStatus;
       credenciales.email = perfil.email;
-      setMedicina(perfil.medicines);
-      setEnfermedad(perfil.illness);
-      setIncapacidad(perfil.inability);
+
+      //datos de salud del usuario
+      datossalud.tiposangre = perfil.bloodType;
+      for (let a = 0; a < perfil.medicines.length; a++) {
+        console.log(perfil.medicines[a].medicines);
+        datossalud.medicina += "\n" + "-" + perfil.medicines[a].medicines;
+      }
+      for (let a = 0; a < perfil.inability.length; a++) {
+        console.log(perfil.inability[a].inability);
+        datossalud.incapacidad += "\n" + "-" + perfil.inability[a].inability;
+      }
+      for (let a = 0; a < perfil.illness.length; a++) {
+        console.log(perfil.illness[a].illness);
+        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illnes;
+      }
+      setDatossalud(datossalud);
+      console.log(datossalud.medicina);
       setCredenciales(credenciales);
       setUserperfil(userperfil);
+
       if (perfil.privileges === 1) {
         setEstadodelet(false);
       } else {
@@ -111,7 +133,6 @@ export default function Home() {
       }
       router.push("/profile");
       console.log(perfil.privileges);
-      //console.log(perfil);
     } else {
       Swal.fire("No cuenta con datos!", "", "info");
     }
@@ -802,15 +823,16 @@ export default function Home() {
                             <select
                               className="form-control"
                               disabled={estadoSalud}
+                              value={datossalud.tiposangre}
                             >
-                              <option>O Positivo</option>
-                              <option>O Negativo</option>
-                              <option>A Positivo</option>
-                              <option>A Negativo</option>
-                              <option>B Positivo</option>
-                              <option>B Negativo</option>
-                              <option>AB Positivo</option>
-                              <option>AB Negativo</option>
+                              <option value={1}>O Positivo</option>
+                              <option value={2}>O Negativo</option>
+                              <option value={3}>A Positivo</option>
+                              <option value={4}>A Negativo</option>
+                              <option value={5}>B Positivo</option>
+                              <option value={6}>B Negativo</option>
+                              <option value={7}>AB Positivo</option>
+                              <option value={8}>AB Negativo</option>
                             </select>
                           </div>
                         </li>
@@ -827,13 +849,19 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Enfermedad:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              name="name"
+                              type="text"
+                              className="form-control"
+                            />
+                            <hr></hr>
                             <textarea
                               disabled={estadoSalud}
                               name="enfermedad"
                               className="form-control"
                               id="enfermedad"
                               rows={4}
-                              value={enfermedad}
+                              value={datossalud.enfermedad}
                             />
                           </div>
                         </li>
@@ -841,11 +869,19 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Medicamento:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              name="name"
+                              type="text"
+                              className="form-control"
+                            />
+                            <hr></hr>
+
                             <textarea
                               disabled={estadoSalud}
                               name="areamedicina"
                               className="form-control"
                               id="medicamento"
+                              value={datossalud.medicina}
                               rows={4}
                             />
                           </div>
@@ -854,13 +890,20 @@ export default function Home() {
                         <li className="list-group-item has-icon">
                           Incapacidad:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
+                            <input
+                              name="name"
+                              type="text"
+                              className="form-control"
+                            />
+                            <hr></hr>
+
                             <textarea
                               disabled={estadoSalud}
                               name="incapacidad"
                               className="form-control"
                               id="incapacidad"
                               rows={4}
-                              value={incapacidad}
+                              value={datossalud.incapacidad}
                             />
                           </div>
                         </li>
