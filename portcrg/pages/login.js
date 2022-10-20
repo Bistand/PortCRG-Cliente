@@ -51,17 +51,15 @@ export default function Login() {
           className="text-[#FF3839] text-[64px] font-medium
         text-[40px] font-mediun"
         >
-          SIGN IN
+          INGRESAR
         </h1>
         {hidden ? (
-          <p className="text-[15px] capitalize mb-2.5">
-            enter your email address and password to access
+          <p className="text-[15px]  mb-2.5">
+            Ingrese el correo electrónico y contraseña para ingresar.
           </p>
         ) : (
-          <p
-            className={`text-[15px] capitalize mb-2.5 text-red bg-red-200 p-2`}
-          >
-            ERROR! Incorrect Username or Password
+          <p className={`text-[15px]  mb-2.5 text-red bg-red-200 p-2`}>
+            ERROR! Usuario o contraseña incorrecta!
           </p>
         )}
 
@@ -74,7 +72,7 @@ export default function Login() {
             value={user}
             onChange={recibiendouser}
             type="email"
-            placeholder="USERNAME / EMAIL"
+            placeholder="CORREO ELECTRÓNICO"
             className="bg-[#F5E7E7] border[#FBF8F8]
             border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
@@ -83,7 +81,7 @@ export default function Login() {
             value={password}
             onChange={recibiendopassword}
             type="password"
-            placeholder="PASSWORD"
+            placeholder="CONTRASEÑA"
             className="bg-[#F5E7E7] border[#FBF8F8]
             border-2 border-solid rounded bourder-2 p-2 text-[12px] font-normal"
           />
@@ -91,13 +89,13 @@ export default function Login() {
             className="bg-[#FF3839] rounded-[10px] text-white font-regular text-[14px] self-center px-12 py-1.5 hover:outline-[#FF3839] hover:outline-1
             active:bg-white active:text-[#FF3839] hover:outline"
           >
-            LOGIN
+            Ingresar
           </button>
           <a
             className="text-[#FF3839] text-[11px] font-regular self-start mt-16"
             href="newpassword"
           >
-            Forgotten your username or password?
+            Olvidó su usuario o contraseña?
           </a>
         </form>
       </div>
