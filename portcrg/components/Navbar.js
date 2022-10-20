@@ -127,9 +127,9 @@ const Navbar = () => {
         <Link href="/course">
           <a
             className={` sm:${
-             !Supeadmrhidden ? "inline-block " : "hidden"
+              !Todoshidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
+              !Todoshidden ? "block " : "hidden"
             }`}
           >
             Cursos

@@ -853,6 +853,7 @@ export default function Home() {
                               name="name"
                               type="text"
                               className="form-control"
+                              placeholder="Ingrese enfermedad la cual padece"
                             />
                             <hr></hr>
                             <textarea
@@ -862,6 +863,7 @@ export default function Home() {
                               id="enfermedad"
                               rows={4}
                               value={datossalud.enfermedad}
+                              readonly="readonly"
                             />
                           </div>
                         </li>
@@ -873,6 +875,7 @@ export default function Home() {
                               name="name"
                               type="text"
                               className="form-control"
+                              placeholder="Ingrese medicamento que consume"
                             />
                             <hr></hr>
 
@@ -883,6 +886,7 @@ export default function Home() {
                               id="medicamento"
                               value={datossalud.medicina}
                               rows={4}
+                              readonly="readonly"
                             />
                           </div>
                         </li>
@@ -891,6 +895,7 @@ export default function Home() {
                           Incapacidad:
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
+                              placeholder="Ingrese incapacidad"
                               name="name"
                               type="text"
                               className="form-control"
@@ -904,6 +909,7 @@ export default function Home() {
                               id="incapacidad"
                               rows={4}
                               value={datossalud.incapacidad}
+                              readonly="readonly"
                             />
                           </div>
                         </li>
