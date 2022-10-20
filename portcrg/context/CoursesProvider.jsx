@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { getCookie } from "cookies-next";
 
 const CoursesContext = createContext();
 
@@ -8,12 +9,19 @@ const CoursesProvider = ({ children }) => {
   const [coursesList, setCoursesList] = useState([]);
   const [coursesListUser, setCoursesListUser] = useState([]);
   const [loading, setLoading] = useState(true);
+  const tokenuser = getCookie("tokenuser");
 
   useEffect(() => {
     const ObtenerCursos = async () => {
       try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${tokenuser}`,
+          },
+        };
         const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/courses/"
+          "https://portcrg-dev.onrender.com/api/courses/",
+          config
         );
 
         setCoursesList(data.data);
@@ -22,7 +30,7 @@ const CoursesProvider = ({ children }) => {
       }
     };
 
-    ///reparando los mages que se complicaron el despliqgue
+    //reparando los mages que se complicaron el despliegue
 
     ObtenerCursos();
     getCoursesByUser();
@@ -37,11 +45,11 @@ const CoursesProvider = ({ children }) => {
   };
 
   const submitCourses = async (course) => {
-    
     try {
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${tokenuser}`,
         },
       };
 
@@ -52,7 +60,6 @@ const CoursesProvider = ({ children }) => {
       );
 
       setCoursesList([...coursesList, data.data]);
-      
 
       Swal.fire({
         position: "center",
@@ -67,7 +74,6 @@ const CoursesProvider = ({ children }) => {
   };
 
   const AsignarCourse = async (idCourse) => {
-    
     try {
       const idUser = localStorage.getItem("id");
       // const config = {
@@ -92,6 +98,7 @@ const CoursesProvider = ({ children }) => {
             "Content-type": "application/json",
             curso: idCourse.course._id,
             user: idUser,
+            Authorization: `Bearer ${tokenuser}`,
           },
         }
       ).then(function (response) {
@@ -129,6 +136,7 @@ const CoursesProvider = ({ children }) => {
             "Content-type": "application/json",
             curso: course.course,
             user: idUser,
+            Authorization: `Bearer ${tokenuser}`,
           },
         }
       ).then(function (response) {
@@ -162,8 +170,14 @@ const CoursesProvider = ({ children }) => {
   const getCoursesByUser = async () => {
     try {
       const idUser = localStorage.getItem("id");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${tokenuser}`,
+        },
+      };
       const { data } = await axios(
-        `https://portcrg-dev.onrender.com/api/user/courses/${idUser}`
+        `https://portcrg-dev.onrender.com/api/user/courses/${idUser}`,
+        config
       );
       setCoursesListUser(data.data.reverse());
     } catch (error) {
@@ -177,6 +191,7 @@ const CoursesProvider = ({ children }) => {
         headers: {
           "Content-Type": "multipart/form-data",
           id: _id,
+          Authorization: `Bearer ${tokenuser}`,
         },
       };
       const { data } = await axios.put(

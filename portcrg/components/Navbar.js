@@ -110,7 +110,7 @@ const Navbar = () => {
               !Ocultar ? "block " : "hidden"
             }`}
           >
-            Login
+            Ingresar
           </a>
         </Link>
         <Link href="/sign_up">
@@ -124,12 +124,12 @@ const Navbar = () => {
             Registrar
           </a>
         </Link>
-        <Link href="/courses">
+        <Link href="/course">
           <a
             className={` sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
+              !Todoshidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
+              !Todoshidden ? "block " : "hidden"
             }`}
           >
             Cursos
@@ -146,17 +146,6 @@ const Navbar = () => {
             Eventos
           </a>
         </Link>
-
-        {/* <a
-          href="/calendario"
-          className={` sm:${
-            !Todoshidden ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Todoshidden ? "block " : "hidden"
-          }`}
-        >
-          Calendario
-        </a> */}
         <a
           href="/EntradaSalida"
           className={` sm:${
@@ -197,7 +186,7 @@ const Navbar = () => {
               Ocultar ? "block " : "hidden"
             }`}
           >
-            Log out
+            Cerrar sesion
           </button>
         </a>
 
@@ -206,6 +195,8 @@ const Navbar = () => {
 
         </div> */}
         {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
+        <div className="text-sm sm:flex-grow"></div>
+
         <div className="items-center flex flex-row justify-end">
           <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
             {user}

@@ -49,10 +49,11 @@ export async function UpdateProfile(perfil) {
   }
 }
 
-export async function deletUser(email, id, token) {
+export async function deletUser(email, token) {
+  console.log(token);
   try {
     const resultado = await fetch(
-      `https://portcrg-dev.onrender.com/api/user/updateInfo/${id}`,
+      "https://portcrg-dev.onrender.com/api/user/deleteUser",
       {
         method: "POST",
         body: JSON.stringify({
@@ -64,10 +65,9 @@ export async function deletUser(email, id, token) {
         },
       }
     );
-    console.log(resultado);
     return resultado.json();
   } catch (e) {
-    return null;
+    return e;
   }
 }
 

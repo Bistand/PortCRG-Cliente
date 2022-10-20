@@ -7,7 +7,7 @@ import DeleteEventModal from "./DeleteEventModal";
 import AddEventModal from "./AddEventModal";
 import DeleteEvent from "./DeleteEvent";
 
-function EventsCard({ event, occupation }) {
+function EventsCard({ event, privileges }) {
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDel, setIsOpenDel] = useState(false);
   let [isOpenAdd, setIsOpenAdd] = useState(false);
@@ -45,7 +45,7 @@ function EventsCard({ event, occupation }) {
                 ) : null}
               </>
             )}
-            {/* {occupation == 6 ? ( */}
+            {privileges == 1 || privileges == 2 ? (
             <div>
               <button
                 className="has-tooltip mr-4 "
@@ -75,7 +75,7 @@ function EventsCard({ event, occupation }) {
                 <BsTrash size={"20px"} className="text-red-800 my-1"></BsTrash>
               </button>
             </div>
-            {/* ) : null} */}
+            ) : null}
           </div>
         </div>
       </div>

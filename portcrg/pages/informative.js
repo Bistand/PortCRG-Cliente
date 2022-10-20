@@ -8,32 +8,10 @@ import { getCookie } from "cookies-next";
 import Link from "next/link";
 
 const informative = () => {
-  const { eventsList, loading } = useEvents();
+  const { eventsList, loading, privileges } = useEvents();
   let [isOpen, setIsOpen] = useState(false);
   let [dataModal, setDataModal] = useState({});
-  const [occupation, setOccupation] = useState(1);
   const authToken = getCookie("tokenuser");
-
-  useEffect(() => {
-    getUserId(authToken);
-  }, [occupation]);
-
-  const getUserId = async (token) => {
-    try {
-      const config = {
-        headers: {
-          "auth-token": token,
-        },
-      };
-      const { data } = await axios.get(
-        "https://portcrg-dev.onrender.com/api/admin",
-        config
-      );
-      setOccupation(data.data.user.occupation);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   if (loading) {
     return (
@@ -51,15 +29,15 @@ const informative = () => {
 
      
         <div className="flex flex-row justify-between w-2/3 mb-8">
-          
-          {/* {occupation == 6 || occupation == 7 || occupation == 8 ? ( */}
-
-          {/* BOTON PARA REDIRIGIR A CALENDARIO */}
           <Link href="/calendario">
             <a className=" flex items-center bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
               Ver Calendario
             </a>
           </Link>
+          {privileges == 1 || privileges == 2? 
+          <>
+          {/* BOTON PARA REDIRIGIR A CALENDARIO */}
+          
 
           <button
             className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
@@ -69,13 +47,14 @@ const informative = () => {
           >
             Agregar actividad
           </button>
-          {/* ) : null} */}
+          </>
+           : null} 
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-10 w-3/4 xl:w-2/3">
           {eventsList
             .map((event) => {
               return (
-                <EventsCard key={event._id} event={event} role={occupation} />
+                <EventsCard key={event._id} event={event} privileges={privileges} />
               );
             })
             .reverse()}
