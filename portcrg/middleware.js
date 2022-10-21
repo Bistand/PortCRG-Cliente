@@ -9,15 +9,16 @@ export async function middleware(request) {
   const home = NextResponse.rewrite(new URL("/", request.url));
   const asistencia = NextResponse.rewrite(new URL("/asistencia", request.url));
   const singUp = NextResponse.rewrite(new URL("/sign_up", request.url));
-  const cursos = NextResponse.rewrite(new URL("/courses", request.url));
+  const cursos = NextResponse.rewrite(new URL("/course", request.url));
+
+  const cursosdeusuario = NextResponse.rewrite(
+    new URL("/users/course", request.url)
+  );
   const entradaSalida = NextResponse.rewrite(
     new URL("/EntradaSalida", request.url)
   );
   const perfil = NextResponse.rewrite(new URL("/profile", request.url));
   const calendario = NextResponse.rewrite(new URL("/calendario", request.url));
-  const usercursos = NextResponse.rewrite(
-    new URL("/users/courses", request.url)
-  );
 
   const informacion = NextResponse.rewrite(
     new URL("/informative", request.url)
@@ -51,13 +52,26 @@ export async function middleware(request) {
       return home;
     }
   }
-  if (request.nextUrl.pathname.startsWith("/informative")) {
+  if (
+    request.nextUrl.pathname.startsWith("/informative")
+  ) {
     if (token) {
       return informacion;
     } else {
       return home;
     }
   }
+  if (
+    request.nextUrl.pathname.startsWith("/calendario")
+  ) {
+    if (token) {
+      return calendario;
+    } else {
+      return home;
+    }
+  }
+
+
   if (request.nextUrl.pathname.startsWith("/profile")) {
     if (token) {
       return perfil;
@@ -65,9 +79,16 @@ export async function middleware(request) {
       return home;
     }
   }
+  if (request.nextUrl.pathname.startsWith("/course")) {
+    if (token) {
+      return cursos;
+    } else {
+      return home;
+    }
+  }
   if (request.nextUrl.pathname.startsWith("/courses")) {
     if (token && valor === "3") {
-      return usercursos;
+      return cursosdeusuario;
     } else {
       return home;
     }
