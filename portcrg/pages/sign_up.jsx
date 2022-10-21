@@ -1,13 +1,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import Head from "next/head"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from '../styles/Sing_up.module.css'
 import axios from "axios"
 import { bodyStreamToNodeStream } from "next/dist/server/body-streams"
 import react from "react"
 import { useForm } from "react-hook-form"
 import swal from 'sweetalert';
+import { getCookie } from "cookies-next"
+import { Getdatosuser } from "../peticiones/profile"
 export default function sign_up() {
 
     const [fullName, setfullName] = useState("")
@@ -21,6 +23,25 @@ export default function sign_up() {
     function recargarr(){
         location.href = location.href;
     }
+    const [superUsuario, setsuperUsuario]= useState(true);
+    const tokenuser = getCookie("tokenuser");
+    let perfil
+    const comparacionprivileges= async ()=> {
+        const usuario = await Getdatosuser(tokenuser);
+        perfil = usuario.data
+        console.log(perfil.privileges)
+        if(perfil.privileges === 1){
+            setsuperUsuario(false)
+        }else{
+            setsuperUsuario(true)
+        }
+        
+    }
+    useEffect(()=>{
+        comparacionprivileges()
+    })
+    
+
     function onSubmitForm(values) {
         console.log(values);
     }
@@ -88,7 +109,7 @@ export default function sign_up() {
                                     <option value="3">Juventino</option>
                                     <option value="4">Personal Asalariado</option>
                                     <option value="5">Dama Voluntaria</option>
-                                    <option value="6">Administrador</option>
+                                    <option value="6" hidden={superUsuario} >Administrador</option>
                                 </select>
                                 <div className={styles.underline}></div>
                                

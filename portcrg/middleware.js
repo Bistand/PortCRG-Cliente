@@ -46,8 +46,12 @@ export async function middleware(request) {
     }
   }
   if (request.nextUrl.pathname.startsWith("/sign_up")) {
-    if (token && valor === "1") {
-      return singUp;
+    if (token) {
+      if(valor === "1" || valor === "2"){
+        return singUp;
+      }else{
+        return home;  
+      }
     } else {
       return home;
     }

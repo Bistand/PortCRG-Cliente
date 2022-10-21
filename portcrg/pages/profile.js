@@ -35,7 +35,7 @@ export default function Home() {
   const router = useRouter();
   const Swal = require("sweetalert2");
 
-  const [estadodelet, setEstadodelet] = useState(false);
+  const [estadodelet, setEstadodelet] = useState(true);
   const [estadoperfil, setEstadoperfil] = useState(true);
   const [estadoSalud, setEstadosalud] = useState(true);
   //Mostrar datos de salud
@@ -126,7 +126,7 @@ export default function Home() {
       setCredenciales(credenciales);
       setUserperfil(userperfil);
 
-      if (perfil.privileges === 1) {
+      if (perfil.privileges === 1 || perfil.privileges === 2) {
         setEstadodelet(false);
       } else {
         setEstadodelet(true);
