@@ -53,15 +53,25 @@ export async function middleware(request) {
     }
   }
   if (
-    request.nextUrl.pathname.startsWith("/informative") ||
-    request.nextUrl.pathname.startsWith("/calendario")
+    request.nextUrl.pathname.startsWith("/informative")
   ) {
     if (token) {
-      return informacion, calendario;
+      return informacion;
     } else {
       return home;
     }
   }
+  if (
+    request.nextUrl.pathname.startsWith("/calendario")
+  ) {
+    if (token) {
+      return calendario;
+    } else {
+      return home;
+    }
+  }
+
+
   if (request.nextUrl.pathname.startsWith("/profile")) {
     if (token) {
       return perfil;
