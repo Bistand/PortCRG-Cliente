@@ -46,6 +46,7 @@ export default function sign_up() {
         console.log(values);
     }
     const submitUsuario = async () => {
+        const usertoken = getCookie("tokenuser");
         let confir= confirmar;
         let Fnomb = fullName;
         let Dpei = dpi;
@@ -62,6 +63,7 @@ export default function sign_up() {
                 body: JSON.stringify({ fullName, dpi, occupation, number1, email, password }),
                 headers: {
                     'Content-Type': 'application/json',
+                    Authorization: "Bearer " + usertoken,
                 },
             })
             const data = await response.json();
