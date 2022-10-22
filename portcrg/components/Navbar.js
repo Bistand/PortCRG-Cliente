@@ -77,9 +77,21 @@ const Navbar = () => {
     setDropdown(!dropdown);
   }
 
-  //METODO ACCIONES DROPDOWN
+  //METODO ACCIONES DROPDOWN para redirigir a paginas
   const editarPerfil=()=>{
-    router.push("/profile");
+    router.push("/EditarPerfil");
+  }
+
+  const seguridadPerfil=()=>{
+    router.push("/SeguridadPerfil");
+  }
+
+  const saludPerfil=()=>{
+    router.push("/SaludPerfil");
+  }
+
+  const eliminarPerfil=()=>{
+    router.push("/EliminarPerfil");
   }
 
   return (
@@ -228,9 +240,9 @@ const Navbar = () => {
             {/* <DropdownItem header>Perfil de Usuario</DropdownItem>
             <hr></hr> */}
               <DropdownItem onClick={()=>editarPerfil()}>Información Personal</DropdownItem>
-              <DropdownItem>Seguridad</DropdownItem>
-              <DropdownItem>Salud</DropdownItem>
-              <DropdownItem>Ajuste de cuentas</DropdownItem>
+              <DropdownItem onClick={()=>seguridadPerfil()}>Seguridad</DropdownItem>
+              <DropdownItem onClick={()=>saludPerfil()}>Salud</DropdownItem>
+              <DropdownItem onClick={()=>eliminarPerfil()}>Ajuste de cuentas</DropdownItem>
               {/*    */}
             </DropdownMenu>
 
