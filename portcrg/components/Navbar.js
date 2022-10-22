@@ -212,9 +212,9 @@ const Navbar = () => {
         <div className="text-sm sm:flex-grow"></div>
 
         <div className="items-center flex flex-row justify-end">
-          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+          {/* <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
             {user}
-          </a>
+          </a> */}
 
           {/* INICIO CODIGO PARA PERFIL */}
           {/* <a href="/profile">
@@ -232,9 +232,14 @@ const Navbar = () => {
             </button>
           </a> */}
           
-          <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} direction="down" >
+          <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} direction="down" 
+          className={` sm:${
+            !Todoshidden ? "inline-block " : "hidden"
+          } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+            !Todoshidden ? "block " : "hidden"
+          }`}>
             <DropdownToggle caret className={Styles.botonDropdown}>
-              PERFIL DE USUARIO
+            {user}
             </DropdownToggle>
             <DropdownMenu>
             {/* <DropdownItem header>Perfil de Usuario</DropdownItem>

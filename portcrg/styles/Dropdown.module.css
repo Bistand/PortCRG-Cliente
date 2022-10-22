@@ -1,4 +1,10 @@
 .botonDropdown{
+    background-color: red  !important;
+    border-color: white !important;
+    
+}
+.btn-secondary.dropdown-toggle {
+    color: #fff;
     background-color: red;
-    border-color: white;
+    border-color: #4e555b;
 }
