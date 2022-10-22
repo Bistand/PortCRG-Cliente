@@ -95,7 +95,7 @@ export default function Home() {
     if (perfil) {
       userperfil.id = perfil._id;
       userperfil.name = perfil.fullName;
-      userperfil.telefono = perfil.number1;
+      userperfil.telefono = perfil.phoneNumber;
       userperfil.dpi = perfil.dpi;
       userperfil.ocupacion = perfil.occupation;
       userperfil.address = perfil.address;
@@ -245,7 +245,7 @@ export default function Home() {
     });
   };
   async function datosactualizados() {
-    await UpdateProfile(userperfil);
+    await UpdateProfile(userperfil, tokenuser);
   }
 
   async function passwordupdate() {

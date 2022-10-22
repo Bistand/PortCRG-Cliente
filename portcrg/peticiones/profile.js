@@ -22,7 +22,7 @@ export async function Getdatosuser(token) {
   }
 }
 
-export async function UpdateProfile(perfil) {
+export async function UpdateProfile(perfil,token) {
   try {
     const resultado = await fetch(
       `https://portcrg-dev.onrender.com/api/user/updateInfo/${perfil.id}`,
@@ -40,6 +40,7 @@ export async function UpdateProfile(perfil) {
         }),
         headers: {
           "Content-type": "application/json",
+          Authorization: "Bearer " + token,
         },
       }
     );
