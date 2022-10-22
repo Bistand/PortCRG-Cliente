@@ -45,12 +45,14 @@ function courseDetails({ data }) {
 export async function getServerSideProps(context) {
   const { params } = context;
   const { courseId } = params;
+  const cookie = context.req.cookies.tokenuser;
 
   const response = await fetch(
     `https://portcrg-dev.onrender.com/api/courses/id`,
     {
       headers: {
         id: courseId,
+        Authorization: `Bearer ${cookie}`,
       },
     }
   );

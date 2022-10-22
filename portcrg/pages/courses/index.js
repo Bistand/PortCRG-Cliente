@@ -8,7 +8,6 @@ function index() {
   const [modal, setModal] = useState(false);
 
   const { coursesList } = useCourses();
-  
 
   return (
     <>
@@ -46,15 +45,17 @@ function index() {
 
       <div className="grid grid-cols-1 mx-10  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
         {coursesList.length ? (
-          coursesList?.map((course) => (
-            <CardCourses
-              key={course?._id}
-              _id={course?._id}
-              name={course?.name}
-              description={course?.description}
-              photographyURL={course?.photographyURL}
-            />
-          )).reverse()
+          coursesList
+            ?.map((course) => (
+              <CardCourses
+                key={course?._id}
+                _id={course?._id}
+                name={course?.name}
+                description={course?.description}
+                photographyURL={course?.photographyURL}
+              />
+            ))
+            .reverse()
         ) : (
           <p className="font-bold text-3xl text-center justify-items-center my-48 ">
             En espera... Cargado Cursos

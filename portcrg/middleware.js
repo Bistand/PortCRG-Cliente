@@ -9,7 +9,7 @@ export async function middleware(request) {
   const home = NextResponse.rewrite(new URL("/", request.url));
   const asistencia = NextResponse.rewrite(new URL("/asistencia", request.url));
   const singUp = NextResponse.rewrite(new URL("/sign_up", request.url));
-  const cursos = NextResponse.rewrite(new URL("/course", request.url));
+  const cursos = NextResponse.rewrite(new URL("/courses", request.url));
 
   const cursosdeusuario = NextResponse.rewrite(
     new URL("/users/course", request.url)
@@ -85,11 +85,11 @@ export async function middleware(request) {
       return home;
     }
   }*/
-  if (request.nextUrl.pathname.startsWith("/courses")) {
-    if (token && valor === "3") {
-      return cursosdeusuario;
-    } else {
-      return home;
-    }
-  }
+  // if (request.nextUrl.pathname.startsWith("/courses")) {
+  //   if (token && valor === "3") {
+  //     return cursosdeusuario;
+  //   } else {
+  //     return home;
+  //   }
+  // }
 }
