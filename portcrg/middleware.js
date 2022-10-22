@@ -46,31 +46,30 @@ export async function middleware(request) {
     }
   }
   if (request.nextUrl.pathname.startsWith("/sign_up")) {
-    if (token && valor === "1") {
-      return singUp;
+    if (token) {
+      if (valor === "1" || valor === "2") {
+        return singUp;
+      } else {
+        return home;
+      }
     } else {
       return home;
     }
   }
-  if (
-    request.nextUrl.pathname.startsWith("/informative")
-  ) {
+  if (request.nextUrl.pathname.startsWith("/informative")) {
     if (token) {
       return informacion;
     } else {
       return home;
     }
   }
-  if (
-    request.nextUrl.pathname.startsWith("/calendario")
-  ) {
+  if (request.nextUrl.pathname.startsWith("/calendario")) {
     if (token) {
       return calendario;
     } else {
       return home;
     }
   }
-
 
   if (request.nextUrl.pathname.startsWith("/profile")) {
     if (token) {
@@ -79,13 +78,13 @@ export async function middleware(request) {
       return home;
     }
   }
-  if (request.nextUrl.pathname.startsWith("/course")) {
+  /*if (request.nextUrl.pathname.startsWith("/course")) {
     if (token) {
       return cursos;
     } else {
       return home;
     }
-  }
+  }*/
   if (request.nextUrl.pathname.startsWith("/courses")) {
     if (token && valor === "3") {
       return cursosdeusuario;
