@@ -71,7 +71,7 @@ export async function deletUser(email, token) {
   }
 }
 
-export async function updatePassword(credenciales, id) {
+export async function updatePassword(credenciales, id, token) {
   try {
     const resultado = await fetch(
       `https://portcrg-dev.onrender.com/api/user/changePass/${id}`,
@@ -79,6 +79,7 @@ export async function updatePassword(credenciales, id) {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: "Bearer " + token,
         },
         body: JSON.stringify({
           email: credenciales.email,

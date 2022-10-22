@@ -250,7 +250,7 @@ export default function Home() {
 
   async function passwordupdate() {
     //console.log(userperfil.id);
-    const valor = await updatePassword(credenciales, userperfil.id);
+    const valor = await updatePassword(credenciales, userperfil.id, tokenuser);
     console.log(valor);
     if (valor.response === "ok") {
       Swal.fire("Contraseña actualizada!", "", "success");
@@ -267,6 +267,22 @@ export default function Home() {
       });
     }
   }
+  function estadobotones(e) {
+    ["profile", "account", "security", "notification"].forEach((items) => {
+      document.querySelector("#" + items).classList.remove("bg-[#007bff]");
+      document.querySelector("#" + items).classList.remove("text-white");
+      document.querySelector("#" + items).classList.add("text-[#007bff]");
+      document.querySelector("#h" + items).classList.remove("block");
+      document.querySelector("#h" + items).classList.add("hidden");
+    });
+    e.currentTarget.classList.remove("text-[#007bff]");
+    e.currentTarget.classList.add("bg-[#007bff]");
+    e.currentTarget.classList.add("text-white");
+    document.querySelector("#h" + e.currentTarget.id).classList.add("block");
+    document
+      .querySelector("#h" + e.currentTarget.id)
+      .classList.remove("hidden");
+  }
 
   return (
     <>
@@ -274,7 +290,7 @@ export default function Home() {
         <title>PortCRG</title>
       </Head>
 
-      <div className="container">
+      <div className="container w-full">
         {/* Breadcrumb */}
 
         {/* /Breadcrumb */}
@@ -293,10 +309,10 @@ export default function Home() {
                     <h3 className="user-name">Cruz Roja Guatemalteca</h3>
                   </div>
 
-                  <a
-                    href="#profile"
-                    data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded active"
+                  <button
+                    onClick={estadobotones}
+                    id="profile"
+                    className="text-left bg-[#007bff] text-white mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -314,12 +330,13 @@ export default function Home() {
                       <circle cx={12} cy={7} r={4} />
                     </svg>
                     Información Personal
-                  </a>
-                  <a
+                  </button>
+                  <button
+                    className="text-left mb-2 px-3 py-2"
                     hidden={estadodelet}
-                    href="#account"
+                    onClick={estadobotones}
+                    id="account"
                     data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -337,11 +354,12 @@ export default function Home() {
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                     </svg>
                     Ajustes de Cuenta
-                  </a>
-                  <a
-                    href="#security"
+                  </button>
+                  <button
+                    onClick={estadobotones}
+                    id="security"
                     data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
+                    className="text-left mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -358,11 +376,12 @@ export default function Home() {
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                     Seguridad
-                  </a>
-                  <a
-                    href="#notification"
+                  </button>
+                  <button
+                    onClick={estadobotones}
+                    id="notification"
                     data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
+                    className="text-left mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -392,7 +411,7 @@ export default function Home() {
                       </svg>
                     </svg>
                     Salud
-                  </a>
+                  </button>
                 </nav>
               </div>
             </div>
@@ -405,10 +424,11 @@ export default function Home() {
                   role="tablist"
                 >
                   <li className="nav-item">
-                    <a
-                      href="#profile"
+                    <button
+                      id="profile"
+                      onClick={estadobotones}
                       data-toggle="tab"
-                      className="nav-link has-icon active"
+                      className="has-icon"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -425,7 +445,7 @@ export default function Home() {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx={12} cy={7} r={4} />
                       </svg>
-                    </a>
+                    </button>
                   </li>
                   <li className="nav-item">
                     <a
@@ -513,14 +533,18 @@ export default function Home() {
                 </ul>
               </div>
               <div className="card-body tab-content">
-                <div className="tab-pane active" id="profile">
-                  <h6><strong>INFORMACIÓN PERSONAL</strong></h6>
+                <div className="block" id="hprofile">
+                  <h6>
+                    <strong>INFORMACIÓN PERSONAL</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Nombre</strong></label>
+                          <label>
+                            <strong>Nombre</strong>
+                          </label>
                           <input
                             name="name"
                             type="text"
@@ -533,7 +557,9 @@ export default function Home() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>DPI</strong></label>
+                          <label>
+                            <strong>DPI</strong>
+                          </label>
                           <input
                             disabled
                             type="text"
@@ -546,7 +572,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Estado Civil</strong></label>
+                          <label>
+                            <strong>Estado Civil</strong>
+                          </label>
                           <select
                             className="form-control"
                             value={userperfil.estadocivil}
@@ -562,7 +590,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Número de Teléfono</strong></label>
+                          <label>
+                            <strong>Número de Teléfono</strong>
+                          </label>
                           <input
                             name="telefono"
                             disabled={estadoperfil}
@@ -580,7 +610,9 @@ export default function Home() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Ocupación</strong></label>
+                          <label>
+                            <strong>Ocupación</strong>
+                          </label>
                           <select
                             className="form-control"
                             disabled
@@ -598,7 +630,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Fecha de Nacimiento</strong></label>
+                          <label>
+                            <strong>Fecha de Nacimiento</strong>
+                          </label>
                           <input
                             disabled
                             type="text"
@@ -610,7 +644,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Departamento</strong></label>
+                          <label>
+                            <strong>Departamento</strong>
+                          </label>
                           <select
                             name="department"
                             className="form-control"
@@ -649,7 +685,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Municipio</strong></label>
+                          <label>
+                            <strong>Municipio</strong>
+                          </label>
                           <input
                             name="municipality"
                             disabled={estadoperfil}
@@ -663,7 +701,9 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label><strong>Dirección de Residencia</strong></label>
+                          <label>
+                            <strong>Dirección de Residencia</strong>
+                          </label>
                           <input
                             disabled={estadoperfil}
                             name="address"
@@ -677,7 +717,9 @@ export default function Home() {
 
                       <div className="col-md-12">
                         <div className="form-group">
-                          <label><strong>Biografía</strong></label>
+                          <label>
+                            <strong>Biografía</strong>
+                          </label>
                           <textarea
                             name="bibliography"
                             disabled={estadoperfil}
@@ -714,8 +756,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="tab-pane" id="account">
-                  <h6><strong>ELIMINAR CUENTAS</strong></h6>
+                <div className="hidden" id="haccount">
+                  <h6>
+                    <strong>ELIMINAR CUENTAS</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -753,12 +797,16 @@ export default function Home() {
                     </button>
                   </form>
                 </div>
-                <div className="tab-pane" id="security">
-                  <h6><strong>AJUSTES DE SEGURIDAD</strong></h6>
+                <div className="hidden" id="hsecurity">
+                  <h6>
+                    <strong>AJUSTES DE SEGURIDAD</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block"><strong>Cambiar constraseña</strong></label>
+                      <label className="d-block">
+                        <strong>Cambiar constraseña</strong>
+                      </label>
                       <input
                         onChange={cambiarpassword}
                         name="oldpassword"
@@ -800,8 +848,10 @@ export default function Home() {
                     </button>
                   </form>
                 </div>
-                <div className="tab-pane" id="notification">
-                  <h6><strong>INFORMACIÓN DE SALUD</strong></h6>
+                <div className="hidden" id="hnotification">
+                  <h6>
+                    <strong>INFORMACIÓN DE SALUD</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -815,7 +865,6 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="form-group mb-0">
-                     
                       <ul className="list-group list-group-sm">
                         <li className="list-group-item has-icon">
                           <strong>Tipo de Sangre</strong>
@@ -948,8 +997,6 @@ export default function Home() {
         nonce="449d412794494977987fdafaa11"
         src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"
       ></Script>
-      <Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
 
       <script type="text/javascript"></script>
     </>
