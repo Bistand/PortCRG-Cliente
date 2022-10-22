@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import { deleteCookie, getCookie } from "cookies-next";
 import axios from "axios";
 import { datosUSer } from "../peticiones/session";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+
 
 const Navbar = () => {
   const [user, setUser] = useState("");
@@ -18,6 +21,8 @@ const Navbar = () => {
   const [texinicio, setTexinicio] = useState("Inicio");
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
+
+  
   let usuario, privilegess;
   useEffect(() => {
     if (tokenuser) {
@@ -66,6 +71,12 @@ const Navbar = () => {
     router.push("/");
     location.reload();
   };
+  // PARA ABRIR EL DROPDOWN DE PERFIL
+  const [dropdown, setDropdown] = useState(false);
+  const abrirCerrarDropdown = () => {
+    setDropdown(!dropdown);
+  }
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
@@ -106,75 +117,61 @@ const Navbar = () => {
         </a>
         <Link href={"/login"}>
           <a
-            className={` sm:${
-              !Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Ocultar ? "block " : "hidden"
-            }`}
+            className={` sm:${!Ocultar ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Ocultar ? "block " : "hidden"
+              }`}
           >
             Ingresar
           </a>
         </Link>
         <Link href="/sign_up">
           <a
-            className={` sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
-            }`}
+            className={` sm:${!Supeadmrhidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Supeadmrhidden ? "block " : "hidden"
+              }`}
           >
             Registrar
           </a>
         </Link>
         <Link href="/course">
           <a
-            className={` sm:${
-              !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Todoshidden ? "block " : "hidden"
-            }`}
+            className={` sm:${!Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Todoshidden ? "block " : "hidden"
+              }`}
           >
             Cursos
           </a>
         </Link>
         <Link href="/informative">
           <a
-            className={` sm:${
-              !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Todoshidden ? "block " : "hidden"
-            }`}
+            className={` sm:${!Todoshidden ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Todoshidden ? "block " : "hidden"
+              }`}
           >
             Eventos
           </a>
         </Link>
         <a
           href="/EntradaSalida"
-          className={` sm:${
-            !Userhidden ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Userhidden ? "block " : "hidden"
-          }`}
+          className={` sm:${!Userhidden ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Userhidden ? "block " : "hidden"
+            }`}
         >
           Generar código
         </a>
         <a
           href="/RegistroEntradas"
-          className={` sm:${
-            !Admuser ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Admuser ? "block " : "hidden"
-          }`}
+          className={` sm:${!Admuser ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${!Admuser ? "block " : "hidden"
+            }`}
         >
           Registro
         </a>
         <a
           href="/users/courses"
-          className={` sm:${
-            !Userhidden ? "inline-block " : "hidden"
-          } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
-            !Userhidden ? "block " : "hidden"
-          }`}
+          className={` sm:${!Userhidden ? "inline-block " : "hidden"
+            } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${!Userhidden ? "block " : "hidden"
+            }`}
         >
           Cursos Asignados
         </a>
@@ -182,11 +179,9 @@ const Navbar = () => {
         <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
           <button
             onClick={logout}
-            className={`ml-4  sm:${
-              Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              Ocultar ? "block " : "hidden"
-            }`}
+            className={`ml-4  sm:${Ocultar ? "inline-block " : "hidden"
+              } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${Ocultar ? "block " : "hidden"
+              }`}
           >
             Cerrar sesion
           </button>
@@ -203,7 +198,9 @@ const Navbar = () => {
           <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
             {user}
           </a>
-          <a href="/profile">
+
+          {/* INICIO CODIGO PARA PERFIL */}
+          {/* <a href="/profile">
             <button
               className={` sm:${
                 !Todoshidden ? "inline-block " : "hidden"
@@ -216,7 +213,25 @@ const Navbar = () => {
                 src="/user1.png"
               ></img>
             </button>
-          </a>
+          </a> */}
+          
+          <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown}>
+            <DropdownToggle>
+              PERFIL DE USUARIO
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem>Información Personal</DropdownItem>
+              <DropdownItem>Seguridad</DropdownItem>
+              <DropdownItem>Salud</DropdownItem>
+              <DropdownItem>Ajuste de cuentas</DropdownItem>
+            </DropdownMenu>
+
+
+          </Dropdown>
+
+          {/* FIN CODIGO PERFIL */}
+
+
         </div>
       </div>
     </nav>
