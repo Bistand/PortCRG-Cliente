@@ -77,6 +77,11 @@ const Navbar = () => {
     setDropdown(!dropdown);
   }
 
+  //METODO ACCIONES DROPDOWN
+  const editarPerfil=()=>{
+    router.push("/profile");
+  }
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
@@ -215,15 +220,18 @@ const Navbar = () => {
             </button>
           </a> */}
           
-          <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown}>
-            <DropdownToggle>
+          <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} direction="down" >
+            <DropdownToggle caret>
               PERFIL DE USUARIO
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>Información Personal</DropdownItem>
+            {/* <DropdownItem header>Perfil de Usuario</DropdownItem>
+            <hr></hr> */}
+              <DropdownItem onClick={()=>editarPerfil()}>Información Personal</DropdownItem>
               <DropdownItem>Seguridad</DropdownItem>
               <DropdownItem>Salud</DropdownItem>
               <DropdownItem>Ajuste de cuentas</DropdownItem>
+              {/*    */}
             </DropdownMenu>
 
 
