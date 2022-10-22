@@ -7,7 +7,7 @@ import axios from "axios";
 import { datosUSer } from "../peticiones/session";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-
+import Styles from '../styles/Dropdown.module.css'
 
 const Navbar = () => {
   const [user, setUser] = useState("");
@@ -233,7 +233,7 @@ const Navbar = () => {
           </a> */}
           
           <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} direction="down" >
-            <DropdownToggle caret>
+            <DropdownToggle caret className={Styles.botonDropdown}>
               PERFIL DE USUARIO
             </DropdownToggle>
             <DropdownMenu>
