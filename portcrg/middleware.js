@@ -12,7 +12,7 @@ export async function middleware(request) {
   const cursos = NextResponse.rewrite(new URL("/courses", request.url));
 
   const cursosdeusuario = NextResponse.rewrite(
-    new URL("/users/course", request.url)
+    new URL("/courses", request.url)
   );
   const entradaSalida = NextResponse.rewrite(
     new URL("/EntradaSalida", request.url)
@@ -78,18 +78,16 @@ export async function middleware(request) {
       return home;
     }
   }
-  /*if (request.nextUrl.pathname.startsWith("/course")) {
+  if (request.nextUrl.pathname == "/courses") {
     if (token) {
       return cursos;
     } else {
       return home;
     }
-  }*/
-  // if (request.nextUrl.pathname.startsWith("/courses")) {
-  //   if (token && valor === "3") {
-  //     return cursosdeusuario;
-  //   } else {
-  //     return home;
-  //   }
-  // }
+  }
+  if (request.nextUrl.pathname.startsWith("/courses/")) {
+    if (!token) {
+      return home;
+    }
+  }
 }
