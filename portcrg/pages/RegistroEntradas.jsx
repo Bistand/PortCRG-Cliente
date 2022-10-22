@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
+import { getCookie } from "cookies-next";
 
 export default function RegistroEntradas() {
   const [uno, setuno] = useState("");
@@ -14,6 +15,7 @@ export default function RegistroEntradas() {
   const [codigo, setcodigo] = useState("");
 
   const submitUsuario = async () => {
+    const tokenuser = getCookie("tokenuser")
     let campo1 = codigo;
     if (campo1 != "") {
       console.log("funciona");
@@ -24,6 +26,7 @@ export default function RegistroEntradas() {
           body: JSON.stringify({ codigo }),
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + tokenuser,
           },
         }
       );
