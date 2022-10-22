@@ -29,8 +29,9 @@ const Navbar = () => {
           setAdminuser(false);
           break;
         case "2":
-          setAdminhidden(false);
+          setSuperadmhidden(false);
           setAdminuser(false);
+
           break;
         case "3":
           setUserhidden(false);
@@ -63,6 +64,7 @@ const Navbar = () => {
     deleteCookie("tokenuser");
     deleteCookie("token");
     router.push("/");
+    location.reload();
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">

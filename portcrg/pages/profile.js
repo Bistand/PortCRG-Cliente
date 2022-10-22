@@ -35,7 +35,7 @@ export default function Home() {
   const router = useRouter();
   const Swal = require("sweetalert2");
 
-  const [estadodelet, setEstadodelet] = useState(false);
+  const [estadodelet, setEstadodelet] = useState(true);
   const [estadoperfil, setEstadoperfil] = useState(true);
   const [estadoSalud, setEstadosalud] = useState(true);
   //Mostrar datos de salud
@@ -126,7 +126,7 @@ export default function Home() {
       setCredenciales(credenciales);
       setUserperfil(userperfil);
 
-      if (perfil.privileges === 1) {
+      if (perfil.privileges === 1 || perfil.privileges === 2) {
         setEstadodelet(false);
       } else {
         setEstadodelet(true);
@@ -514,13 +514,13 @@ export default function Home() {
               </div>
               <div className="card-body tab-content">
                 <div className="tab-pane active" id="profile">
-                  <h6>INFORMACIÓN PERSONAL</h6>
+                  <h6><strong>INFORMACIÓN PERSONAL</strong></h6>
                   <hr />
                   <form>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Nombres</label>
+                          <label><strong>Nombre</strong></label>
                           <input
                             name="name"
                             type="text"
@@ -533,7 +533,7 @@ export default function Home() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>DPI</label>
+                          <label><strong>DPI</strong></label>
                           <input
                             disabled
                             type="text"
@@ -546,7 +546,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Estado Civil</label>
+                          <label><strong>Estado Civil</strong></label>
                           <select
                             className="form-control"
                             value={userperfil.estadocivil}
@@ -562,7 +562,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Número de Teléfono</label>
+                          <label><strong>Número de Teléfono</strong></label>
                           <input
                             name="telefono"
                             disabled={estadoperfil}
@@ -580,7 +580,7 @@ export default function Home() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Ocupación</label>
+                          <label><strong>Ocupación</strong></label>
                           <select
                             className="form-control"
                             disabled
@@ -598,7 +598,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Fecha de Nacimiento</label>
+                          <label><strong>Fecha de Nacimiento</strong></label>
                           <input
                             disabled
                             type="text"
@@ -610,7 +610,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Departamento</label>
+                          <label><strong>Departamento</strong></label>
                           <select
                             name="department"
                             className="form-control"
@@ -649,7 +649,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Municipio</label>
+                          <label><strong>Municipio</strong></label>
                           <input
                             name="municipality"
                             disabled={estadoperfil}
@@ -663,7 +663,7 @@ export default function Home() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label>Dirección de Residencia</label>
+                          <label><strong>Dirección de Residencia</strong></label>
                           <input
                             disabled={estadoperfil}
                             name="address"
@@ -677,7 +677,7 @@ export default function Home() {
 
                       <div className="col-md-12">
                         <div className="form-group">
-                          <label>Biografía</label>
+                          <label><strong>Biografía</strong></label>
                           <textarea
                             name="bibliography"
                             disabled={estadoperfil}
@@ -715,7 +715,7 @@ export default function Home() {
                 </div>
 
                 <div className="tab-pane" id="account">
-                  <h6>ELIMINAR CUENTAS</h6>
+                  <h6><strong>ELIMINAR CUENTAS</strong></h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -737,7 +737,7 @@ export default function Home() {
 
                     <div className="form-group">
                       <label className="d-block text-danger">
-                        Eliminar Cuenta
+                        <strong>Eliminar Cuenta</strong>
                       </label>
                       <p className="text-muted font-size-sm">
                         Solo un usuario Administrador puede eliminar tu cuenta.
@@ -754,11 +754,11 @@ export default function Home() {
                   </form>
                 </div>
                 <div className="tab-pane" id="security">
-                  <h6>AJUSTES DE SEGURIDAD</h6>
+                  <h6><strong>AJUSTES DE SEGURIDAD</strong></h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block">Cambiar contraseña</label>
+                      <label className="d-block"><strong>Cambiar constraseña</strong></label>
                       <input
                         onChange={cambiarpassword}
                         name="oldpassword"
@@ -801,7 +801,7 @@ export default function Home() {
                   </form>
                 </div>
                 <div className="tab-pane" id="notification">
-                  <h6>INFORMACIÓN DE SALUD</h6>
+                  <h6><strong>INFORMACIÓN DE SALUD</strong></h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -815,10 +815,10 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="form-group mb-0">
-                      <label className="d-block">Salud</label>
+                     
                       <ul className="list-group list-group-sm">
                         <li className="list-group-item has-icon">
-                          Tipo de Sangre
+                          <strong>Tipo de Sangre</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <select
                               className="form-control"
@@ -847,7 +847,7 @@ export default function Home() {
                           contrario puede dejar en blanco el espacio.
                         </small>
                         <li className="list-group-item has-icon">
-                          Enfermedad:
+                          <strong>Enfermedad:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
                               name="name"
@@ -856,6 +856,7 @@ export default function Home() {
                               placeholder="Ingrese enfermedad la cual padece"
                             />
                             <hr></hr>
+                            <label>Historial:</label>
                             <textarea
                               disabled={estadoSalud}
                               name="enfermedad"
@@ -863,13 +864,13 @@ export default function Home() {
                               id="enfermedad"
                               rows={4}
                               value={datossalud.enfermedad}
-                              readonly="readonly"
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Medicamento:
+                          <strong>Medicamento:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
                               name="name"
@@ -878,7 +879,7 @@ export default function Home() {
                               placeholder="Ingrese medicamento que consume"
                             />
                             <hr></hr>
-
+                            <label>Historial:</label>
                             <textarea
                               disabled={estadoSalud}
                               name="areamedicina"
@@ -886,13 +887,13 @@ export default function Home() {
                               id="medicamento"
                               value={datossalud.medicina}
                               rows={4}
-                              readonly="readonly"
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Incapacidad:
+                          <strong>Incapacidad:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
                               placeholder="Ingrese incapacidad"
@@ -901,7 +902,7 @@ export default function Home() {
                               className="form-control"
                             />
                             <hr></hr>
-
+                            <label>Historial:</label>
                             <textarea
                               disabled={estadoSalud}
                               name="incapacidad"
@@ -909,7 +910,7 @@ export default function Home() {
                               id="incapacidad"
                               rows={4}
                               value={datossalud.incapacidad}
-                              readonly="readonly"
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
