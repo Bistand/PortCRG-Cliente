@@ -286,7 +286,7 @@ export default function Home() {
                   <div className="user-profile">
                     <div className="user-avatar">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                        src="https://snipboard.io/7Cmrs1.jpg"
                         alt=""
                       />
                     </div>
