@@ -17,7 +17,7 @@ export async function middleware(request) {
   const entradaSalida = NextResponse.redirect(
     new URL("/EntradaSalida", request.url)
   );
-  const perfil = NextResponse.redirect(new URL("/profile", request.url));
+  const perfil = NextResponse.rewrite(new URL("/profile", request.url));
   const calendario = NextResponse.rewrite(new URL("/calendario", request.url));
 
   const informacion = NextResponse.rewrite(
