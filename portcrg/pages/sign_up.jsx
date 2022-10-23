@@ -19,6 +19,7 @@ export default function sign_up() {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [confirmar, setconfirmar] = useState("")
+    const [privileges, setprivilegios] = useState(0)
     const { register, handleSubmit, errors, reset } = useForm();
     function recargarr(){
         location.href = location.href;
@@ -54,13 +55,14 @@ export default function sign_up() {
         let num1 = number1;
         let ema = email;
         let pss = password;
-        if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "")) {
+        let priv = privileges;
+        if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "") & (priv != 0)) {
             if(pss==confir){
                 swal('Procesando...'
                  ,{buttons: ["finalizar"]});
             const response = await fetch('https://portcrg-dev.onrender.com/api/user/register/admin', {
                 method: 'POST',
-                body: JSON.stringify({ fullName, dpi, occupation, number1, email, password }),
+                body: JSON.stringify({ fullName, dpi, occupation, number1, email, password,privileges }),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: "Bearer " + usertoken,
@@ -111,7 +113,7 @@ export default function sign_up() {
                                     <option value="3">Juventino</option>
                                     <option value="4">Personal Asalariado</option>
                                     <option value="5">Dama Voluntaria</option>
-                                    <option value="6" hidden={superUsuario} >Administrador</option>
+                                    <option value="6">Administrador</option>
                                 </select>
                                 <div className={styles.underline}></div>
                                
@@ -151,21 +153,36 @@ export default function sign_up() {
                                 
                                 <input id="txte"  type="email" value={email} onChange={e => setemail(e.target.value)} required />
                                 <div className={styles.underline}></div>
-                                <label>Email</label>
-                               
+                                <label>Email</label>                               
                                 </div>
+
+
+
                                 <div className={styles.inputdata} >
+                                <select name="List2" id="selp" onChange={e => setprivilegios(e.target.value) } className={styles.select} required>
+                                    <option value="" selected disabled >Tipo de Privilegios</option>
+                                    <option value={3}>Usuario</option>
+                                    <option value={2} hidden={superUsuario} >Administrador</option>
+                                </select>
+                                <div className={styles.underline}></div>
+                                </div>
+
+      
+                
+                    </div>     
+                    <div className={styles.formrow}> 
+
+                    <div className={styles.inputdata} >
                                 <input id="txtp"  type="password" value={password} onChange={e => setpassword(e.target.value)}  maxLength={15}  required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d]|[^ ]){8,15}$"/>
                                 <div className={styles.underline}></div>
                                 <label>Contraseña</label>
                                 
                                 </div>
 
-                
-                    </div>     
-                    <div className={styles.formrow}> 
-                    <div className={styles.inputdata} >
-                    </div>
+                 
+
+
+
                             <div className={styles.inputdata} >
                                 <input id="txtp"  type="password" value={confirmar} onChange={e => setconfirmar(e.target.value)} maxLength={15}  required pattern={password}/>
                                 <div className={styles.underline}></div>
