@@ -4,11 +4,11 @@ import { logOut } from "./peticiones/session";
 export async function middleware(request) {
   //colocamos todas las rutas las cuales se van a direcionar
   //si no cumplen con los autenticaciones
-  const loginnull = NextResponse.redirect(new URL("/login", request.url));
+  const loginnull = NextResponse.rewrite(new URL("/login", request.url));
 
   const home = NextResponse.redirect(new URL("/", request.url));
   const asistencia = NextResponse.redirect(new URL("/asistencia", request.url));
-  const singUp = NextResponse.redirect(new URL("/sign_up", request.url));
+  const singUp = NextResponse.rewrite(new URL("/sign_up", request.url));
   const cursos = NextResponse.redirect(new URL("/courses", request.url));
 
   const cursosdeusuario = NextResponse.redirect(
@@ -20,7 +20,7 @@ export async function middleware(request) {
   const perfil = NextResponse.redirect(new URL("/profile", request.url));
   const calendario = NextResponse.rewrite(new URL("/calendario", request.url));
 
-  const informacion = NextResponse.redirect(
+  const informacion = NextResponse.rewrite(
     new URL("/informative", request.url)
   );
 
