@@ -126,7 +126,7 @@ export default function Home() {
       setCredenciales(credenciales);
       setUserperfil(userperfil);
 
-      if (perfil.privileges === 1 || perfil.privileges === 2) {
+      if (perfil.privileges === 1) {
         setEstadodelet(false);
       } else {
         setEstadodelet(true);

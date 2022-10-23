@@ -63,8 +63,7 @@ const Navbar = () => {
   const logout = () => {
     deleteCookie("tokenuser");
     deleteCookie("token");
-    router.push("/");
-    location.reload();
+    router.push("/login");
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
