@@ -37,6 +37,8 @@ export async function middleware(request) {
   if (request.nextUrl.pathname.startsWith("/login")) {
     if (token) {
       return home;
+    } else {
+      return loginnull;
     }
   }
   if (request.nextUrl.pathname.startsWith("/asistencia")) {
