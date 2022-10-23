@@ -97,12 +97,11 @@ const Navbar = () => {
           (navbarOpen ? null : " hidden")
         }
       >
-        <a
-          href="/"
-          className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-        >
-          Inicio
-        </a>
+        <Link href="/">
+          <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+            Inicio
+          </a>
+        </Link>
         <Link href={"/login"}>
           <a
             className={` sm:${
