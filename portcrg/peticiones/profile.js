@@ -22,7 +22,7 @@ export async function Getdatosuser(token) {
   }
 }
 
-export async function UpdateProfile(perfil,token) {
+export async function UpdateProfile(perfil, token) {
   try {
     const resultado = await fetch(
       `https://portcrg-dev.onrender.com/api/user/updateInfo/${perfil.id}`,
@@ -109,6 +109,37 @@ export async function updateP(credenciales, id) {
     console.log(resultado.then());
     return resultado;
   } catch (error) {
+    return null;
+  }
+}
+
+export async function updateHealth(
+  bloodType,
+  illness,
+  medicines,
+  inability,
+  id,
+  token
+) {
+  try {
+    const resultado = await fetch(
+      `https://portcrg-dev.onrender.com/api/user/updateHealth/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          bloodType: bloodType,
+          illness: illness,
+          medicines: medicines,
+          inability: inability,
+        }),
+      }
+    );
+    return resultado.json();
+  } catch (e) {
     return null;
   }
 }

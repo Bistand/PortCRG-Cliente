@@ -15,6 +15,7 @@ import {
   updatePassword,
   updateP,
   deletUser,
+  updateHealth,
 } from "../peticiones/profile";
 import { datosUSer, newPassword } from "../peticiones/session";
 import moment, { Moment } from "moment";
@@ -34,7 +35,13 @@ export default function Home() {
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
   const Swal = require("sweetalert2");
+  let medicinanew = [];
 
+  const [dataMedicina, setDatamedicina] = useState([]);
+  const [dataEnfermedad, setDataenfermedad] = useState([]);
+  const [dataIncapacidad, setDataincapacidad] = useState([]);
+
+  //estado de las ventanas
   const [estadodelet, setEstadodelet] = useState(true);
   const [estadoperfil, setEstadoperfil] = useState(true);
   const [estadoSalud, setEstadosalud] = useState(true);
@@ -45,6 +52,12 @@ export default function Home() {
     incapacidad: "",
     tiposangre: 0,
   });
+  //variables para nuevas datos de salud
+  const [newMedicina, setNewmedicina] = useState("");
+  const [newEnfermedad, setNewenfermedad] = useState("");
+  const [newIncapacidad, setNewincapacidad] = useState("");
+  const [newTiposangre, setNewtiposangre] = useState(0);
+
   //variables propiedades del perfil
   const [userperfil, setUserperfil] = useState({
     id: "",
@@ -88,6 +101,9 @@ export default function Home() {
     usuario = await Getdatosuser(tokenuser);
     console.log(usuario);
     perfil = usuario.data;
+    setDatamedicina([]);
+    setDataincapacidad([]);
+    setDataenfermedad([]);
     datossalud.medicina = "";
     datossalud.enfermedad = "";
     datossalud.incapacidad = "";
@@ -108,24 +124,32 @@ export default function Home() {
       credenciales.email = perfil.email;
 
       //datos de salud del usuario
-      datossalud.tiposangre = perfil.bloodType;
+      setNewtiposangre(perfil.bloodType);
       for (let a = 0; a < perfil.medicines.length; a++) {
-        console.log(perfil.medicines[a].medicines);
+        //console.log(perfil.medicines[a].medicines);
         datossalud.medicina += "\n" + "-" + perfil.medicines[a].medicines;
+        const medic = {
+          medicines: perfil.medicines[a].medicines,
+        };
+        setDatamedicina((dataMedicina) => [...dataMedicina, medic]);
       }
       for (let a = 0; a < perfil.inability.length; a++) {
-        console.log(perfil.inability[a].inability);
+        const medic = {
+          inability: perfil.inability[a].inability,
+        };
+        setDataincapacidad((dataIncapacidad) => [...dataIncapacidad, medic]);
         datossalud.incapacidad += "\n" + "-" + perfil.inability[a].inability;
       }
       for (let a = 0; a < perfil.illness.length; a++) {
-        console.log(perfil.illness[a].illness);
-        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illnes;
+        const medic = {
+          illness: perfil.illness[a].illness,
+        };
+        setDataenfermedad((dataEnfermedad) => [...dataEnfermedad, medic]);
+        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illness;
       }
       setDatossalud(datossalud);
-      console.log(datossalud.medicina);
       setCredenciales(credenciales);
       setUserperfil(userperfil);
-
       if (perfil.privileges === 1) {
         setEstadodelet(false);
       } else {
@@ -152,12 +176,13 @@ export default function Home() {
       setEstadoperfil(true);
     }
   };
+  const [bloquesalud, setBloquesalud] = useState(true);
   const editarLibresalud = () => {
-    if (estadoSalud) {
-      setEstadosalud(false);
+    if (bloquesalud) {
+      setBloquesalud(false);
       Swal.fire("Ya puede editar!", "", "success");
     } else {
-      setEstadosalud(true);
+      setBloquesalud(true);
     }
   };
 
@@ -283,6 +308,48 @@ export default function Home() {
       .querySelector("#h" + e.currentTarget.id)
       .classList.remove("hidden");
   }
+
+  const agregarDatossalud = async () => {
+    if (newEnfermedad != "") {
+      const enfermedadnew = {
+        illness: newEnfermedad,
+      };
+      dataEnfermedad.push(enfermedadnew);
+    }
+    if (newIncapacidad != "") {
+      const incapacidadnew = {
+        inability: newIncapacidad,
+      };
+      dataIncapacidad.push(incapacidadnew);
+    }
+
+    if (newMedicina != "") {
+      const medicinanew = {
+        medicines: newMedicina,
+      };
+      dataMedicina.push(medicinanew);
+    }
+    const resultado = await updateHealth(
+      newTiposangre,
+      dataEnfermedad,
+      dataMedicina,
+      dataIncapacidad,
+      userperfil.id,
+      tokenuser
+    );
+
+    if (resultado.response === "ok") {
+      Swal.fire("Datos Actualizada!", "", "success");
+      setNewenfermedad("");
+      setNewincapacidad("");
+      setNewmedicina("");
+      setBloquesalud(true);
+      Datos();
+    } else {
+      Swal.fire("No se pudo Actualizar", "", "error");
+      console.log(resultado);
+    }
+  };
 
   return (
     <>
@@ -871,8 +938,9 @@ export default function Home() {
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <select
                               className="form-control"
-                              disabled={estadoSalud}
-                              value={datossalud.tiposangre}
+                              disabled={bloquesalud}
+                              onChange={(e) => setNewtiposangre(e.target.value)}
+                              value={newTiposangre}
                             >
                               <option value={1}>O Positivo</option>
                               <option value={2}>O Negativo</option>
@@ -903,6 +971,9 @@ export default function Home() {
                               type="text"
                               className="form-control"
                               placeholder="Ingrese enfermedad la cual padece"
+                              onChange={(e) => setNewenfermedad(e.target.value)}
+                              value={newEnfermedad}
+                              hidden={bloquesalud}
                             />
                             <hr></hr>
                             <label>Historial:</label>
@@ -924,6 +995,9 @@ export default function Home() {
                             <input
                               name="name"
                               type="text"
+                              onChange={(e) => setNewmedicina(e.target.value)}
+                              value={newMedicina}
+                              hidden={bloquesalud}
                               className="form-control"
                               placeholder="Ingrese medicamento que consume"
                             />
@@ -945,6 +1019,11 @@ export default function Home() {
                           <strong>Incapacidad:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
+                              onChange={(e) =>
+                                setNewincapacidad(e.target.value)
+                              }
+                              value={newIncapacidad}
+                              hidden={bloquesalud}
                               placeholder="Ingrese incapacidad"
                               name="name"
                               type="text"
@@ -974,7 +1053,13 @@ export default function Home() {
                     >
                       Editar
                     </button>
-                    <button className="btn btn-primary">Actualizar</button>
+                    <button
+                      onClick={agregarDatossalud}
+                      hidden={bloquesalud}
+                      className="btn btn-primary"
+                    >
+                      Actualizar
+                    </button>
                   </div>
                 </div>
               </div>
