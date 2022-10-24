@@ -3,6 +3,7 @@ import Link from "next/link";
 import Modal from "./Modal";
 import FormCourses from "./FormCourses";
 import useCourses from "../hooks/useCourses";
+import { useEvents } from "../context/eventContext";
 
 import {
   MdHighlightOff,
@@ -18,6 +19,7 @@ function CourseGenInfo(props) {
   const [modalPdf, setModalPdf] = useState(false);
   const course = props.course;
   const { AsignarCourse } = useCourses();
+  const { privileges } = useEvents();
 
   const addCourse = async () => {
     await AsignarCourse({
@@ -34,13 +36,15 @@ function CourseGenInfo(props) {
           </p>
 
           <div className="flex space-x-4">
-            <button
-              className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
+            {privileges == 1 || privileges == 2 ? (
+              <button
+                className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
             font-bold text-sm rounded-lg text-start"
-              onClick={() => setModal(true)}
-            >
-              Editar
-            </button>
+                onClick={() => setModal(true)}
+              >
+                Editar
+              </button>
+            ) : null}
 
             <button
               disabled={false}

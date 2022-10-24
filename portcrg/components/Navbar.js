@@ -124,7 +124,7 @@ const Navbar = () => {
             Registrar
           </a>
         </Link>
-        <Link href="/course">
+        <Link href="/courses">
           <a
             className={` sm:${
               !Todoshidden ? "inline-block " : "hidden"

@@ -80,17 +80,15 @@ export async function middleware(request) {
       return home;
     }
   }
-  /*if (request.nextUrl.pathname.startsWith("/course")) {
-    if (token) {
-      return cursos;
-    } else {
-      return home;
-    }
-  }*/
-  // if (request.nextUrl.pathname.startsWith("/courses")) {
-  //   if (token && valor === "3") {
-  //     return cursosdeusuario;
+  // if (request.nextUrl.pathname === "/courses") {
+  //   if (token) {
+  //     return cursos;
   //   } else {
+  //     return home;
+  //   }
+  // }
+  // if (request.nextUrl.pathname.startsWith("/courses/")) {
+  //   if (!token) {
   //     return home;
   //   }
   // }
