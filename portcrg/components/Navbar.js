@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { deleteCookie, getCookie } from "cookies-next";
 import axios from "axios";
 import { datosUSer } from "../peticiones/session";
+import { Getdatosuser } from "../peticiones/profile";
 
 const Navbar = () => {
   const [user, setUser] = useState("");
@@ -18,7 +19,7 @@ const Navbar = () => {
   const [texinicio, setTexinicio] = useState("Inicio");
   const tokenuser = getCookie("tokenuser");
   const router = useRouter();
-  let usuario, privilegess;
+  let usuario, privilegess, perfil, user2;
   useEffect(() => {
     if (tokenuser) {
       privilegess = getCookie("token");
@@ -51,14 +52,12 @@ const Navbar = () => {
       setUser("");
     }
   });
-  const retornarinicio = () => {
-    //router.push("/")
-  };
 
-  const Datos = async (e) => {
-    usuario = await datosUSer(tokenuser);
-    console.log(usuario);
-    setUser(usuario.name);
+  const Datos = async () => {
+    user2 = await Getdatosuser(tokenuser);
+    perfil = user2.data;
+    console.log(perfil.fullName);
+    setUser(perfil.fullName);
   };
   const logout = () => {
     deleteCookie("tokenuser");
@@ -68,7 +67,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
-        <button onClick={retornarinicio}>
+        <button>
           <Link href="/">
             <a>
               <Image src="/PortCRG.png" width={64} height={64}></Image>
@@ -210,7 +209,7 @@ const Navbar = () => {
               }`}
             >
               <img
-                className="h-[30px] w-[30px] rounded-full "
+                className="h-[30px] w-[30px] rounded-full inline-block"
                 src="/user1.png"
               ></img>
             </button>

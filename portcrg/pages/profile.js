@@ -229,9 +229,11 @@ export default function Home() {
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
+            const aceptar = datosactualizados();
+            console.log("valor");
+            console.log(aceptar);
             Swal.fire("Datos actualizados!", "", "success");
             setEstadoperfil(true);
-            datosactualizados();
           } else if (result.isDenied) {
             Swal.fire("No se actuliazaron datos", "", "info");
             console.log(userperfil);
@@ -262,7 +264,6 @@ export default function Home() {
           Swal.fire("No se pudo eliminar cuenta", "", "error");
           //console.log(aceptar);
         }
-        datosactualizados();
       } else if (result.isDenied) {
         Swal.fire("Se cancelo eliminación de cuenta", "", "info");
         //console.log(userperfil);
@@ -270,7 +271,7 @@ export default function Home() {
     });
   };
   async function datosactualizados() {
-    await UpdateProfile(userperfil, tokenuser);
+    return await UpdateProfile(userperfil, tokenuser);
   }
 
   async function passwordupdate() {
