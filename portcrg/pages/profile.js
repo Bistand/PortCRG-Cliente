@@ -835,6 +835,7 @@ export default function Home() {
                     <button
                       type="submit"
                       className="btn btn-primary"
+                      hidden={estadoperfil}
                       onClick={actualizarperfil}
                     >
                       Actualizar
