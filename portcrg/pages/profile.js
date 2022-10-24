@@ -240,6 +240,12 @@ export default function Home() {
           }
           router.push("/profile");
         });
+      } else {
+        Swal.fire(
+          "Tienen que tener datos obligatorios -Nombre, -Telefono!",
+          "",
+          "info"
+        );
       }
     }
   };
