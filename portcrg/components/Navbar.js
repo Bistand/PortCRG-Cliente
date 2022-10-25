@@ -179,7 +179,7 @@ const Navbar = () => {
         <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
           <button
             onClick={logout}
-            className={`ml-4  sm:${
+            className={`sm:${
               Ocultar ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               Ocultar ? "block " : "hidden"
@@ -197,19 +197,19 @@ const Navbar = () => {
         <div className="text-sm sm:flex-grow"></div>
 
         <div className="items-center flex flex-row justify-end">
-          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
             {user}
           </a>
           <a href="/profile">
             <button
               className={` sm:${
                 !Todoshidden ? "inline-block " : "hidden"
-              } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+              } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold  ${
                 !Todoshidden ? "block " : "hidden"
               }`}
             >
               <img
-                className="h-[30px] w-[30px] rounded-full inline-block"
+                className="h-[30px] w-[30px] rounded-full inline-block "
                 src="/user1.png"
               ></img>
             </button>
