@@ -97,86 +97,99 @@ const Navbar = () => {
         }
       >
         <Link href="/">
-          <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+          <button
+            className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            onClick={() => setNavbarOpen(false)}
+          >
             Inicio
-          </a>
+          </button>
         </Link>
         <Link href={"/login"}>
-          <a
+          <button
             className={` sm:${
               !Ocultar ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Ocultar ? "block " : "hidden"
             }`}
+            onClick={() => setNavbarOpen(false)}
           >
             Ingresar
-          </a>
+          </button>
         </Link>
         <Link href="/sign_up">
-          <a
+          <button
             className={` sm:${
               !Supeadmrhidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Supeadmrhidden ? "block " : "hidden"
             }`}
+            onClick={() => setNavbarOpen(false)}
           >
             Registrar
-          </a>
+          </button>
         </Link>
         <Link href="/courses">
-          <a
+          <button
             className={` sm:${
               !Todoshidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Todoshidden ? "block " : "hidden"
             }`}
+            onClick={() => setNavbarOpen(false)}
           >
             Cursos
-          </a>
+          </button>
         </Link>
         <Link href="/informative">
-          <a
+          <button
             className={` sm:${
               !Todoshidden ? "inline-block " : "hidden"
             } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Todoshidden ? "block " : "hidden"
             }`}
+            onClick={() => setNavbarOpen(false)}
           >
             Eventos
-          </a>
+          </button>
         </Link>
-        <a
-          href="/EntradaSalida"
-          className={` sm:${
-            !Userhidden ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Userhidden ? "block " : "hidden"
-          }`}
-        >
-          Generar código
-        </a>
-        <a
-          href="/RegistroEntradas"
-          className={` sm:${
-            !Admuser ? "inline-block " : "hidden"
-          } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-            !Admuser ? "block " : "hidden"
-          }`}
-        >
-          Registro
-        </a>
-        <a
-          href="/users/courses"
-          className={` sm:${
-            !Userhidden ? "inline-block " : "hidden"
-          } "block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
-            !Userhidden ? "block " : "hidden"
-          }`}
-        >
-          Cursos Asignados
-        </a>
+        <Link href="/EntradaSalida">
+          <button
+            className={` sm:${
+              !Userhidden ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Userhidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Generar código
+          </button>
+        </Link>
+        <Link href="/RegistroEntradas">
+          <button
+            className={` sm:${
+              !Admuser ? "inline-block " : "hidden"
+            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Admuser ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Registro
+          </button>
+        </Link>
+        <Link href="/users/courses">
+          <button
+            className={` sm:${
+              !Userhidden ? "inline-block " : "hidden"
+            } "block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+              !Userhidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Cursos Asignados
+          </button>
+        </Link>
 
-        <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+        <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold md:mr-8">
           <button
             onClick={logout}
             className={`sm:${
@@ -196,15 +209,15 @@ const Navbar = () => {
         {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
         <div className="text-sm sm:flex-grow"></div>
 
-        <div className="items-center flex flex-row justify-end">
-          <a className="block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
+        <div className="items-center flex flex-row justify-start md:pt-0 ">
+          <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
             {user}
           </a>
           <a href="/profile">
             <button
               className={` sm:${
                 !Todoshidden ? "inline-block " : "hidden"
-              } block mt-16 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold  ${
+              } block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
                 !Todoshidden ? "block " : "hidden"
               }`}
             >
