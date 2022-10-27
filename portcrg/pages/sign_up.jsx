@@ -56,7 +56,7 @@ export default function sign_up() {
         let ema = email;
         let pss = password;
         let priv = privileges;
-        if ((Fnomb != "") & (Dpei != "") & (ocu != "") & (num1 != "") & (ema != "") & (pss != "") & (priv != 0)) {
+        if ((Fnomb != "") & (Dpei >1000000000000) & (ocu != "") & (num1 >29999999) & (ema != "") & (pss != "") & (priv != 0)) {
             if(pss==confir){
                 swal('Procesando...'
                  ,{buttons: ["finalizar"]});
