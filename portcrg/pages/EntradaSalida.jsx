@@ -6,6 +6,7 @@ import styles from '../styles/EntradaSalida.module.css'
 import { datosUSer } from "../peticiones/session";
 import { useState } from "react"
 import { getCookie } from "cookies-next";
+import swal from 'sweetalert';
 
 
 
@@ -21,9 +22,10 @@ export default function EntradaSalida() {
   /*id*/
 /*get para las entradas*/ 
     const fetchcodigoentrada = async () => {
+        swal('Cruz Roja Quetzaltenango',
+        'Generando..', { buttons: ["finalizar"], timer: 3000 });
         usuario = await datosUSer(tokenuser);
         setUser(usuario.id);
-       
         const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/entry/', {
             method: 'GET',
             headers: {
@@ -38,9 +40,11 @@ export default function EntradaSalida() {
     }
 /*get para las salidas*/ 
 const fetchcodigosalida = async () => {
+    swal('Cruz Roja Quetzaltenango',
+    'Generando..', { buttons: ["finalizar"], timer: 3000 });
     usuario = await datosUSer(tokenuser);
     setUser(usuario.id);
-    
+
     const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/egress', {
         method: 'GET',
         headers: {
