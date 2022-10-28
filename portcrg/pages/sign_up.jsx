@@ -77,7 +77,7 @@ export default function sign_up() {
                 }
                 if (data.code = 200) {
                     swal('Cruz Roja Quetzaltenango',
-                        data.message,
+                        'Usuario Creado Exitosamente',
                         'success', { buttons: ["finalizar"] });
                     setTimeout(() => {
                         location.href = location.href;
@@ -121,7 +121,7 @@ export default function sign_up() {
                             </div>
 
                             <div className={styles.inputdata} >
-                                <input id="txtnu" type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} required pattern="[3-7]{1}[0-9]{7}" title="Numero de 8 dijitos"/>
+                                <input id="txtnu" type="text" maxLength={8} value={number1} onChange={e => setnumber1(e.target.value)} required pattern="[3-7]{1}[0-9]{7}" title="Número de 8 dígitos"/>
                                 <div className={styles.underline}></div>
                                 <label>Número Telefónico</label>
 
@@ -133,14 +133,14 @@ export default function sign_up() {
                         </div>
                         <div className={styles.formrow}>
                             <div className={styles.inputdata} >
-                                <input id="txtd" type="text" maxLength={13} value={dpi} onChange={e => setdpi(e.target.value)} pattern="[1-9]{1}[0-9]{12}" required title="Numero de 13 dijitos" />
+                                <input id="txtd" type="text" maxLength={13} value={dpi} onChange={e => setdpi(e.target.value)} pattern="[1-9]{1}[0-9]{12}" required title="Número de 13 dígitos" />
                                 <div className={styles.underline}></div>
                                 <label >DPI o CUI</label>
                             </div>
 
                             <div className={styles.inputdata} >
 
-                                <input id="txtn" type="text" value={fullName} onChange={e => setfullName(e.target.value)} required pattern="^[a-zA-ZÀ-ÿ\s]{10,60}" title="Nombre solo letras"/>
+                                <input id="txtn" type="text" value={fullName} onChange={e => setfullName(e.target.value)} required pattern="^[a-zA-ZÀ-ÿ\s]{10,60}" title="Nombre: solo letras"/>
                                 <div className={styles.underline}></div>
                                 <label>Nombre Completo</label>
 
@@ -152,7 +152,7 @@ export default function sign_up() {
                         <div className={styles.formrow}>
                             <div className={styles.inputdata} >
 
-                                <input id="txte" type="email" value={email} onChange={e => setemail(e.target.value)} required title="Correo valido, correo unico por ususario" />
+                                <input id="txte" type="email" value={email} onChange={e => setemail(e.target.value)} required title="Correo válido, correo único por ususario" />
                                 <div className={styles.underline}></div>
                                 <label>Email</label>
                             </div>
