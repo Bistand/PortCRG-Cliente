@@ -7,6 +7,7 @@ import {
 import { FaUserEdit } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import DeleteEventModal from "./DeleteEventModal";
+import ManagePermissions from "./ManagePermissions";
 function UsersCard({ user }) {
   const [isOpenDel, setIsOpenDel] = useState(false);
   let [dataModal, setDataModal] = useState({});
@@ -82,7 +83,10 @@ function UsersCard({ user }) {
         setIsOpen={setIsOpenDel}
         name={"Cambio de privilegios"}
       >
-        {/* <DeleteEvent data={dataModal} setIsOpen={setIsOpenDel}></DeleteEvent> */}
+        <ManagePermissions
+          data={dataModal}
+          setIsOpen={setIsOpenDel}
+        ></ManagePermissions>
       </DeleteEventModal>
     </>
   );

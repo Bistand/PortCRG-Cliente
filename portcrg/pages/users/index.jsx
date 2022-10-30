@@ -5,36 +5,12 @@ import UsersCard from "../../components/UsersCard.jsx";
 import DeleteEventModal from "../../components/DeleteEventModal";
 import styles from "../../styles/Sing_up.module.css";
 import Head from "next/head.js";
+import { useUsers } from "../../context/userContext.jsx";
 
 function index() {
-  const [loading, setLoading] = useState(false);
-  const [usersList, setUsersList] = useState([]);
+  const { usersList, loading } = useUsers();
   const [filter, setFilter] = useState("");
   const [occupationSelected, setOccupationSelected] = useState(0);
-  const authToken = getCookie("tokenuser");
-
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        setLoading(true);
-        const config = {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        };
-        const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/user",
-          config
-        );
-        setUsersList(data.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getUsers();
-  }, []);
 
   if (loading) {
     return (
