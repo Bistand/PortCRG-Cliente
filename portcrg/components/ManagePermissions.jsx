@@ -24,10 +24,6 @@ function ManagePermissions({ setIsOpen, data }) {
           <>
             {" "}
             <div>
-              <input type="radio" value={1} name="permissions" checked />{" "}
-              SuperAdmin
-            </div>
-            <div>
               <input type="radio" value={2} name="permissions" /> Admin
             </div>
             <div>
@@ -47,9 +43,6 @@ function ManagePermissions({ setIsOpen, data }) {
               <input type="radio" value={1} name="permissions" /> SuperAdmin
             </div>
             <div>
-              <input type="radio" value={2} name="permissions" checked /> Admin
-            </div>
-            <div>
               <input
                 className="ml-4"
                 type="radio"
@@ -67,16 +60,6 @@ function ManagePermissions({ setIsOpen, data }) {
             <div>
               <input type="radio" value={2} name="permissions" /> Admin
             </div>
-            <div>
-              <input
-                className="ml-4"
-                type="radio"
-                value={3}
-                name="permissions"
-                checked
-              />{" "}
-              Estándar
-            </div>{" "}
           </>
         ) : null}
       </div>
