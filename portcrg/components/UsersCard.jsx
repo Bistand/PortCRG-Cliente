@@ -8,7 +8,9 @@ import { FaUserEdit } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import DeleteEventModal from "./DeleteEventModal";
 import ManagePermissions from "./ManagePermissions";
+import { useEvents } from "../context/eventContext";
 function UsersCard({ user }) {
+  const { privileges } = useEvents();
   const [isOpenDel, setIsOpenDel] = useState(false);
   let [dataModal, setDataModal] = useState({});
 
@@ -59,21 +61,23 @@ function UsersCard({ user }) {
                 ></AiOutlineCloseCircle>
                 <p>Inactivo</p>
               </span>
-              <button
-                className="has-tooltip"
-                onClick={() => {
-                  setIsOpenDel(true);
-                  setDataModal(user);
-                }}
-              >
-                <span className="tooltip rounded-md shadow-md p-1 bg-slate-100 text-dark-cadet-blue -mt-8">
-                  Editar privilegios
-                </span>
-                <FaUserEdit
-                  size={"20px"}
-                  className="text-dark-cadet-blue my-1"
-                ></FaUserEdit>
-              </button>
+              {privileges == 1 ? (
+                <button
+                  className="has-tooltip"
+                  onClick={() => {
+                    setIsOpenDel(true);
+                    setDataModal(user);
+                  }}
+                >
+                  <span className="tooltip rounded-md shadow-md p-1 bg-slate-100 text-dark-cadet-blue -mt-8">
+                    Modificar privilegios
+                  </span>
+                  <FaUserEdit
+                    size={"20px"}
+                    className="text-dark-cadet-blue my-1"
+                  ></FaUserEdit>
+                </button>
+              ) : null}
             </div>
           )}
         </div>
