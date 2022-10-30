@@ -4,62 +4,49 @@ import { useUsers } from "../context/userContext";
 
 function ManagePermissions({ setIsOpen, data }) {
   const { UpdatePermissions } = useUsers();
+  const [privilege, setPrivilege] = useState(3);
   const [privilegeChoice, setPrivilegeChoice] = useState(3);
 
   useEffect(() => {
-    console.log(privilegeChoice);
-    setPrivilegeChoice(data.privileges);
+    setPrivilege(data.privileges);
   }, []);
 
   return (
     <div className="flex flex-col gap-4 mt-4">
       <div
-        className="flex flex-row justify-around"
+        className="flex flex-row justify-between w-3/4"
         onChange={(e) => {
           setPrivilegeChoice(e.target.value);
-          console.log(privilegeChoice);
         }}
       >
-        {privilegeChoice == 1 ? (
+        {privilege == 1 ? (
           <>
             {" "}
             <div>
               <input type="radio" value={2} name="permissions" /> Admin
             </div>
             <div>
-              <input
-                className="ml-4"
-                type="radio"
-                value={3}
-                name="permissions"
-              />{" "}
-              Estándar
+              <input type="radio" value={3} name="permissions" /> Estándar
             </div>{" "}
           </>
-        ) : privilegeChoice == 2 ? (
+        ) : privilege == 2 ? (
           <>
             {" "}
             <div>
               <input type="radio" value={1} name="permissions" /> SuperAdmin
             </div>
             <div>
-              <input
-                className="ml-4"
-                type="radio"
-                value={3}
-                name="permissions"
-              />{" "}
-              Estándar
+              <input type="radio" value={3} name="permissions" /> Estándar
             </div>{" "}
           </>
-        ) : privilegeChoice == 3 ? (
+        ) : privilege == 3 ? (
           <>
             <div>
               <input type="radio" value={1} name="permissions" /> SuperAdmin
             </div>
             <div>
               <input type="radio" value={2} name="permissions" /> Admin
-            </div>
+            </div>{" "}
           </>
         ) : null}
       </div>
