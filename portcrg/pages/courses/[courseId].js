@@ -9,7 +9,7 @@ function courseDetails({ data }) {
   return (
     <>
       <Head>
-        <title>{data.name}</title>
+        <title>{data.courses.name}</title>
       </Head>
 
       <div>
@@ -18,12 +18,12 @@ function courseDetails({ data }) {
             <div className="grid grid-cols-5 gap-10 lg:gap-8 w-4/5 3xl:w-2/3">
               {/* CourseGenInfo */}
               <div className="col-span-3">
-                <CourseGenInfo course={data}></CourseGenInfo>
+                <CourseGenInfo course={data.courses}></CourseGenInfo>
               </div>
               {/* CourseGenInfo */}
               {/* CourseSpecInfo */}
               <div className="col-span-2 px-4">
-                <CourseSpecInfo course={data}></CourseSpecInfo>
+                <CourseSpecInfo course={data.courses}></CourseSpecInfo>
               </div>
               {/* CourseSpecInfo */}
             </div>
@@ -32,8 +32,8 @@ function courseDetails({ data }) {
         <div className="lg:hidden">
           <div className="flex flex-col justify-center items-center">
             <div className="w-3/4 my-6">
-              <CourseGenInfo course={data}></CourseGenInfo>
-              <CourseSpecInfo course={data}></CourseSpecInfo>
+              <CourseGenInfo course={data.courses}></CourseGenInfo>
+              <CourseSpecInfo course={data.courses}></CourseSpecInfo>
             </div>
           </div>
         </div>
@@ -46,6 +46,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { courseId } = params;
   const cookie = context.req.cookies.tokenuser;
+  console.log(cookie);
 
   const response = await fetch(
     `https://portcrg-dev.onrender.com/api/courses/id`,
@@ -58,6 +59,7 @@ export async function getServerSideProps(context) {
   );
 
   const { data } = await response.json();
+  console.log(data);
 
   if (!data) {
     return {
