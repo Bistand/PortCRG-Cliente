@@ -6,7 +6,7 @@ import CourseGenInfo from "../../components/CourseGenInfo";
 import TablaAsignados from "../../components/TablaAsignados";
 
 function courseDetails({ data }) {
-  console.log(data)
+  console.log(data);
   useEffect(() => {}, []);
   return (
     <>
@@ -43,7 +43,6 @@ function courseDetails({ data }) {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <TablaAsignados participantes={data.participantes} />
-
       </div>
     </>
   );
@@ -52,7 +51,7 @@ function courseDetails({ data }) {
 export async function getServerSideProps(context) {
   const { params } = context;
   const { courseId } = params;
-  console.log(courseId)
+  console.log(courseId);
   const cookie = context.req.cookies.tokenuser;
   console.log(cookie);
 

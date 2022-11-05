@@ -8,9 +8,10 @@ import DeleteEvent from "./DeleteEvent";
 import Link from "next/link";
 import UnassignCourse from "./UnassignCourse";
 import useCourses from "../hooks/useCourses";
+import { useEvents } from "../context/eventContext";
 
 const TablaAsignados = ({ participantes }) => {
-    console.log(participantes)
+  console.log(participantes);
   const COLUMNS = [
     {
       Header: "DPI",
@@ -21,11 +22,9 @@ const TablaAsignados = ({ participantes }) => {
       accessor: "nombre",
     },
     {
-        Header: "Correo Electronico",
-        accessor: "correo",
-      },
-  
-
+      Header: "Correo Electronico",
+      accessor: "correo",
+    },
   ];
 
   const columns = useMemo(() => COLUMNS, []);
@@ -38,14 +37,13 @@ const TablaAsignados = ({ participantes }) => {
   const [courseId, setCourseId] = useState("");
   const [token, setToken] = useState("");
   const authToken = getCookie("tokenuser");
+  const { privileges } = useEvents();
 
   useEffect(() => {
     setData(participantes);
   }, []);
 
-  useEffect(() => {
-   
-  }, []);
+  useEffect(() => {}, []);
 
   // const ObtenerCursos = async (id) => {
   //   setLoading(true);
@@ -90,7 +88,7 @@ const TablaAsignados = ({ participantes }) => {
 
   return (
     <>
-      {coursesListUser.length ? (
+      {coursesListUser.length && privileges == 1 ? (
         <>
           <div className="flex justify-end">
             <FilterComponent
@@ -186,7 +184,7 @@ const TablaAsignados = ({ participantes }) => {
             </div>
           </div>
         </>
-      ) : (
+      ) : privileges != 1 ? null : (
         <div className="flex flex-row justify-center">
           <h2>Cargando cursos ...</h2>
         </div>
