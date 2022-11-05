@@ -35,8 +35,11 @@ export default function EntradaSalida() {
             },
         })
         data = await response.json()
-        
-        setcodigo(data.data)
+        if (data.response == "error") {
+            setcodigo("Accion no valida")
+       }
+       else{
+       setcodigo(data.data)}
     }
 /*get para las salidas*/ 
 const fetchcodigosalida = async () => {
@@ -54,8 +57,11 @@ const fetchcodigosalida = async () => {
         },
     })
     data = await response.json()
-    
-    setcodigo(data.data)
+    if (data.response == "error") {
+         setcodigo("Accion no valida")
+    }
+    else{
+    setcodigo(data.data)}
 }
 
     return (
