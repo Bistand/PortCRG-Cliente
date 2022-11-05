@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { getCookie } from "cookies-next";
+import { useEvents } from "./eventContext";
 
 const UserContext = createContext();
 
@@ -9,6 +10,7 @@ export const UsersProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [usersList, setUsersList] = useState([]);
   const authToken = getCookie("tokenuser");
+  const { privileges } = useEvents();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -30,8 +32,11 @@ export const UsersProvider = ({ children }) => {
         setLoading(false);
       }
     };
-    getUsers();
-  }, []);
+    console.log(privileges);
+    if (privileges == 1 || privileges == 2) {
+      getUsers();
+    }
+  }, [privileges]);
 
   const UpdatePermissions = async (user, privilegeChoice) => {
     try {

@@ -2,12 +2,14 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { getCookie } from "cookies-next";
+import { async } from "regenerator-runtime";
 
 const CoursesContext = createContext();
 
 const CoursesProvider = ({ children }) => {
   const [coursesList, setCoursesList] = useState([]);
   const [coursesListUser, setCoursesListUser] = useState([]);
+  const [participantes, setParticipantes] = useState([]);
   const [loading, setLoading] = useState(true);
   const tokenuser = getCookie("tokenuser");
 
@@ -213,6 +215,29 @@ const CoursesProvider = ({ children }) => {
     }
   };
 
+  const ObtenerParticipantes = async (_id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          id: _id,
+          Authorization: `Bearer ${tokenuser}`,
+        },
+      };
+
+      const { data } = await axios(
+        "https://portcrg-dev.onrender.com/api/courses/id",
+        config
+      );
+
+      setParticipantes(data.participantes)
+      console.log(data.participantes)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <CoursesContext.Provider
       value={{
@@ -224,6 +249,7 @@ const CoursesProvider = ({ children }) => {
         AsignarCourse,
         unassignCourse,
         getCoursesByUser,
+        ObtenerParticipantes,
       }}
     >
       {children}
