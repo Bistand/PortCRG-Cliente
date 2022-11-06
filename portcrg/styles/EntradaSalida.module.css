@@ -28,9 +28,9 @@
 .text{
     width: 80%;
     font-weight: 600;
-    font-size: 80px;
+    font-size:68px;
     color:  #56a3a6;
-    margin-top: 35%;
+    margin-top: 25%;
     margin-left: 5%;
     box-shadow: 0px 0px 10px rgba(0, 0,0, 0,0.1);
     background-color: rgb(255, 255, 254);
@@ -143,6 +143,7 @@
         margin-top: 2%;
         margin-left: 3%;
         float: none;
+        font-size: 55px;
         
 
     }
@@ -160,17 +161,19 @@
     }
 }
 
-@media screen and (max-width: 694px) {
+
+@media screen and (max-width: 758px) {
     .text {
-    font-size: 80px;
+    font-size: 55px;
     }
 }
-@media screen and (max-width: 635px) {
+@media screen and (max-width: 609px) {
     .text {
-    font-size: 60px;
+    font-size: 45px;
     }
 }
-@media screen and (max-width: 492px) {
+
+@media screen and (max-width: 512px) {
     .text {
     font-size: 40px;
     }
@@ -250,9 +253,20 @@
         
     }
 }
-@media screen and (max-width: 355px) {
+@media screen and (max-width: 478px) {
     .text {
-       font-size: 35px;
+   font-size: 35px;
+   
+    }
+}@media screen and (max-width: 416px) {
+    .text {
+   font-size: 30px;
+   
+    }
+}
+@media screen and (max-width: 370px) {
+    .text {
+       font-size: 25px;
         
     }
 }
@@ -270,7 +284,7 @@
 }
 @media screen and (max-width: 326px) {
     .text {
-       font-size: 30px;
+       font-size: 23px;
         
     }
 }
@@ -339,6 +353,12 @@
         font-size: 9px;
     
   
+    }
+}
+@media screen and (max-width: 191px) {
+    .text {
+   font-size: 15px;
+   
     }
 }
 
