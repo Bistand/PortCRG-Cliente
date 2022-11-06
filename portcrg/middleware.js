@@ -10,6 +10,7 @@ export async function middleware(request) {
   const asistencia = NextResponse.redirect(new URL("/asistencia", request.url));
   const singUp = NextResponse.rewrite(new URL("/sign_up", request.url));
   const cursos = NextResponse.redirect(new URL("/courses", request.url));
+  const users = NextResponse.redirect(new URL("/users", request.url));
 
   const cursosdeusuario = NextResponse.redirect(
     new URL("/users/course", request.url)
@@ -80,16 +81,4 @@ export async function middleware(request) {
       return home;
     }
   }
-  // if (request.nextUrl.pathname === "/courses") {
-  //   if (token) {
-  //     return cursos;
-  //   } else {
-  //     return home;
-  //   }
-  // }
-  // if (request.nextUrl.pathname.startsWith("/courses/")) {
-  //   if (!token) {
-  //     return home;
-  //   }
-  // }
 }

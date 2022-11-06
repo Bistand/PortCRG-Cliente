@@ -30,7 +30,6 @@ const Navbar = () => {
           setAdminuser(false);
           break;
         case "2":
-          setSuperadmhidden(false);
           setAdminuser(false);
 
           break;
@@ -118,11 +117,10 @@ const Navbar = () => {
         </Link>
         <Link href="/sign_up">
           <button
-            className={` sm:${
-              !Supeadmrhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
-              !Supeadmrhidden ? "block " : "hidden"
-            }`}
+            hidden={Admuser}
+            className={
+              "sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 "
+            }
             onClick={() => setNavbarOpen(false)}
           >
             Registrar
@@ -138,6 +136,17 @@ const Navbar = () => {
             onClick={() => setNavbarOpen(false)}
           >
             Cursos
+          </button>
+        </Link>
+        <Link href="/users">
+          <button
+            hidden={Supeadmrhidden}
+            className={
+              "sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            }
+            onClick={() => setNavbarOpen(false)}
+          >
+            Usuarios
           </button>
         </Link>
         <Link href="/informative">
