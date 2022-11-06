@@ -63,6 +63,7 @@ const Navbar = () => {
     deleteCookie("token");
     router.prefetch("/login");
     router.push("/login");
+    location.reload();
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 lg:px-12 py-2">
