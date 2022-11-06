@@ -50,7 +50,7 @@ function CourseGenInfo(props) {
               <button
                 disabled={false}
                 className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
-            font-bold text-sm rounded-lg text-start flex gap-2 "
+            font-bold text-sm rounded-lg text-start flex gap-2 md:h-16"
                 onClick={() => addCourse()}
               >
                 <svg
@@ -123,7 +123,7 @@ function CourseGenInfo(props) {
         </div>
         <div className="mt-2">
           <p className="font-inter font-bold text-left sm:text-lg 2xl:text-xl mb-2 text-dark-cadet-blue">
-            Enlace de descarga de temario del curso
+            Previsualización del temario del curso
           </p>
           {course.hasOwnProperty("temarioURL") && course.temarioURL != "" ? (
             // <Link href={course.temarioURL} passHref>

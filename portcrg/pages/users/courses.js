@@ -5,7 +5,7 @@ import "regenerator-runtime/runtime";
 function courses() {
   const [choice, setChoice] = useState(0);
   return (
-    <div className="">
+    <div className="my-4">
       <div className="flex flex-row justify-center gap-4">
         <button
           className={
