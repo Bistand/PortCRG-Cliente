@@ -61,6 +61,7 @@ const Navbar = () => {
   const logout = () => {
     deleteCookie("tokenuser");
     deleteCookie("token");
+    router.prefetch("/login");
     router.push("/login");
   };
   return (
