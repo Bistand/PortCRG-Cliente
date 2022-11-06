@@ -11,7 +11,6 @@ import useCourses from "../hooks/useCourses";
 import { useEvents } from "../context/eventContext";
 
 const TablaAsignados = ({ participantes }) => {
-  console.log(participantes);
   const COLUMNS = [
     {
       Header: "DPI",
@@ -88,6 +87,17 @@ const TablaAsignados = ({ participantes }) => {
 
   return (
     <>
+      {coursesListUser.length && privileges == 1 ? (
+        <div className="flex flex-row justify-center">
+          <div className="w-full">
+            <div className="flex items-center py-5">
+              <div className="flex-grow border-t border-gray-400"></div>
+              <span className="mx-4 text-gray-400">Participantes</span>
+              <div className="flex-grow border-t border-gray-400"></div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       {coursesListUser.length && privileges == 1 ? (
         <>
           <div className="flex justify-end">

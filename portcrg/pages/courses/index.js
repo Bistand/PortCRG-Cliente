@@ -47,7 +47,7 @@ function index() {
         ) : null}
       </div>
 
-      <div className="grid grid-cols-1 mx-10  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
+      <div className="grid gap-x-4 grid-cols-1 mx-10  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:mx-28 mb-4 md:mb-16 text-dark-cadet-blue">
         {coursesList.length ? (
           coursesList
             ?.map((course) => (

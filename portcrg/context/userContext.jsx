@@ -32,7 +32,6 @@ export const UsersProvider = ({ children }) => {
         setLoading(false);
       }
     };
-    console.log(privileges);
     if (privileges == 1 || privileges == 2) {
       getUsers();
     }

@@ -231,13 +231,11 @@ const CoursesProvider = ({ children }) => {
         config
       );
 
-      setParticipantes(data.participantes)
-      console.log(data.participantes)
-      
+      setParticipantes(data.participantes);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <CoursesContext.Provider

@@ -88,6 +88,17 @@ function index() {
                 ></UsersCard>
               );
             })
+            .sort((a, b) => {
+              if (a.props.user.attendaceStatus > b.props.user.attendaceStatus) {
+                return 1;
+              } else if (
+                a.props.user.attendaceStatus < b.props.user.attendaceStatus
+              ) {
+                return -1;
+              } else {
+                return 0;
+              }
+            })
             .reverse()}
         </div>
       </div>

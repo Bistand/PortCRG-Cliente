@@ -65,7 +65,7 @@ const Navbar = () => {
     router.push("/login");
   };
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
+    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 lg:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
         <button>
           <Link href="/">
@@ -75,7 +75,7 @@ const Navbar = () => {
           </Link>
         </button>
       </div>
-      <div className="block sm:hidden items-center flex">
+      <div className="block lg:hidden items-center flex">
         <button
           className="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-200 hover:border-white"
           onClick={() => setNavbarOpen(!navbarOpen)}
@@ -92,23 +92,15 @@ const Navbar = () => {
       </div>
       <div
         className={
-          "w-full block flex-grow sm:flex sm:items-center sm:w-auto" +
+          "w-full block flex-grow lg:flex lg:items-center lg:w-auto" +
           (navbarOpen ? null : " hidden")
         }
       >
-        <Link href="/">
-          <button
-            className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
-            onClick={() => setNavbarOpen(false)}
-          >
-            Inicio
-          </button>
-        </Link>
         <Link href={"/login"}>
           <button
-            className={` sm:${
+            className={` lg:${
               !Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Ocultar ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -120,7 +112,7 @@ const Navbar = () => {
           <button
             hidden={Admuser}
             className={
-              "sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 "
+              "lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 "
             }
             onClick={() => setNavbarOpen(false)}
           >
@@ -129,9 +121,9 @@ const Navbar = () => {
         </Link>
         <Link href="/courses">
           <button
-            className={` sm:${
+            className={` lg:${
               !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Todoshidden ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -143,7 +135,7 @@ const Navbar = () => {
           <button
             hidden={Supeadmrhidden}
             className={
-              "sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+              "lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
             }
             onClick={() => setNavbarOpen(false)}
           >
@@ -152,9 +144,9 @@ const Navbar = () => {
         </Link>
         <Link href="/informative">
           <button
-            className={` sm:${
+            className={` lg:${
               !Todoshidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Todoshidden ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -164,9 +156,9 @@ const Navbar = () => {
         </Link>
         <Link href="/EntradaSalida">
           <button
-            className={` sm:${
+            className={` lg:${
               !Userhidden ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Userhidden ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -176,9 +168,9 @@ const Navbar = () => {
         </Link>
         <Link href="/RegistroEntradas">
           <button
-            className={` sm:${
+            className={` lg:${
               !Admuser ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Admuser ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -188,9 +180,9 @@ const Navbar = () => {
         </Link>
         <Link href="/users/courses">
           <button
-            className={` sm:${
+            className={` lg:${
               !Userhidden ? "inline-block " : "hidden"
-            } "block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+            } "block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               !Userhidden ? "block " : "hidden"
             }`}
             onClick={() => setNavbarOpen(false)}
@@ -199,12 +191,12 @@ const Navbar = () => {
           </button>
         </Link>
 
-        <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold md:mr-8">
+        <a className="block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold lg:mr-6">
           <button
             onClick={logout}
-            className={`sm:${
+            className={`lg:${
               Ocultar ? "inline-block " : "hidden"
-            } sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
               Ocultar ? "block " : "hidden"
             }`}
           >
@@ -212,22 +204,22 @@ const Navbar = () => {
           </button>
         </a>
 
-        {/* <div className="text-sm items-center col sm:flex-grow">
+        {/* <div className="text-sm items-center col lg:flex-grow">
         DIV ORIGINAL DEL NAVBAR
 
         </div> */}
         {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
-        <div className="text-sm sm:flex-grow"></div>
+        <div className="text-sm lg:flex-grow"></div>
 
-        <div className="items-center flex flex-row justify-start md:pt-0 ">
-          <a className="block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12">
+        <div className="items-center flex flex-row justify-start lg:pt-0 ">
+          <a className="block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-4">
             {user}
           </a>
           <a href="/profile">
             <button
-              className={` sm:${
+              className={` lg:${
                 !Todoshidden ? "inline-block " : "hidden"
-              } block sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-12 ${
+              } block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-4 ${
                 !Todoshidden ? "block " : "hidden"
               }`}
             >

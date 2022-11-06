@@ -46,35 +46,38 @@ function EventsCard({ event, privileges }) {
               </>
             )}
             {privileges == 1 || privileges == 2 ? (
-            <div>
-              <button
-                className="has-tooltip mr-4 "
-                onClick={() => {
-                  setIsOpenAdd(true);
-                  setDataModal(event);
-                }}
-              >
-                <span className="tooltip rounded-md shadow-md p-1 bg-green-50 text-dark-cadet-blue -mt-8">
-                  Editar
-                </span>
-                <FiEdit3
-                  size={"20px"}
-                  className="text-dark-cadet-blue my-1"
-                ></FiEdit3>
-              </button>
-              <button
-                className="has-tooltip"
-                onClick={() => {
-                  setIsOpenDel(true);
-                  setDataModal(event);
-                }}
-              >
-                <span className="tooltip rounded-md shadow-md p-1 bg-red-50 text-red-800 -mt-8">
-                  Eliminar
-                </span>
-                <BsTrash size={"20px"} className="text-red-800 my-1"></BsTrash>
-              </button>
-            </div>
+              <div>
+                <button
+                  className="has-tooltip mr-4 "
+                  onClick={() => {
+                    setIsOpenAdd(true);
+                    setDataModal(event);
+                  }}
+                >
+                  <span className="tooltip rounded-md shadow-md p-1 bg-green-50 text-dark-cadet-blue -mt-8">
+                    Editar
+                  </span>
+                  <FiEdit3
+                    size={"20px"}
+                    className="text-dark-cadet-blue my-1"
+                  ></FiEdit3>
+                </button>
+                <button
+                  className="has-tooltip"
+                  onClick={() => {
+                    setIsOpenDel(true);
+                    setDataModal(event);
+                  }}
+                >
+                  <span className="tooltip rounded-md shadow-md p-1 bg-red-50 text-red-800 -mt-8">
+                    Eliminar
+                  </span>
+                  <BsTrash
+                    size={"20px"}
+                    className="text-red-800 my-1"
+                  ></BsTrash>
+                </button>
+              </div>
             ) : null}
           </div>
         </div>
