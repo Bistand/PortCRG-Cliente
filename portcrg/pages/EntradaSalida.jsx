@@ -36,7 +36,7 @@ export default function EntradaSalida() {
         })
         data = await response.json()
         if (data.response == "error") {
-            setcodigo("Acción no válida")
+            setcodigo("Ya registró Asistencia")
        }
        else{
        setcodigo(data.data)}
@@ -58,7 +58,7 @@ const fetchcodigosalida = async () => {
     })
     data = await response.json()
     if (data.response == "error") {
-         setcodigo("Acción no válida")
+         setcodigo("Ya registró Asistencia")
     }
     else{
     setcodigo(data.data)}
