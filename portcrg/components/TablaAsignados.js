@@ -188,7 +188,7 @@ const TablaAsignados = ({ participantes }) => {
         </>
       ) : (
         <div className="flex flex-row justify-center">
-          <h2>Cargando cursos ...</h2>
+          <h2>Cargando Participantes ...</h2>
         </div>
       )}
       <DeleteEventModal
