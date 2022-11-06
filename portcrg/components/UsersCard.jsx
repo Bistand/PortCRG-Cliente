@@ -45,13 +45,15 @@ function UsersCard({ user }) {
         </span>
         <div className="flex w-full">
           {user.attendaceStatus ? (
-            <span className="flex items-center text-green-600">
-              <AiOutlineCheckCircle
-                size={"16"}
-                className="mr-2 mt-1"
-              ></AiOutlineCheckCircle>
-              <p>Activo</p>
-            </span>
+            <div className="flex flex-row justify-between w-full">
+              <span className="flex items-center text-green-600">
+                <AiOutlineCheckCircle
+                  size={"16"}
+                  className="mr-2 mt-1"
+                ></AiOutlineCheckCircle>
+                <p>Activo</p>
+              </span>
+            </div>
           ) : (
             <div className="flex flex-row justify-between w-full">
               <span className="flex items-center text-red-600">
@@ -61,25 +63,25 @@ function UsersCard({ user }) {
                 ></AiOutlineCloseCircle>
                 <p>Inactivo</p>
               </span>
-              {privileges == 1 ? (
-                <button
-                  className="has-tooltip"
-                  onClick={() => {
-                    setIsOpenDel(true);
-                    setDataModal(user);
-                  }}
-                >
-                  <span className="tooltip rounded-md shadow-md p-1 bg-slate-100 text-dark-cadet-blue -mt-8">
-                    Modificar privilegios
-                  </span>
-                  <FaUserEdit
-                    size={"20px"}
-                    className="text-dark-cadet-blue my-1"
-                  ></FaUserEdit>
-                </button>
-              ) : null}
             </div>
           )}
+          {privileges == 1 ? (
+            <button
+              className="has-tooltip"
+              onClick={() => {
+                setIsOpenDel(true);
+                setDataModal(user);
+              }}
+            >
+              <span className="tooltip rounded-md shadow-md p-1 bg-slate-100 text-dark-cadet-blue -mt-8">
+                Modificar privilegios
+              </span>
+              <FaUserEdit
+                size={"20px"}
+                className="text-dark-cadet-blue my-1"
+              ></FaUserEdit>
+            </button>
+          ) : null}
         </div>
       </div>
       <DeleteEventModal
