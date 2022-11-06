@@ -99,7 +99,7 @@ const CoursesProvider = ({ children }) => {
           headers: {
             "Content-type": "application/json",
             curso: idCourse.course._id,
-            user: idUser,
+            id: idUser,
             Authorization: `Bearer ${tokenuser}`,
           },
         }
@@ -112,6 +112,7 @@ const CoursesProvider = ({ children }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          location.reload();
         } else {
           Swal.fire({
             position: "center",

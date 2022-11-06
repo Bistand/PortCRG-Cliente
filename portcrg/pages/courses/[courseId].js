@@ -41,6 +41,14 @@ function courseDetails({ data }) {
         </div>
       </div>
 
+      <div class="mx-16">
+        <div class="flex items-center py-5">
+          <div class="flex-grow border-t border-gray-400"></div>
+          <span class="mx-4 text-gray-400">Participantes</span>
+          <div class="flex-grow border-t border-gray-400"></div>
+        </div>
+      </div>
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <TablaAsignados participantes={data.participantes} />
       </div>

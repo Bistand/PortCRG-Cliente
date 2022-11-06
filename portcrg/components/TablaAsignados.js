@@ -186,7 +186,7 @@ const TablaAsignados = ({ participantes }) => {
         </>
       ) : privileges != 1 ? null : (
         <div className="flex flex-row justify-center">
-          <h2>Cargando cursos ...</h2>
+          <h2>Cargando Participantes ...</h2>
         </div>
       )}
       <DeleteEventModal
