@@ -17,7 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from "../styles/calendario.module.css";
 
 //idioma para el calendario
-import moment from "moment";
+
 import "moment/locale/es-us";
 //importaciones extras
 import React, { useEffect, useState } from "react";
@@ -32,6 +32,10 @@ import Link from "next/link";
 // const locales = {
 //     "pt-BR": require("date-fns/locale/pt-BR"),
 // };
+import * as moment from 'moment-timezone';
+//FUNCIONA HORA
+moment.tz.setDefault('Etc/Universal');
+
 
 const localizer = momentLocalizer(moment);
 
