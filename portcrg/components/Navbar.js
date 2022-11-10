@@ -50,6 +50,9 @@ const Navbar = () => {
       setAdminuser(true);
       setUser("");
     }
+    if (!tokenuser) {
+      router.push("/login");
+    }
   });
 
   const Datos = async () => {
@@ -61,7 +64,6 @@ const Navbar = () => {
   const logout = () => {
     deleteCookie("tokenuser");
     deleteCookie("token");
-    router.prefetch("/login");
     router.push("/login");
     location.reload();
   };
