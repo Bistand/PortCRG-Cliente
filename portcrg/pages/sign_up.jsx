@@ -140,7 +140,7 @@ export default function sign_up() {
 
                             <div className={styles.inputdata} >
 
-                                <input id="txtn" type="text" value={fullName} onChange={e => setfullName(e.target.value)} required pattern="^[a-zA-ZÀ-ÿ\s]{10,60}" title="Nombre: solo letras"/>
+                                <input id="txtn" type="text" value={fullName} onChange={e => setfullName(e.target.value)} required pattern="^[a-zA-ZÀ-ÿ\s]{10,60}" title="Nombre: Solo letras"/>
                                 <div className={styles.underline}></div>
                                 <label>Nombre Completo</label>
 
@@ -152,7 +152,7 @@ export default function sign_up() {
                         <div className={styles.formrow}>
                             <div className={styles.inputdata} >
 
-                                <input id="txte" type="email" value={email} onChange={e => setemail(e.target.value)} required title="Correo válido, correo único por ususario" />
+                                <input id="txte" type="email" value={email} onChange={e => setemail(e.target.value)} required title="Correo válido, correo único por usuario" />
                                 <div className={styles.underline}></div>
                                 <label>Email</label>
                             </div>
