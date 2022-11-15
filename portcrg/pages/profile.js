@@ -147,6 +147,7 @@ export default function Home() {
         setDataenfermedad((dataEnfermedad) => [...dataEnfermedad, medic]);
         datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illness;
       }
+      console.log(dataEnfermedad.length);
       setDatossalud(datossalud);
       setCredenciales(credenciales);
       setUserperfil(userperfil);
@@ -350,6 +351,7 @@ export default function Home() {
       };
       dataMedicina.push(medicinanew);
     }
+    console.log(dataEnfermedad);
     const resultado = await updateHealth(
       newTiposangre,
       dataEnfermedad,

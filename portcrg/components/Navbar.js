@@ -50,9 +50,6 @@ const Navbar = () => {
       setAdminuser(true);
       setUser("");
     }
-    if (!tokenuser) {
-      router.push("/login");
-    }
   });
 
   const Datos = async () => {
@@ -62,10 +59,10 @@ const Navbar = () => {
     setUser(perfil.fullName);
   };
   const logout = () => {
+    router.push("/login");
     deleteCookie("tokenuser");
     deleteCookie("token");
     router.push("/login");
-    location.reload();
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 lg:px-12 py-2">
@@ -203,7 +200,7 @@ const Navbar = () => {
               Ocultar ? "block " : "hidden"
             }`}
           >
-            Cerrar sesion
+            Cerrar sesión
           </button>
         </a>
 

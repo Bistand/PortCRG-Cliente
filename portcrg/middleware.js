@@ -43,9 +43,8 @@ export async function middleware(request) {
     }
   }
   if (request.nextUrl.pathname.startsWith("/asistencia")) {
-    rutasdesbloqueadas(valor);
     if (!token) {
-      return home;
+      return loginnull;
     }
   }
   if (request.nextUrl.pathname.startsWith("/sign_up")) {

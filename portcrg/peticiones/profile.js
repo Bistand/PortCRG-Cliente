@@ -132,7 +132,7 @@ export async function updateHealth(
         },
         body: JSON.stringify({
           bloodType: bloodType,
-          illness: illness,
+          illnes: illness,
           medicines: medicines,
           inability: inability,
         }),

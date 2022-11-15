@@ -93,6 +93,7 @@ export default function Login() {
           </button>
           <a
             className="text-[#FF3839] text-[11px] font-regular self-start mt-16"
+            hidden
             href="newpassword"
           >
             Olvidó su usuario o contraseña?
