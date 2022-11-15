@@ -115,7 +115,7 @@ export async function updateP(credenciales, id) {
 
 export async function updateHealth(
   bloodType,
-  illness,
+  illnes,
   medicines,
   inability,
   id,
@@ -132,7 +132,7 @@ export async function updateHealth(
         },
         body: JSON.stringify({
           bloodType: bloodType,
-          illnes: illness,
+          illness: illnes,
           medicines: medicines,
           inability: inability,
         }),

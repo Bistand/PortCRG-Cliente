@@ -142,12 +142,11 @@ export default function Home() {
       }
       for (let a = 0; a < perfil.illness.length; a++) {
         const medic = {
-          illness: perfil.illness[a].illness,
+          illnes: perfil.illness[a].illnes,
         };
         setDataenfermedad((dataEnfermedad) => [...dataEnfermedad, medic]);
-        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illness;
+        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illnes;
       }
-      console.log(dataEnfermedad.length);
       setDatossalud(datossalud);
       setCredenciales(credenciales);
       setUserperfil(userperfil);
@@ -334,7 +333,7 @@ export default function Home() {
   const agregarDatossalud = async () => {
     if (newEnfermedad != "") {
       const enfermedadnew = {
-        illness: newEnfermedad,
+        illnes: newEnfermedad,
       };
       dataEnfermedad.push(enfermedadnew);
     }
@@ -351,7 +350,6 @@ export default function Home() {
       };
       dataMedicina.push(medicinanew);
     }
-    console.log(dataEnfermedad);
     const resultado = await updateHealth(
       newTiposangre,
       dataEnfermedad,
