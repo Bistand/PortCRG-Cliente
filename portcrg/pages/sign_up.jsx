@@ -60,7 +60,7 @@ export default function sign_up() {
             if (pss == confir) {
                 swal('Procesando...'
                     , { buttons: ["finalizar"] });
-                const response = await fetch('https://portcrg-dev.onrender.com/api/user/register/admin', {
+                const response = await fetch('https://portcrg.onrender.com/api/user/register/admin', {
                     method: 'POST',
                     body: JSON.stringify({ fullName, dpi, occupation, number1, email, password, privileges }),
                     headers: {

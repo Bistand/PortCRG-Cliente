@@ -20,7 +20,7 @@ export default function RegistroEntradas() {
     if (campo1 != "") {
       console.log("funciona");
       const response = await fetch(
-        "https://portcrg-dev.onrender.com/api/asistencia",
+        "https://portcrg.onrender.com/api/asistencia",
         {
           method: "POST",
           body: JSON.stringify({ codigo }),

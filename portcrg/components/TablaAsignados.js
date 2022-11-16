@@ -48,7 +48,7 @@ const TablaAsignados = ({ participantes }) => {
   //   setLoading(true);
   //   try {
   //     const { data } = await axios(
-  //       `https://portcrg-dev.onrender.com/api/user/courses/${id}`
+  //       `https://portcrg.onrender.com/api/user/courses/${id}`
   //     );
   //     setOgData(data.data);
   //     setData(data.data);

@@ -26,7 +26,7 @@ export default function EntradaSalida() {
         'Generando..', { buttons: ["finalizar"], timer: 3000 });
         usuario = await datosUSer(tokenuser);
         setUser(usuario.id);
-        const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/entry/', {
+        const response = await fetch('https://portcrg.onrender.com/api/asistencia/entry/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const fetchcodigosalida = async () => {
     usuario = await datosUSer(tokenuser);
     setUser(usuario.id);
 
-    const response = await fetch('https://portcrg-dev.onrender.com/api/asistencia/egress', {
+    const response = await fetch('https://portcrg.onrender.com/api/asistencia/egress', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

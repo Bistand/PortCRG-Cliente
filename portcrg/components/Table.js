@@ -24,7 +24,6 @@ const Table = ({ status }) => {
       accessor: "_id",
       id: "desasignar",
       Cell: (props) => {
-        
         if (props.row.original.status == 2) {
           return (
             <div className="flex flex-row justify-end">
@@ -86,7 +85,7 @@ const Table = ({ status }) => {
   //   setLoading(true);
   //   try {
   //     const { data } = await axios(
-  //       `https://portcrg-dev.onrender.com/api/user/courses/${id}`
+  //       `https://portcrg.onrender.com/api/user/courses/${id}`
   //     );
   //     setOgData(data.data);
   //     setData(data.data);

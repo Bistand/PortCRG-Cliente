@@ -22,7 +22,7 @@ export const UsersProvider = ({ children }) => {
           },
         };
         const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/user",
+          "https://portcrg.onrender.com/api/user",
           config
         );
         setUsersList(data.data);
@@ -48,7 +48,7 @@ export const UsersProvider = ({ children }) => {
         privileges: privilegeChoice,
       };
       const { data } = await axios.post(
-        `https://portcrg-dev.onrender.com/api/user/updatePrivileges/${user._id}`,
+        `https://portcrg.onrender.com/api/user/updatePrivileges/${user._id}`,
         body,
         config
       );

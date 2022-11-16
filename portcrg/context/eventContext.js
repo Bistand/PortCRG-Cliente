@@ -8,9 +8,9 @@ export const EventsProvider = ({ children }) => {
   const [eventsList, setEventsList] = useState([]);
   const [event, setEvent] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [privileges, setPrivileges] = useState(3)
+  const [privileges, setPrivileges] = useState(3);
   const tokenuser = getCookie("tokenuser");
- 
+
   useEffect(() => {
     const ObtenerEventos = async () => {
       try {
@@ -22,11 +22,10 @@ export const EventsProvider = ({ children }) => {
           },
         };
         const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/informativa/",
+          "https://portcrg.onrender.com/api/informativa/",
           config
         );
         setEventsList(data.data);
-
       } catch (error) {
         console.log(error);
       } finally {
@@ -34,14 +33,11 @@ export const EventsProvider = ({ children }) => {
       }
     };
     ObtenerEventos();
-    
   }, []);
 
   useEffect(() => {
     getUserAuth();
-  
-  }, [privileges])
-  
+  }, [privileges]);
 
   const handleInputSubmit = async (id, data) => {
     if (id != undefined) {
@@ -60,7 +56,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        "https://portcrg-dev.onrender.com/api/informativa/",
+        "https://portcrg.onrender.com/api/informativa/",
         evento,
         config
       );
@@ -80,7 +76,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const { data } = await axios.put(
-        "https://portcrg-dev.onrender.com/api/informativa/area",
+        "https://portcrg.onrender.com/api/informativa/area",
         evento,
         config
       );
@@ -102,7 +98,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const response = await axios.delete(
-        "https://portcrg-dev.onrender.com/api/informativa/area",
+        "https://portcrg.onrender.com/api/informativa/area",
         config
       );
       const updatedEvents = eventsList.filter(
@@ -122,14 +118,14 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const { data } = await axios.get(
-        "https://portcrg-dev.onrender.com/api/admin",
+        "https://portcrg.onrender.com/api/admin",
         config
       );
-      setPrivileges(data.data.user.privileges)
+      setPrivileges(data.data.user.privileges);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <EventContext.Provider
@@ -139,7 +135,7 @@ export const EventsProvider = ({ children }) => {
         loading,
         handleDeleteEvent,
         handleInputSubmit,
-        privileges
+        privileges,
       }}
     >
       {children}

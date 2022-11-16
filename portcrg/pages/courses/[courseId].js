@@ -53,15 +53,12 @@ export async function getServerSideProps(context) {
   const { courseId } = params;
   const cookie = context.req.cookies.tokenuser;
 
-  const response = await fetch(
-    `https://portcrg-dev.onrender.com/api/courses/id`,
-    {
-      headers: {
-        id: courseId,
-        Authorization: `Bearer ${cookie}`,
-      },
-    }
-  );
+  const response = await fetch(`https://portcrg.onrender.com/api/courses/id`, {
+    headers: {
+      id: courseId,
+      Authorization: `Bearer ${cookie}`,
+    },
+  });
 
   const { data } = await response.json();
 

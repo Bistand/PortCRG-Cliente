@@ -26,7 +26,7 @@ async function conprobaruser(email, password) {
 const addPosts = async (email, pass) => {
   try {
     const resultado = await fetch(
-      "https://portcrg-dev.onrender.com/api/user/login",
+      "https://portcrg.onrender.com/api/user/login",
       {
         method: "POST",
         body: JSON.stringify({
@@ -46,16 +46,13 @@ const addPosts = async (email, pass) => {
 
 const addGet = async (token) => {
   try {
-    const resultado = await fetch(
-      "https://portcrg-dev.onrender.com/api/admin",
-      {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          "auth-token": token,
-        },
-      }
-    );
+    const resultado = await fetch("https://portcrg.onrender.com/api/admin", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        "auth-token": token,
+      },
+    });
     return resultado.json();
   } catch (e) {
     return e;

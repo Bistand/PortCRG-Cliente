@@ -22,7 +22,7 @@ const CoursesProvider = ({ children }) => {
           },
         };
         const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/courses/",
+          "https://portcrg.onrender.com/api/courses/",
           config
         );
 
@@ -56,7 +56,7 @@ const CoursesProvider = ({ children }) => {
       };
 
       const { data } = await axios.post(
-        "https://portcrg-dev.onrender.com/api/courses/",
+        "https://portcrg.onrender.com/api/courses/",
         course,
         config
       );
@@ -86,14 +86,14 @@ const CoursesProvider = ({ children }) => {
       //   },
       // };
       // const { data } = await axios.post(
-      //   "https://portcrg-dev.onrender.com/api/courses/assignment",
+      //   "https://portcrg.onrender.com/api/courses/assignment",
       //   config
       // );
 
       // console.log(data);
 
       const message = await fetch(
-        "https://portcrg-dev.onrender.com/api/courses/assignment",
+        "https://portcrg.onrender.com/api/courses/assignment",
         {
           method: "POST",
           headers: {
@@ -132,7 +132,7 @@ const CoursesProvider = ({ children }) => {
     try {
       const idUser = localStorage.getItem("id");
       const message = await fetch(
-        "https://portcrg-dev.onrender.com/api/courses/unassign",
+        "https://portcrg.onrender.com/api/courses/unassign",
         {
           method: "POST",
           headers: {
@@ -179,7 +179,7 @@ const CoursesProvider = ({ children }) => {
         },
       };
       const { data } = await axios(
-        `https://portcrg-dev.onrender.com/api/user/courses/${idUser}`,
+        `https://portcrg.onrender.com/api/user/courses/${idUser}`,
         config
       );
       setCoursesListUser(data.data.reverse());
@@ -198,7 +198,7 @@ const CoursesProvider = ({ children }) => {
         },
       };
       const { data } = await axios.put(
-        "https://portcrg-dev.onrender.com/api/courses/",
+        "https://portcrg.onrender.com/api/courses/",
         course,
         config
       );
@@ -227,7 +227,7 @@ const CoursesProvider = ({ children }) => {
       };
 
       const { data } = await axios(
-        "https://portcrg-dev.onrender.com/api/courses/id",
+        "https://portcrg.onrender.com/api/courses/id",
         config
       );
 

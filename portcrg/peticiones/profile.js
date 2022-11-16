@@ -6,7 +6,7 @@ export async function Getdatosuser(token) {
   let usuario;
   const idd = await datosUSer(token);
   //console.log(idd);
-  const url = `https://portcrg-dev.onrender.com/api/user/${idd.id}`;
+  const url = `https://portcrg.onrender.com/api/user/${idd.id}`;
   try {
     usuario = await fetch(url, {
       method: "GET",
@@ -25,7 +25,7 @@ export async function Getdatosuser(token) {
 export async function UpdateProfile(perfil, token) {
   try {
     const resultado = await fetch(
-      `https://portcrg-dev.onrender.com/api/user/updateInfo/${perfil.id}`,
+      `https://portcrg.onrender.com/api/user/updateInfo/${perfil.id}`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -54,7 +54,7 @@ export async function deletUser(email, token) {
   console.log(token);
   try {
     const resultado = await fetch(
-      "https://portcrg-dev.onrender.com/api/user/deleteUser",
+      "https://portcrg.onrender.com/api/user/deleteUser",
       {
         method: "POST",
         body: JSON.stringify({
@@ -75,7 +75,7 @@ export async function deletUser(email, token) {
 export async function updatePassword(credenciales, id, token) {
   try {
     const resultado = await fetch(
-      `https://portcrg-dev.onrender.com/api/user/changePass/${id}`,
+      `https://portcrg.onrender.com/api/user/changePass/${id}`,
       {
         method: "POST",
         headers: {
@@ -99,7 +99,7 @@ export async function updateP(credenciales, id) {
   console.log(credenciales);
   try {
     const resultado = await axios.post(
-      `https://portcrg-dev.onrender.com/api/user/changePass/${id}`,
+      `https://portcrg.onrender.com/api/user/changePass/${id}`,
       {
         email: "nuevoFernando@gmail.com",
         oldPass: "12341234",
@@ -123,7 +123,7 @@ export async function updateHealth(
 ) {
   try {
     const resultado = await fetch(
-      `https://portcrg-dev.onrender.com/api/user/updateHealth/${id}`,
+      `https://portcrg.onrender.com/api/user/updateHealth/${id}`,
       {
         method: "POST",
         headers: {

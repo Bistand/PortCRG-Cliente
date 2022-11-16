@@ -13,7 +13,7 @@ export const EventsProvider = ({ children }) => {
       try {
         setLoading(true);
         const { data } = await axios(
-          "https://portcrg-dev.onrender.com/api/informativa/"
+          "https://portcrg.onrender.com/api/informativa/"
         );
         setEventsList(data.data);
       } catch (error) {
@@ -41,7 +41,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        "https://portcrg-dev.onrender.com/api/informativa/",
+        "https://portcrg.onrender.com/api/informativa/",
         evento,
         config
       );
@@ -60,7 +60,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const { data } = await axios.put(
-        "https://portcrg-dev.onrender.com/api/informativa/area",
+        "https://portcrg.onrender.com/api/informativa/area",
         evento,
         config
       );
@@ -81,7 +81,7 @@ export const EventsProvider = ({ children }) => {
         },
       };
       const response = await axios.delete(
-        "https://portcrg-dev.onrender.com/api/informativa/area",
+        "https://portcrg.onrender.com/api/informativa/area",
         config
       );
       const updatedEvents = eventsList.filter(

@@ -32,10 +32,9 @@ import Link from "next/link";
 // const locales = {
 //     "pt-BR": require("date-fns/locale/pt-BR"),
 // };
-import * as moment from 'moment-timezone';
+import * as moment from "moment-timezone";
 //FUNCIONA HORA
-moment.tz.setDefault('Etc/Universal');
-
+moment.tz.setDefault("Etc/Universal");
 
 const localizer = momentLocalizer(moment);
 
@@ -104,7 +103,7 @@ const calendar = () => {
         },
       };
       const { data } = await axios.get(
-        "https://portcrg-dev.onrender.com/api/admin",
+        "https://portcrg.onrender.com/api/admin",
         config
       );
       setOccupation(data.data.user.occupation);
