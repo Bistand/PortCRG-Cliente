@@ -59,7 +59,7 @@ const Table = ({ status }) => {
   ];
 
   const columns = useMemo(() => COLUMNS, []);
-  const { getCoursesByUser, coursesListUser } = useCourses();
+  const { getCoursesByUser, coursesListUser, loading } = useCourses();
   const ObtenerCursos = async () => {
     await getCoursesByUser();
   };
@@ -124,7 +124,11 @@ const Table = ({ status }) => {
 
   return (
     <>
-      {coursesListUser.length ? (
+      {loading ? (
+        <div className="flex flex-row justify-center">
+          <h2>Cargando curos asignados...</h2>
+        </div>
+      ) : coursesListUser.length ? (
         <>
           <div className="flex justify-end">
             <FilterComponent
@@ -222,9 +226,10 @@ const Table = ({ status }) => {
         </>
       ) : (
         <div className="flex flex-row justify-center">
-          <h2>Cargando cursos ...</h2>
+          <h2>No cuentas con cursos asignados.</h2>
         </div>
       )}
+
       <DeleteEventModal
         isOpen={isOpenDel}
         setIsOpen={setIsOpenDel}

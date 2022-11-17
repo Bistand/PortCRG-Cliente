@@ -4,6 +4,7 @@ import FormCourses from "../../components/FormCourses";
 import CardCourses from "../../components/CardCourses";
 import useCourses from "../../hooks/useCourses";
 import { useEvents } from "../../context/eventContext";
+import Head from "next/head";
 
 function index() {
   const [modal, setModal] = useState(false);
@@ -13,10 +14,13 @@ function index() {
 
   return (
     <>
+      <Head>
+        <title>Cursos</title>
+      </Head>
       <div className="mx-10 md:mx-28 grid grid-cols-1 md:grid-cols-2 mt-8">
         <div>
           <p className="font-inter font-bold text-2xl   sm:text-4xl  leading-tight text-dark-cadet-blue">
-            Nunca subestimes tu habilidad para mejorar la vida de alguien
+            Cursos registrados
           </p>
         </div>
         {privileges == 1 || privileges == 2 ? (
@@ -61,8 +65,8 @@ function index() {
             ))
             .reverse()
         ) : (
-          <p className="font-bold text-3xl text-center justify-items-center my-48 ">
-            En espera... Cargado Cursos
+          <p className=" text-black text-center justify-items-center my-48 md:col-span-2 lg:col-span-3 xl:col-span-4 ">
+            No se han agregado cursos.
           </p>
         )}
       </div>

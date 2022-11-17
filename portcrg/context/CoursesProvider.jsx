@@ -16,6 +16,7 @@ const CoursesProvider = ({ children }) => {
   useEffect(() => {
     const ObtenerCursos = async () => {
       try {
+        setLoading(true);
         const config = {
           headers: {
             Authorization: `Bearer ${tokenuser}`,
@@ -25,10 +26,13 @@ const CoursesProvider = ({ children }) => {
           "https://portcrg.onrender.com/api/courses/",
           config
         );
+        console.log(data.data);
 
         setCoursesList(data.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
