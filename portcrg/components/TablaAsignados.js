@@ -40,6 +40,8 @@ const TablaAsignados = ({ participantes }) => {
 
   useEffect(() => {
     setData(participantes);
+    console.log(privileges);
+    console.log(coursesListUser.length);
   }, []);
 
   useEffect(() => {}, []);
@@ -87,7 +89,7 @@ const TablaAsignados = ({ participantes }) => {
 
   return (
     <>
-      {coursesListUser.length && privileges == 1 ? (
+      {privileges == 1 ? (
         <div className="flex flex-row justify-center">
           <div className="w-full">
             <div className="flex items-center py-5">
@@ -98,7 +100,7 @@ const TablaAsignados = ({ participantes }) => {
           </div>
         </div>
       ) : null}
-      {coursesListUser.length && privileges == 1 ? (
+      {privileges == 1 ? (
         <>
           <div className="flex justify-end">
             <FilterComponent
