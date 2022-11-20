@@ -13,23 +13,9 @@ const Footer = () => {
         <div className="sm:flex sm:gap-6">
           <ul className="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
-              <Link href="/Login">
-                <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-                  Login
-                </a>
-              </Link>
-            </li>
-            <li>
               <Link href="/">
                 <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-                  Asistencia
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/courses">
-                <a className="block  sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-                  Cursos
+                  Inicio
                 </a>
               </Link>
             </li>

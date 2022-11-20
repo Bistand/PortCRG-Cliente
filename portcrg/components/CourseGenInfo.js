@@ -49,7 +49,7 @@ function CourseGenInfo(props) {
             {privileges == 3 ? (
               <button
                 disabled={false}
-                className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
+                className="bg-dark-cadet-blue px-4 py-5 text-white uppercase
             font-bold text-sm rounded-lg text-start flex gap-2 md:h-16"
                 onClick={() => addCourse()}
               >
