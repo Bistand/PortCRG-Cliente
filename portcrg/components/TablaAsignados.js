@@ -89,7 +89,7 @@ const TablaAsignados = ({ participantes }) => {
 
   return (
     <>
-      {privileges == 1 ? (
+      {privileges == 1 || privileges == 2 ? (
         <div className="flex flex-row justify-center">
           <div className="w-full">
             <div className="flex items-center py-5">
@@ -100,7 +100,7 @@ const TablaAsignados = ({ participantes }) => {
           </div>
         </div>
       ) : null}
-      {privileges == 1 ? (
+      {privileges == 1 || privileges == 2 ? (
         <>
           <div className="flex justify-end">
             <FilterComponent
@@ -196,7 +196,7 @@ const TablaAsignados = ({ participantes }) => {
             </div>
           </div>
         </>
-      ) : privileges != 1 ? null : (
+      ) : privileges != 1 || privileges != 2 ? null : (
         <div className="flex flex-row justify-center">
           <h2>Cargando Participantes ...</h2>
         </div>
