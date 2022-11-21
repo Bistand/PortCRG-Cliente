@@ -56,10 +56,10 @@ const calendar = () => {
   const [mostrarboton, setMostrarboton] = useState(true);
   const token = getCookie("token");
   function validarusuario() {
-    console.log("validar");
+    // console.log("validar");
     if (token) {
       const privilegesvalor = token.substr(0, 1);
-      console.log(privilegesvalor);
+      // console.log(privilegesvalor);
       if (privileges === "3") {
         setMostrarboton(true);
       }

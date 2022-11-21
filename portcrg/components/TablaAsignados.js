@@ -40,8 +40,8 @@ const TablaAsignados = ({ participantes }) => {
 
   useEffect(() => {
     setData(participantes);
-    console.log(privileges);
-    console.log(coursesListUser.length);
+    // console.log(privileges);
+    // console.log(coursesListUser.length);
   }, []);
 
   useEffect(() => {}, []);

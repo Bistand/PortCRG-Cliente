@@ -74,9 +74,9 @@ function index() {
             //
             .filter((user) => {
               return (
-                (user.email.toLowerCase().includes(filter.toLowerCase()) &&
+                (user.fullName.toLowerCase().includes(filter.toLowerCase()) &&
                   occupationSelected == 0) ||
-                (user.email.toLowerCase().includes(filter.toLowerCase()) &&
+                (user.fullName.toLowerCase().includes(filter.toLowerCase()) &&
                   user.occupation == occupationSelected)
               );
             })
