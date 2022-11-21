@@ -1,0 +1,367 @@
+
+.general{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+.bod{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 40px;
+    background: #FDFFFC;
+    
+
+}.contenedor {
+    width: 100%;
+    min-height: 710px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #FDFFFC;
+
+}
+.text{
+    width: 80%;
+    font-weight: 600;
+    font-size:68px;
+    color:  #56a3a6;
+    margin-top: 25%;
+    margin-left: 5%;
+    box-shadow: 0px 0px 10px rgba(0, 0,0, 0,0.1);
+    background-color: rgb(255, 255, 254);
+    border-radius: 2px;
+    background-color: #f1f5f9;
+
+ 
+
+}
+
+.label{
+    bottom: 30px;
+    font-size: 30px;
+    margin-top: 40px;
+    color: #305c36;
+}
+
+.divcodigo{
+    width: 50%;
+    height: 700px;
+    float: left;
+}
+.divbotones{
+    width: 50%;
+    height: 700px;
+    float: right;
+}
+.diventrada{
+    width: 100%;
+    height: 350px;
+}
+.divsalida{
+    width: 100%;
+    height: 350px;
+}
+.divcajaasistencia{
+    width: 90%;
+    height: 310px;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #000000;
+    margin-left: 30px;
+    border-radius: 5px;
+    margin-right: auto;
+    box-shadow: 1px 1px 5px rgba(0, 0,0, 0,0.1);
+    font-size: auto;
+    margin-top: 15px;
+    padding: 30px;
+    background-color: #f1f5f9;
+}
+
+.botonsalida {
+    width: 80%;
+    height: 120px;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    margin-left: 10%;
+    margin-top: 5%;
+    background-color: #e4190e;
+    
+}
+.botonsalida:hover{
+    background-color: rgb(208, 3, 3);
+}
+.botonsalida:active{
+    background-color: rgb(135, 0, 0);
+}
+.botonentrada {
+    width: 80%;
+    height: 120px;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    margin-left: 10%;
+    margin-top: 5%;
+    background: rgb(0, 208, 0);
+    color: white;
+}
+.botonentrada:hover{
+    background-color: rgb(3, 174, 49);
+}
+.botonentrada:active{
+    background-color: rgb(2, 112, 13);
+}
+@media (max-width:700px) {
+
+    .contenedor .formrow{
+        display: block;
+    }
+    .formrow {
+        margin: 35px 0;
+    }
+}
+@media screen and (max-width: 926px) {
+    .divcodigo {
+        width: 95%;
+        height: 180px;
+    }
+}
+@media screen and (max-width: 926px) {
+    .text {
+        width: 99%;
+        height: 160px;
+        margin-top: 2%;
+        margin-left: 3%;
+        float: none;
+        font-size: 55px;
+        
+
+    }
+}
+@media screen and (max-width: 926px) {
+    .diventrada {
+        height: 280px;
+     
+    }
+}
+@media screen and (max-width: 926px) {
+    .divcajaasistencia {
+        height: 280px;
+      
+    }
+}
+
+
+@media screen and (max-width: 758px) {
+    .text {
+    font-size: 55px;
+    }
+}
+@media screen and (max-width: 609px) {
+    .text {
+    font-size: 45px;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .text {
+    font-size: 40px;
+    }
+}
+@media screen and (max-width: 492px) {
+    .divcodigo {
+   height: 110px;
+   
+    }
+}
+@media screen and (max-width: 492px) {
+    .text {
+   height: 100px;
+   
+    }
+}
+@media screen and (max-width: 926px) {
+    .divbotones {
+        width:100%;
+    }
+}
+@media screen and (max-width: 926px) {
+    .divcajaasistencia {
+        margin-top: 1.5%;
+    }
+}
+@media screen and (max-width: 513px) {
+    .divcajaasistencia {
+        margin-left: 15px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .diventrada {
+        height: 320px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .label {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 513px) {
+    .diventrada {
+        height: 260px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .divcajaasistencia {
+        height: 260px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .botonentrada {
+        height: 70px;
+        
+    }
+}
+@media screen and (max-width: 513px) {
+    .botonsalida {
+        height: 70px;
+        
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .diventrada {
+        height: 230px;
+     
+        
+    }
+}
+@media screen and (max-width: 355px) {
+    .divcajaasistencia {
+        height: 230px;
+        
+    }
+}
+@media screen and (max-width: 478px) {
+    .text {
+   font-size: 35px;
+   
+    }
+}@media screen and (max-width: 416px) {
+    .text {
+   font-size: 30px;
+   
+    }
+}
+@media screen and (max-width: 370px) {
+    .text {
+       font-size: 25px;
+        
+    }
+}
+@media screen and (max-width: 339px) {
+    .divcajaasistencia {
+       margin-left: 10px;
+     
+        
+    }
+}
+@media screen and (max-width: 337px) {
+    .label {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 326px) {
+    .text {
+       font-size: 23px;
+        
+    }
+}
+@media screen and (max-width: 290px) {
+    .text {
+       font-size: 25px;
+        
+    }
+}
+@media screen and (max-width: 286px) {
+    .label {
+        font-size: 12px;
+  
+    }
+}
+@media screen and (max-width: 280px) {
+    .diventrada {
+       height: 175px;
+   
+        
+    }
+}
+@media screen and (max-width: 280px) {
+    .divcajaasistencia {
+       height: 170px;
+        
+    }
+}
+
+@media screen and (max-width: 254px) {
+    .text {
+       font-size: 20px;
+        
+    }
+}
+@media screen and (max-width: 262px) {
+    .label {
+        font-size: 9px;
+    
+  
+    }
+}
+@media screen and (max-width: 277px) {
+    .botonentrada {
+        font-size: 15px;
+    
+  
+    }
+}
+@media screen and (max-width: 277px) {
+    .botonsalida {
+        font-size: 15px;
+    
+  
+    }
+}
+@media screen and (max-width: 224px) {
+    .botonentrada {
+        font-size: 9px;
+    
+  
+    }
+}
+@media screen and (max-width: 224px) {
+    .botonsalida {
+        font-size: 9px;
+    
+  
+    }
+}
+@media screen and (max-width: 191px) {
+    .text {
+   font-size: 15px;
+   
+    }
+}
+
+
+
+

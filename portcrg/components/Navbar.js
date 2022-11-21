@@ -1,15 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { deleteCookie, getCookie } from "cookies-next";
+import axios from "axios";
+import { datosUSer } from "../peticiones/session";
+import { Getdatosuser } from "../peticiones/profile";
 
 const Navbar = () => {
+  const [user, setUser] = useState("");
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [Ocultar, setOcultar] = useState(false);
+  const [Supeadmrhidden, setSuperadmhidden] = useState(true);
+  const [Adminhidden, setAdminhidden] = useState(true);
+  const [Userhidden, setUserhidden] = useState(true);
+  const [Todoshidden, setTodoshidden] = useState(true);
+  const [Admuser, setAdminuser] = useState(true);
+  const [texinicio, setTexinicio] = useState("Inicio");
+  const tokenuser = getCookie("tokenuser");
+  const router = useRouter();
+  let usuario, privilegess, perfil, user2;
+  useEffect(() => {
+    if (tokenuser) {
+      privilegess = getCookie("token");
+      const privilegesvalor = privilegess.substr(0, 1);
+      switch (privilegesvalor) {
+        case "1":
+          setSuperadmhidden(false);
+          setAdminuser(false);
+          break;
+        case "2":
+          setAdminuser(false);
+
+          break;
+        case "3":
+          setUserhidden(false);
+          break;
+      }
+
+      setOcultar(true);
+      setTodoshidden(false);
+      Datos();
+    } else {
+      setOcultar(false);
+      setSuperadmhidden(true);
+      setAdminhidden(true);
+      setUserhidden(true);
+      setTodoshidden(true);
+      setAdminuser(true);
+      setUser("");
+    }
+  });
+
+  const Datos = async () => {
+    user2 = await Getdatosuser(tokenuser);
+    perfil = user2.data;
+    console.log(perfil.fullName);
+    setUser(perfil.fullName);
+  };
+  const logout = () => {
+    router.push("/login");
+    deleteCookie("tokenuser");
+    deleteCookie("token");
+    router.push("/login");
+  };
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 sm:px-12 py-2">
+    <nav className="flex items-center justify-between flex-wrap bg-cherry-red px-5 lg:px-12 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-16">
-        <Image src="/PortCRG.png" width={64} height={64}></Image>
+        <button>
+          <Link href="/">
+            <a>
+              <Image src="/PortCRG.png" width={64} height={64}></Image>
+            </a>
+          </Link>
+        </button>
       </div>
-      <div className="block sm:hidden">
+      <div className="block lg:hidden items-center flex">
         <button
           className="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-200 hover:border-white"
           onClick={() => setNavbarOpen(!navbarOpen)}
@@ -26,47 +92,143 @@ const Navbar = () => {
       </div>
       <div
         className={
-          "w-full block flex-grow sm:flex sm:items-center sm:w-auto" +
+          "w-full block flex-grow lg:flex lg:items-center lg:w-auto" +
           (navbarOpen ? null : " hidden")
         }
       >
-        <div className="text-sm sm:flex-grow">
-          <Link href="/">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Inicio
-            </a>
-          </Link>
+        <Link href={"/login"}>
+          <button
+            className={` lg:${
+              !Ocultar ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Ocultar ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Ingresar
+          </button>
+        </Link>
+        <Link href="/sign_up">
+          <button
+            hidden={Admuser}
+            className={
+              "lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 "
+            }
+            onClick={() => setNavbarOpen(false)}
+          >
+            Registrar
+          </button>
+        </Link>
+        <Link href="/courses">
+          <button
+            className={` lg:${
+              !Todoshidden ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Todoshidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Cursos
+          </button>
+        </Link>
+        <Link href="/users">
+          <button
+            hidden={Supeadmrhidden}
+            className={
+              "lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8"
+            }
+            onClick={() => setNavbarOpen(false)}
+          >
+            Usuarios
+          </button>
+        </Link>
+        <Link href="/informative">
+          <button
+            className={` lg:${
+              !Todoshidden ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Todoshidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Eventos
+          </button>
+        </Link>
+        <Link href="/EntradaSalida">
+          <button
+            className={` lg:${
+              !Userhidden ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Userhidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Generar código
+          </button>
+        </Link>
+        <Link href="/RegistroEntradas">
+          <button
+            className={` lg:${
+              !Admuser ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Admuser ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Registro
+          </button>
+        </Link>
+        <Link href="/users/courses">
+          <button
+            className={` lg:${
+              !Userhidden ? "inline-block " : "hidden"
+            } "block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              !Userhidden ? "block " : "hidden"
+            }`}
+            onClick={() => setNavbarOpen(false)}
+          >
+            Cursos Asignados
+          </button>
+        </Link>
 
-          <Link href="/login">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Login
-            </a>
-          </Link>
+        <a className="block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold lg:mr-6">
+          <button
+            onClick={logout}
+            className={`lg:${
+              Ocultar ? "inline-block " : "hidden"
+            } lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8 ${
+              Ocultar ? "block " : "hidden"
+            }`}
+          >
+            Cerrar sesión
+          </button>
+        </a>
 
-          <Link href="/sign_up">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Sign Up
-            </a>
-          </Link>
+        {/* <div className="text-sm items-center col lg:flex-grow">
+        DIV ORIGINAL DEL NAVBAR
 
-          <Link href="/courses">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Cursos
-            </a>
-          </Link>
+        </div> */}
+        {/* PARTE DE BOTON DE USUARIO Y NOMBRE DE USUARIO */}
+        <div className="text-sm lg:flex-grow"></div>
 
-          <Link href="/informative">
-            <a className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-gray-200 hover:font-bold mr-8">
-              Eventos
-            </a>
-          </Link>
-        </div>
-        <div>
-          <Link href="/profile">
-            <a className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-cherry-red hover:bg-white mt-4 sm:mt-0">
-              Usuario
-            </a>
-          </Link>
+        <div className="items-center flex flex-row justify-start lg:pt-0 ">
+          <a className="block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-4">
+            {user}
+          </a>
+          <a href="/profile">
+            <button
+              className={` lg:${
+                !Todoshidden ? "inline-block " : "hidden"
+              } block lg:inline-block lg:mt-0 text-white hover:text-gray-200 hover:font-bold mr-4 ${
+                !Todoshidden ? "block " : "hidden"
+              }`}
+            >
+              <img
+                className="h-[30px] w-[30px] rounded-full inline-block "
+                src="/user1.png"
+              ></img>
+            </button>
+          </a>
         </div>
       </div>
     </nav>

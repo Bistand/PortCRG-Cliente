@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { getCookie } from "cookies-next";
 
 const EventContext = createContext();
 
@@ -8,22 +7,13 @@ export const EventsProvider = ({ children }) => {
   const [eventsList, setEventsList] = useState([]);
   const [event, setEvent] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [privileges, setPrivileges] = useState(3);
-  const tokenuser = getCookie("tokenuser");
 
   useEffect(() => {
     const ObtenerEventos = async () => {
       try {
         setLoading(true);
-        const config = {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${tokenuser}`,
-          },
-        };
         const { data } = await axios(
-          "https://portcrg.onrender.com/api/informativa/",
-          config
+          "https://portcrg.onrender.com/api/informativa/"
         );
         setEventsList(data.data);
       } catch (error) {
@@ -34,10 +24,6 @@ export const EventsProvider = ({ children }) => {
     };
     ObtenerEventos();
   }, []);
-
-  useEffect(() => {
-    getUserAuth();
-  }, [privileges]);
 
   const handleInputSubmit = async (id, data) => {
     if (id != undefined) {
@@ -52,7 +38,6 @@ export const EventsProvider = ({ children }) => {
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${tokenuser}`,
         },
       };
       const { data } = await axios.post(
@@ -72,7 +57,6 @@ export const EventsProvider = ({ children }) => {
         headers: {
           "Content-Type": "multipart/form-data",
           id: id,
-          Authorization: `Bearer ${tokenuser}`,
         },
       };
       const { data } = await axios.put(
@@ -94,7 +78,6 @@ export const EventsProvider = ({ children }) => {
       const config = {
         headers: {
           id: id,
-          Authorization: `Bearer ${tokenuser}`,
         },
       };
       const response = await axios.delete(
@@ -110,23 +93,6 @@ export const EventsProvider = ({ children }) => {
     }
   };
 
-  const getUserAuth = async () => {
-    try {
-      const config = {
-        headers: {
-          "auth-token": tokenuser,
-        },
-      };
-      const { data } = await axios.get(
-        "https://portcrg.onrender.com/api/admin",
-        config
-      );
-      setPrivileges(data.data.user.privileges);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <EventContext.Provider
       value={{
@@ -135,13 +101,12 @@ export const EventsProvider = ({ children }) => {
         loading,
         handleDeleteEvent,
         handleInputSubmit,
-        privileges,
       }}
     >
       {children}
     </EventContext.Provider>
   );
 };
-export const useEvents = () => {
-  return useContext(EventContext);
-};
+// export const useEvents = () => {
+//   return useContext(EventContext);
+// };

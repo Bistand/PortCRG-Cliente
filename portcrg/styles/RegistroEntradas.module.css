@@ -1,0 +1,101 @@
+
+.general{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+.bod{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 40px;
+    background: #FDFFFC;
+    
+
+}
+.contenedor {
+    width: 98%;
+    height: 680px;
+    margin:0 auto ;
+    overflow: hidden;
+    background-color: #f1f5f9;
+
+
+}
+.central{
+    background-color: #f1f5f9;
+    width: 1200px;
+    max-width: 1200px;
+    padding: 25px 40px 10px 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0,0, 0,0.1);
+    
+}
+.divtitulo{
+    width: 100%;
+    height: 150px;
+  
+
+
+}
+.divinput{
+    width: 100%;
+
+    height: 150px;
+
+}
+.divboton{
+    width: 100%;
+
+
+}
+.h1{
+    font-weight: 600;
+    font-size: 60px;
+    color: #56a3a6;
+
+
+
+
+}
+.input{
+    box-sizing: border-box;
+    width: 60%;
+    height: 120px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #000000;  
+    align-items: center;
+    font-size: 80px;
+    text-align: center;
+}
+.Boton {
+    width: 230px;
+    height: 80px;
+    background: #ff0b0b;
+    border: 1px solid #ABABAB;
+    border-radius: 9px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #FDFFFC;
+    margin-right: auto;
+
+    margin-top: 4%;
+}
+@media (max-width:700px) {
+    .contenedor .text{
+        font-size: 30px;
+    }
+    .contenedor form .formrow{
+        display: block;
+    }
+    form .formrow .inputdata{
+        margin: 35px 0;
+    }
+}

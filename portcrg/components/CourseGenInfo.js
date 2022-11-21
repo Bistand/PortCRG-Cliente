@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Modal from "./Modal";
 import FormCourses from "./FormCourses";
+import useCourses from "../hooks/useCourses";
+import { useEvents } from "../context/eventContext";
+
 import {
   MdHighlightOff,
   MdHistory,
@@ -9,11 +12,21 @@ import {
 } from "react-icons/md";
 
 import { BiWindowOpen } from "react-icons/bi";
+import PdfViewer from "./PdfViewer";
 
 function CourseGenInfo(props) {
   const [modal, setModal] = useState(false);
-
+  const [modalPdf, setModalPdf] = useState(false);
   const course = props.course;
+  const { AsignarCourse } = useCourses();
+  const { privileges } = useEvents();
+
+  const addCourse = async () => {
+    await AsignarCourse({
+      course,
+    });
+  };
+
   return (
     <>
       <div className="flex flex-col h-full mb-4 lg:mb-0">
@@ -22,13 +35,40 @@ function CourseGenInfo(props) {
             {course.name}
           </p>
 
-          <button
-            className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
+          <div className="flex space-x-4">
+            {privileges == 1 || privileges == 2 ? (
+              <button
+                className="bg-dark-cadet-blue px-4 py-3 text-white uppercase
             font-bold text-sm rounded-lg text-start"
-            onClick={() => setModal(true)}
-          >
-            Editar
-          </button>
+                onClick={() => setModal(true)}
+              >
+                Editar
+              </button>
+            ) : null}
+
+            {privileges == 3 ? (
+              <button
+                disabled={false}
+                className="bg-dark-cadet-blue px-4 py-5 text-white uppercase
+            font-bold text-sm rounded-lg text-start flex gap-2 md:h-16"
+                onClick={() => addCourse()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Asignar curso
+              </button>
+            ) : null}
+          </div>
         </div>
 
         <span className="flex">
@@ -83,21 +123,35 @@ function CourseGenInfo(props) {
         </div>
         <div className="mt-2">
           <p className="font-inter font-bold text-left sm:text-lg 2xl:text-xl mb-2 text-dark-cadet-blue">
-            Enlace de descarga de temario del curso
+            Previsualización del temario del curso
           </p>
           {course.hasOwnProperty("temarioURL") && course.temarioURL != "" ? (
-            <Link href={course.temarioURL} passHref>
-              <a className="text-teal-700 hover:underline" target="_blank">
-                Temario - {course.name}
-              </a>
-            </Link>
+            // <Link href={course.temarioURL} passHref>
+            //   <a className="text-teal-700 hover:underline" target="_blank">
+            //     Temario - {course.name}
+            //   </a>
+            // </Link>
+            <button
+              type="button"
+              className=" text-sm px-3 py-2 w-full md:w-auto rounded-lg uppercase font-bold
+              bg-dark-cadet-blue text-white text-center mt-2 flex gap-2 items-center justify-center"
+              onClick={() => setModalPdf(true)}
+            >
+              Ver temario
+            </button>
           ) : (
             <p>Aún no se ha cargado el recurso</p>
           )}
         </div>
       </div>
+      <Modal modal={modalPdf} setModal={setModalPdf} name="">
+        <PdfViewer
+          pdfUrl={course.temarioURL}
+          courseName={course.name}
+        ></PdfViewer>
+      </Modal>
       <Modal modal={modal} setModal={setModal} name="Editar Curso">
-        <FormCourses setModal={setModal} course={course} ></FormCourses>
+        <FormCourses setModal={setModal} course={course}></FormCourses>
       </Modal>
     </>
   );

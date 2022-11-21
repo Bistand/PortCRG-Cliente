@@ -8,58 +8,26 @@ import DeleteEvent from "./DeleteEvent";
 import Link from "next/link";
 import UnassignCourse from "./UnassignCourse";
 import useCourses from "../hooks/useCourses";
+import { useEvents } from "../context/eventContext";
 
-const Table = ({ status }) => {
+const TablaAsignados = ({ participantes }) => {
   const COLUMNS = [
     {
-      Header: "Curso",
-      accessor: "name",
+      Header: "DPI",
+      accessor: "DPI",
     },
     {
-      Header: "Instructor",
-      accessor: "instructor",
+      Header: "Participantes ",
+      accessor: "nombre",
     },
     {
-      Header: "",
-      accessor: "_id",
-      id: "desasignar",
-      Cell: (props) => {
-        if (props.row.original.status == 2) {
-          return (
-            <div className="flex flex-row justify-end">
-              <button
-                className="bg-transparent text-cherry-red hover:underline font-semibold hover:text-red-500 py-1 rounded"
-                onClick={() => {
-                  setIsOpenDel(true);
-                  setCourseId(props.row.original._id);
-                }}
-              >
-                Desasignar
-              </button>
-            </div>
-          );
-        } else {
-          return <></>;
-        }
-      },
-    },
-    {
-      Header: "",
-      accessor: "_id",
-      Cell: (e) => (
-        <div className="flex flex-row">
-          <Link href={"/courses/" + e.value} passHref className="">
-            <a className="bg-transparent hover:underline text-cadet-blue font-semibold py-1 px-4 rounded text-right w-full">
-              Ver más
-            </a>
-          </Link>
-        </div>
-      ),
+      Header: "Correo Electronico",
+      accessor: "correo",
     },
   ];
 
   const columns = useMemo(() => COLUMNS, []);
-  const { getCoursesByUser, coursesListUser, loading } = useCourses();
+  const { getCoursesByUser, coursesListUser } = useCourses();
   const ObtenerCursos = async () => {
     await getCoursesByUser();
   };
@@ -68,18 +36,15 @@ const Table = ({ status }) => {
   const [courseId, setCourseId] = useState("");
   const [token, setToken] = useState("");
   const authToken = getCookie("tokenuser");
+  const { privileges } = useEvents();
 
   useEffect(() => {
-    ObtenerCursos();
+    setData(participantes);
+    console.log(privileges);
+    console.log(coursesListUser.length);
   }, []);
 
-  useEffect(() => {
-    {
-      status == 0
-        ? setData(coursesListUser.filter((course) => course.status == 2))
-        : setData(coursesListUser.filter((course) => course.status == 4));
-    }
-  }, [status, coursesListUser]);
+  useEffect(() => {}, []);
 
   // const ObtenerCursos = async (id) => {
   //   setLoading(true);
@@ -124,11 +89,18 @@ const Table = ({ status }) => {
 
   return (
     <>
-      {loading ? (
+      {privileges == 1 || privileges == 2 ? (
         <div className="flex flex-row justify-center">
-          <h2>Cargando curos asignados...</h2>
+          <div className="w-full">
+            <div className="flex items-center py-5">
+              <div className="flex-grow border-t border-gray-400"></div>
+              <span className="mx-4 text-gray-400">Participantes</span>
+              <div className="flex-grow border-t border-gray-400"></div>
+            </div>
+          </div>
         </div>
-      ) : coursesListUser.length ? (
+      ) : null}
+      {privileges == 1 || privileges == 2 ? (
         <>
           <div className="flex justify-end">
             <FilterComponent
@@ -224,12 +196,11 @@ const Table = ({ status }) => {
             </div>
           </div>
         </>
-      ) : (
+      ) : privileges != 1 || privileges != 2 ? null : (
         <div className="flex flex-row justify-center">
-          <h2>No cuentas con cursos asignados.</h2>
+          <h2>Cargando Participantes ...</h2>
         </div>
       )}
-
       <DeleteEventModal
         isOpen={isOpenDel}
         setIsOpen={setIsOpenDel}
@@ -244,4 +215,4 @@ const Table = ({ status }) => {
   );
 };
 
-export default Table;
+export default TablaAsignados;

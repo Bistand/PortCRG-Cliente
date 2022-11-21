@@ -2,38 +2,32 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useEvents } from "../context/eventContext";
 
-function AddEventModal({ isOpen, setIsOpen, data }) {
+function AddEventSalud({ isOpen, setIsOpen, data }) {
   const { handleInputSubmit } = useEvents();
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    dateEvent: "",
-    dateEventF:"",
-    image: "",
+    enfermedad: "",
+    medicamento: "",
+    incapacidad: "",
   });
 
   const clearData = () => {
     setFormData({
-      title: "",
-      description: "",
-      dateEvent: "",
-      dateEventF:"",
-      image: "",
+      enfermedad: "",
+      medicamento: "",
+      incapacidad: "",
     });
   };
 
   const setValues = (data) => {
     if (data.dateEvent != undefined) {
       setFormData({
-        title: data.title,
-        description: data.description,
-        dateEvent: data.dateEvent.substring(0, 10),
-   //     dateEventF: data.dateEventF.substring(0,10),
-        image: data.image,
+        enfermedad: data.enfermedad,
+        medicamento: data.medicamento,
+        incapacidad: data.incapacidad,
+        //     dateEventF: data.dateEventF.substring(0,10),
       });
     }
   };
-  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -78,7 +72,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
               >
-                Agregar actividad
+                Actualizar Salud
               </Dialog.Title>
               <button
                 className="justify-end rounded-md border border-transparent  px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none"
@@ -94,63 +88,40 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
             <form id="form" className="space-y-6" onSubmit={handleAdd}>
               <div>
                 <div className="sticky top-4 ">
-                  <label
-                    className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Titulo
+                  <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                    Enfermedad
                   </label>
                   <input
                     type="text"
-                    name="title"
+                    name="enfermedad"
                     autoComplete="off"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    value={formData.title}
+                    value={formData.enfermedad}
                     onChange={(e) => handleChange(e)}
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Descripción
+                    Medicamento
                   </label>
-                  <textarea
-                    name="description"
+                  <input
+                    type="text"
+                    name="medicamento"
                     autoComplete="off"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    value={formData.description}
+                    value={formData.medicamento}
                     onChange={(e) => handleChange(e)}
-                  ></textarea>
+                  ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Fecha de inicio de actividad
+                    Incapacidad
                   </label>
                   <input
-                    name="dateEvent"
-                    type="datetime-local"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    value={formData.dateEvent}
-                    onChange={(e) => handleChange(e)}
-                  />
-
-                   <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Fecha de finalización de actividad
-                  </label>
-                  <input
-                    name="dateEventF"
-                    type="datetime-local"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    value={formData.dateEventF}
-                    onChange={(e) => handleChange(e)}
-                  />  
-
-                  <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                    Imagen
-                  </label>
-                  <input
-                    id="upload-files"
+                    type="text"
+                    name="incapacidad"
                     autoComplete="off"
-                    type="file"
-                    name="image"
-                    accept="image/*"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-                    onChange={(e) => handleImagenChange(e)}
+                    value={formData.incapacidad}
+                    onChange={(e) => handleChange(e)}
                   ></input>
                 </div>
               </div>
@@ -161,7 +132,7 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
                   setIsOpen(false);
                 }}
               >
-                Publicar
+                Actualizar datos
               </button>
             </form>
           </Dialog.Panel>
@@ -171,4 +142,4 @@ function AddEventModal({ isOpen, setIsOpen, data }) {
   );
 }
 
-export default AddEventModal;
+export default AddEventSalud;

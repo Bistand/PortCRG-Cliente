@@ -42,12 +42,16 @@ function CourseSpecInfo(props) {
         {/* <p className="font-semibold">Fecha de inicio</p> */}
         <span className="lg:place-items-center flex">
           <BiCalendar className="mr-2 mt-1 lg:mt-0 shrink-0"></BiCalendar>
-          <p>Inicia {course.startDate.substring(0, 10)}</p>
+          {course.startDate != undefined ? (
+            <p>Inicia {course.startDate.substring(0, 10)}</p>
+          ) : null}
         </span>
         {/* <p className="font-semibold">Fecha de cierre</p> */}
         <span className="lg:place-items-center flex">
           <BiCalendarCheck className="mr-2 mt-1 lg:mt-0 shrink-0"></BiCalendarCheck>
-          <p>Finaliza {course.endDate.substring(0, 10)}</p>
+          {course.startDate != undefined ? (
+            <p>Finaliza {course.endDate.substring(0, 10)}</p>
+          ) : null}
         </span>
 
         {/* <span className="lg:place-items-center flex">
@@ -56,7 +60,7 @@ function CourseSpecInfo(props) {
         </span> */}
 
         {/* <p className="font-semibold">Modalidad</p> */}
-        {course.modality == 1 ? (
+        {course.modality == 2 ? (
           <div>
             <span className="lg:place-items-center flex">
               <BiWalk className="mr-2 mt-1 lg:mt-0 shrink-0"></BiWalk>
@@ -68,7 +72,7 @@ function CourseSpecInfo(props) {
               <p>En la sede {course.sede}</p>
             </span>
           </div>
-        ) : course.modality == 2 ? (
+        ) : course.modality == 1 ? (
           <div>
             <span className="lg:place-items-center flex">
               <BiLaptop className="mr-2 mt-1 lg:mt-0 shrink-0"></BiLaptop>

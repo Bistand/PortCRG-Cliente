@@ -4,19 +4,381 @@ import styles from "../styles/Home.module.css";
 import { FaTasks } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
-
 import Script from "next/script";
-
 import ProfilePic from "../public/crg.png";
+import { useState, useEffect } from "react";
+import { deleteCookie, getCookie } from "cookies-next";
+
+import {
+  Getdatosuser,
+  UpdateProfile,
+  updatePassword,
+  updateP,
+  deletUser,
+  updateHealth,
+} from "../peticiones/profile";
+import { datosUSer, newPassword } from "../peticiones/session";
+import moment, { Moment } from "moment";
+import { async } from "regenerator-runtime";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const saludAgregar = () => {
+    const { eventsList, loading } = useEvents();
+    let [isOpen, setIsOpen] = useState(false);
+    let [dataModal, setDataModal] = useState({});
+    const [occupation, setOccupation] = useState(1);
+    const authToken = getCookie("tokenuser");
+  };
+
+  let perfil, usuario;
+  const tokenuser = getCookie("tokenuser");
+  const router = useRouter();
+  const Swal = require("sweetalert2");
+  let medicinanew = [];
+
+  const [dataMedicina, setDatamedicina] = useState([]);
+  const [dataEnfermedad, setDataenfermedad] = useState([]);
+  const [dataIncapacidad, setDataincapacidad] = useState([]);
+
+  //estado de las ventanas
+  const [estadodelet, setEstadodelet] = useState(true);
+  const [estadoperfil, setEstadoperfil] = useState(true);
+  const [estadoSalud, setEstadosalud] = useState(true);
+  //Mostrar datos de salud
+  const [datossalud, setDatossalud] = useState({
+    medicina: "",
+    enfermedad: "",
+    incapacidad: "",
+    tiposangre: 0,
+  });
+  //variables para nuevas datos de salud
+  const [newMedicina, setNewmedicina] = useState("");
+  const [newEnfermedad, setNewenfermedad] = useState("");
+  const [newIncapacidad, setNewincapacidad] = useState("");
+  const [newTiposangre, setNewtiposangre] = useState(0);
+
+  //variables propiedades del perfil
+  const [userperfil, setUserperfil] = useState({
+    id: "",
+    name: "",
+    dpi: "",
+    ocupacion: 0,
+    bibliography: "",
+    estadocivil: "",
+    telefono: "",
+    dateofBirth: "",
+    department: "",
+    municipality: "",
+    address: "",
+  });
+  // variables para cambiar contraseña
+  const [credenciales, setCredenciales] = useState({
+    email: "",
+    oldpassword: "",
+    newpassword: "",
+    confirmpassword: "",
+    emaildelet: "",
+  });
+  const [deletEmail, setDeletemail] = useState("");
+  const eliminarusuario = (e) => {
+    e.preventDefault();
+    setDeletemail(e.target.value);
+  };
+
+  const cambiarpassword = (e) => {
+    setCredenciales({
+      ...credenciales,
+      [e.target.name]: e.target.value,
+    });
+  };
+  useEffect(() => {
+    if (tokenuser) {
+      Datos();
+    }
+  }, [tokenuser]);
+  const Datos = async () => {
+    usuario = await Getdatosuser(tokenuser);
+    console.log(usuario);
+    perfil = usuario.data;
+    setDatamedicina([]);
+    setDataincapacidad([]);
+    setDataenfermedad([]);
+    datossalud.medicina = "";
+    datossalud.enfermedad = "";
+    datossalud.incapacidad = "";
+    setDatossalud(datossalud);
+    if (perfil) {
+      userperfil.id = perfil._id;
+      userperfil.name = perfil.fullName;
+      userperfil.telefono = perfil.phoneNumber;
+      userperfil.dpi = perfil.dpi;
+      userperfil.ocupacion = perfil.occupation;
+      userperfil.address = perfil.address;
+      userperfil.municipality = perfil.municipality;
+      userperfil.department = perfil.department;
+      const daybirth = moment.utc(perfil.dateofBirth).format("MM/DD/YYYY");
+      userperfil.dateofBirth = daybirth;
+      userperfil.bibliography = perfil.bibliography;
+      userperfil.estadocivil = perfil.maritalStatus;
+      credenciales.email = perfil.email;
+
+      //datos de salud del usuario
+      setNewtiposangre(perfil.bloodType);
+      for (let a = 0; a < perfil.medicines.length; a++) {
+        //console.log(perfil.medicines[a].medicines);
+        datossalud.medicina += "\n" + "-" + perfil.medicines[a].medicines;
+        const medic = {
+          medicines: perfil.medicines[a].medicines,
+        };
+        setDatamedicina((dataMedicina) => [...dataMedicina, medic]);
+      }
+      for (let a = 0; a < perfil.inability.length; a++) {
+        const medic = {
+          inability: perfil.inability[a].inability,
+        };
+        setDataincapacidad((dataIncapacidad) => [...dataIncapacidad, medic]);
+        datossalud.incapacidad += "\n" + "-" + perfil.inability[a].inability;
+      }
+      for (let a = 0; a < perfil.illness.length; a++) {
+        const medic = {
+          illnes: perfil.illness[a].illnes,
+        };
+        setDataenfermedad((dataEnfermedad) => [...dataEnfermedad, medic]);
+        datossalud.enfermedad += "\n" + "-" + perfil.illness[a].illnes;
+      }
+      setDatossalud(datossalud);
+      setCredenciales(credenciales);
+      setUserperfil(userperfil);
+      if (perfil.privileges === 1) {
+        setEstadodelet(false);
+      } else {
+        setEstadodelet(true);
+      }
+      router.push("/profile");
+      console.log(perfil.privileges);
+    } else {
+      Swal.fire("No cuenta con datos!", "", "info");
+    }
+  };
+  const obteniendodatos = (e) => {
+    setUserperfil({
+      ...userperfil,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const editarLibre = () => {
+    if (estadoperfil) {
+      setEstadoperfil(false);
+      Swal.fire("Ya puede editar!", "", "success");
+    } else {
+      setEstadoperfil(true);
+    }
+  };
+  const [bloquesalud, setBloquesalud] = useState(true);
+  const editarLibresalud = () => {
+    if (bloquesalud) {
+      setBloquesalud(false);
+      Swal.fire("Ya puede editar!", "", "success");
+    } else {
+      setBloquesalud(true);
+    }
+  };
+
+  //funcion que actualiza la contraseña
+  const newPass = () => {
+    console.log(credenciales);
+  };
+
+  const actualizaspassword = async (e) => {
+    e.preventDefault();
+    if (
+      credenciales.newpassword.length > 7 &&
+      credenciales.confirmpassword.length > 7
+    ) {
+      if (credenciales.newpassword === credenciales.confirmpassword) {
+        console.log("si paso");
+        passwordupdate();
+      } else {
+        console.log(credenciales.newpassword);
+        console.log(credenciales.confirmpassword);
+        Swal.fire("Contraseña no coinciden!", "", "info");
+      }
+    } else {
+      Swal.fire("Las contraseñas deben tener minimo 8 caracteres!", "", "info");
+      setCredenciales({
+        ...credenciales,
+        newpassword: "",
+        confirmpassword: "",
+      });
+    }
+  };
+
+  const actualizarperfil = () => {
+    if (estadoperfil) {
+      setEstadoperfil(false);
+    } else {
+      if (userperfil.telefono.length === 8) {
+        Swal.fire({
+          title: "Quiere guardar los cambios?",
+          showDenyButton: true,
+          //showCancelButton: true,
+          confirmButtonText: "Actualizar",
+          denyButtonText: `Cancelar`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            const aceptar = datosactualizados();
+            console.log("valor");
+            console.log(aceptar);
+            Swal.fire("Datos actualizados!", "", "success");
+            setEstadoperfil(true);
+          } else if (result.isDenied) {
+            Swal.fire("No se actuliazaron datos", "", "info");
+            console.log(userperfil);
+          }
+          router.push("/profile");
+        });
+      } else {
+        Swal.fire(
+          "Tienen que tener datos obligatorios -Nombre, -Telefono!",
+          "",
+          "info"
+        );
+      }
+    }
+  };
+
+  const deletuser = async () => {
+    Swal.fire({
+      title: "Está seguro de eliminar la Cuenta?",
+      showDenyButton: true,
+      //showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const aceptar = deletUser(deletEmail, tokenuser);
+        console.log(deletEmail);
+        console.log(aceptar);
+        if (aceptar === "ok") {
+          Swal.fire("Cuenta Eliminada!", "", "success");
+          setDeletemail("");
+        } else {
+          Swal.fire("No se pudo eliminar cuenta", "", "error");
+          //console.log(aceptar);
+        }
+      } else if (result.isDenied) {
+        Swal.fire("Se cancelo eliminación de cuenta", "", "info");
+        //console.log(userperfil);
+      }
+    });
+  };
+  async function datosactualizados() {
+    return await UpdateProfile(userperfil, tokenuser);
+  }
+
+  async function passwordupdate() {
+    //console.log(userperfil.id);
+    const valor = await updatePassword(credenciales, userperfil.id, tokenuser);
+    console.log(valor);
+    if (valor.response === "ok") {
+      Swal.fire("Contraseña actualizada!", "", "success");
+      deleteCookie("tokenuser");
+      router.push("/login");
+    } else {
+      //no es la contraseña ingresada
+      Swal.fire("Contraseña incorrecta!", "", "error");
+      setCredenciales({
+        ...credenciales,
+        oldpassword: "",
+        newpassword: "",
+        confirmpassword: "",
+      });
+    }
+  }
+  function estadobotones(e) {
+    ["profile", "account", "security", "notification"].forEach((items) => {
+      document.querySelector("#" + items).classList.remove("bg-[#007bff]");
+      document.querySelector("#" + items).classList.remove("text-white");
+      document.querySelector("#" + items).classList.add("text-[#007bff]");
+      document.querySelector("#h" + items + "i").classList.remove("block");
+      document.querySelector("#h" + items + "i").classList.add("hidden");
+    });
+    e.currentTarget.classList.remove("text-[#007bff]");
+    e.currentTarget.classList.add("bg-[#007bff]");
+    e.currentTarget.classList.add("text-white");
+    document
+      .querySelector("#h" + e.currentTarget.id + "i")
+      .classList.add("block");
+    document
+      .querySelector("#h" + e.currentTarget.id + "i")
+      .classList.remove("hidden");
+  }
+  function estadoiconos(e) {
+    ["profilei", "accounti", "securityi", "notificationi"].forEach((items) => {
+      document.querySelector("#" + items).classList.remove("bg-[#007bff]");
+      document.querySelector("#h" + items).classList.remove("block");
+      document.querySelector("#h" + items).classList.add("hidden");
+    });
+    e.currentTarget.classList.add("bg-[#007bff]");
+    document.querySelector("#h" + e.currentTarget.id).classList.add("block");
+    document
+      .querySelector("#h" + e.currentTarget.id)
+      .classList.remove("hidden");
+  }
+
+  const agregarDatossalud = async () => {
+    if (newEnfermedad != "") {
+      const enfermedadnew = {
+        illnes: newEnfermedad,
+      };
+      dataEnfermedad.push(enfermedadnew);
+    }
+    if (newIncapacidad != "") {
+      const incapacidadnew = {
+        inability: newIncapacidad,
+      };
+      dataIncapacidad.push(incapacidadnew);
+    }
+
+    if (newMedicina != "") {
+      const medicinanew = {
+        medicines: newMedicina,
+      };
+      dataMedicina.push(medicinanew);
+    }
+    const resultado = await updateHealth(
+      newTiposangre,
+      dataEnfermedad,
+      dataMedicina,
+      dataIncapacidad,
+      userperfil.id,
+      tokenuser
+    );
+
+    if (resultado.response === "ok") {
+      Swal.fire("Datos Actualizada!", "", "success");
+      setNewenfermedad("");
+      setNewincapacidad("");
+      setNewmedicina("");
+      setBloquesalud(true);
+      Datos();
+    } else {
+      Swal.fire("No se pudo Actualizar", "", "error");
+      console.log(resultado);
+    }
+  };
+
   return (
     <>
       <Head>
         <title>PortCRG</title>
       </Head>
 
-      <div className="container">
+      <div className="container w-full">
         {/* Breadcrumb */}
 
         {/* /Breadcrumb */}
@@ -28,17 +390,18 @@ export default function Home() {
                   <div className="user-profile">
                     <div className="user-avatar">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                        //src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                        src="https://snipboard.io/7Cmrs1.jpg"
                         alt=""
                       />
                     </div>
                     <h3 className="user-name">Cruz Roja Guatemalteca</h3>
                   </div>
 
-                  <a
-                    href="#profile"
-                    data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded active"
+                  <button
+                    onClick={estadobotones}
+                    id="profile"
+                    className="text-left bg-[#007bff] text-white mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -56,11 +419,13 @@ export default function Home() {
                       <circle cx={12} cy={7} r={4} />
                     </svg>
                     Información Personal
-                  </a>
-                  <a
-                    href="#account"
+                  </button>
+                  <button
+                    className="text-left mb-2 px-3 py-2"
+                    hidden={estadodelet}
+                    onClick={estadobotones}
+                    id="account"
                     data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +443,11 @@ export default function Home() {
                       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                     </svg>
                     Ajustes de Cuenta
-                  </a>
-                  <a
-                    href="#security"
-                    data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
+                  </button>
+                  <button
+                    onClick={estadobotones}
+                    id="security"
+                    className="text-left mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -99,11 +464,11 @@ export default function Home() {
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                     Seguridad
-                  </a>
-                  <a
-                    href="#notification"
-                    data-toggle="tab"
-                    className="nav-item nav-link has-icon nav-link-faded"
+                  </button>
+                  <button
+                    onClick={estadobotones}
+                    id="notification"
+                    className="text-left mb-2 px-3 py-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -115,17 +480,31 @@ export default function Home() {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="feather feather-bell mr-2"
+                      className="feather feather-activity"
                     >
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-heart"
+                      >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                      </svg>
                     </svg>
                     Salud
-                  </a>
+                  </button>
                 </nav>
               </div>
             </div>
           </div>
+
+          {/*empieza los iconos */}
           <div className="col-md-8">
             <div className="card">
               <div className="card-header border-bottom mb-3 d-flex d-md-none">
@@ -134,10 +513,11 @@ export default function Home() {
                   role="tablist"
                 >
                   <li className="nav-item">
-                    <a
-                      href="#profile"
+                    <button
+                      id="profilei"
+                      onClick={estadoiconos}
                       data-toggle="tab"
-                      className="nav-link has-icon active"
+                      className="bg-[#007bff]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -154,13 +534,76 @@ export default function Home() {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx={12} cy={7} r={4} />
                       </svg>
-                    </a>
+                    </button>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#account"
+                    <button
+                      onClick={estadoiconos}
+                      id="notificationi"
                       data-toggle="tab"
-                      className="nav-link has-icon"
+                      className="has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-activity"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="feather feather-heart"
+                        >
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                      </svg>
+                    </button>
+                  </li>
+
+                  <li className="nav-item">
+                    <button
+                      onClick={estadoiconos}
+                      id="securityi"
+                      data-toggle="tab"
+                      className="has-icon"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-shield"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </button>
+                  </li>
+
+                  <li className="nav-item">
+                    <button
+                      hidden={estadodelet}
+                      onClick={estadoiconos}
+                      id="accounti"
+                      data-toggle="tab"
+                      className="has-icon"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -177,286 +620,331 @@ export default function Home() {
                         <circle cx={12} cy={12} r={3} />
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                       </svg>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="#security"
-                      data-toggle="tab"
-                      className="nav-link has-icon"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-shield"
-                      >
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      </svg>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="#notification"
-                      data-toggle="tab"
-                      className="nav-link has-icon"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-bell"
-                      >
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                      </svg>
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
               <div className="card-body tab-content">
-                <div className="tab-pane active" id="profile">
-                  <h6>INFORMACIÓN PERSONAL</h6>
+                <div className="block" id="hprofilei">
+                  <h6>
+                    <strong>INFORMACIÓN PERSONAL</strong>
+                  </h6>
                   <hr />
                   <form>
-                    <div className="form-group">
-                      <label htmlFor="fullName">Nombre Completo</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su nombre completo"
-                        defaultValue=""
-                      />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Nombre</strong>
+                          </label>
+                          <input
+                            name="name"
+                            type="text"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                            className="form-control"
+                            value={userperfil.name}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>DPI</strong>
+                          </label>
+                          <input
+                            disabled
+                            type="text"
+                            id="DPI"
+                            className="form-control"
+                            value={userperfil.dpi}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Estado Civil</strong>
+                          </label>
+                          <select
+                            className="form-control"
+                            value={userperfil.estadocivil}
+                            name="estadocivil"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                          >
+                            <option value={1}>Soltero</option>
+                            <option value={2}>Casado</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Número de Teléfono</strong>
+                          </label>
+                          <input
+                            name="telefono"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                            type="tel"
+                            className="form-control"
+                            required
+                            value={userperfil.telefono}
+                            minLength="8"
+                            maxLength="8"
+                            size="10"
+                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Ocupación</strong>
+                          </label>
+                          <select
+                            className="form-control"
+                            disabled
+                            value={userperfil.ocupacion}
+                          >
+                            <option value={1}>Voluntario General</option>
+                            <option value={2}>Socorrista</option>
+                            <option value={3}>Juventino</option>
+                            <option value={4}>Personal Asalariado</option>
+                            <option value={5}>Damas Voluntarias</option>
+                            <option value={6}>Administrador</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Fecha de Nacimiento</strong>
+                          </label>
+                          <input
+                            disabled
+                            type="text"
+                            className="form-control"
+                            value={userperfil.dateofBirth}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Departamento</strong>
+                          </label>
+                          <select
+                            name="department"
+                            className="form-control"
+                            disabled={estadoperfil}
+                            value={userperfil.department}
+                            placeholder={"Seleccionar Departamento"}
+                            onChange={obteniendodatos}
+                          >
+                            <option value="Alta Verapaz">Alta Verapaz</option>
+                            <option value="Baja Verapaz">Baja Verapaz</option>
+                            <option value="Chimaltenango">Chimaltenango</option>
+                            <option value="Chiquimula">Chiquimula</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="El Progreso">El Progreso</option>
+                            <option value="Escuintla">Escuintla</option>
+                            <option value="Huehuetenango">Huehuetenango</option>
+                            <option value="Izabal">Izabal</option>
+                            <option value="Jalapa">Jalapa</option>
+                            <option value="Jutiapa">Jutiapa</option>
+                            <option value="Péten">Péten</option>
+                            <option value="Quetzaltenango">
+                              Quetzaltenango
+                            </option>
+                            <option value="Quiché">Quiché</option>
+                            <option value="Retalhuleu">Retalhuleu</option>
+                            <option value="Sacatepequez">Sacatepequez</option>
+                            <option value="San Marcos">San Marcos</option>
+                            <option value="Santa Rosa">Santa Rosa</option>
+                            <option value="Sololá">Sololá</option>
+                            <option value="Suchitepequez">Suchitepequez</option>
+                            <option value="Totonicapán">Totonicapán</option>
+                            <option value="Zacapa">Zacapa</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Municipio</strong>
+                          </label>
+                          <input
+                            name="municipality"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                            type="text"
+                            className="form-control"
+                            value={userperfil.municipality}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            <strong>Dirección de Residencia</strong>
+                          </label>
+                          <input
+                            disabled={estadoperfil}
+                            name="address"
+                            onChange={obteniendodatos}
+                            type="text"
+                            className="form-control"
+                            value={userperfil.address}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label>
+                            <strong>Biografía</strong>
+                          </label>
+                          <textarea
+                            name="bibliography"
+                            disabled={estadoperfil}
+                            onChange={obteniendodatos}
+                            className="form-control"
+                            id="biografia"
+                            rows={4}
+                            value={userperfil.bibliography}
+                          />
+                        </div>
+                      </div>
                       <small id="fullNameHelp" className="form-text text-muted">
-                        El nombre que ingrese es el que se mostrará por defecto.
-                        Puede cambiar o actualizar su nombre en cualquier
-                        momento.
+                        *El nombre que ingrese es el que se mostrará por
+                        defecto. Puede cambiar o actualizar sus datos en
+                        cualquier momento.
                       </small>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="bio">Biografía</label>
-                      <textarea
-                        className="form-control autosize"
-                        id="bio"
-                        placeholder="Puedes escribir un poco mas de ti, para conocer tus gustos e intereses."
-                        style={{
-                          overflow: "hidden",
-                          overflowWrap: "break-word",
-                          resize: "none",
-                          height: 62,
-                        }}
-                        defaultValue={""}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="fullName">DPI</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su número de DPI"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Estado Civil</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">
-                            Seleccione su estado Civil
-                          </option>
-                          <option>Soltero</option>
-                          <option>Casado</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="phone">Número de Telefono/Celular</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese su número de contacto"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Ocupación</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">Seleccionar Ocupación</option>
-                          <option>Voluntario General</option>
-                          <option>Socorrista</option>
-                          <option>Juventino</option>
-                          <option>Personal Asalariado</option>
-                          <option>Damas Voluntarias</option>
-                          <option>Administrador</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="fullName">Fecha de Nacimiento</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        aria-describedby="fullNameHelp"
-                        placeholder="Ingrese Fecha de nacimiento"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Departamento</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                          <option selected="">Seleccionar Departamento</option>
-                          <option>Alta Verapaz</option>
-                          <option>Baja Verapaz</option>
-                          <option>Chimaltenango</option>
-                          <option>Chiquimula</option>
-                          <option>Guatemala</option>
-                          <option>El Progreso</option>
-                          <option>Escuintla</option>
-                          <option>Huehuetenango</option>
-                          <option>Izabal</option>
-                          <option>Jalapa</option>
-                          <option>Jutiapa</option>
-                          <option>Péten</option>
-                          <option>Quetzaltenango</option>
-                          <option>Quiché</option>
-                          <option>Retalhuleu</option>
-                          <option>Sacatepequez</option>
-                          <option>San Marcos</option>
-                          <option>Santa Rosa</option>
-                          <option>Sololá</option>
-                          <option>Suchitepequez</option>
-                          <option>Totonicapán</option>
-                          <option>Zacapa</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="Municio">Municipio</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="location"
-                        placeholder="Ingrese el Municipio donde vive actualmente"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="location">Dirección de Residencia</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="location"
-                        placeholder="Ingrese la dirección donde vive actualmente"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    <div className="form-group small text-muted">
-                      Todos los campos de esta página son opcionales y se pueden
-                      eliminar en cualquier momento, y al rellenarlos nos estás
-                      dando tu consentimiento para compartir estos datos
-                      dondequiera que aparezca su perfil de usuario.
-                    </div>
-                    <button type="button" className="btn btn-success">
-                      Actualizar perfil
-                    </button>
                   </form>
+                  <hr></hr>
+                  <div>
+                    <button
+                      onClick={editarLibre}
+                      className="btn btn-warning m-2"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      hidden={estadoperfil}
+                      onClick={actualizarperfil}
+                    >
+                      Actualizar
+                    </button>
+                  </div>
                 </div>
-                <div className="tab-pane" id="account">
-                  <h6>AJUSTES DE CUENTA</h6>
+
+                <div className="hidden" id="haccounti">
+                  <h6>
+                    <strong>ELIMINAR CUENTAS</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label htmlFor="username">
-                        Correo Electrónico / Codigo de Personal
-                      </label>
+                      <label htmlFor="username">Correo Electrónico</label>
                       <input
-                        type="text"
+                        name="emaildelet"
+                        onChange={eliminarusuario}
                         className="form-control"
                         id="username"
                         aria-describedby="usernameHelp"
-                        placeholder="Ingrese su correo electrónico o Codigo de personal"
-                        defaultValue=""
+                        value={deletEmail}
+                        placeholder="Ingrese el electrónico de la cuenta que desea eliminar"
                       />
                       <small id="usernameHelp" className="form-text text-muted">
-                        Despues de cambiar el Correo electrónico o Codigo de
-                        Personal el mismo estará disponible para cualquier otra
-                        persona.
+                        Despues de eliminar la cuenta de usuario, el Correo
+                        electrónico disponible para cualquier otra persona.
                       </small>
                     </div>
-                    <hr />
+
                     <div className="form-group">
                       <label className="d-block text-danger">
-                        Eliminar Cuenta
+                        <strong>Eliminar Cuenta</strong>
                       </label>
                       <p className="text-muted font-size-sm">
-                        Una vez eliminada tu cuenta, no abra marcha atraz, por
-                        favor se conciente.
+                        Solo un usuario Administrador puede eliminar tu cuenta.
                       </p>
                     </div>
-                    <button className="btn btn-danger" type="button">
+                    <hr></hr>
+                    <button
+                      onClick={deletuser}
+                      className="btn btn-danger"
+                      type="button"
+                    >
                       Eliminar Cuenta
                     </button>
                   </form>
                 </div>
-                <div className="tab-pane" id="security">
-                  <h6>AJUSTES DE SEGURIDAD</h6>
+                <div className="hidden" id="hsecurityi">
+                  <h6>
+                    <strong>AJUSTES DE SEGURIDAD</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
-                      <label className="d-block">Cambiar contraseña</label>
+                      <label className="d-block">
+                        <strong>Cambiar constraseña</strong>
+                      </label>
                       <input
-                        type="text"
+                        onChange={cambiarpassword}
+                        name="oldpassword"
+                        value={credenciales.oldpassword}
+                        type="password"
                         className="form-control"
                         placeholder="Ingrese su contraseña actual"
                       />
                       <input
-                        type="text"
+                        onChange={cambiarpassword}
+                        type="password"
+                        name="newpassword"
+                        required
+                        minLength="8"
+                        size="10"
+                        value={credenciales.newpassword}
                         className="form-control mt-1"
                         placeholder="Nueva contraseña"
                       />
                       <input
-                        type="text"
+                        onChange={cambiarpassword}
+                        type="password"
+                        name="confirmpassword"
+                        required
+                        value={credenciales.confirmpassword}
+                        minLength="8"
+                        size="10"
                         className="form-control mt-1"
                         placeholder="Confirmar nueva contraseña"
                       />
                     </div>
-                    <button type="button" className="btn btn-success">
+                    <hr></hr>
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      onClick={actualizaspassword}
+                    >
                       Actualizar Contraseña
                     </button>
                   </form>
                 </div>
-                <div className="tab-pane" id="notification">
-                  <h6>INFORMACIÓN DE SALUD</h6>
+                <div className="hidden" id="hnotificationi">
+                  <h6>
+                    <strong>INFORMACIÓN DE SALUD</strong>
+                  </h6>
                   <hr />
                   <form>
                     <div className="form-group">
@@ -470,123 +958,141 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="form-group mb-0">
-                      <label className="d-block">Salud</label>
                       <ul className="list-group list-group-sm">
                         <li className="list-group-item has-icon">
-                          Tipo de Sangre
+                          <strong>Tipo de Sangre</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                Seleccionar Tipo de Sangre
-                              </option>
-                              <option>O Positivo</option>
-                              <option>O Negativo</option>
-                              <option>A Positivo</option>
-                              <option>A Negativo</option>
-                              <option>B Positivo</option>
-                              <option>B Negativo</option>
-                              <option>AB Positivo</option>
-                              <option>AB Negativo</option>
+                            <select
+                              className="form-control"
+                              disabled={bloquesalud}
+                              onChange={(e) => setNewtiposangre(e.target.value)}
+                              value={newTiposangre}
+                            >
+                              <option value={1}>O Positivo</option>
+                              <option value={2}>O Negativo</option>
+                              <option value={3}>A Positivo</option>
+                              <option value={4}>A Negativo</option>
+                              <option value={5}>B Positivo</option>
+                              <option value={6}>B Negativo</option>
+                              <option value={7}>AB Positivo</option>
+                              <option value={8}>AB Negativo</option>
                             </select>
                           </div>
                         </li>
-                        <li className="list-group-item has-icon">
-                          Enfermedad
-                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna enfermedad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
+                        <hr></hr>
 
-                            <label htmlFor="fullName">
-                              ¿Cual es la enfermedad?
-                            </label>
+                        <small
+                          id="fullNameHelp"
+                          className="form-text text-muted"
+                        >
+                          En el siguiente apartado, si la respuesta es
+                          afirmativa a la pregunta, favor de ingresarla. De lo
+                          contrario puede dejar en blanco el espacio.
+                        </small>
+                        <li className="list-group-item has-icon">
+                          <strong>Enfermedad:</strong>
+                          <div className="custom-control custom-control-nolabel custom-switch ml-auto">
                             <input
+                              name="name"
                               type="text"
                               className="form-control"
-                              id="fullName"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de enfermedad"
-                              defaultValue=""
+                              placeholder="Ingrese enfermedad la cual padece"
+                              onChange={(e) => setNewenfermedad(e.target.value)}
+                              value={newEnfermedad}
+                              hidden={bloquesalud}
+                            />
+                            <hr></hr>
+                            <label>Historial:</label>
+                            <textarea
+                              disabled={estadoSalud}
+                              name="enfermedad"
+                              className="form-control"
+                              id="enfermedad"
+                              rows={4}
+                              value={datossalud.enfermedad}
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Medicamento
+                          <strong>Medicamento:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Actualmente está tomando algún tipo de
-                                medicación?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
-
-                            <label htmlFor="fullName">
-                              Nombre de Medicamento
-                            </label>
                             <input
+                              name="name"
                               type="text"
+                              onChange={(e) => setNewmedicina(e.target.value)}
+                              value={newMedicina}
+                              hidden={bloquesalud}
                               className="form-control"
-                              id="fullName"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de medicamento o compuesto"
-                              defaultValue=""
+                              placeholder="Ingrese medicamento que consume"
+                            />
+                            <hr></hr>
+                            <label>Historial:</label>
+                            <textarea
+                              disabled={estadoSalud}
+                              name="areamedicina"
+                              className="form-control"
+                              id="medicamento"
+                              value={datossalud.medicina}
+                              rows={4}
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
 
                         <li className="list-group-item has-icon">
-                          Incapacidad
+                          <strong>Incapacidad:</strong>
                           <div className="custom-control custom-control-nolabel custom-switch ml-auto">
-                            <select class="form-control">
-                              <option selected="">
-                                ¿Padece de alguna incapacidad?
-                              </option>
-                              <option>SI</option>
-                              <option>NO</option>
-                            </select>
-
-                            <label htmlFor="fullName">
-                              Mencione la discapacidad
-                            </label>
                             <input
+                              onChange={(e) =>
+                                setNewincapacidad(e.target.value)
+                              }
+                              value={newIncapacidad}
+                              hidden={bloquesalud}
+                              placeholder="Ingrese incapacidad"
+                              name="name"
                               type="text"
                               className="form-control"
-                              id="fullName"
-                              aria-describedby="fullNameHelp"
-                              placeholder="Si su respuesta anterior fue SI, Ingrese nombre de discapacidad"
-                              defaultValue=""
+                            />
+                            <hr></hr>
+                            <label>Historial:</label>
+                            <textarea
+                              disabled={estadoSalud}
+                              name="incapacidad"
+                              className="form-control"
+                              id="incapacidad"
+                              rows={4}
+                              value={datossalud.incapacidad}
+                              readOnly="readOnly"
                             />
                           </div>
                         </li>
                       </ul>
                     </div>
-                    <button type="button" className="btn btn-success">
-                      Actualizar datos
-                    </button>
                   </form>
+                  <hr></hr>
+                  <div>
+                    <button
+                      onClick={editarLibresalud}
+                      className="btn btn-warning m-2"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={agregarDatossalud}
+                      hidden={bloquesalud}
+                      className="btn btn-primary"
+                    >
+                      Actualizar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <style
-        type="text/css"
-        dangerouslySetInnerHTML={{
-          __html:
-            "\nbody{\n    margin-top:20px;\n    color: #1a202c;\n    text-align: left;\n    background-color: #e2e8f0;    \n}\n\n.user-profile {\n    margin: 0 0 1rem 0;\n    padding-bottom: 1rem;\n    text-align: center;\n}\n.user-profile .user-avatar {\n    margin: 0 0 1rem 0;\n}\n.user-profile .user-avatar img {\n margin:auto; \n  width: 300px;\n    height: 300px;\n    -webkit-border-radius: 100px;\n    -moz-border-radius: 100px;\n    border-radius: 100px;\n}\n.user-profile h3.user-name {\n    margin: 0 0 0.5rem 0;\n}\n.user-profile  {\n    margin: 0;\n    font-size: 0.8rem;\n    font-weight: 400;\n}\n\n.main-body {\n    padding: 15px;\n}\n\n.nav-link {\n    color: #4a5568;\n}\n.card {\n  margin-top:25px; margin-bottom:25px;\n \n box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);\n}\n\n.card {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    word-wrap: break-word;\n    background-color: #fff;\n    background-clip: border-box;\n    border: 0 solid rgba(0,0,0,.125);\n    border-radius: .25rem;\n}\n\n.card-body {\n    flex: 1 1 auto;\n    min-height: 1px;\n    padding: 1rem;\n}\n\n.gutters-sm {\n    margin-right: -8px;\n    margin-left: -8px;\n}\n\n.gutters-sm>.col, .gutters-sm>[class*=col-] {\n    padding-right: 8px;\n    padding-left: 8px;\n}\n.mb-3, .my-3 {\n    margin-bottom: 1rem!important;\n}\n\n.bg-gray-300 {\n    background-color: #e2e8f0;\n}\n.h-100 {\n    height: 100%!important;\n}\n.shadow-none {\n    box-shadow: none!important;\n}\n\n",
-        }}
-      />
-
-      <Script type="text/javascript"></Script>
-
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -602,8 +1108,8 @@ export default function Home() {
         nonce="449d412794494977987fdafaa11"
         src="//local.adguard.org?ts=1662436000105&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"
       ></Script>
-      <Script src="https://code.jquery.com/jquery-1.10.2.min.js"></Script>
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></Script>
+
+      <script type="text/javascript"></script>
     </>
   );
 }

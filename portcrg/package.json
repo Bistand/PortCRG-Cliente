@@ -11,18 +11,35 @@
   "dependencies": {
     "@headlessui/react": "^1.7.1",
     "@heroicons/react": "^2.0.11",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "axios": "^0.27.2",
+    "cookie": "^0.5.0",
+    "cookies-next": "^2.1.1",
+    "date-fns": "^2.29.3",
+    "element-ui": "^2.15.10",
+    "install": "^0.13.0",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.38",
     "next": "12.2.5",
+    "npm": "^8.19.2",
+    "or": "^0.2.0",
     "react": "18.2.0",
+    "react-big-calendar": "^1.5.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.36.1",
     "react-icons": "^4.4.0",
-    "react-table": "^7.8.0"
+    "react-pdf": "^5.7.2",
+    "react-table": "^7.8.0",
+    "regenerator-runtime": "^0.13.9",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.4.37"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
+    "moment-timezone-data-webpack-plugin": "^1.5.1",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
