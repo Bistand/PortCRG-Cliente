@@ -26,7 +26,7 @@ const CoursesProvider = ({ children }) => {
           "https://portcrg.onrender.com/api/courses/",
           config
         );
-        console.log(data.data);
+        // console.log(data.data);
 
         setCoursesList(data.data);
       } catch (error) {
